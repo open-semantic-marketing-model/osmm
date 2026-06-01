@@ -168,11 +168,6 @@ A `-validator` is also the trigger condition for promoting a schema out of its b
 
 Some object fields are governed enums, not free text (e.g. Persona `persona_type`). These follow the same governance logic as the object model itself: a small, opinionated starter vocabulary, extended deliberately by maintainers — never invented per-project. Stored values use snake_case tokens (consistent with `object_type`) mapped to human-readable labels in the owning skill. This keeps fields machine-facetable instead of fragmenting into near-duplicate variants.
 
----
-
-## Open item
-
-The concept papers and the L1 summary reference a **Creative Brief** object (Wave 1 / Phase 5 work product), but the detailed object registry has no object by that name — it carries Messaging Framework, Creative Strategy, Content Strategy, Experience Design, and Creative Test Strategy instead. This registry therefore contains no `osmm-creative-brief-builder`. Resolve the model inconsistency before finalizing wave assignments; it does not affect the naming convention itself.
 
 ---
 
