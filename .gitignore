@@ -1,0 +1,19 @@
+# OS / editor cruft
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
+
+# OSMM working instances
+# Per CONVENTION.md, object instances produced during client work or internal
+# testing live OUTSIDE the repo until validated and promoted into examples/.
+# Ignore stray JSON at the repo root and in a local scratch dir so unvalidated
+# instances are never committed by accident. Validated examples under examples/
+# are explicitly re-included below.
+/*.json
+/scratch/
+!examples/**/*.json
