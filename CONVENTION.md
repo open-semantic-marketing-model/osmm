@@ -225,9 +225,9 @@ description: >-                     # trigger-rich: what it composes + when to u
 skill_class: artifact-composer     # distinguishes it from object builders
 artifact: Creative Brief           # the human-readable artifact produced (NOT an object)
 consumes:                          # the object_types it reads as input
-  required: [business_context, brand_context, persona, marketing_strategy,
-             creative_strategy, messaging_framework]
-  optional: [audience, offer, campaign_strategy, measurement_framework, keyword]
+  required: [business_context, brand_context, persona]
+  optional: [marketing_strategy, creative_strategy, messaging_framework,
+             audience, offer, campaign_strategy, measurement_framework, keyword]
 phase: 5                           # workflow phase the artifact belongs to
 osmm_version: 0.1.0                # OSMM schema version the consumed objects target
 status: draft                      # draft | proposed | stable | deprecated

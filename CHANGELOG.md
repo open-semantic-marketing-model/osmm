@@ -19,8 +19,11 @@ governance). The current schema version is **0.1.0**.
   by `object_type` (enforcing the standard as a pull-through) and select
   variants from object data.
 - `osmm-creative-brief-composer` — the first artifact-composer skill. Composes a
-  Creative Brief from the Context + Phase 5 objects; B2C/B2B variant driven by
-  Business Context `business_type`; reports missing required objects with the
+  Creative Brief from a three-tier input set: Business/Brand Context + Persona
+  are required (enough for a useful first draft), the Phase 5 strategy objects
+  are optional and synthesized-and-flagged when absent, and add-on objects (offer,
+  campaign, metrics, keyword) are dropped when absent. B2C/B2B variant is driven
+  by Business Context `business_type`; missing objects are reported with the
   builder that produces each.
 - `RELATIONSHIPS.md` — the object reference model: how ids and reference fields
   work, the category-level reference graph, established reference edges, and a

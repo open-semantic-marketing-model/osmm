@@ -15,8 +15,8 @@ description: >-
 skill_class: artifact-composer
 artifact: Creative Brief
 consumes:
-  required: [business_context, brand_context, persona, marketing_strategy, creative_strategy, messaging_framework]
-  optional: [audience, offer, campaign_strategy, measurement_framework, keyword]
+  required: [business_context, brand_context, persona]
+  optional: [marketing_strategy, creative_strategy, messaging_framework, audience, offer, campaign_strategy, measurement_framework, keyword]
 phase: 5
 osmm_version: 0.1.0
 status: draft
@@ -35,27 +35,39 @@ a brief. It defines no schema and produces no `object_type`. The brief is a
 data, which a client then tailors to their house format.
 
 The value is twofold: it turns the work already captured in OSMM objects into the
-deliverable teams actually use, **and** it enforces the standard by requiring
-those objects as inputs — you cannot get the good brief without the structured
-context, so the brief pulls object adoption through.
+deliverable teams actually use, **and** it enforces the standard by requiring the
+core context objects as inputs and pulling the strategy objects through — the
+more of the model a client has built, the sharper the brief, so the brief pulls
+object adoption through rather than gating on it.
 
 ## What it consumes
 
-The brief is composed *from objects*, never from scratch. Resolve these as
-inputs (by `object_type`):
+The brief is composed *from objects*, never from scratch. Inputs fall into three
+tiers, resolved by `object_type`:
 
-**Required** — the brief should not be composed without these:
+**Tier 1 — Required.** The brief should not be composed without these three; they
+anchor who/what/how and are enough to produce a useful first draft on their own:
 
 | Object | What it supplies to the brief |
 |--------|-------------------------------|
 | `business_context` | Background; market position; differentiators; what the business needs marketing to do. |
 | `brand_context` | Tone, voice, personality, and messaging guardrails (the "how it must sound" + mandatories). |
 | `persona` | The target — who we're talking to, their triggers, motivations, pain points, decision criteria. |
-| `marketing_strategy` | The business/marketing objective the creative must serve. |
-| `creative_strategy` | Creative themes, emotional strategy, channel creative requirements — the creative spine. |
-| `messaging_framework` | Message hierarchy and the single-minded proposition + supporting messages. |
 
-**Optional** — include when present; they strengthen the brief:
+**Tier 2 — Strategy (optional, but they sharpen the spine).** When present, each
+supplies its section directly. When **absent**, the composer synthesizes a
+*provisional* version of that section from Tier 1 and flags it — it does not drop
+the section, because a brief without an objective or a proposition isn't a brief:
+
+| Object | Supplies | If absent |
+|--------|----------|-----------|
+| `marketing_strategy` | The business/marketing objective the creative must serve. | Infer a provisional objective from `business_context` marketing objectives; flag it. |
+| `creative_strategy` | Creative themes, emotional strategy, channel creative requirements. | Synthesize a provisional creative angle from persona + brand; flag it. |
+| `messaging_framework` | Message hierarchy; the single-minded proposition + support. | Draft a provisional proposition from persona motivations + business differentiators; flag it. |
+
+**Tier 3 — Add-ons (optional).** Include when present; **omit the section
+entirely when absent** — never fabricate an offer, metrics, or a campaign that
+wasn't decided:
 
 | Object | What it adds |
 |--------|--------------|
@@ -65,31 +77,40 @@ inputs (by `object_type`):
 | `measurement_framework` / `campaign_measurement` | Success metrics the creative is accountable to. |
 | `keyword` | SEO/AEO topics and intent the creative should serve. |
 
-### Handling missing objects (this is where the standard gets enforced)
+### Handling missing objects (how the pull-through works)
 
-Before composing, check which required objects are available.
+Before composing, check which objects are available, then apply the tier rule:
 
-- **If a required object is missing,** do not invent it. Report exactly what's
-  missing and name the builder that produces it, then offer to proceed with a
-  clearly-flagged gap or to build the object first:
+- **Tier 1 missing** — do not invent it. Report exactly what's missing and name
+  the builder that produces it, then offer to proceed with a clearly-flagged gap
+  or to build the object first:
 
   > Missing required input: **Brand Context** (`brand_context`). Build it with
   > `osmm-brand-context-builder`, or I can draft the brief with the *Tone &
   > Personality* section flagged `[GAP: no Brand Context]`.
 
-- **If an optional object is missing,** omit its section silently or note it
-  lightly; never fabricate an offer or metrics that weren't decided.
+- **Tier 2 missing** — synthesize the section provisionally from Tier 1, flag it
+  inline, and recommend the builder so the client knows how to firm it up:
 
-The builder map for required inputs:
+  > `[DRAFT: no Messaging Framework — proposition synthesized from Persona +
+  > Business Context. Firm up with osmm-messaging-framework-builder.]`
 
-| Object | Builder |
-|--------|---------|
-| `business_context` | `osmm-business-context-builder` |
-| `brand_context` | `osmm-brand-context-builder` |
-| `persona` | `osmm-persona-builder` |
-| `marketing_strategy` | `osmm-marketing-strategy-builder` |
-| `creative_strategy` | `osmm-creative-strategy-builder` |
-| `messaging_framework` | `osmm-messaging-framework-builder` |
+- **Tier 3 missing** — omit the section silently or note it lightly; never
+  fabricate the underlying decision.
+
+Always end with a short **"To sharpen this brief"** list naming the absent Tier 2
+/ Tier 3 objects and their builders — this is the pull-through made explicit.
+
+The builder map:
+
+| Object | Builder | Tier |
+|--------|---------|------|
+| `business_context` | `osmm-business-context-builder` | 1 |
+| `brand_context` | `osmm-brand-context-builder` | 1 |
+| `persona` | `osmm-persona-builder` | 1 |
+| `marketing_strategy` | `osmm-marketing-strategy-builder` | 2 |
+| `creative_strategy` | `osmm-creative-strategy-builder` | 2 |
+| `messaging_framework` | `osmm-messaging-framework-builder` | 2 |
 
 ## Template selection (data-driven, not hand-toggled)
 
@@ -145,9 +166,12 @@ object is absent (after the missing-object handling above).
 
 ## Composition principles
 
-1. **Compose, don't author.** Every claim in the brief should trace to an object.
-   If you find yourself inventing a fact, the right move is to flag a missing
-   object, not to fill the gap.
+1. **Compose first; synthesize only Tier 2, and flag it.** Every claim should
+   trace to an object. Where a Tier 2 strategy object is absent you may
+   synthesize a *provisional* objective / angle / proposition from Tier 1 — but
+   mark it `[DRAFT: …]` and name the builder. Never invent a Tier 3 fact (an
+   offer, a metric, a campaign) the objects don't support: flag the gap instead
+   of filling it.
 2. **The brief is a focusing tool.** Distill — a single-minded proposition is
    *single-minded*. Resist transcribing whole arrays from the objects; select the
    signal-bearing items.
