@@ -12,6 +12,19 @@ governance). The current schema version is **0.1.0**.
 ## [Unreleased]
 
 ### Added
+- **Artifact-composer skill class** — `CONVENTION.md` adds a `-composer` verb
+  slot and an "Artifact-composer skills" section: non-normative accelerator
+  skills that read several objects and compose a human-readable artifact, keyed
+  to the artifact name and living under `skills/artifacts/`. They consume objects
+  by `object_type` (enforcing the standard as a pull-through) and select
+  variants from object data.
+- `osmm-creative-brief-composer` — the first artifact-composer skill. Composes a
+  Creative Brief from a three-tier input set: Business/Brand Context + Persona
+  are required (enough for a useful first draft), the Phase 5 strategy objects
+  are optional and synthesized-and-flagged when absent, and add-on objects (offer,
+  campaign, metrics, keyword) are dropped when absent. B2C/B2B variant is driven
+  by Business Context `business_type`; missing objects are reported with the
+  builder that produces each.
 - `RELATIONSHIPS.md` — the object reference model: how ids and reference fields
   work, the category-level reference graph, established reference edges, and a
   proposed id-prefix table for the remaining objects.
@@ -32,6 +45,9 @@ governance). The current schema version is **0.1.0**.
   objects), not an OSMM object. No object, `object_type`, or builder is added;
   the model stands at 34 objects. Fixed a stale "Creative Brief object"
   reference in the business-context builder.
+- Amended the Creative Brief resolution to add the skill-layer consequence: the
+  standard stays objects-only, but OSMM now ships an `osmm-creative-brief-composer`
+  artifact-composer skill as a non-normative accelerator.
 - README status refreshed to reflect both shipped builders (was "first
   validated builder is `osmm-persona-builder`"), with the versioning policy
   now pointing to `GOVERNANCE.md` and the reference model to `RELATIONSHIPS.md`.
