@@ -27,6 +27,11 @@ governance). The current schema version is **0.1.0**.
   builder skills, under `skills/context/`.
 
 ### Changed
+- Resolved the `CONVENTION.md` "Creative Brief" open item: Creative Brief is an
+  **artifact** (the rendered view of the Creative Strategy + Messaging Framework
+  objects), not an OSMM object. No object, `object_type`, or builder is added;
+  the model stands at 34 objects. Fixed a stale "Creative Brief object"
+  reference in the business-context builder.
 - README status refreshed to reflect both shipped builders (was "first
   validated builder is `osmm-persona-builder`"), with the versioning policy
   now pointing to `GOVERNANCE.md` and the reference model to `RELATIONSHIPS.md`.

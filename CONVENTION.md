@@ -226,9 +226,28 @@ Some object fields are governed enums, not free text (e.g. Persona `persona_type
 
 ---
 
-## Open item
+## Resolved: "Creative Brief" is an artifact, not an object
 
-The concept papers and the L1 summary reference a **Creative Brief** object (Wave 1 / Phase 5 work product), but the detailed object registry has no object by that name — it carries Messaging Framework, Creative Strategy, Content Strategy, Experience Design, and Creative Test Strategy instead. This registry therefore contains no `osmm-creative-brief-builder`. Resolve the model inconsistency before finalizing wave assignments; it does not affect the naming convention itself.
+The concept papers and the L1 summary reference a **Creative Brief** *object*
+(Wave 1 / Phase 5 work product), but the detailed object registry has no object
+by that name — it carries Messaging Framework, Creative Strategy, Content
+Strategy, Experience Design, and Creative Test Strategy instead.
+
+**Resolution:** the Creative Brief is a **human-readable artifact, not an OSMM
+object.** It is the rendered view of the underlying objects — specifically the
+output of sub-process 5.8 (*Confirm Content & Creative Direction*), which
+resolves to the **Creative Strategy Object + Messaging Framework Object** (see
+[`TAXONOMY.md`](TAXONOMY.md)). This is the same object-vs-rendering split that
+runs through the rest of OSMM: the "Creative Brief" a person reads is a
+presentation of structured objects, just as a Strategic Brief renders the
+Marketing Strategy Object. The concept papers used "Creative Brief" as the
+colloquial name for the deliverable before the detailed model decomposed it into
+typed objects.
+
+Consequences: there is no Creative Brief object, no `object_type:
+creative_brief`, and no `osmm-creative-brief-builder`. The object model stands at
+**34 objects**; nothing is added or removed by this resolution. "Creative Brief"
+remains valid only as an artifact label (e.g. in the TAXONOMY artifact column).
 
 ---
 

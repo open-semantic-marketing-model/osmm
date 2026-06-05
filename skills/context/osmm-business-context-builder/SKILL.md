@@ -23,7 +23,7 @@ status: draft
 
 Build a valid **OSMM Business Context Object** from any source describing a company and its marketing context.
 
-A Business Context Object is durable, foundational Context — the structured understanding of who a business is, what it sells, who it competes with, and what marketing is trying to accomplish for it. Every downstream Work Product object — Marketing Strategy, Campaign Strategy, Creative Brief — implicitly references this foundation. Making it explicit and structured means agents and humans operate against the same baseline instead of each reinventing it from scratch.
+A Business Context Object is durable, foundational Context — the structured understanding of who a business is, what it sells, who it competes with, and what marketing is trying to accomplish for it. Every downstream Work Product object — Marketing Strategy, Campaign Strategy, Creative Strategy — implicitly references this foundation. Making it explicit and structured means agents and humans operate against the same baseline instead of each reinventing it from scratch.
 
 This is the lean v0.1 builder. It captures the essential business facts a marketing workflow needs and nothing more. Financial details, org charts, and operational data that don't inform marketing decisions are deliberately out of scope — distill their *marketing implications* into the fields instead.
 
