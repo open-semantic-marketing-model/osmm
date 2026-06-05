@@ -63,12 +63,19 @@ osmm/
 │   ├── measurement/
 │   │   ├── osmm-experience-performance-builder/SKILL.md
 │   │   └── osmm-performance-measurement-builder/SKILL.md
-│   └── learning/
-│       ├── osmm-customer-insight-builder/SKILL.md
-│       └── ...
+│   ├── learning/
+│   │   ├── osmm-customer-insight-builder/SKILL.md
+│   │   └── ...
+│   └── artifacts/    # artifact-composer skills (NOT object builders) — see "Artifact-composer skills"
+│       └── osmm-creative-brief-composer/SKILL.md
 ├── schemas/          # added per-object only when a schema is promoted out of its skill
 └── examples/         # validated example instances (e.g. PERSONA_butcherbox-jesse.json)
 ```
+
+The first five `skills/` subfolders are the **object categories**; `artifacts/`
+is a separate bucket for skills that *compose human-readable artifacts from
+objects* rather than build objects. It is not an object category — see
+[Artifact-composer skills](#artifact-composer-skills).
 
 ---
 
@@ -151,16 +158,91 @@ All 34 objects in the OSMM object model, mapped to their builder skill names.
 
 The convention reserves the verb suffix for sibling skills that operate on the same object. When those are needed, they follow the identical pattern:
 
-| Verb | Purpose |
-|------|---------|
-| `-builder` | Constructs and emits a valid instance of the object. |
-| `-validator` | Checks an instance against the object schema. |
-| `-reader` | Parses an existing instance into working context. |
-| `-migrator` | Upgrades an instance from one schema version to the next. |
+| Verb | Operates on | Purpose |
+|------|-------------|---------|
+| `-builder` | one object | Constructs and emits a valid instance of the object. |
+| `-validator` | one object | Checks an instance against the object schema. |
+| `-reader` | one object | Parses an existing instance into working context. |
+| `-migrator` | one object | Upgrades an instance from one schema version to the next. |
+| `-composer` | many objects → one artifact | Composes a human-readable artifact (a brief, a deck, a summary) from a set of objects. See [Artifact-composer skills](#artifact-composer-skills). |
 
-Example: `osmm-persona-builder`, `osmm-persona-validator`, `osmm-persona-reader`.
+The first four verbs are **object verbs** — each operates on a single object and
+its schema, so they share the `osmm-<object-slug>-<verb>` form (e.g.
+`osmm-persona-builder`, `osmm-persona-validator`, `osmm-persona-reader`).
+
+`-composer` is different in kind: it does not operate on a single object, it
+*reads several objects and emits an artifact*. It therefore keys to the
+**artifact** name, not an object — `osmm-<artifact-slug>-composer` (e.g.
+`osmm-creative-brief-composer`) — and lives under `skills/artifacts/`.
 
 A `-validator` is also the trigger condition for promoting a schema out of its builder (see "Where the schema lives") — the moment two skills need the same schema, it becomes a standalone file.
+
+---
+
+## Artifact-composer skills
+
+OSMM standardizes **objects** (the machine-readable interoperability contract).
+It deliberately does **not** standardize **artifacts** — the human-readable
+briefs, decks, and summaries rendered from those objects — because rendering is a
+client/edge concern, and prescribing it would overreach the standard (see the
+[Creative Brief resolution](#resolved-creative-brief-is-an-artifact-not-an-object)).
+
+An **artifact-composer skill** sits at the skill layer, not the data-standard
+layer. It is a **non-normative accelerator**: it reads a set of OSMM objects and
+composes a useful first-draft artifact a client can then tailor. It does not
+define a schema or an `object_type`, and the artifact it emits is not an OSMM
+object.
+
+Two properties make it OSMM-conformant rather than just a document generator:
+
+1. **It consumes objects, by `object_type`.** A composer declares the object
+   types it requires (and which strengthen the output if present) in its
+   frontmatter `consumes` list, and resolves them as inputs. This is what makes
+   the composer *enforce the standard*: you cannot get the accelerator without
+   first having the structured objects — so the artifact becomes a pull-through
+   for object adoption. Missing required objects are reported, with a pointer to
+   the builder that produces each, rather than silently invented.
+
+2. **It is data-driven, not hand-toggled.** Template/variant selection is driven
+   by object data (e.g. a B2C vs B2B brief follows the Business Context
+   `business_type`), not a manual switch.
+
+### Naming and location
+
+- Name: `osmm-<artifact-slug>-composer`. The slug is the artifact's name
+  (`creative-brief`), lowercase, hyphen-delimited.
+- Folder: `skills/artifacts/<skill-name>/SKILL.md`. The frontmatter `name`
+  equals the folder name, as with every skill.
+
+### Frontmatter
+
+Composers carry artifact-oriented frontmatter instead of the object keys:
+
+```yaml
+name: osmm-creative-brief-composer
+description: >-                     # trigger-rich: what it composes + when to use it
+  ...
+skill_class: artifact-composer     # distinguishes it from object builders
+artifact: Creative Brief           # the human-readable artifact produced (NOT an object)
+consumes:                          # the object_types it reads as input
+  required: [business_context, brand_context, persona, marketing_strategy,
+             creative_strategy, messaging_framework]
+  optional: [audience, offer, campaign_strategy, measurement_framework, keyword]
+phase: 5                           # workflow phase the artifact belongs to
+osmm_version: 0.1.0                # OSMM schema version the consumed objects target
+status: draft                      # draft | proposed | stable | deprecated
+```
+
+Note the absence of `object`, `object_type`, and `category` — a composer has no
+object identity. `skill_class: artifact-composer` is the explicit marker.
+
+### Output
+
+A composer emits a human-readable artifact (typically Markdown), not JSON. Since
+artifacts are non-normative, OSMM does not mandate the artifact's internal
+format; the composer ships a sensible default template that clients tailor. If a
+filename convention is wanted for consistency, mirror the instance pattern with
+the artifact name in uppercase: `CREATIVE-BRIEF_<entity-slug>.md`.
 
 ---
 
@@ -244,10 +326,20 @@ Marketing Strategy Object. The concept papers used "Creative Brief" as the
 colloquial name for the deliverable before the detailed model decomposed it into
 typed objects.
 
-Consequences: there is no Creative Brief object, no `object_type:
-creative_brief`, and no `osmm-creative-brief-builder`. The object model stands at
-**34 objects**; nothing is added or removed by this resolution. "Creative Brief"
-remains valid only as an artifact label (e.g. in the TAXONOMY artifact column).
+Consequences at the **data-standard layer**: there is no Creative Brief object,
+no `object_type: creative_brief`, and no `osmm-creative-brief-builder` (an object
+*builder* has no object to build). The object model stands at **34 objects**;
+nothing is added or removed by this resolution. "Creative Brief" remains valid
+only as an artifact label (e.g. in the TAXONOMY artifact column).
+
+At the **skill layer**, this does not preclude an accelerator. OSMM ships an
+`osmm-creative-brief-composer` — an [artifact-composer
+skill](#artifact-composer-skills) that *reads* the underlying objects (Creative
+Strategy, Messaging Framework, and the Context objects behind them) and composes
+a first-draft brief a client can tailor. The composer is non-normative: it
+defines no schema and emits an artifact, not an object. So the standard stays
+pure (objects only) while the skill library still delivers the brief as an
+accelerator.
 
 ---
 
