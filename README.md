@@ -40,7 +40,9 @@ and richer source assets are referenced, not replaced.
 
 Every object is a typed JSON document with stable references to other objects,
 so an agent can resolve a campaign to its audience, its offer, its creative,
-and its measurement framework without bespoke integration code.
+and its measurement framework without bespoke integration code. How those
+references work — ids, reference fields, and the object graph — is specified in
+[`RELATIONSHIPS.md`](RELATIONSHIPS.md).
 
 ```json
 {
@@ -94,9 +96,11 @@ osmm/
 ## Status
 
 Early and active — **draft v0.1**. The standard is being built iteratively:
-ship a concrete, validated artifact, then refine. First validated builder is
-`osmm-persona-builder`, tested against a real consumer persona. Schemas evolve
-under strict semantic versioning with formal deprecation, never silent breaks.
+ship a concrete, validated artifact, then refine. The first two builders have
+shipped — `osmm-persona-builder` and `osmm-business-context-builder`, both
+Context-layer objects — out of the 34 in the registry. Schemas evolve under
+strict semantic versioning with formal deprecation, never silent breaks; the
+versioning and deprecation policy is in [`GOVERNANCE.md`](GOVERNANCE.md).
 
 ## Relationship to OSI
 

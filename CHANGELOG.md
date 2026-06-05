@@ -27,6 +27,9 @@ governance). The current schema version is **0.1.0**.
   builder skills, under `skills/context/`.
 
 ### Changed
+- README status refreshed to reflect both shipped builders (was "first
+  validated builder is `osmm-persona-builder`"), with the versioning policy
+  now pointing to `GOVERNANCE.md` and the reference model to `RELATIONSHIPS.md`.
 - Builder Output rules aligned with the v0.3 instance-naming convention
   (`<OBJECT-NAME>_<entity-slug>.json`).
 - Renamed `brand/logo.md` → `brand/LOGO.md` to match the README references.
