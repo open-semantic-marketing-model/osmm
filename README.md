@@ -80,11 +80,14 @@ and naming convention live in [`CONVENTION.md`](CONVENTION.md).
 osmm/
 ├── schemas/        # canonical JSON schemas, by category
 ├── examples/       # validated example instances grounded in real assets
-├── skills/         # builder skills (osmm-<object>-builder), by category
-├── brand/          # logo, color tokens, usage — see brand/LOGO.md
-├── CONVENTION.md   # object registry + skill naming convention
-├── GOVERNANCE.md   # maintainer-led review model
-├── CONTRIBUTING.md # how to propose objects and changes
+├── skills/          # builder skills (osmm-<object>-builder), by category
+├── brand/           # logo, color tokens, usage — see brand/LOGO.md
+├── TAXONOMY.md      # workflow phases → objects (the phase view)
+├── CONVENTION.md    # object registry + skill naming convention
+├── RELATIONSHIPS.md # the object reference model (the graph view)
+├── GOVERNANCE.md    # maintainer-led decision model + versioning policy
+├── CONTRIBUTING.md  # how to propose objects and changes
+├── CHANGELOG.md     # notable changes to the standard
 └── README.md
 ```
 

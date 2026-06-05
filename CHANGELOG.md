@@ -12,6 +12,9 @@ governance). The current schema version is **0.1.0**.
 ## [Unreleased]
 
 ### Added
+- `RELATIONSHIPS.md` — the object reference model: how ids and reference fields
+  work, the category-level reference graph, established reference edges, and a
+  proposed id-prefix table for the remaining objects.
 - `GOVERNANCE.md` — maintainer-led decision model, design tenets, object
   lifecycle, semantic-versioning and deprecation policy.
 - `CONTRIBUTING.md` — how to propose objects, author builder skills, and
