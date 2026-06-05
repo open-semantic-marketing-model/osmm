@@ -165,7 +165,7 @@ When sources conflict, **weight the discovery transcript most heavily for object
 ## Output rules
 
 - Emit valid JSON (no comments in the actual output).
-- One object per business entity. Save as `<business_id>.json` (e.g. `BIZ-acme.json`).
+- One object per business entity. Save using the OSMM instance-naming convention: `BUSINESS-CONTEXT_<entity-slug>.json` (e.g. `BUSINESS-CONTEXT_ibm.json`) — uppercase object name, underscore join, lowercase entity slug. See `CONVENTION.md` → "Instance file naming". The `business_id` (`BIZ-<slug>`) remains the id *inside* the object; it is not the filename.
 - Validate it parses before returning it.
 - Briefly tell the user what you inferred vs. extracted, and call out anything thin in the source so they can fill gaps.
 - Note which sources were available and which fields would benefit from additional source material.
