@@ -1,7 +1,7 @@
 # OSMM Skill Naming Convention
 
 **Open Semantic Marketing Model — builder skills**
-Status: Draft v0.2
+Status: Draft v0.3
 
 This document defines how skills that build OSMM objects are named, organized, and described. Every object in the model gets exactly one builder skill, and the name of that skill is keyed to the one thing about the object that never changes: its identity. Phase, category, and release wave can all be re-debated over the life of the standard. The object's identity cannot, so it — and only it — drives the name.
 
@@ -67,7 +67,7 @@ osmm/
 │       ├── osmm-customer-insight-builder/SKILL.md
 │       └── ...
 ├── schemas/          # added per-object only when a schema is promoted out of its skill
-└── examples/         # validated example instances (e.g. PER-butcherbox-jesse.json)
+└── examples/         # validated example instances (e.g. PERSONA_butcherbox-jesse.json)
 ```
 
 ---
@@ -164,10 +164,78 @@ A `-validator` is also the trigger condition for promoting a schema out of its b
 
 ---
 
+## Instance file naming
+
+Every JSON object instance produced by a builder follows a single filename pattern. The filename is the canonical identity of the instance — readable without opening the file, sortable by object type, and unambiguous when instances of different object types share the same entity slug.
+
+### The pattern
+
+```
+<OBJECT-NAME>_<entity-slug>.json
+<OBJECT-NAME>_<entity-slug>-<instance-slug>.json
+```
+
+Two parts separated by a single underscore:
+
+- **`<OBJECT-NAME>`** — the canonical object name in uppercase, with hyphens between words. Derived directly from the object name with no abbreviation. Multi-word objects use hyphens: `BUSINESS-CONTEXT`, `CAMPAIGN-STRATEGY`, `JOURNEY-PERFORMANCE`.
+- **`<entity-slug>`** — lowercase, hyphen-delimited slug identifying the entity the instance describes. For a second disambiguating segment (e.g. multiple personas for the same brand), append a hyphen and an instance slug.
+
+### Rules
+
+1. **No abbreviation.** The full object name is always spelled out. `PERSONA` not `PER`; `BUSINESS-CONTEXT` not `BIZ`. Abbreviations require a lookup; full names do not.
+2. **Uppercase object name, lowercase entity slug.** The visual break between the two parts is immediate — no separator ambiguity.
+3. **Underscore is the join between object name and entity; hyphens are used within each part.** The underscore appears exactly once per filename.
+4. **Instance slug is optional.** Use it only when multiple instances of the same object type exist for the same entity (e.g. two personas for the same brand). When an entity has only one instance of a given type, omit the instance slug.
+5. **Filenames are lowercase after the object name prefix** — entity and instance slugs follow the same slug rules as skill folder names.
+
+### Examples
+
+| Object | Entity | Instance | Filename |
+|--------|--------|----------|----------|
+| Persona | ButcherBox | Jesse | `PERSONA_butcherbox-jesse.json` |
+| Business Context | IBM | — | `BUSINESS-CONTEXT_ibm.json` |
+| Business Context | ButcherBox | — | `BUSINESS-CONTEXT_butcherbox.json` |
+| Campaign Strategy | ButcherBox | Summer Winback | `CAMPAIGN-STRATEGY_butcherbox-summer-winback.json` |
+| Keyword | — | Marketing Operating Model | `KEYWORD_marketing-operating-model.json` |
+| Journey Performance | ButcherBox | Lapsed Buyer | `JOURNEY-PERFORMANCE_butcherbox-lapsed-buyer.json` |
+
+### Where instance files live
+
+Validated example instances live in the `examples/` folder at the repo root, organized by object category — mirroring the `skills/` structure:
+
+```
+examples/
+├── context/
+│   ├── BUSINESS-CONTEXT_ibm.json
+│   ├── BUSINESS-CONTEXT_butcherbox.json
+│   └── PERSONA_butcherbox-jesse.json
+├── work-product/
+│   └── CAMPAIGN-STRATEGY_butcherbox-summer-winback.json
+├── configuration/
+├── measurement/
+└── learning/
+```
+
+Instances produced during client work or internal testing that are not yet validated against the schema live outside the repo until they are reviewed and promoted.
+
+---
+
 ## Controlled vocabularies
 
 Some object fields are governed enums, not free text (e.g. Persona `persona_type`). These follow the same governance logic as the object model itself: a small, opinionated starter vocabulary, extended deliberately by maintainers — never invented per-project. Stored values use snake_case tokens (consistent with `object_type`) mapped to human-readable labels in the owning skill. This keeps fields machine-facetable instead of fragmenting into near-duplicate variants.
 
+---
+
+## Open item
+
+The concept papers and the L1 summary reference a **Creative Brief** object (Wave 1 / Phase 5 work product), but the detailed object registry has no object by that name — it carries Messaging Framework, Creative Strategy, Content Strategy, Experience Design, and Creative Test Strategy instead. This registry therefore contains no `osmm-creative-brief-builder`. Resolve the model inconsistency before finalizing wave assignments; it does not affect the naming convention itself.
+
+---
+
+## Changes in v0.3
+
+- Added **"Instance file naming"** — full object name in uppercase + entity slug pattern (`BUSINESS-CONTEXT_ibm.json`); no abbreviations, underscore as the single join between object name and entity, hyphens within each part. Includes examples table and `examples/` folder structure.
+- Updated **repository structure** example to reflect new instance filename convention.
 
 ---
 
