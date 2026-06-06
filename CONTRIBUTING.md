@@ -75,7 +75,7 @@ Builders follow the convention exactly — read
    to read it independently of the builder.
 5. **Instance output.** The builder must save instances using the
    [instance file naming](CONVENTION.md#instance-file-naming) pattern
-   (`<OBJECT-NAME>_<entity-slug>.json`, e.g. `PERSONA_butcherbox-jesse.json`),
+   (`<OBJECT-NAME>_<entity-slug>.json`, e.g. `PERSONA_warby-parker-design-conscious.json`),
    and the in-object id (`PER-…`, `BIZ-…`) stays the id, not the filename.
 6. **Validate against a real asset.** A builder reaching `proposed` needs at
    least one instance built from a real source — ideally contributed alongside

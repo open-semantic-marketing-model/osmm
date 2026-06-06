@@ -1,0 +1,65 @@
+{
+  "object_type": "business_context",
+  "osmm_version": "0.1.0",
+  "business_id": "BIZ-ibm",
+  "version": "1.0",
+  "status": "draft",
+  "name": "IBM",
+  "industry": "Enterprise technology / hybrid cloud and AI",
+  "business_type": "enterprise_software",
+  "founded": "1911",
+  "hq_location": "Armonk, NY",
+  "description": "IBM is a global enterprise technology company focused on hybrid cloud infrastructure and AI-powered business automation. Following the 2021 spinoff of its managed infrastructure business (Kyndryl), IBM has repositioned around software and consulting, with Red Hat as its hybrid cloud platform anchor. It serves large enterprises and governments across more than 175 countries.",
+  "products_and_services": [
+    "Red Hat OpenShift and hybrid cloud platform",
+    "IBM watsonx AI and data platform",
+    "IBM Cloud",
+    "IBM Consulting (strategy, technology, and operations services)",
+    "IBM Z mainframe systems and storage",
+    "Automation software (IBM Business Automation, AIOps)"
+  ],
+  "value_proposition": "The hybrid cloud and AI platform built for enterprise-grade security, compliance, and scale — so organizations can modernize without rearchitecting everything.",
+  "target_customers": [
+    "Large enterprise IT and technology buyers (CIO, CTO, infrastructure leads)",
+    "Line-of-business executives driving AI and automation initiatives (COO, CFO, CMO)",
+    "Government and regulated-industry organizations requiring security and compliance at scale",
+    "Mid-market companies scaling on Red Hat open-source infrastructure"
+  ],
+  "revenue_model": "Software licensing and subscription (recurring); consulting and services engagements; hardware sales (mainframe, storage)",
+  "scale_context": {
+    "revenue_range": "$10B+",
+    "revenue_mix_notes": "~45% software, ~33% consulting, ~15% infrastructure (hardware/mainframe). Software is the growth engine; consulting supports platform adoption.",
+    "growth_trajectory": "Mid-single digit overall growth; double-digit growth in software; consulting growing modestly; infrastructure declining as mix shifts"
+  },
+  "business_model_notes": "Post-Kyndryl spinoff, IBM operates as a software-led, consulting-amplified model. Consulting is a platform adoption flywheel — it deploys Red Hat and watsonx rather than competing as a standalone services business. Acquisition strategy (HashiCorp, Apptio, others) is building out the hybrid cloud and FinOps platform.",
+  "market_position": "Established leader in enterprise hybrid cloud and mainframe; challenger in AI platform vs. hyperscalers; strong position in regulated industries",
+  "competitors": ["Microsoft (Azure + Copilot)", "AWS", "Google Cloud", "Accenture", "Salesforce", "ServiceNow"],
+  "competitive_differentiators": [
+    "Red Hat is the dominant open-source enterprise Linux and Kubernetes platform — embedded in most Fortune 500 hybrid environments",
+    "Mainframe franchise provides locked-in, high-margin revenue and unmatched security/compliance credibility in regulated industries",
+    "watsonx positions IBM as an enterprise-safe AI alternative to hyperscaler models — with governance, explainability, and data privacy as differentiators",
+    "Consulting arm accelerates platform adoption in ways pure-software competitors cannot match"
+  ],
+  "marketing_objectives": [
+    "Drive watsonx platform consideration among enterprise AI buyers alongside hyperscaler alternatives",
+    "Grow Red Hat adoption in hybrid cloud modernization deals",
+    "Expand IBM Consulting pipeline tied to AI and automation transformation engagements",
+    "Strengthen brand relevance with a younger generation of enterprise technology buyers"
+  ],
+  "marketing_challenges": [
+    "Brand perception lag — IBM is associated with legacy tech by buyers who don't track its portfolio evolution",
+    "Competing for AI mindshare against AWS, Microsoft, and Google who have larger developer and consumer brand presence",
+    "Complex portfolio makes it hard to lead with a single, clear narrative across segments",
+    "Consulting and software go-to-market motions require tight alignment to avoid channel conflict"
+  ],
+  "strategic_priorities": [
+    "Grow software revenue to represent the majority of total revenue",
+    "Establish watsonx as the enterprise AI platform of record for regulated industries",
+    "Deepen Red Hat ecosystem and partner network to extend hybrid cloud reach",
+    "Continue selective M&A to fill hybrid cloud and automation platform gaps"
+  ],
+  "brand_tone_notes": "Authoritative and pragmatic — IBM leads with business outcomes and enterprise credibility rather than aspiration or disruption narrative",
+  "key_markets": ["North America", "Europe", "Asia-Pacific", "regulated industries globally (financial services, healthcare, government)"],
+  "linked_brand_context": "BRC-PLACEHOLDER-ibm",
+  "source": "IBM 2023 Annual Report, Q4 2023 earnings call transcript, ibm.com (2024)"
+}
