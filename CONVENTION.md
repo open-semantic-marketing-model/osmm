@@ -41,6 +41,37 @@ A schema is promoted to a standalone `schemas/<object_type>.schema.json` **only 
 
 ---
 
+## Where worked examples live
+
+Examples follow the **same promotion rule as schemas**, because they answer the
+same question — "is a second tool reading this?" — and the answer should drive
+where the artifact lives.
+
+- **Inline in the `SKILL.md`** — every builder keeps **one or two real worked
+  examples** in its body. They travel with the builder (loaded into context when
+  the skill runs) and are human-readable, so they teach the output shape at the
+  point of use. This is the default home for an example.
+- **Promoted to `examples/`** — an instance becomes a standalone
+  `examples/<category>/<FILENAME>.json` **only when a second tool needs to read
+  it independently of the builder** — the composer that consumes it
+  (`osmm-creative-brief-composer` reads `business_context` + `persona`
+  instances), a future `-validator` that checks it, a third-party importer. At
+  that point `examples/` holds the canonical, machine-consumable instance and the
+  inline copy is the readable illustration.
+
+The two are deliberately **not the same artifact**, so they don't drift into
+conflict: the inline example shows shape (and may be abbreviated), while the
+`examples/` file is the full, canonical instance. Once a real instance is
+promoted, a long inline example may be trimmed to an excerpt plus a pointer to
+the file, leaving one full canonical copy.
+
+**Examples must be real and publicly sourced** (see "Where instance files live"
+for the confidentiality rule): inline examples shed the "fictional placeholder"
+status as the model matures — prefer a real, public-company example over an
+invented one.
+
+---
+
 ## Repository structure
 
 Skills are grouped by **object category** — the five stable buckets that map to the read/write and governance profiles in the model. Category is a more durable axis than workflow phase, so it drives the folder layout; phase and wave live in frontmatter.
@@ -69,7 +100,7 @@ osmm/
 │   └── artifacts/    # artifact-composer skills (NOT object builders) — see "Artifact-composer skills"
 │       └── osmm-creative-brief-composer/SKILL.md
 ├── schemas/          # added per-object only when a schema is promoted out of its skill
-└── examples/         # validated example instances (e.g. PERSONA_butcherbox-jesse.json)
+└── examples/         # validated example instances (e.g. PERSONA_warby-parker-design-conscious.json)
 ```
 
 The first five `skills/` subfolders are the **object categories**; `artifacts/`
@@ -274,12 +305,12 @@ Two parts separated by a single underscore:
 
 | Object | Entity | Instance | Filename |
 |--------|--------|----------|----------|
-| Persona | ButcherBox | Jesse | `PERSONA_butcherbox-jesse.json` |
+| Persona | Warby Parker | Design-conscious | `PERSONA_warby-parker-design-conscious.json` |
 | Business Context | IBM | — | `BUSINESS-CONTEXT_ibm.json` |
-| Business Context | ButcherBox | — | `BUSINESS-CONTEXT_butcherbox.json` |
-| Campaign Strategy | ButcherBox | Summer Winback | `CAMPAIGN-STRATEGY_butcherbox-summer-winback.json` |
+| Business Context | Warby Parker | — | `BUSINESS-CONTEXT_warby-parker.json` |
+| Campaign Strategy | Warby Parker | Spring Launch | `CAMPAIGN-STRATEGY_warby-parker-spring-launch.json` |
 | Keyword | — | Marketing Operating Model | `KEYWORD_marketing-operating-model.json` |
-| Journey Performance | ButcherBox | Lapsed Buyer | `JOURNEY-PERFORMANCE_butcherbox-lapsed-buyer.json` |
+| Journey Performance | Warby Parker | Home Try-On | `JOURNEY-PERFORMANCE_warby-parker-home-try-on.json` |
 
 ### Where instance files live
 
@@ -289,16 +320,23 @@ Validated example instances live in the `examples/` folder at the repo root, org
 examples/
 ├── context/
 │   ├── BUSINESS-CONTEXT_ibm.json
-│   ├── BUSINESS-CONTEXT_butcherbox.json
-│   └── PERSONA_butcherbox-jesse.json
+│   ├── BUSINESS-CONTEXT_warby-parker.json
+│   └── PERSONA_warby-parker-design-conscious.json
 ├── work-product/
-│   └── CAMPAIGN-STRATEGY_butcherbox-summer-winback.json
+│   └── CAMPAIGN-STRATEGY_warby-parker-spring-launch.json
 ├── configuration/
 ├── measurement/
 └── learning/
 ```
 
-Instances produced during client work or internal testing that are not yet validated against the schema live outside the repo until they are reviewed and promoted.
+**Examples must derive from public, non-confidential sources.** The repo is
+openly licensed, so every committed instance has to be built from public
+material (public-company filings, published research, the brand's own public
+site) — IBM and Warby Parker here are public companies. **Client work never
+enters the repo**, even after validation: it is real but confidential, which is a
+different category from "real but not yet promoted." Instances produced during
+client or internal work stay outside the repo permanently; only public-sourced
+instances are promoted into `examples/`.
 
 ---
 
