@@ -153,13 +153,14 @@ reference fields it introduces.
 | From object | Field | Cardinality | To object | Notes |
 |-------------|-------|-------------|-----------|-------|
 | Business Context | `linked_brand_context` | one | Brand Context | `BRC-PLACEHOLDER-<slug>` until the Brand Context is built. |
+| Brand Context | `linked_business_context` | one | Business Context | `BIZ-PLACEHOLDER-<slug>` until the Business Context is built. Inverse of the edge above. |
 | Persona | `linked_audiences` | many | Audience | `AUD-PLACEHOLDER-<slug>` until the Audience is built. |
 
-> Only two builders ship today, so only their outbound references are listed.
-> Inbound references implied by the model but not yet realized (e.g. a Keyword
-> linking the Personas that search it; a Customer Insight proposing Persona
-> updates) are defined when those builders are authored — see the persona
-> builder's own description for the intended links.
+> Business Context ↔ Brand Context is now a realized bidirectional edge (each
+> points at the other). Inbound references implied by the model but not yet
+> realized (e.g. a Keyword linking the Personas that search it; a Customer
+> Insight proposing Persona updates) are defined when those builders are
+> authored.
 
 ## Referential integrity
 
