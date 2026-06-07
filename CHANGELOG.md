@@ -12,6 +12,17 @@ governance). The current schema version is **0.1.0**.
 ## [Unreleased]
 
 ### Added
+- **`osmm-brand-context-builder`** — the third object builder (Phase 1 · Context).
+  Builds a Brand Context Object: brand promise, personality, voice/tone
+  principles, messaging pillars, vocabulary, and the must-say/must-not-say
+  guardrails and mandatories. Includes an optional 12-archetype `brand_archetype`
+  enum and a `linked_business_context` back-reference (realizing the
+  Business ↔ Brand Context bidirectional edge). This was the missing *required*
+  input of the shipped Creative Brief composer.
+- **Brand Context example instances** — `examples/context/BRAND-CONTEXT_wendys.json`
+  and `BRAND-CONTEXT_ibm.json` (public-sourced, guardrails inferred). With these,
+  the Wendy's Context set (Business + Brand + Persona) covers the composer's
+  required inputs, so `osmm-creative-brief-composer` is now runnable end-to-end.
 - **`roadmap/` project tracker** — a Kanban backlog (`roadmap/BACKLOG.md`:
   To Do / In Progress / Done across all 34 builders, composer candidates, and
   infrastructure) and a sequenced milestone plan (`roadmap/ROADMAP.md`), plus a

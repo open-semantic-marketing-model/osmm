@@ -1,0 +1,51 @@
+{
+  "object_type": "brand_context",
+  "osmm_version": "0.1.0",
+  "brand_context_id": "BRC-wendys",
+  "version": "1.0",
+  "status": "draft",
+  "name": "Wendy's",
+  "linked_business_context": "BIZ-wendys",
+  "brand_promise": "Quality food served with a side of personality — we don't take the food lightly, but we don't take ourselves too seriously.",
+  "brand_archetype": "jester",
+  "brand_personality": ["Witty", "Bold", "Irreverent", "Confident", "Culturally fluent", "Warm underneath the edge"],
+  "voice_principles": [
+    "Earn the joke — be clever and quick, never random or mean for its own sake",
+    "Talk like a sharp friend, not a corporation",
+    "Lead with the food's quality; let the attitude ride alongside it, not over it",
+    "React in real time and in-culture — the brand is fast and current"
+  ],
+  "tone_principles": [
+    "Playful and savage in social banter and roasts",
+    "Confident and appetite-first in product and value advertising",
+    "Genuine and helpful (drop the snark) in customer service and sensitive moments"
+  ],
+  "tagline": "Where's the beef? / Fresh, never frozen",
+  "messaging_pillars": [
+    "Fresh, never frozen beef — real quality, not fast-food compromise",
+    "Quality you can taste at a price that's still a deal",
+    "A brand with a personality — fun, current, and in on the joke"
+  ],
+  "vocabulary_preferred": ["fresh", "never frozen", "real", "beef", "deal"],
+  "vocabulary_avoid": ["corporate jargon", "generic fast-food clichés", "mean-spirited insults that punch down"],
+  "writing_dos": [
+    "Use short, punchy lines with confident rhythm",
+    "Be specific about food quality (fresh, never frozen) to back the attitude",
+    "Use contractions and a conversational, in-the-moment voice"
+  ],
+  "writing_donts": [
+    "Don't be edgy with nothing behind it — the wit must serve the food or the value",
+    "Don't punch down or alienate the customer; roast competitors, not people in need",
+    "Don't bury the offer or the product behind the joke"
+  ],
+  "messaging_guardrails": [
+    "Always substantiate the 'fresh, never frozen' beef claim — it is the brand's central proof and must stay accurate",
+    "Humor must never come at the expense of the customer or marginalized groups",
+    "Value/price claims must reflect actual current offers",
+    "Franchisee-funded national advertising must work across markets — avoid jokes that don't travel"
+  ],
+  "mandatories": ["Logo lockup on all paid executions", "Required legal/price disclaimers on offer advertising (e.g. 'at participating locations')"],
+  "compliance_notes": "Price and limited-time-offer claims require standard QSR disclaimers ('at participating locations,' 'for a limited time') and must match current franchise pricing.",
+  "visual_identity_notes": "Appetite-forward, real-food photography; bold, confident type. The brand's red and the Wendy's character are recognizable equities.",
+  "source": "Built from public information: Wendy's advertising, public social channels, and published brand values (2024). Voice and personality inferred from real published copy; guardrails inferred and should be confirmed against internal brand guidelines."
+}

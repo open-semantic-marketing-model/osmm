@@ -39,7 +39,13 @@ coherent sets and exercise both `business_type` paths of the composer:
 |------|--------|--------|-------|
 | `context/BUSINESS-CONTEXT_ibm.json` | Business Context | IBM | Real, public-filing-grounded. |
 | `context/BUSINESS-CONTEXT_wendys.json` | Business Context | Wendy's | Real, public-information-grounded. |
+| `context/BRAND-CONTEXT_ibm.json` | Brand Context | IBM | Voice/guardrails from public brand expression; guardrails inferred. |
+| `context/BRAND-CONTEXT_wendys.json` | Brand Context | Wendy's | Voice/guardrails from public brand expression; guardrails inferred. |
 | `context/PERSONA_wendys-deal-savvy-craver.json` | Persona | Wendy's | Illustrative persona synthesized from public market knowledge (more synthesized than the business-context instances — companies don't publish personas). |
+
+> The Wendy's set (Business Context + Brand Context + Persona) and the IBM set
+> (Business Context + Brand Context) now cover the **required inputs** of
+> `osmm-creative-brief-composer`, so it can be exercised end-to-end on Wendy's.
 
 As more builders ship and more public-sourced instances are validated, this
 library grows by category.

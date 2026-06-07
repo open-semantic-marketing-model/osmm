@@ -1,0 +1,51 @@
+{
+  "object_type": "brand_context",
+  "osmm_version": "0.1.0",
+  "brand_context_id": "BRC-ibm",
+  "version": "1.0",
+  "status": "draft",
+  "name": "IBM",
+  "linked_business_context": "BIZ-ibm",
+  "brand_promise": "Let's create — IBM partners with the world's organizations to put technology to work on their hardest problems.",
+  "brand_archetype": "sage",
+  "brand_personality": ["Authoritative", "Pragmatic", "Credible", "Forward-looking", "Understated"],
+  "voice_principles": [
+    "Lead with the business outcome, not the technology",
+    "Be precise and substantiated — credibility over hype",
+    "Speak as a peer to senior enterprise decision-makers",
+    "Make the complex clear without dumbing it down"
+  ],
+  "tone_principles": [
+    "Confident and visionary in brand and thought-leadership work",
+    "Clear and technically rigorous in product and developer content",
+    "Measured and trustworthy in security, governance, and compliance topics"
+  ],
+  "tagline": "Let's create",
+  "messaging_pillars": [
+    "Enterprise-grade AI and hybrid cloud built for security, scale, and trust",
+    "Open technology (Red Hat) that modernizes without lock-in",
+    "Deep expertise that turns technology into measurable business outcomes"
+  ],
+  "vocabulary_preferred": ["enterprise", "hybrid cloud", "trust", "governance", "outcomes", "open"],
+  "vocabulary_avoid": ["hype words ('revolutionary', 'magic')", "consumer-tech slang", "overstated autonomy claims"],
+  "writing_dos": [
+    "Open with the business problem or outcome, then the technology",
+    "Substantiate capability claims with evidence or proof points",
+    "Use precise, industry-correct terminology for a senior technical audience"
+  ],
+  "writing_donts": [
+    "Don't overstate AI autonomy or imply human oversight is unnecessary",
+    "Don't lead with speeds-and-feeds before the business value",
+    "Don't borrow consumer-tech aspirational framing"
+  ],
+  "messaging_guardrails": [
+    "AI claims must emphasize governance, trust, and enterprise readiness — never overstate autonomy",
+    "Avoid hype; substantiate capability claims with evidence",
+    "Maintain an enterprise, outcome-first frame — not consumer-tech aspiration",
+    "Respect regulated-industry sensitivities (financial services, healthcare, government)"
+  ],
+  "mandatories": ["IBM logo and approved lockups on all executions", "Trademark/legal attributions where required"],
+  "compliance_notes": "Claims made to regulated industries (financial services, healthcare, public sector) must withstand procurement and compliance scrutiny; avoid absolute security guarantees.",
+  "visual_identity_notes": "The 8-bar logo and IBM Plex type are core equities; a restrained, confident enterprise aesthetic.",
+  "source": "Built from public information: IBM advertising, ibm.com, and public brand expression (2024). Voice inferred from real published copy; guardrails inferred and should be confirmed against internal brand guidelines."
+}
