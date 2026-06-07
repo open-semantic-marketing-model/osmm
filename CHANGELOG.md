@@ -12,6 +12,23 @@ governance). The current schema version is **0.1.0**.
 ## [Unreleased]
 
 ### Added
+- **`osmm-audience-builder`** — the fourth object builder (Phase 2 · Context).
+  Builds an Audience Object: OSMM's **addressable segment** — membership
+  `inclusion_criteria`/`exclusion_criteria`, a governed `segmentation_basis` enum
+  (demographic, behavioral, firmographic, value-based, lifecycle, intent,
+  lookalike, …), an optional `lifecycle_stage` enum, value characterization, and
+  `linked_personas` (realizing the Persona ↔ Audience bidirectional edge).
+- **Clarified that "Segment" is the Audience Object**, not a separate object.
+  Documented in `TAXONOMY.md` (Phase 2 note) and `RELATIONSHIPS.md`: sub-processes
+  2.2/2.3/2.6 resolve to the Audience Object; `segmentation_basis` records the
+  segment lens; a Persona *describes* while an Audience *selects*; prioritization
+  is the Targeting Strategy Object's job. A distinct Segment object would only be
+  warranted later for activation modeling (an edge/delivery concern).
+- **Audience example instances** — `examples/context/AUDIENCE_wendys-value-seekers.json`
+  (B2C, value-based; linked to the Wendy's persona) and
+  `AUDIENCE_ibm-enterprise-it.json` (B2B, firmographic). The Wendy's persona's
+  `linked_audiences` placeholder is now resolved to the real id (bumped to v1.1),
+  demonstrating referential integrity.
 - **`osmm-brand-context-builder`** — the third object builder (Phase 1 · Context).
   Builds a Brand Context Object: brand promise, personality, voice/tone
   principles, messaging pillars, vocabulary, and the must-say/must-not-say

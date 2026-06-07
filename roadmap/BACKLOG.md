@@ -9,7 +9,7 @@ For the sequencing rationale and milestones, see [`ROADMAP.md`](ROADMAP.md).
 
 | Track | Done | In Progress | To Do | Total |
 |-------|-----:|------------:|------:|------:|
-| Object builders | 3 | 0 | 31 | 34 |
+| Object builders | 4 | 0 | 30 | 34 |
 | Artifact composers | 1 | 0 | 6 (candidates) | 7 |
 | Infrastructure / docs | 8 | 0 | 5 | 13 |
 
@@ -23,13 +23,14 @@ Item ids: `B##` = object builder, `C##` = composer, `I##` = infrastructure/docs.
 |----|------|-------|
 | B01 | `osmm-business-context-builder` | Phase 1 · Context. Shipped (`status: draft`). |
 | B02 | `osmm-brand-context-builder` | Phase 1 · Context. Shipped (`status: draft`). Unblocks C01's required `brand_context` input. |
+| B06 | `osmm-audience-builder` | Phase 2 · Context. Shipped (`status: draft`). OSMM's addressable **segment** (clarified Segment ≈ Audience). Realizes Persona ↔ Audience. |
 | B07 | `osmm-persona-builder` | Phase 2 · Context. Shipped (`status: draft`). First built skill. |
 | C01 | `osmm-creative-brief-composer` | Phase 5 artifact-composer. ✅ Required input `brand_context` now built (B02); runnable end-to-end on the Wendy's example set. |
 | I01 | `TAXONOMY.md` | 7 phases → 34 objects, object resolution index. |
 | I02 | `CONVENTION.md` | Naming, frontmatter contract, full builder registry, composer class, schema/example promotion rules. |
 | I03 | `RELATIONSHIPS.md` | Reference model, id prefixes, reference graph. |
 | I04 | `GOVERNANCE.md` + `CONTRIBUTING.md` | Decision model, tenets, lifecycle; contribution guide. |
-| I05 | `examples/` library | Context instances for IBM + Wendy's (`BUSINESS-CONTEXT`, `BRAND-CONTEXT`, plus Wendy's `PERSONA`) + README. Public-source rule. |
+| I05 | `examples/` library | Context instances for IBM + Wendy's (`BUSINESS-CONTEXT`, `BRAND-CONTEXT`, `AUDIENCE`, plus Wendy's `PERSONA`) + README. Public-source rule. |
 | I06 | README + licenses | Apache-2.0 (code), CC BY 4.0 (docs). |
 | I07 | Roadmap & tracker | This folder. |
 | I08 | Consumer reference brand swap (Warby Parker → Wendy's) | Merged in PR #7. |
@@ -53,10 +54,9 @@ Grouped by milestone (see [`ROADMAP.md`](ROADMAP.md)). Within a milestone, order
 
 | ID | Builder | Phase | Why it's prioritized |
 |----|---------|------:|----------------------|
-| B06 | `osmm-audience-builder` | 2 | Pairs with Persona (already shipped); completes the targeting half of Context. **Next up.** |
-| B08 | `osmm-keyword-builder` | 2 | Search/intent Context; feeds Keyword Strategy (B09). |
+| B08 | `osmm-keyword-builder` | 2 | Search/intent Context; feeds Keyword Strategy (B09). **Next up — last item in Milestone A.** |
 
-> ✅ B02 `osmm-brand-context-builder` shipped — see Done. Milestone A is 1 of 3 complete.
+> ✅ B02 `osmm-brand-context-builder` and B06 `osmm-audience-builder` shipped — see Done. Milestone A is **2 of 3 complete**; only Keyword (B08) remains to finish the Context foundation.
 
 ### Milestone B — Strategy layer (Phase 1–2 Work Products)
 | ID | Builder | Phase |

@@ -2,7 +2,7 @@
   "object_type": "persona",
   "osmm_version": "0.1.0",
   "persona_id": "PER-wendys-deal-savvy-craver",
-  "version": "1.0",
+  "version": "1.1",
   "status": "draft",
   "name": "The Deal-Savvy Craver",
   "persona_type": "consumer",
@@ -66,6 +66,6 @@
     "Make the loyalty/rewards payoff obvious and low-effort",
     "Keep it fast and visual — he's deciding in seconds"
   ],
-  "linked_audiences": ["AUD-PLACEHOLDER-wendys-value-seekers"],
+  "linked_audiences": ["AUD-wendys-value-seekers"],
   "source": "Illustrative persona synthesized from publicly available market knowledge of Wendy's customer base and marketing (brand positioning, public reporting, and QSR category research), 2024. Grounded in public information, not client research; more synthesized than a document-derived instance."
 }

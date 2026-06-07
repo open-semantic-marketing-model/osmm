@@ -1,6 +1,6 @@
 # OSMM Roadmap
 
-The sequenced plan for building OSMM out from its current state (3 of 34 object
+The sequenced plan for building OSMM out from its current state (4 of 34 object
 builders, 1 composer) to a complete, connected model. For live status see
 [`BACKLOG.md`](BACKLOG.md).
 
@@ -38,12 +38,12 @@ flowchart TD
 ```
 
 ### Milestone A — Finish the Context foundation
-**Objects:** ~~Brand Context (B02)~~ ✅, Audience (B06), Keyword (B08).
+**Objects:** ~~Brand Context (B02)~~ ✅, ~~Audience (B06)~~ ✅, Keyword (B08).
 **Why first:** Context is the foundation the whole model references. Brand Context
-was the missing *required* input to the already-shipped Creative Brief composer —
-**now shipped**, so the composer is runnable end-to-end on the Wendy's example
-set. With Persona + Business Context already done, Audience and Keyword remain to
-complete the durable Context layer.
+(the missing *required* composer input) and Audience (OSMM's addressable segment)
+are **now shipped** — the composer runs end-to-end on the Wendy's set, and the
+Persona ↔ Audience edge is realized. Only **Keyword (B08)** remains to complete
+the durable Context layer.
 **Exit state:** all five Context objects (Business, Brand, Audience, Persona,
 Keyword) have builders; the Creative Brief composer can run on fully-real inputs.
 **Composer unlocked:** Brand Playbook (C04).
@@ -102,8 +102,8 @@ valuable once there's a full pipeline producing things to measure.
 
 | Milestone | Builders | Cumulative builders done |
 |-----------|---------:|-------------------------:|
-| (shipped) | 3 | 3 / 34 |
-| A (Audience + Keyword remain; Brand Context done) | 2 | 5 / 34 |
+| (shipped) | 4 | 4 / 34 |
+| A (Keyword remains; Brand Context + Audience done) | 1 | 5 / 34 |
 | B | 4 | 9 / 34 |
 | C | 6 | 15 / 34 |
 | D | 5 | 20 / 34 |
