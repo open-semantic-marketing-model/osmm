@@ -12,6 +12,14 @@ governance). The current schema version is **0.1.0**.
 ## [Unreleased]
 
 ### Added
+- **`roadmap/` project tracker** — a Kanban backlog (`roadmap/BACKLOG.md`:
+  To Do / In Progress / Done across all 34 builders, composer candidates, and
+  infrastructure) and a sequenced milestone plan (`roadmap/ROADMAP.md`), plus a
+  `roadmap/README.md`. Surfaces the inventory (2 of 34 builders, 1 composer
+  shipped) and the critical path (Brand Context builder is the missing required
+  input of the shipped Creative Brief composer).
+- **`CLAUDE.md`** — project guide and working agreements, including the standing
+  rule to update the roadmap tracker in the same commit/PR as any shipped OSMM work.
 - **`examples/` instance library** — the first validated, public-sourced object
   instances: `context/BUSINESS-CONTEXT_ibm.json` (enterprise B2B, public
   filings), `context/BUSINESS-CONTEXT_wendys.json` (consumer QSR, public
