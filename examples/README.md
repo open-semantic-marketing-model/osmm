@@ -31,15 +31,15 @@ The corpus is anchored on two public companies so instances interlink into
 coherent sets and exercise both `business_type` paths of the composer:
 
 - **IBM** — enterprise B2B (`enterprise_software`), built from public filings.
-- **Warby Parker** — consumer DTC (`dtc`), built from public information.
+- **Wendy's** — consumer QSR (`b2c`), built from public information.
 
 ## Current contents
 
 | File | Object | Entity | Notes |
 |------|--------|--------|-------|
 | `context/BUSINESS-CONTEXT_ibm.json` | Business Context | IBM | Real, public-filing-grounded. |
-| `context/BUSINESS-CONTEXT_warby-parker.json` | Business Context | Warby Parker | Real, public-information-grounded. |
-| `context/PERSONA_warby-parker-design-conscious.json` | Persona | Warby Parker | Illustrative persona synthesized from public market knowledge (more synthesized than the business-context instances — companies don't publish personas). |
+| `context/BUSINESS-CONTEXT_wendys.json` | Business Context | Wendy's | Real, public-information-grounded. |
+| `context/PERSONA_wendys-deal-savvy-craver.json` | Persona | Wendy's | Illustrative persona synthesized from public market knowledge (more synthesized than the business-context instances — companies don't publish personas). |
 
 As more builders ship and more public-sourced instances are validated, this
 library grows by category.

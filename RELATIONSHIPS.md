@@ -39,7 +39,7 @@ Three rules make objects composable:
 3. **Forward references use a placeholder id.** Objects are often built before
    the things they point at exist. A reference to a not-yet-built object uses a
    placeholder of the form `<PREFIX>-PLACEHOLDER-<slug>` (e.g.
-   `AUD-PLACEHOLDER-warby-parker-design-conscious`). The placeholder is replaced with the
+   `AUD-PLACEHOLDER-wendys-deal-savvy-craver`). The placeholder is replaced with the
    real id once the target object is built. This lets Context objects ship
    without blocking on their dependencies.
 
@@ -59,7 +59,7 @@ because a relationship is conceivable.
 ## Object id prefixes
 
 The id prefix is a short, uppercase code derived from the object name. It makes
-an id self-describing (you can tell `PER-warby-parker-design-conscious` is a Persona without
+an id self-describing (you can tell `PER-wendys-deal-savvy-craver` is a Persona without
 a lookup) and namespaces ids so they stay unique across a portfolio.
 
 **Established prefixes** (in use by shipped builders):
@@ -68,8 +68,8 @@ a lookup) and namespaces ids so they stay unique across a portfolio.
 |--------|--------|----------|---------|
 | Business Context | `BIZ-` | `business_id` | `BIZ-ibm` |
 | Brand Context | `BRC-` | `brand_context_id` | `BRC-ibm` |
-| Persona | `PER-` | `persona_id` | `PER-warby-parker-design-conscious` |
-| Audience | `AUD-` | `audience_id` | `AUD-warby-parker-first-time-buyer` |
+| Persona | `PER-` | `persona_id` | `PER-wendys-deal-savvy-craver` |
+| Audience | `AUD-` | `audience_id` | `AUD-wendys-value-seekers` |
 
 > `BIZ-` and `PER-` are defined by the two shipped builders. `BRC-` and `AUD-`
 > are already referenced *by* those builders (via `linked_brand_context` and

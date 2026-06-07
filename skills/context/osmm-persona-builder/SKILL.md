@@ -151,7 +151,7 @@ Keep it stable: once assigned, other objects point at it, so don't change an id 
 ## Output rules
 
 - Emit valid JSON (no comments in the actual output — the `jsonc` above is illustrative).
-- One object per persona. Save using the OSMM instance-naming convention: `PERSONA_<entity-slug>.json`, with an optional instance slug when one entity has multiple personas (e.g. `PERSONA_warby-parker-design-conscious.json`) — uppercase object name, underscore join, lowercase entity/instance slug. See `CONVENTION.md` → "Instance file naming". The `persona_id` (`PER-<slug>`) remains the id *inside* the object; it is not the filename.
+- One object per persona. Save using the OSMM instance-naming convention: `PERSONA_<entity-slug>.json`, with an optional instance slug when one entity has multiple personas (e.g. `PERSONA_wendys-deal-savvy-craver.json`) — uppercase object name, underscore join, lowercase entity/instance slug. See `CONVENTION.md` → "Instance file naming". The `persona_id` (`PER-<slug>`) remains the id *inside* the object; it is not the filename.
 - Validate it parses before returning it.
 - Briefly tell the user what you inferred vs. extracted, and call out anything thin in the source so they can fill gaps.
 
