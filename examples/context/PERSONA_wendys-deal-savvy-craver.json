@@ -1,0 +1,71 @@
+{
+  "object_type": "persona",
+  "osmm_version": "0.1.0",
+  "persona_id": "PER-wendys-deal-savvy-craver",
+  "version": "1.0",
+  "status": "draft",
+  "name": "The Deal-Savvy Craver",
+  "persona_type": "consumer",
+  "summary": "A younger, budget-minded fast-food regular who chases flavor and value in equal measure, plans runs around deals and the app, and actually follows the brand because its social feed is funnier than most of his friends'.",
+  "representative_quote": "If I'm spending money on fast food, it better hit — give me the Biggie Bag, a spicy nugget combo, and a Frosty, and I'm good.",
+  "demographics": {
+    "age": "18 to 34",
+    "gender": "Mixed; skews slightly male",
+    "household": "Single or sharing with roommates/young family",
+    "income": "Lower-to-middle income; price-sensitive",
+    "location": "Suburban and urban; near drive-thrus and campuses",
+    "occupation": "Student, shift worker, or early-career"
+  },
+  "triggers": [
+    "Hunger on a tight budget — wanting a lot of food for the money",
+    "Late-night or post-shift cravings when options are limited",
+    "A new menu drop, limited-time offer, or app deal",
+    "A viral Wendy's moment or roast in the social feed"
+  ],
+  "goals": [
+    "Get a genuinely satisfying meal without overspending",
+    "Maximize value — the most food and flavor per dollar",
+    "Order fast and frictionlessly, ideally via the app",
+    "Earn and burn loyalty rewards on meals he'd buy anyway"
+  ],
+  "motivations": [
+    "Value — stretching limited money on food he actually enjoys",
+    "Crave-satisfaction — specific menu items he's loyal to (Baconator, spicy nuggets, Frosty)",
+    "Belonging to the brand's in-on-the-joke culture",
+    "Convenience and speed in everyday routines"
+  ],
+  "pain_points": [
+    "Fast-food prices creeping up and shrinking the value gap",
+    "Inconsistent quality or order accuracy at the drive-thru",
+    "Deals that are buried, app-only, or feel like a bait-and-switch",
+    "Long lines or slow service when he's hungry and short on time"
+  ],
+  "objections": [
+    "Whether the 'deal' is actually a better value than a competitor's",
+    "Skepticism that quality holds up at the lowest price points",
+    "Reluctance to download or sign into yet another loyalty app"
+  ],
+  "behavioral_traits": [
+    "Mobile-first: orders and redeems deals through the app",
+    "Compares value across QSR brands before deciding",
+    "High frequency, habitual visits — especially value menu and late-night",
+    "Engages with and shares the brand's social content",
+    "Loyal to specific menu items more than to the brand overall"
+  ],
+  "decision_criteria": [
+    "Price and overall value of the meal",
+    "Craveability of specific menu items",
+    "Speed and convenience (drive-thru, app, location proximity)",
+    "Current deals, limited-time offers, and rewards",
+    "Consistency and order accuracy"
+  ],
+  "messaging_preferences": [
+    "Lead with value and crave — concrete menu items and prices beat abstract brand talk",
+    "Be funny and culturally current; the witty brand voice is a feature, not a gimmick",
+    "Push deals and LTOs through the app, social, and short-form video where he already is",
+    "Make the loyalty/rewards payoff obvious and low-effort",
+    "Keep it fast and visual — he's deciding in seconds"
+  ],
+  "linked_audiences": ["AUD-PLACEHOLDER-wendys-value-seekers"],
+  "source": "Illustrative persona synthesized from publicly available market knowledge of Wendy's customer base and marketing (brand positioning, public reporting, and QSR category research), 2024. Grounded in public information, not client research; more synthesized than a document-derived instance."
+}

@@ -1,0 +1,67 @@
+{
+  "object_type": "business_context",
+  "osmm_version": "0.1.0",
+  "business_id": "BIZ-wendys",
+  "version": "1.0",
+  "status": "draft",
+  "name": "Wendy's",
+  "industry": "Quick-service restaurants (QSR) / fast food",
+  "business_type": "b2c",
+  "founded": "1969",
+  "hq_location": "Dublin, OH",
+  "description": "Wendy's is a global quick-service hamburger chain known for square, 'fresh, never frozen' beef patties and a sharp, irreverent brand voice. It operates an overwhelmingly franchised system of roughly 7,000 restaurants across about 30 countries, competing in the burger QSR category on a mix of food quality and aggressive value. It serves a broad base of value-seeking fast-food consumers, skewing younger and digitally engaged.",
+  "products_and_services": [
+    "Hamburgers (Dave's Single/Double/Triple, Baconator)",
+    "Chicken sandwiches and spicy chicken nuggets",
+    "Value menu (Biggie Bag, 4 for $4)",
+    "Frosty frozen dessert",
+    "Fries and sides",
+    "Breakfast menu",
+    "Mobile app ordering and Wendy's Rewards loyalty"
+  ],
+  "value_proposition": "Higher-quality fast food — 'fresh, never frozen' beef — at a price and value that competes head-on with the biggest burger chains.",
+  "target_customers": [
+    "Value-seeking fast-food consumers across age groups",
+    "Younger (Gen Z / millennial) diners engaged with the brand's social presence",
+    "Late-night and on-the-go eaters",
+    "Mobile-first customers using the app and loyalty program"
+  ],
+  "revenue_model": "Franchise royalties and rents (the large majority of restaurants are franchised), company-operated restaurant sales, and a franchisee-funded national advertising program",
+  "scale_context": {
+    "revenue_range": "$1–10B",
+    "revenue_mix_notes": "Company revenue is driven by franchise royalties/rents plus company-operated restaurant sales; system-wide sales across all restaurants are several times larger than reported company revenue given the ~95% franchised model.",
+    "growth_trajectory": "Low-to-mid single-digit same-restaurant sales growth, with breakfast, digital/loyalty, and international unit expansion as the primary growth levers"
+  },
+  "business_model_notes": "Asset-light, heavily franchised model (~95% of restaurants are franchisee-owned), so marketing's job is to drive system-wide traffic and same-restaurant sales that benefit franchisees, not just company-owned units. A franchisee-funded national advertising fund shapes how campaigns are financed and approved. Public company (NASDAQ: WEN).",
+  "market_position": "Challenger in U.S. burger QSR — consistently among the top three burger chains, positioned on quality-plus-value against the category's volume leaders",
+  "competitors": ["McDonald's", "Burger King", "Taco Bell", "Chick-fil-A", "Sonic", "Jack in the Box"],
+  "competitive_differentiators": [
+    "'Fresh, never frozen' square beef is a decades-old, recognizable quality claim that differentiates from frozen-patty rivals",
+    "A famously sharp, witty social-media brand voice (roasts, National Roast Day, viral moments) that earns outsized cultural attention for a QSR",
+    "Iconic menu equity in the Frosty, Baconator, and spicy chicken nuggets",
+    "Strong value architecture (Biggie Bag / 4 for $4) that competes directly on price during value-menu wars"
+  ],
+  "marketing_objectives": [
+    "Drive restaurant traffic and same-restaurant sales across the franchised system",
+    "Grow the breakfast daypart against entrenched competitors",
+    "Increase digital ordering and Wendy's Rewards loyalty adoption",
+    "Convert the brand's social-media fame into measurable visits and frequency"
+  ],
+  "marketing_challenges": [
+    "Out-spent on media by larger rivals, so the brand must win attention through creativity rather than budget",
+    "Value-menu price wars compress margins for franchisees",
+    "Establishing breakfast habit in a daypart dominated by incumbents",
+    "Translating viral social moments into actual traffic rather than just engagement",
+    "Aligning national campaigns with thousands of independent franchisees"
+  ],
+  "strategic_priorities": [
+    "Expand and defend the breakfast daypart",
+    "Accelerate digital sales, app adoption, and loyalty",
+    "Grow the restaurant footprint domestically and internationally",
+    "Sustain the distinctive brand voice as a durable competitive asset"
+  ],
+  "brand_tone_notes": "Sassy, witty, and unafraid to roast competitors (and itself) — culturally fluent, fast-reacting, and confident; playful but sharp",
+  "key_markets": ["United States", "Canada", "international franchise markets (~30 countries)"],
+  "linked_brand_context": "BRC-PLACEHOLDER-wendys",
+  "source": "Built from public information: The Wendy's Company public filings (Form 10-K), wendys.com, and public reporting on the brand's marketing (2024). Figures expressed as order-of-magnitude bands, not exact filings."
+}

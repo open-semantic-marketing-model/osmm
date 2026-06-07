@@ -100,7 +100,7 @@ osmm/
 │   └── artifacts/    # artifact-composer skills (NOT object builders) — see "Artifact-composer skills"
 │       └── osmm-creative-brief-composer/SKILL.md
 ├── schemas/          # added per-object only when a schema is promoted out of its skill
-└── examples/         # validated example instances (e.g. PERSONA_warby-parker-design-conscious.json)
+└── examples/         # validated example instances (e.g. PERSONA_wendys-deal-savvy-craver.json)
 ```
 
 The first five `skills/` subfolders are the **object categories**; `artifacts/`
@@ -305,12 +305,12 @@ Two parts separated by a single underscore:
 
 | Object | Entity | Instance | Filename |
 |--------|--------|----------|----------|
-| Persona | Warby Parker | Design-conscious | `PERSONA_warby-parker-design-conscious.json` |
+| Persona | Wendy's | Deal-savvy craver | `PERSONA_wendys-deal-savvy-craver.json` |
 | Business Context | IBM | — | `BUSINESS-CONTEXT_ibm.json` |
-| Business Context | Warby Parker | — | `BUSINESS-CONTEXT_warby-parker.json` |
-| Campaign Strategy | Warby Parker | Spring Launch | `CAMPAIGN-STRATEGY_warby-parker-spring-launch.json` |
+| Business Context | Wendy's | — | `BUSINESS-CONTEXT_wendys.json` |
+| Campaign Strategy | Wendy's | Baconator Launch | `CAMPAIGN-STRATEGY_wendys-baconator-launch.json` |
 | Keyword | — | Marketing Operating Model | `KEYWORD_marketing-operating-model.json` |
-| Journey Performance | Warby Parker | Home Try-On | `JOURNEY-PERFORMANCE_warby-parker-home-try-on.json` |
+| Journey Performance | Wendy's | Breakfast Daypart | `JOURNEY-PERFORMANCE_wendys-breakfast-daypart.json` |
 
 ### Where instance files live
 
@@ -320,10 +320,10 @@ Validated example instances live in the `examples/` folder at the repo root, org
 examples/
 ├── context/
 │   ├── BUSINESS-CONTEXT_ibm.json
-│   ├── BUSINESS-CONTEXT_warby-parker.json
-│   └── PERSONA_warby-parker-design-conscious.json
+│   ├── BUSINESS-CONTEXT_wendys.json
+│   └── PERSONA_wendys-deal-savvy-craver.json
 ├── work-product/
-│   └── CAMPAIGN-STRATEGY_warby-parker-spring-launch.json
+│   └── CAMPAIGN-STRATEGY_wendys-baconator-launch.json
 ├── configuration/
 ├── measurement/
 └── learning/
@@ -332,7 +332,7 @@ examples/
 **Examples must derive from public, non-confidential sources.** The repo is
 openly licensed, so every committed instance has to be built from public
 material (public-company filings, published research, the brand's own public
-site) — IBM and Warby Parker here are public companies. **Client work never
+site) — IBM and Wendy's here are public companies. **Client work never
 enters the repo**, even after validation: it is real but confidential, which is a
 different category from "real but not yet promoted." Instances produced during
 client or internal work stay outside the repo permanently; only public-sourced
