@@ -41,7 +41,9 @@ coherent sets and exercise both `business_type` paths of the composer:
 | `context/BUSINESS-CONTEXT_wendys.json` | Business Context | Wendy's | Real, public-information-grounded. |
 | `context/BRAND-CONTEXT_ibm.json` | Brand Context | IBM | Voice/guardrails from public brand expression; guardrails inferred. |
 | `context/BRAND-CONTEXT_wendys.json` | Brand Context | Wendy's | Voice/guardrails from public brand expression; guardrails inferred. |
-| `context/PERSONA_wendys-deal-savvy-craver.json` | Persona | Wendy's | Illustrative persona synthesized from public market knowledge (more synthesized than the business-context instances — companies don't publish personas). |
+| `context/AUDIENCE_ibm-enterprise-it.json` | Audience | IBM | B2B firmographic segment; illustrative operational criteria. |
+| `context/AUDIENCE_wendys-value-seekers.json` | Audience | Wendy's | B2C value-based segment; linked to the Wendy's persona (Persona ↔ Audience). |
+| `context/PERSONA_wendys-deal-savvy-craver.json` | Persona | Wendy's | Illustrative persona synthesized from public market knowledge. `linked_audiences` resolved to `AUD-wendys-value-seekers` (v1.1). |
 
 > The Wendy's set (Business Context + Brand Context + Persona) and the IBM set
 > (Business Context + Brand Context) now cover the **required inputs** of

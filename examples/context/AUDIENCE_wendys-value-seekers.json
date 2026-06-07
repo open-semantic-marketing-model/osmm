@@ -1,0 +1,28 @@
+{
+  "object_type": "audience",
+  "osmm_version": "0.1.0",
+  "audience_id": "AUD-wendys-value-seekers",
+  "version": "1.0",
+  "status": "draft",
+  "name": "Value Seekers",
+  "linked_business_context": "BIZ-wendys",
+  "description": "Price-sensitive, high-frequency fast-food customers who choose where to eat largely on value and current deals. They are the core audience for Wendy's value menu and app-driven offers, and skew younger and mobile-first.",
+  "segmentation_basis": "value_based",
+  "lifecycle_stage": "active",
+  "inclusion_criteria": [
+    "Visits QSR brands 2+ times per week",
+    "Redeems value-menu items or app offers (e.g. Biggie Bag, 4 for $4) on a majority of visits",
+    "Engages with the brand's app and/or social channels",
+    "Skews age 18–34"
+  ],
+  "exclusion_criteria": [
+    "Premium/full-service diners who rarely use value menus",
+    "Lapsed customers with no visit in 6+ months (separate win-back segment)"
+  ],
+  "defining_signals": ["Deal redemption rate", "App usage and offer engagement", "Late-night and high-frequency visit patterns"],
+  "size_estimate": "Large — the core volume segment for the value daypart",
+  "value_characterization": "Moderate per-ticket value but high frequency; lifetime value driven by visit cadence and offer-led repeat",
+  "linked_personas": ["PER-wendys-deal-savvy-craver"],
+  "activation_notes": "Addressable via the Wendy's app/loyalty, paid social, and short-form video; offer-led creative performs best.",
+  "source": "Built from public information: Wendy's marketing and QSR category knowledge (2024). Criteria are illustrative operational definitions, not internal CRM rules."
+}

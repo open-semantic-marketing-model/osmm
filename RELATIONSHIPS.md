@@ -71,10 +71,8 @@ a lookup) and namespaces ids so they stay unique across a portfolio.
 | Persona | `PER-` | `persona_id` | `PER-wendys-deal-savvy-craver` |
 | Audience | `AUD-` | `audience_id` | `AUD-wendys-value-seekers` |
 
-> `BIZ-` and `PER-` are defined by the two shipped builders. `BRC-` and `AUD-`
-> are already referenced *by* those builders (via `linked_brand_context` and
-> `linked_audiences`) and are fixed here so the builders that own them stay
-> consistent.
+> All four prefixes are now owned by shipped builders (`osmm-business-context-builder`,
+> `osmm-brand-context-builder`, `osmm-persona-builder`, `osmm-audience-builder`).
 
 **Assigning new prefixes.** Every object gets a prefix when its builder is
 authored. Prefixes are assigned by maintainers (like controlled vocabularies,
@@ -133,9 +131,15 @@ Reading the graph:
 - **Context is the foundation.** Work Products reference Context; Context does
   not reference Work Products. This is what makes Context "high-read, low-write"
   and reusable across many campaigns.
-- **Within Context, a few links exist:** Business Context → Brand Context;
-  Persona → Audience (a persona brings an audience to life); Keyword → the
+- **Within Context, a few links exist:** Business Context ↔ Brand Context;
+  Persona ↔ Audience (a persona brings an audience to life); Keyword → the
   Personas that search a term.
+- **"Segment" is the Audience Object, not a separate node.** OSMM models the
+  addressable segment as the Audience Object (its `segmentation_basis` field
+  records the lens); a Persona *describes* a member while an Audience *selects*
+  the group. A distinct Segment object would only be warranted if OSMM later
+  needs to model activation separately (one segment synced as many platform
+  audiences) — an edge/delivery concern, not a Context one.
 - **Measurement references what it measures** (the Work Products and
   Configurations that ran), and is append-only.
 - **Learning closes the loop.** Learning objects reference the objects they
@@ -155,11 +159,13 @@ reference fields it introduces.
 | Business Context | `linked_brand_context` | one | Brand Context | `BRC-PLACEHOLDER-<slug>` until the Brand Context is built. |
 | Brand Context | `linked_business_context` | one | Business Context | `BIZ-PLACEHOLDER-<slug>` until the Business Context is built. Inverse of the edge above. |
 | Persona | `linked_audiences` | many | Audience | `AUD-PLACEHOLDER-<slug>` until the Audience is built. |
+| Audience | `linked_business_context` | one | Business Context | `BIZ-PLACEHOLDER-<slug>` until built. |
+| Audience | `linked_personas` | many | Persona | `PER-PLACEHOLDER-<slug>` until built. Inverse of Persona → Audience. |
 
-> Business Context ↔ Brand Context is now a realized bidirectional edge (each
-> points at the other). Inbound references implied by the model but not yet
-> realized (e.g. a Keyword linking the Personas that search it; a Customer
-> Insight proposing Persona updates) are defined when those builders are
+> Two bidirectional Context edges are now realized: Business Context ↔ Brand
+> Context, and Persona ↔ Audience. Inbound references implied by the model but
+> not yet realized (e.g. a Keyword linking the Personas that search it; a
+> Customer Insight proposing Persona updates) are defined when those builders are
 > authored.
 
 ## Referential integrity

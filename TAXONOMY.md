@@ -51,6 +51,15 @@ flowchart LR
 | 2.8 Define Audience Prioritization | Target audience prioritization | Targeting Strategy Object | Prioritization Matrix |
 | 2.9 Confirm Audience Definition | Final audience strategy | Targeting Strategy Object | Audience Summary |
 
+> **"Segment" is the Audience Object — not a separate object.** Sub-process 2.2
+> ("Define Audience Segments"), 2.3 (inclusion/exclusion logic), and 2.6
+> (lifecycle & value segmentation) all resolve to the **Audience Object**, which
+> is OSMM's addressable segment. The `segmentation_basis` field on the object
+> records *which kind* of segment it is (demographic, behavioral, firmographic,
+> value-based, lifecycle, etc.). A Persona *describes* the member; the Audience
+> *selects* the group. Audience *prioritization* (2.1, 2.8) is separate again —
+> that's the Targeting Strategy Object.
+
 ## Phase 3. Define Offer
 
 **Theme** — What motivates action?  

@@ -1,0 +1,24 @@
+{
+  "object_type": "audience",
+  "osmm_version": "0.1.0",
+  "audience_id": "AUD-ibm-enterprise-it",
+  "version": "1.0",
+  "status": "draft",
+  "name": "Enterprise IT Decision Makers",
+  "linked_business_context": "BIZ-ibm",
+  "description": "Senior technology decision-makers at large enterprises and regulated organizations evaluating hybrid cloud and enterprise AI platforms. The core audience for watsonx and Red Hat consideration.",
+  "segmentation_basis": "firmographic",
+  "inclusion_criteria": [
+    "Organization size 1,000+ employees (or regulated mid-market)",
+    "Role in IT/technology leadership (CIO, CTO, VP Infrastructure, platform leads)",
+    "Operates a hybrid or multi-cloud environment",
+    "Active modernization or AI initiative in the current cycle"
+  ],
+  "exclusion_criteria": ["SMB with no enterprise IT function", "Net-new startups without hybrid infrastructure needs"],
+  "defining_signals": ["Hybrid/multi-cloud footprint", "Active AI or modernization initiative", "Regulated-industry compliance requirements"],
+  "size_estimate": "Focused — a high-value, finite set of enterprise accounts",
+  "value_characterization": "Very high deal value and long lifetime; multi-year platform and consulting relationships",
+  "linked_personas": ["PER-PLACEHOLDER-ibm-enterprise-buyer"],
+  "activation_notes": "Addressable via account-based marketing, LinkedIn, industry events, and IBM's direct/partner sales motions.",
+  "source": "Built from public information: IBM positioning and enterprise-technology category knowledge (2024). Criteria illustrative, not internal targeting rules."
+}
