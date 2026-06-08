@@ -2,7 +2,7 @@
   "object_type": "marketing_strategy",
   "osmm_version": "0.1.0",
   "marketing_strategy_id": "MKS-wendys-2026",
-  "version": "1.0",
+  "version": "1.1",
   "status": "draft",
   "name": "Wendy's 2026 Marketing Strategy",
   "linked_business_context": "BIZ-wendys",
@@ -37,6 +37,6 @@
     "Digital, app, and loyalty adoption",
     "Late-night and high-frequency value occasions"
   ],
-  "linked_measurement_framework": "MEF-PLACEHOLDER-wendys",
+  "linked_measurement_framework": "MEF-wendys-2026",
   "source": "Built from public information: The Wendy's Company public filings, wendys.com, and public reporting on the brand's marketing (2024). Objectives synthesized from public strategic priorities; success criteria illustrative, not internal targets."
 }

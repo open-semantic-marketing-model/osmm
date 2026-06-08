@@ -139,7 +139,7 @@ Built from Wendy's public filings and marketing. References the shipped `BIZ-wen
   "object_type": "marketing_strategy",
   "osmm_version": "0.1.0",
   "marketing_strategy_id": "MKS-wendys-2026",
-  "version": "1.0",
+  "version": "1.1",
   "status": "draft",
   "name": "Wendy's 2026 Marketing Strategy",
   "linked_business_context": "BIZ-wendys",
@@ -174,7 +174,7 @@ Built from Wendy's public filings and marketing. References the shipped `BIZ-wen
     "Digital, app, and loyalty adoption",
     "Late-night and high-frequency value occasions"
   ],
-  "linked_measurement_framework": "MEF-PLACEHOLDER-wendys",
+  "linked_measurement_framework": "MEF-wendys-2026",
   "source": "Built from public information: The Wendy's Company public filings, wendys.com, and public reporting on the brand's marketing (2024). Objectives synthesized from public strategic priorities; success criteria illustrative, not internal targets."
 }
 ```
@@ -188,7 +188,7 @@ Built from IBM's public strategic priorities. Shown abbreviated to contrast an e
   "object_type": "marketing_strategy",
   "osmm_version": "0.1.0",
   "marketing_strategy_id": "MKS-ibm-2026",
-  "version": "1.0",
+  "version": "1.1",
   "status": "draft",
   "name": "IBM 2026 Marketing Strategy",
   "linked_business_context": "BIZ-ibm",
@@ -212,7 +212,7 @@ Built from IBM's public strategic priorities. Shown abbreviated to contrast an e
     "Frame watsonx as the governed, explainable AI alternative to hyperscaler models"
   ],
   "priority_audiences": ["AUD-ibm-enterprise-it"],
-  "linked_measurement_framework": "MEF-PLACEHOLDER-ibm",
+  "linked_measurement_framework": "MEF-ibm-2026",
   "source": "Built from public information: IBM 2023 Annual Report, earnings commentary, and ibm.com (2024). Objectives and positioning synthesized from public strategic priorities."
 }
 ```

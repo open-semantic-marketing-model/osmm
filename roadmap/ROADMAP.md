@@ -1,6 +1,6 @@
 # OSMM™ Roadmap
 
-The sequenced plan for building OSMM out from its current state (5 of 34 object
+The sequenced plan for building OSMM out from its current state (6 of 34 object
 builders, 1 composer) to a complete, connected model. For live status see
 [`BACKLOG.md`](BACKLOG.md).
 
@@ -49,12 +49,13 @@ Keyword) have builders; the Creative Brief composer can run on fully-real inputs
 **Composer unlocked:** Brand Playbook (C04).
 
 ### Milestone B — Strategy layer (Phase 1–2 Work Products)
-**Objects:** ~~Marketing Strategy (B03)~~ ✅, Measurement Framework (B04), Targeting
-Strategy (B05), Keyword Strategy (B09).
+**Objects:** ~~Marketing Strategy (B03)~~ ✅, ~~Measurement Framework (B04)~~ ✅,
+Targeting Strategy (B05), Keyword Strategy (B09).
 **Why next:** these are the first Work Products and they reference the Context
-layer from Milestone A. **Marketing Strategy (B03) shipped early** — it's referenced
-by most later objects, and its `linked_measurement_framework` placeholder makes
-Measurement Framework (B04) the natural next pick.
+layer from Milestone A. **Marketing Strategy (B03) and Measurement Framework (B04)
+shipped early** — the MKS ↔ MEF edge is realized, so the Strategy Brief composer
+(C03) is fully sourced. Targeting Strategy (B05) and Keyword Strategy (B09) remain
+and depend on Phase 2 Context.
 **Composers unlocked:** Strategy Brief (C03), Audience Strategy (C05).
 
 ### Milestone C — Offer & Activation (Phase 3–4)
@@ -103,9 +104,9 @@ valuable once there's a full pipeline producing things to measure.
 
 | Milestone | Builders | Cumulative builders done |
 |-----------|---------:|-------------------------:|
-| (shipped) | 5 | 5 / 34 |
-| A (Keyword remains; Brand Context + Audience done) | 1 | 6 / 34 |
-| B (Marketing Strategy done early; 3 remain) | 3 | 9 / 34 |
+| (shipped) | 6 | 6 / 34 |
+| A (Keyword remains; Brand Context + Audience done) | 1 | 7 / 34 |
+| B (Marketing Strategy + Measurement Framework done early; 2 remain) | 2 | 9 / 34 |
 | C | 6 | 15 / 34 |
 | D | 5 | 20 / 34 |
 | E | 8 | 28 / 34 |

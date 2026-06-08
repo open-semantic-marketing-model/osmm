@@ -9,7 +9,7 @@ For the sequencing rationale and milestones, see [`ROADMAP.md`](ROADMAP.md).
 
 | Track | Done | In Progress | To Do | Total |
 |-------|-----:|------------:|------:|------:|
-| Object builders | 5 | 0 | 29 | 34 |
+| Object builders | 6 | 0 | 28 | 34 |
 | Artifact composers | 1 | 0 | 6 (candidates) | 7 |
 | Infrastructure / docs | 8 | 0 | 5 | 13 |
 
@@ -23,7 +23,8 @@ Item ids: `B##` = object builder, `C##` = composer, `I##` = infrastructure/docs.
 |----|------|-------|
 | B01 | `osmm-business-context-builder` | Phase 1 · Context. Shipped (`status: draft`). |
 | B02 | `osmm-brand-context-builder` | Phase 1 · Context. Shipped (`status: draft`). Unblocks C01's required `brand_context` input. |
-| B03 | `osmm-marketing-strategy-builder` | Phase 1 · Work Product. Shipped (`status: draft`). **First Work Product object** — realizes the first Work Product → Context edges (Business/Brand Context, priority Audiences); links Measurement Framework via placeholder. |
+| B03 | `osmm-marketing-strategy-builder` | Phase 1 · Work Product. Shipped (`status: draft`). **First Work Product object** — realizes the first Work Product → Context edges (Business/Brand Context, priority Audiences). |
+| B04 | `osmm-measurement-framework-builder` | Phase 1 · Work Product. Shipped (`status: draft`). Tiered KPI framework (`primary`/`supporting`/`guardrail`) measuring a Marketing Strategy. Realizes the first bidirectional Work Product ↔ Work Product edge (MKS ↔ MEF); resolved the MKS `MEF-PLACEHOLDER` refs (MKS instances → v1.1). |
 | B06 | `osmm-audience-builder` | Phase 2 · Context. Shipped (`status: draft`). OSMM's addressable **segment** (clarified Segment ≈ Audience). Realizes Persona ↔ Audience. |
 | B07 | `osmm-persona-builder` | Phase 2 · Context. Shipped (`status: draft`). First built skill. |
 | C01 | `osmm-creative-brief-composer` | Phase 5 artifact-composer. ✅ Required input `brand_context` now built (B02); runnable end-to-end on the Wendy's example set. |
@@ -62,13 +63,13 @@ Grouped by milestone (see [`ROADMAP.md`](ROADMAP.md)). Within a milestone, order
 ### Milestone B — Strategy layer (Phase 1–2 Work Products)
 | ID | Builder | Phase |
 |----|---------|------:|
-| B04 | `osmm-measurement-framework-builder` | 1 |
 | B05 | `osmm-targeting-strategy-builder` | 2 |
 | B09 | `osmm-keyword-strategy-builder` | 2 |
 
-> ✅ B03 `osmm-marketing-strategy-builder` shipped (out of milestone order) — see Done.
-> Its `linked_measurement_framework` placeholder makes **B04 the natural next pick**
-> to resolve that edge and unblock the Strategy Brief composer (C03).
+> ✅ B03 `osmm-marketing-strategy-builder` and B04 `osmm-measurement-framework-builder`
+> shipped — see Done. The MKS ↔ MEF edge is realized and the **Strategy Brief composer
+> (C03) is now fully sourced** for IBM and Wendy's. Targeting Strategy (B05) and Keyword
+> Strategy (B09) remain — both depend on Phase 2 Context (Audience shipped; Keyword B08 still open).
 
 ### Milestone C — Offer & Activation (Phase 3–4)
 | ID | Builder | Phase |
