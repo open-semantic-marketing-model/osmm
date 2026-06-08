@@ -1,4 +1,4 @@
-# OSMM Object Relationships
+# OSMM™ Object Relationships
 
 **Open Semantic Marketing Model — the reference model**
 Status: Draft v0.1

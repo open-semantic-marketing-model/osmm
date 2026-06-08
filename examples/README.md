@@ -1,4 +1,4 @@
-# OSMM Examples
+# OSMM™ Examples
 
 A library of **validated OSMM object instances** — the canonical, machine-readable
 `.json` files that other tools read directly: the `osmm-creative-brief-composer`

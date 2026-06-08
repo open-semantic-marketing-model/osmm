@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to OSMM are recorded here. The format is based on
+All notable changes to OSMM™ are recorded here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). The **schema** is
 versioned via the `osmm_version` field under semantic versioning; see
 [GOVERNANCE.md](GOVERNANCE.md#versioning) for what counts as a major, minor, or

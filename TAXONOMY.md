@@ -1,4 +1,4 @@
-# OSMM Workflow Taxonomy
+# OSMM™ Workflow Taxonomy
 
 **Open Semantic Marketing Model — workflow classification**  
 Status: Draft v0.1 · generated from the OSMM object model

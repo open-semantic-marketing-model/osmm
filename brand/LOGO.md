@@ -1,6 +1,6 @@
-# OSMM Logo & Brand Guidelines
+# OSMM™ Logo & Brand Guidelines
 
-**Open Semantic Marketing Model** — visual identity v1.0
+**Open Semantic Marketing Model™** — visual identity v1.0
 
 The OSMM mark is a 2×2 matrix of rounded squares with a plus formed at its
 center. The four cells stand for the object model's structure; the central
@@ -70,6 +70,14 @@ radius 6.
 The wordmark is **IBM Plex Mono** — *Medium* for "OSMM", *Regular* for the
 "Open Semantic Marketing Model" descriptor. The monospace voice is deliberate:
 OSMM is a machine-readable schema standard, and the type says so.
+
+The **trademark symbol (™)** locks to the upper-right of the wordmark, top-aligned
+to the cap height of "OSMM", in every lockup that carries the wordmark
+(`osmm-primary-horizontal`, `osmm-primary-horizontal-reversed`, `osmm-acronym`,
+`osmm-stacked`, `osmm-mono`). The mark-only and favicon files
+(`osmm-mark`, `osmm-mark-mono`, `osmm-favicon`) carry no wordmark and therefore
+no ™. Like the wordmark, the ™ is drawn as outlined vector paths, so it renders
+identically without IBM Plex Mono installed.
 
 IBM Plex is licensed under the **SIL Open Font License 1.1** (free, open-source,
 embeddable). When self-hosting, ship the original font files unmodified; the

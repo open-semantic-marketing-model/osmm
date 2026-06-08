@@ -1,4 +1,4 @@
-# OSMM — Project Guide for Claude
+# OSMM™ — Project Guide for Claude
 
 The Open Semantic Marketing Model: a standard of 34 typed, addressable marketing
 **objects**, each built by an `osmm-<object>-builder` skill, plus non-normative

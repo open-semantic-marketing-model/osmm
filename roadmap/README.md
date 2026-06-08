@@ -1,4 +1,4 @@
-# OSMM Roadmap & Project Tracker
+# OSMM™ Roadmap & Project Tracker
 
 This folder is the project-management layer for building out OSMM — what's done,
 what's in flight, and what's next. It complements (does not replace) the

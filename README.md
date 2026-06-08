@@ -1,9 +1,9 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="brand/osmm-primary-horizontal-reversed.svg">
-  <img alt="OSMM — Open Semantic Marketing Model" src="brand/osmm-primary-horizontal.svg" width="440">
+  <img alt="OSMM™ — Open Semantic Marketing Model" src="brand/osmm-primary-horizontal.svg" width="440">
 </picture>
 
-# Open Semantic Marketing Model
+# Open Semantic Marketing Model™
 
 **An open interoperability standard for the decision work of marketing.**
 

@@ -1,4 +1,4 @@
-# Contributing to OSMM
+# Contributing to OSMM™
 
 Thanks for your interest in the Open Semantic Marketing Model. OSMM is
 **maintainer-led** (see [GOVERNANCE.md](GOVERNANCE.md)): anyone can propose,
