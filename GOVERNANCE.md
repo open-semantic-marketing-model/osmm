@@ -1,4 +1,4 @@
-# OSMM Governance
+# OSMM™ Governance
 
 **Open Semantic Marketing Model — how the standard is governed**
 Status: Draft v0.1

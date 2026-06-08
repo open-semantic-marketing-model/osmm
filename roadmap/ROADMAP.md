@@ -1,4 +1,4 @@
-# OSMM Roadmap
+# OSMM™ Roadmap
 
 The sequenced plan for building OSMM out from its current state (4 of 34 object
 builders, 1 composer) to a complete, connected model. For live status see

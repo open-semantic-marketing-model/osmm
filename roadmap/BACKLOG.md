@@ -1,4 +1,4 @@
-# OSMM Backlog (Kanban)
+# OSMM™ Backlog (Kanban)
 
 The single source of truth for **what's done, what's in flight, and what's next**.
 For the sequencing rationale and milestones, see [`ROADMAP.md`](ROADMAP.md).

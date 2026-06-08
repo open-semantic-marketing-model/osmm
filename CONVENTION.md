@@ -1,4 +1,4 @@
-# OSMM Skill Naming Convention
+# OSMM™ Skill Naming Convention
 
 **Open Semantic Marketing Model — builder skills**
 Status: Draft v0.3
