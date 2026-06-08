@@ -1,0 +1,61 @@
+{
+  "object_type": "measurement_framework",
+  "osmm_version": "0.1.0",
+  "measurement_framework_id": "MEF-wendys-2026",
+  "version": "1.0",
+  "status": "draft",
+  "name": "Wendy's 2026 Measurement Framework",
+  "linked_business_context": "BIZ-wendys",
+  "linked_marketing_strategy": "MKS-wendys-2026",
+  "time_horizon": "FY2026",
+  "north_star_metric": "System-wide same-restaurant sales growth",
+  "metrics": [
+    {
+      "name": "Social-attributed visit lift",
+      "tier": "primary",
+      "definition": "Incremental restaurant visits attributable to social/earned campaigns, measured via lift studies — not impressions or engagement",
+      "supports_objective": "Convert the brand's social-media fame into measurable visits and frequency",
+      "target": "Positive, measurable visit lift per major social moment",
+      "cadence": "Per-campaign and monthly",
+      "data_source": "Marketing mix modeling and incrementality/lift studies"
+    },
+    {
+      "name": "Breakfast daypart sales and repeat rate",
+      "tier": "primary",
+      "definition": "Breakfast-daypart sales and the share of breakfast customers who return within the period",
+      "supports_objective": "Grow breakfast trial and repeat among value-seeking, mobile-first customers",
+      "target": "Breakfast sales and repeat up year-over-year",
+      "cadence": "Monthly",
+      "data_source": "POS and loyalty data"
+    },
+    {
+      "name": "Digital sales mix and loyalty enrollment",
+      "tier": "primary",
+      "definition": "Share of transactions placed through the app plus net new Wendy's Rewards enrollments",
+      "supports_objective": "Increase app-led offer redemption and loyalty enrollment",
+      "target": "Digital mix and loyalty base up year-over-year",
+      "cadence": "Monthly",
+      "data_source": "App and loyalty analytics"
+    },
+    {
+      "name": "Quality-plus-value perception",
+      "tier": "supporting",
+      "definition": "Brand-tracker scores for food quality and value vs. key burger-QSR competitors",
+      "supports_objective": "Sustain quality-plus-value perception during value-menu price wars",
+      "cadence": "Quarterly",
+      "data_source": "Brand tracking study"
+    },
+    {
+      "name": "Franchisee value-menu margin health",
+      "tier": "guardrail",
+      "definition": "Franchisee contribution margin on value-menu mix — must not degrade as value promotions scale",
+      "supports_objective": "Sustain quality-plus-value perception during value-menu price wars",
+      "target": "Hold or improve vs. prior year",
+      "cadence": "Quarterly",
+      "data_source": "Franchise system financial reporting"
+    }
+  ],
+  "measurement_cadence": "Monthly business review; quarterly brand and strategic review",
+  "measurement_approach": "Marketing mix modeling and incrementality tests for traffic; app/loyalty analytics for digital; quarterly brand tracker for perception. Directional targets pending franchise-system planning.",
+  "source": "Built from public information: The Wendy's Company public filings and public reporting on the brand's marketing (2024). Metrics and targets inferred from public strategic priorities; not internal scorecard values."
+}
