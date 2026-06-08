@@ -12,6 +12,20 @@ governance). The current schema version is **0.1.0**.
 ## [Unreleased]
 
 ### Added
+- **`osmm-marketing-strategy-builder`** — the fifth object builder and **first
+  Work Product** (Phase 1 · Work Product). Builds a Marketing Strategy Object:
+  business/marketing objectives, strategy-level `success_criteria`, a
+  `positioning_statement` and `differentiation_strategy`, `priority_audiences`,
+  and `growth_priorities`, scoped to a `time_horizon`. Introduces the first
+  **Work Product → Context** reference edges (`linked_business_context`,
+  `linked_brand_context`, `priority_audiences`) plus a
+  `linked_measurement_framework` placeholder pending B04. Ratifies the `MKS-`
+  prefix and records the edges in `RELATIONSHIPS.md`.
+- **Marketing Strategy example instances** — `examples/work-product/MARKETING-STRATEGY_ibm-2026.json`
+  and `MARKETING-STRATEGY_wendys-2026.json` (public-sourced, FY2026), the first
+  instances in `examples/work-product/`. Both resolve real ids (`BIZ-`, `BRC-`,
+  `AUD-`) and are promoted because `osmm-creative-brief-composer` lists
+  `marketing_strategy` as an optional input.
 - **`design_system_reference` on the Brand Context Object** — an optional pointer
   to a brand's external design system / design language (a design-token source,
   design-language site, or component library), if one exists. OSMM references the

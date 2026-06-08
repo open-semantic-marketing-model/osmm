@@ -1,10 +1,10 @@
 # OSMM™ Roadmap
 
-The sequenced plan for building OSMM out from its current state (4 of 34 object
+The sequenced plan for building OSMM out from its current state (5 of 34 object
 builders, 1 composer) to a complete, connected model. For live status see
 [`BACKLOG.md`](BACKLOG.md).
 
-**Last updated:** 2026-06-07
+**Last updated:** 2026-06-08
 
 ## Guiding principles
 
@@ -49,11 +49,12 @@ Keyword) have builders; the Creative Brief composer can run on fully-real inputs
 **Composer unlocked:** Brand Playbook (C04).
 
 ### Milestone B — Strategy layer (Phase 1–2 Work Products)
-**Objects:** Marketing Strategy (B03), Measurement Framework (B04), Targeting
+**Objects:** ~~Marketing Strategy (B03)~~ ✅, Measurement Framework (B04), Targeting
 Strategy (B05), Keyword Strategy (B09).
 **Why next:** these are the first Work Products and they reference the Context
-layer from Milestone A. Marketing Strategy in particular is referenced by most
-later objects.
+layer from Milestone A. **Marketing Strategy (B03) shipped early** — it's referenced
+by most later objects, and its `linked_measurement_framework` placeholder makes
+Measurement Framework (B04) the natural next pick.
 **Composers unlocked:** Strategy Brief (C03), Audience Strategy (C05).
 
 ### Milestone C — Offer & Activation (Phase 3–4)
@@ -102,9 +103,9 @@ valuable once there's a full pipeline producing things to measure.
 
 | Milestone | Builders | Cumulative builders done |
 |-----------|---------:|-------------------------:|
-| (shipped) | 4 | 4 / 34 |
-| A (Keyword remains; Brand Context + Audience done) | 1 | 5 / 34 |
-| B | 4 | 9 / 34 |
+| (shipped) | 5 | 5 / 34 |
+| A (Keyword remains; Brand Context + Audience done) | 1 | 6 / 34 |
+| B (Marketing Strategy done early; 3 remain) | 3 | 9 / 34 |
 | C | 6 | 15 / 34 |
 | D | 5 | 20 / 34 |
 | E | 8 | 28 / 34 |
