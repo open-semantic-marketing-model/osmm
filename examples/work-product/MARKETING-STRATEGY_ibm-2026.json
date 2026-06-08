@@ -1,0 +1,42 @@
+{
+  "object_type": "marketing_strategy",
+  "osmm_version": "0.1.0",
+  "marketing_strategy_id": "MKS-ibm-2026",
+  "version": "1.0",
+  "status": "draft",
+  "name": "IBM 2026 Marketing Strategy",
+  "linked_business_context": "BIZ-ibm",
+  "linked_brand_context": "BRC-ibm",
+  "time_horizon": "FY2026",
+  "business_objectives": [
+    "Grow software to the majority of total revenue",
+    "Establish watsonx as the enterprise AI platform of record for regulated industries",
+    "Deepen the Red Hat ecosystem and partner network to extend hybrid cloud reach"
+  ],
+  "marketing_objectives": [
+    "Drive watsonx consideration among enterprise AI buyers evaluating hyperscaler alternatives",
+    "Grow Red Hat adoption within hybrid cloud modernization deals",
+    "Expand IBM Consulting pipeline tied to AI and automation transformation engagements",
+    "Strengthen brand relevance with a younger generation of enterprise technology buyers"
+  ],
+  "success_criteria": [
+    "watsonx routinely shortlisted alongside hyperscaler AI platforms in enterprise evaluations",
+    "Rising share of marketing-sourced pipeline attributed to the AI and hybrid cloud portfolios",
+    "Improved brand-relevance and consideration scores among next-generation enterprise buyers"
+  ],
+  "positioning_statement": "The enterprise-grade, governed AI and hybrid cloud platform — modernize without rearchitecting, with security, compliance, and trust built in.",
+  "differentiation_strategy": [
+    "Lead with Red Hat as the open hybrid cloud standard embedded across Fortune 500 environments",
+    "Use mainframe and regulated-industry credibility as proof of enterprise-grade security and compliance",
+    "Frame watsonx as the governed, explainable AI alternative to hyperscaler models",
+    "Position IBM Consulting as the adoption flywheel pure-software competitors cannot match"
+  ],
+  "priority_audiences": ["AUD-ibm-enterprise-it"],
+  "growth_priorities": [
+    "watsonx adoption in regulated industries (financial services, healthcare, government)",
+    "Red Hat-led hybrid cloud modernization deals",
+    "AI- and automation-transformation consulting engagements"
+  ],
+  "linked_measurement_framework": "MEF-PLACEHOLDER-ibm",
+  "source": "Built from public information: IBM 2023 Annual Report, Q4 2023 earnings commentary, and ibm.com (2024). Objectives and positioning synthesized from public strategic priorities; success criteria illustrative, not internal targets."
+}

@@ -1,0 +1,42 @@
+{
+  "object_type": "marketing_strategy",
+  "osmm_version": "0.1.0",
+  "marketing_strategy_id": "MKS-wendys-2026",
+  "version": "1.0",
+  "status": "draft",
+  "name": "Wendy's 2026 Marketing Strategy",
+  "linked_business_context": "BIZ-wendys",
+  "linked_brand_context": "BRC-wendys",
+  "time_horizon": "FY2026",
+  "business_objectives": [
+    "Drive system-wide restaurant traffic and same-restaurant sales across the franchised system",
+    "Expand and defend the breakfast daypart against entrenched competitors",
+    "Accelerate digital sales, app adoption, and Wendy's Rewards loyalty"
+  ],
+  "marketing_objectives": [
+    "Convert the brand's social-media fame into measurable visits and frequency",
+    "Grow breakfast trial and repeat among value-seeking, mobile-first customers",
+    "Increase app-led offer redemption and loyalty enrollment",
+    "Sustain quality-plus-value perception during value-menu price wars"
+  ],
+  "success_criteria": [
+    "Breakfast daypart share and repeat-visit growth",
+    "Higher share of transactions through the app and loyalty program",
+    "Social engagement translating into measured visit lift, not just impressions"
+  ],
+  "positioning_statement": "Higher-quality fast food — fresh, never frozen — with a sharp, culturally fluent personality, at a value that competes head-on with the biggest burger chains.",
+  "differentiation_strategy": [
+    "Anchor every message in the durable 'fresh, never frozen' quality proof",
+    "Win attention through creativity and cultural speed rather than media spend",
+    "Use the distinctive social voice as a traffic-driving asset, not just brand fame",
+    "Lead value architecture (Biggie Bag / 4 for $4) to compete directly on price"
+  ],
+  "priority_audiences": ["AUD-wendys-value-seekers"],
+  "growth_priorities": [
+    "Breakfast daypart expansion",
+    "Digital, app, and loyalty adoption",
+    "Late-night and high-frequency value occasions"
+  ],
+  "linked_measurement_framework": "MEF-PLACEHOLDER-wendys",
+  "source": "Built from public information: The Wendy's Company public filings, wendys.com, and public reporting on the brand's marketing (2024). Objectives synthesized from public strategic priorities; success criteria illustrative, not internal targets."
+}
