@@ -24,7 +24,7 @@ Build a valid **OSMM Brand Context Object** from any source describing how a bra
 
 A Brand Context Object is durable, foundational Context — the structured understanding of a brand's personality, voice, tone, core messages, and the guardrails that govern what it can and cannot say. Every downstream creative and messaging Work Product — Creative Strategy, Messaging Framework, Content Strategy — and every rendered artifact (a creative brief, a campaign) references this brand foundation. Making it explicit and structured means agents and humans produce on-brand work against the same baseline instead of re-deriving the brand's voice each time.
 
-This is the lean v0.1 builder. It captures the brand facts a marketing workflow needs to stay on-voice and compliant, and nothing more. A full visual identity system (logo files, color tokens, type scales) is deliberately out of scope — capture only the marketing-relevant *implications* of visual identity in `visual_identity_notes`.
+This is the lean v0.1 builder. It captures the brand facts a marketing workflow needs to stay on-voice and compliant, and nothing more. A full visual identity system (logo files, color tokens, type scales) is deliberately out of scope — capture only the marketing-relevant *implications* of visual identity in `visual_identity_notes`. When the brand has a formal design system or design language (e.g. a design-token source, a design-language site, or a component library), point to it in `design_system_reference` — OSMM references that upstream system rather than re-encoding it.
 
 **Key difference from Business Context:** the Business Context Object answers *what the business is, sells, and competes on*; the Brand Context Object answers *how the brand sounds and what it must say*. Business Context carries a thin optional `brand_tone_notes` as a placeholder — the Brand Context Object is its full, authoritative replacement. A Brand Context belongs to a business and points back at it via `linked_business_context`.
 
@@ -64,6 +64,7 @@ Emit a single JSON object with this exact shape. Field order should match.
   "compliance_notes": "",               // OPTIONAL — regulated-industry or legal constraints on messaging
 
   "visual_identity_notes": "",          // OPTIONAL — brief, marketing-relevant note; full visual system is out of scope
+  "design_system_reference": "",        // OPTIONAL — pointer to the brand's design system / design language, if one exists (OSMM references, not models, it)
 
   "source": ""                          // one line: what source(s) this was built from and approximate date
 }
@@ -94,7 +95,8 @@ Emit a single JSON object with this exact shape. Field order should match.
 | `messaging_guardrails` | string[] | yes | The non-negotiable rules: claims that must always be made and claims that must never be made. This is what the creative-brief composer reads as guardrails. |
 | `mandatories` | string[] | no | Required brand/legal elements every execution must carry (legal disclaimers, required phrasing, logo lockups). Omit if none. |
 | `compliance_notes` | string | no | Regulated-industry or legal constraints on messaging (e.g. financial-services disclosure rules, health claims). |
-| `visual_identity_notes` | string | no | Brief note on visual identity *as it affects marketing* (e.g. "photography is always real customers, never stock"). Full design system is out of scope. |
+| `visual_identity_notes` | string | no | Brief note on visual identity *as it affects marketing* (e.g. "photography is always real customers, never stock"). Full design system is out of scope — link it via `design_system_reference`. |
+| `design_system_reference` | string | no | Link or pointer to the brand's external **design system / design language** (a design-token source, design-language site, or component library), if one exists — e.g. IBM Design Language / Carbon, BBC GEL. OSMM references this upstream system rather than modeling it; omit if the brand has none. |
 | `source` | string | no | One line. Provenance and approximate date. |
 
 ## Brand archetype vocabulary
@@ -249,6 +251,7 @@ Built from IBM's public brand expression — advertising, website, and brand gui
     "Avoid hype; substantiate capability claims with evidence",
     "Maintain an enterprise, outcome-first frame — not consumer-tech aspiration"
   ],
+  "design_system_reference": "IBM Design Language (https://www.ibm.com/design/language/), implemented as the Carbon Design System (https://carbondesignsystem.com/) — design tokens, IBM Plex type, and component library.",
   "source": "Built from public information: IBM advertising, ibm.com, and public brand expression (2024). Guardrails inferred and should be confirmed against internal brand guidelines."
 }
 ```
