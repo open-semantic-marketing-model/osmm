@@ -37,7 +37,7 @@ Every governance decision is measured against these. They are the tie-breakers
 when a proposal is reasonable but the answer is still "no, not like this."
 
 1. **Lean over over-engineered.** Minimal cores with optional extensions. A new
-   field must earn its place; a new object must do work the existing 34 cannot.
+   field must earn its place; a new object must do work the existing 35 cannot.
 2. **Grounded in real assets.** Objects and examples are validated against real
    marketing artifacts, not invented to round out a model.
 3. **Identity is stable; everything else can be re-debated.** An object's

@@ -62,12 +62,12 @@ examples.
 
 ## The object model
 
-OSMM currently spans **34 objects** across **7 workflow phases**, grouped into
+OSMM currently spans **35 objects** across **7 workflow phases**, grouped into
 **5 categories** by their read/write and governance profile:
 
 | Category | Purpose |
 |----------|---------|
-| **Context** | Durable, reusable business intelligence (Business Context, Brand Context, Audience, Persona, Keyword). High-read, low-write. |
+| **Context** | Durable, reusable business intelligence (Business Context, Brand Context, Product Context, Audience, Persona, Keyword). High-read, low-write. |
 | **Work Product** | The structured outputs of decisions that today live in documents (Marketing Strategy, Creative Strategy, Campaign Strategy, Journey Strategy, …). |
 | **Configuration** | Operational logic for orchestration (Journey Configuration, Personalization Configuration). |
 | **Measurement** | Performance data structured for analysis. Append-only. |
@@ -98,7 +98,7 @@ osmm/
 Early and active — **draft v0.1**. The standard is being built iteratively:
 ship a concrete, validated artifact, then refine. The first two builders have
 shipped — `osmm-persona-builder` and `osmm-business-context-builder`, both
-Context-layer objects — out of the 34 in the registry. Schemas evolve under
+Context-layer objects — out of the 35 in the registry. Schemas evolve under
 strict semantic versioning with formal deprecation, never silent breaks; the
 versioning and deprecation policy is in [`GOVERNANCE.md`](GOVERNANCE.md).
 
