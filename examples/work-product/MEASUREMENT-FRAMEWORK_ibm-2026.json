@@ -1,0 +1,61 @@
+{
+  "object_type": "measurement_framework",
+  "osmm_version": "0.1.0",
+  "measurement_framework_id": "MEF-ibm-2026",
+  "version": "1.0",
+  "status": "draft",
+  "name": "IBM 2026 Measurement Framework",
+  "linked_business_context": "BIZ-ibm",
+  "linked_marketing_strategy": "MKS-ibm-2026",
+  "time_horizon": "FY2026",
+  "north_star_metric": "Marketing-sourced qualified pipeline for the software and AI portfolios",
+  "metrics": [
+    {
+      "name": "watsonx consideration / shortlist rate",
+      "tier": "primary",
+      "definition": "Share of tracked enterprise AI evaluations in which watsonx is shortlisted against hyperscaler alternatives",
+      "supports_objective": "Drive watsonx consideration among enterprise AI buyers evaluating hyperscaler alternatives",
+      "target": "Up year-over-year; closing the gap to hyperscaler shortlist rates",
+      "cadence": "Quarterly",
+      "data_source": "Brand and consideration tracking studies"
+    },
+    {
+      "name": "Red Hat-attached hybrid cloud pipeline",
+      "tier": "primary",
+      "definition": "Marketing-sourced qualified pipeline on modernization deals that attach Red Hat / OpenShift",
+      "supports_objective": "Grow Red Hat adoption within hybrid cloud modernization deals",
+      "target": "Up year-over-year",
+      "cadence": "Monthly",
+      "data_source": "CRM pipeline with marketing attribution"
+    },
+    {
+      "name": "AI/automation consulting qualified pipeline",
+      "tier": "primary",
+      "definition": "Marketing-sourced qualified pipeline for IBM Consulting engagements tied to AI and automation transformation",
+      "supports_objective": "Expand IBM Consulting pipeline tied to AI and automation transformation engagements",
+      "target": "Up year-over-year",
+      "cadence": "Monthly",
+      "data_source": "CRM pipeline with marketing attribution"
+    },
+    {
+      "name": "Brand relevance among next-gen enterprise buyers",
+      "tier": "supporting",
+      "definition": "Brand-tracker relevance and consideration scores among younger enterprise technology decision-makers",
+      "supports_objective": "Strengthen brand relevance with a younger generation of enterprise technology buyers",
+      "cadence": "Quarterly",
+      "data_source": "Brand tracking study"
+    },
+    {
+      "name": "Enterprise-trust perception",
+      "tier": "guardrail",
+      "definition": "Brand-tracker trust and credibility scores among enterprise buyers — must not erode as AI messaging scales",
+      "supports_objective": "Maintain enterprise-grade trust while scaling AI messaging",
+      "target": "Hold or improve vs. prior year",
+      "cadence": "Quarterly",
+      "data_source": "Brand tracking study"
+    }
+  ],
+  "measurement_cadence": "Monthly pipeline review; quarterly brand and strategic review",
+  "measurement_approach": "Marketing attribution on CRM pipeline for demand metrics; quarterly brand tracker for consideration, relevance, and trust. Directional targets pending internal planning.",
+  "source": "Built from public information: IBM 2023 Annual Report, Q4 2023 earnings commentary, and ibm.com (2024). Metrics and targets inferred from public strategic priorities; not internal scorecard values."
+}

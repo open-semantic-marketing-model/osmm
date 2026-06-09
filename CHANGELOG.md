@@ -12,6 +12,35 @@ governance). The current schema version is **0.1.0**.
 ## [Unreleased]
 
 ### Added
+- **`osmm-measurement-framework-builder`** — the sixth object builder and second
+  Work Product (Phase 1). Builds a Measurement Framework Object: a tiered KPI set
+  (`primary` | `supporting` | `guardrail` governed enum) with per-metric
+  definition, target, cadence, and data source, plus an optional
+  `north_star_metric` and measurement approach. Introduces the first
+  **bidirectional Work Product ↔ Work Product** edge via `linked_marketing_strategy`
+  (inverse of the strategy's `linked_measurement_framework`); ratifies the `MEF-`
+  prefix.
+- **Measurement Framework example instances** — `examples/work-product/MEASUREMENT-FRAMEWORK_ibm-2026.json`
+  and `MEASUREMENT-FRAMEWORK_wendys-2026.json` (public-sourced FY2026), paired with
+  the Marketing Strategy instances. Resolving the link swapped both Marketing
+  Strategy instances' `MEF-PLACEHOLDER-*` for the real framework ids and bumped them
+  to v1.1, demonstrating the placeholder-resolution rule. With Marketing Strategy +
+  Measurement Framework + Business/Brand Context now present for IBM and Wendy's, the
+  Strategy Brief composer (C03) is fully sourced.
+- **`osmm-marketing-strategy-builder`** — the fifth object builder and **first
+  Work Product** (Phase 1 · Work Product). Builds a Marketing Strategy Object:
+  business/marketing objectives, strategy-level `success_criteria`, a
+  `positioning_statement` and `differentiation_strategy`, `priority_audiences`,
+  and `growth_priorities`, scoped to a `time_horizon`. Introduces the first
+  **Work Product → Context** reference edges (`linked_business_context`,
+  `linked_brand_context`, `priority_audiences`) plus a
+  `linked_measurement_framework` placeholder pending B04. Ratifies the `MKS-`
+  prefix and records the edges in `RELATIONSHIPS.md`.
+- **Marketing Strategy example instances** — `examples/work-product/MARKETING-STRATEGY_ibm-2026.json`
+  and `MARKETING-STRATEGY_wendys-2026.json` (public-sourced, FY2026), the first
+  instances in `examples/work-product/`. Both resolve real ids (`BIZ-`, `BRC-`,
+  `AUD-`) and are promoted because `osmm-creative-brief-composer` lists
+  `marketing_strategy` as an optional input.
 - **`design_system_reference` on the Brand Context Object** — an optional pointer
   to a brand's external design system / design language (a design-token source,
   design-language site, or component library), if one exists. OSMM references the

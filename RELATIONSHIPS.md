@@ -71,11 +71,13 @@ a lookup) and namespaces ids so they stay unique across a portfolio.
 | Persona | `PER-` | `persona_id` | `PER-wendys-deal-savvy-craver` |
 | Audience | `AUD-` | `audience_id` | `AUD-wendys-value-seekers` |
 | Marketing Strategy | `MKS-` | `marketing_strategy_id` | `MKS-ibm-2026` |
+| Measurement Framework | `MEF-` | `measurement_framework_id` | `MEF-ibm-2026` |
 
-> Five prefixes are owned by shipped builders — the four Context builders
+> Six prefixes are owned by shipped builders — the four Context builders
 > (`osmm-business-context-builder`, `osmm-brand-context-builder`,
-> `osmm-persona-builder`, `osmm-audience-builder`) plus the first Work Product
-> builder, `osmm-marketing-strategy-builder`.
+> `osmm-persona-builder`, `osmm-audience-builder`) plus the two Phase 1 Work
+> Product builders, `osmm-marketing-strategy-builder` and
+> `osmm-measurement-framework-builder`.
 
 **Assigning new prefixes.** Every object gets a prefix when its builder is
 authored. Prefixes are assigned by maintainers (like controlled vocabularies,
@@ -167,16 +169,19 @@ reference fields it introduces.
 | Marketing Strategy | `linked_business_context` | one | Business Context | The first **Work Product → Context** edge. `BIZ-PLACEHOLDER-<slug>` until built. |
 | Marketing Strategy | `linked_brand_context` | one (optional) | Brand Context | `BRC-PLACEHOLDER-<slug>` until built; omit if not relevant. |
 | Marketing Strategy | `priority_audiences` | many (optional) | Audience | `AUD-PLACEHOLDER-<slug>` until built. Prioritizes existing Audiences; does not restate them. |
-| Marketing Strategy | `linked_measurement_framework` | one (optional) | Measurement Framework | `MEF-PLACEHOLDER-<slug>` until the Measurement Framework builder (B04) ships. |
+| Marketing Strategy | `linked_measurement_framework` | one (optional) | Measurement Framework | Realized — resolves to the paired `MEF-<slug>`. Bidirectional with the framework's `linked_marketing_strategy`. |
+| Measurement Framework | `linked_business_context` | one | Business Context | `BIZ-PLACEHOLDER-<slug>` until built. |
+| Measurement Framework | `linked_marketing_strategy` | one | Marketing Strategy | The first **bidirectional Work Product ↔ Work Product** edge — inverse of the strategy's `linked_measurement_framework`. `MKS-PLACEHOLDER-<slug>` until built. |
 
 > Two bidirectional Context edges are realized (Business Context ↔ Brand Context,
-> Persona ↔ Audience), and the **first Work Product → Context edges** are now live:
-> a Marketing Strategy references its Business Context, Brand Context, and priority
-> Audiences. The Marketing Strategy → Measurement Framework edge resolves once B04
-> ships (it holds a `MEF-PLACEHOLDER-*` until then). Inbound references implied by
-> the model but not yet realized (e.g. a Keyword linking the Personas that search
-> it; a Customer Insight proposing Persona updates) are defined when those builders
-> are authored.
+> Persona ↔ Audience); the **first Work Product → Context edges** are live (a
+> Marketing Strategy references its Business Context, Brand Context, and priority
+> Audiences); and the **first bidirectional Work Product ↔ Work Product edge** is
+> realized — Marketing Strategy ↔ Measurement Framework (the strategy's
+> `MEF-PLACEHOLDER-*` is now resolved to the real framework id, bumping the
+> strategy to `v1.1`). Inbound references implied by the model but not yet realized
+> (e.g. a Keyword linking the Personas that search it; a Customer Insight proposing
+> Persona updates) are defined when those builders are authored.
 
 ## Referential integrity
 
@@ -204,7 +209,6 @@ into the established table. Listed in registry order
 | Object | Proposed prefix |
 |--------|-----------------|
 | Keyword | `KW-` |
-| Measurement Framework | `MEF-` |
 | Targeting Strategy | `TGS-` |
 | Keyword Strategy | `KWS-` |
 | Offer Strategy | `OFS-` |
