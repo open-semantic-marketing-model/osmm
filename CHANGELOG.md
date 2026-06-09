@@ -12,6 +12,24 @@ governance). The current schema version is **0.1.0**.
 ## [Unreleased]
 
 ### Added
+- **`osmm-product-context-builder`** — the seventh object builder and the model's
+  **35th object** (Phase 1 · Context). Builds a Product Context Object: the durable
+  description of a product, service, or solution being marketed — `what_it_does`,
+  `how_it_works`, `key_features`, `benefits`, `use_cases`, `differentiators`, and a
+  structured `product_messaging` block (primary message, value pillars, proof points,
+  objections), with a governed `offering_type` enum (`product` | `service` | `solution`
+  | `platform` | `bundle`). Closes the gap between **Business Context** (the company)
+  and the **Offer** (the time-bound value exchange / CTA): the offering itself now has
+  a home, and an Offer will reference it rather than restate it. Ratifies the `PRD-`
+  prefix; realizes Product Context → Business/Brand Context edges (the watsonx example
+  resolves real `BIZ-ibm` / `BRC-ibm`); adds `related_offerings` for product-to-product
+  links. Worked examples: IBM watsonx (B2B platform) and Wendy's Baconator (B2C product).
+- **Model expanded from 34 to 35 objects.** Reconciled across `TAXONOMY.md` (new Phase 1
+  sub-process 1.3 *Define Product Context*; Phase 1 renumbered 1.4–1.9; resolution index
+  and the 7.7 durable-context loop updated; new Offer-vs-offering and Product-Context
+  boundary notes), `CONVENTION.md` (registry + object count), `RELATIONSHIPS.md` (`PRD-`
+  prefix, reference-field edges, graph), the roadmap tracker, README, and the design-tenet
+  phrasing in `GOVERNANCE.md`/`CONTRIBUTING.md`.
 - **`osmm-measurement-framework-builder`** — the sixth object builder and second
   Work Product (Phase 1). Builds a Measurement Framework Object: a tiered KPI set
   (`primary` | `supporting` | `guardrail` governed enum) with per-metric

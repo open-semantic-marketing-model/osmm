@@ -26,12 +26,22 @@ flowchart LR
 |---|---|---|---|
 | 1.1 Define Business Context | Industry classification, GTM model, competitive set, regulatory assumptions | Business Context Object | Business Context Summary |
 | 1.2 Define Brand Context | Brand personality, tone principles, messaging guardrails | Brand Context Object | Brand Playbook, Voice Guide |
-| 1.3 Define Business & Marketing Objectives | Business objectives, marketing objectives, success criteria | Marketing Strategy Object | Strategic Brief, Objective Framework |
-| 1.4 Define Market & Competitive Strategy | Competitive positioning, differentiation strategy | Marketing Strategy Object | Competitive Strategy Summary |
-| 1.5 Define Customer & Growth Priorities | Priority audiences, growth bets | Marketing Strategy Object | Growth Prioritization Framework |
-| 1.6 Define Positioning & Value Proposition | Value proposition, positioning strategy | Marketing Strategy Object | Positioning Framework, Messaging Foundation |
-| 1.7 Define Measurement Framework | KPI framework, success metrics | Measurement Framework Object | KPI Framework, Measurement Plan |
-| 1.8 Confirm Strategic Direction | Final strategic direction | Marketing Strategy Object | Strategy Presentation, Executive Brief |
+| 1.3 Define Product Context | Offering features, how it works, benefits, product-level messaging | Product Context Object | Product Brief, Solution Brief, Datasheet |
+| 1.4 Define Business & Marketing Objectives | Business objectives, marketing objectives, success criteria | Marketing Strategy Object | Strategic Brief, Objective Framework |
+| 1.5 Define Market & Competitive Strategy | Competitive positioning, differentiation strategy | Marketing Strategy Object | Competitive Strategy Summary |
+| 1.6 Define Customer & Growth Priorities | Priority audiences, growth bets | Marketing Strategy Object | Growth Prioritization Framework |
+| 1.7 Define Positioning & Value Proposition | Value proposition, positioning strategy | Marketing Strategy Object | Positioning Framework, Messaging Foundation |
+| 1.8 Define Measurement Framework | KPI framework, success metrics | Measurement Framework Object | KPI Framework, Measurement Plan |
+| 1.9 Confirm Strategic Direction | Final strategic direction | Marketing Strategy Object | Strategy Presentation, Executive Brief |
+
+> **Product Context is the *offering*, not the company and not the offer.** Sub-process
+> 1.3 resolves to the **Product Context Object** — the durable description of a product,
+> service, or solution (its features, how it works, benefits, and product-level messaging).
+> It is distinct from **Business Context** (the company; its `products_and_services` is a
+> lightweight portfolio list, while Product Context structures each offering in depth — one
+> business → many products) and from the **Offer Object** (Phase 3: the time-bound value
+> exchange / call to action, e.g. a trial, demo, discount, or financing deal). An Offer
+> *references* a Product Context; it does not restate it.
 
 ## Phase 2. Define Audience
 
@@ -76,6 +86,15 @@ flowchart LR
 | 3.6 Define Eligibility & Rules | Eligibility logic | Offer Object | Offer Rules Summary |
 | 3.7 Define Testing Strategy | Test priorities | Offer Test Strategy Object | Experiment Design |
 | 3.8 Confirm Offer Definition | Final offer approval | Offer Object | Offer Summary |
+
+> **The Offer is the value exchange, not the offering.** Phase 3 objects define the
+> *incentive to act* — the financial offer ("no money down"), the trial ("30 days, no
+> risk"), the demo ("book a test drive"), the bundle promotion. The **thing** the offer is
+> extended on — its features, how it works, and product-level messaging — lives in the
+> **Product Context Object** (sub-process 1.3). An Offer references the Product Context it
+> promotes (`linked_product`, realized when `osmm-offer-builder` lands) rather than
+> duplicating product detail. Offer *positioning* (3.5) frames the deal; product positioning
+> and messaging are Product Context's job.
 
 ## Phase 4. Define Campaign & Journey
 
@@ -142,7 +161,7 @@ flowchart LR
 | 7.4 Evaluate Messaging & Creative Effectiveness | Creative learning | Creative Performance Object | Creative Performance Summary |
 | 7.5 Evaluate Journey & Channel Performance | Journey optimization opportunities | Journey Performance Object | Journey Analysis |
 | 7.6 Generate Optimization Recommendations | Optimization priorities | Optimization Recommendation Object | Optimization Plan |
-| 7.7 Update Durable Context & Strategy | Persistent learning decisions | Business Context Object, Brand Context Object, Marketing Strategy Object, Persona Object, Targeting Strategy Object, Keyword Object | Updated Strategy Summary |
+| 7.7 Update Durable Context & Strategy | Persistent learning decisions | Business Context Object, Brand Context Object, Product Context Object, Marketing Strategy Object, Persona Object, Targeting Strategy Object, Keyword Object | Updated Strategy Summary |
 | 7.8 Confirm Learning & Next Action | Next-step decision | Marketing Strategy Object | Executive Learning Summary |
 
 ## Object resolution index
@@ -153,8 +172,9 @@ Every object mapped to the sub-processes that write it and its builder skill (pe
 |---|---|---|
 | Business Context Object | 1.1, 7.7 | `osmm-business-context-builder` |
 | Brand Context Object | 1.2, 7.7 | `osmm-brand-context-builder` |
-| Marketing Strategy Object | 1.3, 1.4, 1.5, 1.6, 1.8, 7.7, 7.8 | `osmm-marketing-strategy-builder` |
-| Measurement Framework Object | 1.7 | `osmm-measurement-framework-builder` |
+| Product Context Object | 1.3, 7.7 | `osmm-product-context-builder` |
+| Marketing Strategy Object | 1.4, 1.5, 1.6, 1.7, 1.9, 7.7, 7.8 | `osmm-marketing-strategy-builder` |
+| Measurement Framework Object | 1.8 | `osmm-measurement-framework-builder` |
 | Targeting Strategy Object | 2.1, 2.8, 2.9, 7.7 | `osmm-targeting-strategy-builder` |
 | Audience Object | 2.2, 2.3, 2.6 | `osmm-audience-builder` |
 | Persona Object | 2.4, 2.5, 7.7 | `osmm-persona-builder` |

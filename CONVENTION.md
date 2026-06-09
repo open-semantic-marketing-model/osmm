@@ -144,12 +144,13 @@ Mirrors the OSMM object lifecycle so a builder's maturity tracks its object's:
 
 ## Full builder registry
 
-All 34 objects in the OSMM object model, mapped to their builder skill names.
+All 35 objects in the OSMM object model, mapped to their builder skill names.
 
 | Phase | Object | Category | Skill name |
 |------:|--------|----------|------------|
 | 1 | Business Context | Context | `osmm-business-context-builder` |
 | 1 | Brand Context | Context | `osmm-brand-context-builder` |
+| 1 | Product Context | Context | `osmm-product-context-builder` |
 | 1 | Marketing Strategy | Work Product | `osmm-marketing-strategy-builder` |
 | 1 | Measurement Framework | Work Product | `osmm-measurement-framework-builder` |
 | 2 | Targeting Strategy | Work Product | `osmm-targeting-strategy-builder` |
@@ -366,7 +367,7 @@ typed objects.
 
 Consequences at the **data-standard layer**: there is no Creative Brief object,
 no `object_type: creative_brief`, and no `osmm-creative-brief-builder` (an object
-*builder* has no object to build). The object model stands at **34 objects**;
+*builder* has no object to build). The object model stands at **35 objects**;
 nothing is added or removed by this resolution. "Creative Brief" remains valid
 only as an artifact label (e.g. in the TAXONOMY artifact column).
 

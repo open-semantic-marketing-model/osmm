@@ -8,7 +8,7 @@ references to other objects, so an agent can resolve a campaign to its audience,
 its offer, its creative, and its measurement framework without bespoke
 integration code ([README](README.md)). This document defines **how those
 references work** and **what the reference graph looks like** — the layer that
-turns 34 standalone objects into a connected model.
+turns 35 standalone objects into a connected model.
 
 It complements the other three docs:
 
@@ -68,15 +68,16 @@ a lookup) and namespaces ids so they stay unique across a portfolio.
 |--------|--------|----------|---------|
 | Business Context | `BIZ-` | `business_id` | `BIZ-ibm` |
 | Brand Context | `BRC-` | `brand_context_id` | `BRC-ibm` |
+| Product Context | `PRD-` | `product_id` | `PRD-ibm-watsonx` |
 | Persona | `PER-` | `persona_id` | `PER-wendys-deal-savvy-craver` |
 | Audience | `AUD-` | `audience_id` | `AUD-wendys-value-seekers` |
 | Marketing Strategy | `MKS-` | `marketing_strategy_id` | `MKS-ibm-2026` |
 | Measurement Framework | `MEF-` | `measurement_framework_id` | `MEF-ibm-2026` |
 
-> Six prefixes are owned by shipped builders — the four Context builders
+> Seven prefixes are owned by shipped builders — the five Context builders
 > (`osmm-business-context-builder`, `osmm-brand-context-builder`,
-> `osmm-persona-builder`, `osmm-audience-builder`) plus the two Phase 1 Work
-> Product builders, `osmm-marketing-strategy-builder` and
+> `osmm-product-context-builder`, `osmm-persona-builder`, `osmm-audience-builder`)
+> plus the two Phase 1 Work Product builders, `osmm-marketing-strategy-builder` and
 > `osmm-measurement-framework-builder`.
 
 **Assigning new prefixes.** Every object gets a prefix when its builder is
@@ -99,6 +100,7 @@ flowchart LR
   subgraph CTX["Context — durable, high-read"]
     BIZ["Business Context"]
     BRC["Brand Context"]
+    PRD["Product Context"]
     AUD["Audience"]
     PER["Persona"]
     KW["Keyword"]
@@ -122,6 +124,8 @@ flowchart LR
   end
 
   BIZ --> BRC
+  BIZ --> PRD
+  BRC --> PRD
   PER --> AUD
   CTX --> WP
   WP --> CFG
@@ -137,8 +141,9 @@ Reading the graph:
   not reference Work Products. This is what makes Context "high-read, low-write"
   and reusable across many campaigns.
 - **Within Context, a few links exist:** Business Context ↔ Brand Context;
-  Persona ↔ Audience (a persona brings an audience to life); Keyword → the
-  Personas that search a term.
+  Product Context → its Business Context (and optionally the Brand Context it is
+  marketed under); Persona ↔ Audience (a persona brings an audience to life);
+  Keyword → the Personas that search a term.
 - **"Segment" is the Audience Object, not a separate node.** OSMM models the
   addressable segment as the Audience Object (its `segmentation_basis` field
   records the lens); a Persona *describes* a member while an Audience *selects*
@@ -163,6 +168,9 @@ reference fields it introduces.
 |-------------|-------|-------------|-----------|-------|
 | Business Context | `linked_brand_context` | one | Brand Context | `BRC-PLACEHOLDER-<slug>` until the Brand Context is built. |
 | Brand Context | `linked_business_context` | one | Business Context | `BIZ-PLACEHOLDER-<slug>` until the Business Context is built. Inverse of the edge above. |
+| Product Context | `linked_business_context` | one | Business Context | The business that offers it. `BIZ-PLACEHOLDER-<slug>` until built. |
+| Product Context | `linked_brand_context` | one (optional) | Brand Context | The brand it is marketed under. `BRC-PLACEHOLDER-<slug>` until built; omit if not relevant. |
+| Product Context | `related_offerings` | many (optional) | Product Context | Complementary, parent, or bundled offerings. `PRD-PLACEHOLDER-<slug>` until built. |
 | Persona | `linked_audiences` | many | Audience | `AUD-PLACEHOLDER-<slug>` until the Audience is built. |
 | Audience | `linked_business_context` | one | Business Context | `BIZ-PLACEHOLDER-<slug>` until built. |
 | Audience | `linked_personas` | many | Persona | `PER-PLACEHOLDER-<slug>` until built. Inverse of Persona → Audience. |
@@ -179,9 +187,12 @@ reference fields it introduces.
 > Audiences); and the **first bidirectional Work Product ↔ Work Product edge** is
 > realized — Marketing Strategy ↔ Measurement Framework (the strategy's
 > `MEF-PLACEHOLDER-*` is now resolved to the real framework id, bumping the
-> strategy to `v1.1`). Inbound references implied by the model but not yet realized
-> (e.g. a Keyword linking the Personas that search it; a Customer Insight proposing
-> Persona updates) are defined when those builders are authored.
+> strategy to `v1.1`). **Product Context → Business/Brand Context** is also live
+> (the watsonx example resolves real `BIZ-ibm` and `BRC-ibm` ids). Inbound
+> references implied by the model but not yet realized (e.g. a Keyword linking the
+> Personas that search it; a Customer Insight proposing Persona updates; an **Offer
+> referencing the Product Context it promotes**, realized when
+> `osmm-offer-builder` lands) are defined when those builders are authored.
 
 ## Referential integrity
 

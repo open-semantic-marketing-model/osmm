@@ -1,10 +1,10 @@
 # OSMM™ Roadmap
 
-The sequenced plan for building OSMM out from its current state (6 of 34 object
+The sequenced plan for building OSMM out from its current state (7 of 35 object
 builders, 1 composer) to a complete, connected model. For live status see
 [`BACKLOG.md`](BACKLOG.md).
 
-**Last updated:** 2026-06-08
+**Last updated:** 2026-06-09
 
 ## Guiding principles
 
@@ -44,8 +44,10 @@ flowchart TD
 are **now shipped** — the composer runs end-to-end on the Wendy's set, and the
 Persona ↔ Audience edge is realized. Only **Keyword (B08)** remains to complete
 the durable Context layer.
-**Exit state:** all five Context objects (Business, Brand, Audience, Persona,
-Keyword) have builders; the Creative Brief composer can run on fully-real inputs.
+**Exit state:** all six Context objects (Business, Brand, Product, Audience,
+Persona, Keyword) have builders; the Creative Brief composer can run on fully-real
+inputs. (Product Context shipped out of band as the model's 35th object — see
+`BACKLOG.md` B35 — leaving only Keyword to complete the layer.)
 **Composer unlocked:** Brand Playbook (C04).
 
 ### Milestone B — Strategy layer (Phase 1–2 Work Products)
@@ -104,13 +106,13 @@ valuable once there's a full pipeline producing things to measure.
 
 | Milestone | Builders | Cumulative builders done |
 |-----------|---------:|-------------------------:|
-| (shipped) | 6 | 6 / 34 |
-| A (Keyword remains; Brand Context + Audience done) | 1 | 7 / 34 |
-| B (Marketing Strategy + Measurement Framework done early; 2 remain) | 2 | 9 / 34 |
-| C | 6 | 15 / 34 |
-| D | 5 | 20 / 34 |
-| E | 8 | 28 / 34 |
-| F | 6 | 34 / 34 |
+| (shipped) | 7 | 7 / 35 |
+| A (Keyword remains; Brand Context + Audience + Product Context done) | 1 | 8 / 35 |
+| B (Marketing Strategy + Measurement Framework done early; 2 remain) | 2 | 10 / 35 |
+| C | 6 | 16 / 35 |
+| D | 5 | 21 / 35 |
+| E | 8 | 29 / 35 |
+| F | 6 | 35 / 35 |
 
 Composers and infrastructure are additive on top of the builder count.
 
@@ -118,5 +120,5 @@ Composers and infrastructure are additive on top of the builder count.
 
 Per the `lean over over-engineered` tenet ([GOVERNANCE.md](../GOVERNANCE.md)):
 composers (C-track) are **non-normative accelerators** — build the few that earn
-their keep, not all seven. The 34 builders are the standard; the composers are
+their keep, not all seven. The 35 builders are the standard; the composers are
 convenience.

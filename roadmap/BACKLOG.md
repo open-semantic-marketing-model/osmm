@@ -3,13 +3,13 @@
 The single source of truth for **what's done, what's in flight, and what's next**.
 For the sequencing rationale and milestones, see [`ROADMAP.md`](ROADMAP.md).
 
-**Last updated:** 2026-06-08
+**Last updated:** 2026-06-09
 
 **Progress at a glance**
 
 | Track | Done | In Progress | To Do | Total |
 |-------|-----:|------------:|------:|------:|
-| Object builders | 6 | 0 | 28 | 34 |
+| Object builders | 7 | 0 | 28 | 35 |
 | Artifact composers | 1 | 0 | 6 (candidates) | 7 |
 | Infrastructure / docs | 8 | 0 | 5 | 13 |
 
@@ -27,8 +27,9 @@ Item ids: `B##` = object builder, `C##` = composer, `I##` = infrastructure/docs.
 | B04 | `osmm-measurement-framework-builder` | Phase 1 · Work Product. Shipped (`status: draft`). Tiered KPI framework (`primary`/`supporting`/`guardrail`) measuring a Marketing Strategy. Realizes the first bidirectional Work Product ↔ Work Product edge (MKS ↔ MEF); resolved the MKS `MEF-PLACEHOLDER` refs (MKS instances → v1.1). |
 | B06 | `osmm-audience-builder` | Phase 2 · Context. Shipped (`status: draft`). OSMM's addressable **segment** (clarified Segment ≈ Audience). Realizes Persona ↔ Audience. |
 | B07 | `osmm-persona-builder` | Phase 2 · Context. Shipped (`status: draft`). First built skill. |
+| B35 | `osmm-product-context-builder` | Phase 1 · Context. Shipped (`status: draft`). **35th object** — the offering layer (features, how it works, benefits, product-level messaging). Distinct from Business Context (the company) and the Offer (the value exchange / CTA). Ratifies the `PRD-` prefix; realizes Product → Business/Brand Context edges. Id assigned by ship order (appended), not registry position. |
 | C01 | `osmm-creative-brief-composer` | Phase 5 artifact-composer. ✅ Required input `brand_context` now built (B02); runnable end-to-end on the Wendy's example set. |
-| I01 | `TAXONOMY.md` | 7 phases → 34 objects, object resolution index. |
+| I01 | `TAXONOMY.md` | 7 phases → 35 objects, object resolution index. |
 | I02 | `CONVENTION.md` | Naming, frontmatter contract, full builder registry, composer class, schema/example promotion rules. |
 | I03 | `RELATIONSHIPS.md` | Reference model, id prefixes, reference graph. |
 | I04 | `GOVERNANCE.md` + `CONTRIBUTING.md` | Decision model, tenets, lifecycle; contribution guide. |
@@ -113,6 +114,9 @@ Grouped by milestone (see [`ROADMAP.md`](ROADMAP.md)). Within a milestone, order
 | B34 | `osmm-optimization-recommendation-builder` | 7 |
 
 > Builder ids B01–B34 follow the registry order in `CONVENTION.md`; B01 and B07 are Done (above).
+> **B35** (`osmm-product-context-builder`) was added after the initial registry, so its id is
+> appended by ship order rather than slotted into registry position (Phase 1 · Context). Ids are
+> stable labels, not positions — existing ids are not renumbered when an object is inserted.
 
 ### Composer candidates (non-normative; gated on their inputs)
 *Ship each once its input objects exist. These are accelerators, not standard objects — pick the highest-value ones rather than building all.*
