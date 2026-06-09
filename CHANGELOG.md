@@ -41,6 +41,12 @@ governance). The current schema version is **0.1.0**.
   instances in `examples/work-product/`. Both resolve real ids (`BIZ-`, `BRC-`,
   `AUD-`) and are promoted because `osmm-creative-brief-composer` lists
   `marketing_strategy` as an optional input.
+- **`design_system_reference` on the Brand Context Object** — an optional pointer
+  to a brand's external design system / design language (a design-token source,
+  design-language site, or component library), if one exists. OSMM references the
+  upstream system rather than modeling it; the full visual identity system stays
+  out of scope. The IBM example links IBM Design Language / Carbon
+  (`BRAND-CONTEXT_ibm.json` bumped to v1.1).
 - **`osmm-audience-builder`** — the fourth object builder (Phase 2 · Context).
   Builds an Audience Object: OSMM's **addressable segment** — membership
   `inclusion_criteria`/`exclusion_criteria`, a governed `segmentation_basis` enum

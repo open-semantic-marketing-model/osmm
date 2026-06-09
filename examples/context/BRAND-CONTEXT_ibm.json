@@ -2,7 +2,7 @@
   "object_type": "brand_context",
   "osmm_version": "0.1.0",
   "brand_context_id": "BRC-ibm",
-  "version": "1.0",
+  "version": "1.1",
   "status": "draft",
   "name": "IBM",
   "linked_business_context": "BIZ-ibm",
@@ -47,5 +47,6 @@
   "mandatories": ["IBM logo and approved lockups on all executions", "Trademark/legal attributions where required"],
   "compliance_notes": "Claims made to regulated industries (financial services, healthcare, public sector) must withstand procurement and compliance scrutiny; avoid absolute security guarantees.",
   "visual_identity_notes": "The 8-bar logo and IBM Plex type are core equities; a restrained, confident enterprise aesthetic.",
+  "design_system_reference": "IBM Design Language (https://www.ibm.com/design/language/), implemented as the Carbon Design System (https://carbondesignsystem.com/) — design tokens, IBM Plex type, and component library.",
   "source": "Built from public information: IBM advertising, ibm.com, and public brand expression (2024). Voice inferred from real published copy; guardrails inferred and should be confirmed against internal brand guidelines."
 }
