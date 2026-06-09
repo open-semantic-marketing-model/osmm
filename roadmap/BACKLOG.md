@@ -3,13 +3,13 @@
 The single source of truth for **what's done, what's in flight, and what's next**.
 For the sequencing rationale and milestones, see [`ROADMAP.md`](ROADMAP.md).
 
-**Last updated:** 2026-06-07
+**Last updated:** 2026-06-08
 
 **Progress at a glance**
 
 | Track | Done | In Progress | To Do | Total |
 |-------|-----:|------------:|------:|------:|
-| Object builders | 4 | 0 | 30 | 34 |
+| Object builders | 5 | 0 | 29 | 34 |
 | Artifact composers | 1 | 0 | 6 (candidates) | 7 |
 | Infrastructure / docs | 8 | 0 | 5 | 13 |
 
@@ -23,6 +23,7 @@ Item ids: `B##` = object builder, `C##` = composer, `I##` = infrastructure/docs.
 |----|------|-------|
 | B01 | `osmm-business-context-builder` | Phase 1 · Context. Shipped (`status: draft`). |
 | B02 | `osmm-brand-context-builder` | Phase 1 · Context. Shipped (`status: draft`). Unblocks C01's required `brand_context` input. |
+| B03 | `osmm-marketing-strategy-builder` | Phase 1 · Work Product. Shipped (`status: draft`). **First Work Product object** — realizes the first Work Product → Context edges (Business/Brand Context, priority Audiences); links Measurement Framework via placeholder. |
 | B06 | `osmm-audience-builder` | Phase 2 · Context. Shipped (`status: draft`). OSMM's addressable **segment** (clarified Segment ≈ Audience). Realizes Persona ↔ Audience. |
 | B07 | `osmm-persona-builder` | Phase 2 · Context. Shipped (`status: draft`). First built skill. |
 | C01 | `osmm-creative-brief-composer` | Phase 5 artifact-composer. ✅ Required input `brand_context` now built (B02); runnable end-to-end on the Wendy's example set. |
@@ -61,10 +62,13 @@ Grouped by milestone (see [`ROADMAP.md`](ROADMAP.md)). Within a milestone, order
 ### Milestone B — Strategy layer (Phase 1–2 Work Products)
 | ID | Builder | Phase |
 |----|---------|------:|
-| B03 | `osmm-marketing-strategy-builder` | 1 |
 | B04 | `osmm-measurement-framework-builder` | 1 |
 | B05 | `osmm-targeting-strategy-builder` | 2 |
 | B09 | `osmm-keyword-strategy-builder` | 2 |
+
+> ✅ B03 `osmm-marketing-strategy-builder` shipped (out of milestone order) — see Done.
+> Its `linked_measurement_framework` placeholder makes **B04 the natural next pick**
+> to resolve that edge and unblock the Strategy Brief composer (C03).
 
 ### Milestone C — Offer & Activation (Phase 3–4)
 | ID | Builder | Phase |
