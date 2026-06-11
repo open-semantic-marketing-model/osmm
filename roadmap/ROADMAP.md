@@ -1,10 +1,10 @@
 # OSMM™ Roadmap
 
-The sequenced plan for building OSMM out from its current state (7 of 35 object
+The sequenced plan for building OSMM out from its current state (8 of 35 object
 builders, 1 composer) to a complete, connected model. For live status see
 [`BACKLOG.md`](BACKLOG.md).
 
-**Last updated:** 2026-06-09
+**Last updated:** 2026-06-11
 
 ## Guiding principles
 
@@ -37,17 +37,15 @@ flowchart TD
   A -. "unblocks" .-> C01["Creative Brief composer (shipped)"]
 ```
 
-### Milestone A — Finish the Context foundation
-**Objects:** ~~Brand Context (B02)~~ ✅, ~~Audience (B06)~~ ✅, Keyword (B08).
-**Why first:** Context is the foundation the whole model references. Brand Context
-(the missing *required* composer input) and Audience (OSMM's addressable segment)
-are **now shipped** — the composer runs end-to-end on the Wendy's set, and the
-Persona ↔ Audience edge is realized. Only **Keyword (B08)** remains to complete
-the durable Context layer.
-**Exit state:** all six Context objects (Business, Brand, Product, Audience,
-Persona, Keyword) have builders; the Creative Brief composer can run on fully-real
-inputs. (Product Context shipped out of band as the model's 35th object — see
-`BACKLOG.md` B35 — leaving only Keyword to complete the layer.)
+### Milestone A — Finish the Context foundation ✅ COMPLETE
+**Objects:** ~~Brand Context (B02)~~ ✅, ~~Audience (B06)~~ ✅, ~~Keyword (B08)~~ ✅
+(plus ~~Product Context (B35)~~ ✅, the model's 35th object, added out of band).
+**Why first:** Context is the foundation the whole model references. With Keyword
+shipped, **all six Context objects now have builders** — the Creative Brief composer
+runs end-to-end on the Wendy's set, the Persona ↔ Audience and Keyword → Persona
+edges are realized, and Keyword unblocks Keyword Strategy (B09) in Milestone B.
+**Exit state (met):** Business, Brand, Product, Audience, Persona, and Keyword all
+have builders.
 **Composer unlocked:** Brand Playbook (C04).
 
 ### Milestone B — Strategy layer (Phase 1–2 Work Products)
@@ -106,8 +104,8 @@ valuable once there's a full pipeline producing things to measure.
 
 | Milestone | Builders | Cumulative builders done |
 |-----------|---------:|-------------------------:|
-| (shipped) | 7 | 7 / 35 |
-| A (Keyword remains; Brand Context + Audience + Product Context done) | 1 | 8 / 35 |
+| (shipped) | 8 | 8 / 35 |
+| A ✅ complete (Brand, Audience, Keyword, Product Context all done) | 0 | 8 / 35 |
 | B (Marketing Strategy + Measurement Framework done early; 2 remain) | 2 | 10 / 35 |
 | C | 6 | 16 / 35 |
 | D | 5 | 21 / 35 |

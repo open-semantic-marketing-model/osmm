@@ -20,7 +20,7 @@ standard's own docs:
 
 Three kinds of deliverable make up the build-out:
 
-1. **Object builders** (`osmm-<object>-builder`) — one per object. **7 of 35 shipped.**
+1. **Object builders** (`osmm-<object>-builder`) — one per object. **8 of 35 shipped.**
    This is the bulk of the work and the spine of the roadmap.
 2. **Artifact composers** (`osmm-<artifact>-composer`) — non-normative
    accelerators that read several objects and render a human artifact. **1 shipped.**

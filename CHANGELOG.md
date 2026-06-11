@@ -12,6 +12,18 @@ governance). The current schema version is **0.1.0**.
 ## [Unreleased]
 
 ### Added
+- **`osmm-keyword-builder`** — the eighth object builder (Phase 2 · Context), **completing
+  Milestone A, the Context foundation** (all six Context objects now have builders). Builds a
+  Keyword Object: OSMM's addressable unit of search demand — one `term` with its `term_type`
+  (keyword | topic | question), `branded` flag, governed `search_intent` (informational |
+  navigational | commercial | transactional), `journey_stage`, banded `metrics`
+  (volume/difficulty/cpc/trend), `serp_features`, `variations`, and `questions`. Treats **AEO
+  (answer-engine optimization) as first-class** alongside SEO and paid via `optimization_channels`
+  and the natural-language `questions` field. Ratifies the `KW-` prefix (moved out of the proposed
+  appendix); realizes the **Keyword → Persona** edge via `linked_personas` (the Wendy's example
+  resolves the real `PER-wendys-deal-savvy-craver`), plus `parent_topic`/`related_keywords` for
+  clustering. Worked examples: IBM "hybrid cloud" (B2B topic) and Wendy's "fast food deals near me"
+  (B2C transactional/local). Keyword unblocks `osmm-keyword-strategy-builder` (B09) in Milestone B.
 - **`osmm-product-context-builder`** — the seventh object builder and the model's
   **35th object** (Phase 1 · Context). Builds a Product Context Object: the durable
   description of a product, service, or solution being marketed — `what_it_does`,
