@@ -3,15 +3,18 @@
 The single source of truth for **what's done, what's in flight, and what's next**.
 For the sequencing rationale and milestones, see [`ROADMAP.md`](ROADMAP.md).
 
-**Last updated:** 2026-06-09
+**Last updated:** 2026-06-11
 
 **Progress at a glance**
 
 | Track | Done | In Progress | To Do | Total |
 |-------|-----:|------------:|------:|------:|
-| Object builders | 7 | 0 | 28 | 35 |
+| Object builders | 8 | 0 | 27 | 35 |
 | Artifact composers | 1 | 0 | 6 (candidates) | 7 |
 | Infrastructure / docs | 8 | 0 | 5 | 13 |
+
+> **Milestone A (Context foundation) is complete** — all six Context objects
+> (Business, Brand, Product, Audience, Persona, Keyword) now have builders.
 
 Item ids: `B##` = object builder, `C##` = composer, `I##` = infrastructure/docs.
 
@@ -27,6 +30,7 @@ Item ids: `B##` = object builder, `C##` = composer, `I##` = infrastructure/docs.
 | B04 | `osmm-measurement-framework-builder` | Phase 1 · Work Product. Shipped (`status: draft`). Tiered KPI framework (`primary`/`supporting`/`guardrail`) measuring a Marketing Strategy. Realizes the first bidirectional Work Product ↔ Work Product edge (MKS ↔ MEF); resolved the MKS `MEF-PLACEHOLDER` refs (MKS instances → v1.1). |
 | B06 | `osmm-audience-builder` | Phase 2 · Context. Shipped (`status: draft`). OSMM's addressable **segment** (clarified Segment ≈ Audience). Realizes Persona ↔ Audience. |
 | B07 | `osmm-persona-builder` | Phase 2 · Context. Shipped (`status: draft`). First built skill. |
+| B08 | `osmm-keyword-builder` | Phase 2 · Context. Shipped (`status: draft`). OSMM's addressable unit of **search demand** — one term, its intent, banded metrics, SERP features, and the surfaces it's targeted on (SEO/**AEO**/paid). Ratifies the `KW-` prefix; realizes the Keyword → Persona edge (`linked_personas`). **Completes Milestone A — the Context foundation.** |
 | B35 | `osmm-product-context-builder` | Phase 1 · Context. Shipped (`status: draft`). **35th object** — the offering layer (features, how it works, benefits, product-level messaging). Distinct from Business Context (the company) and the Offer (the value exchange / CTA). Ratifies the `PRD-` prefix; realizes Product → Business/Brand Context edges. Id assigned by ship order (appended), not registry position. |
 | C01 | `osmm-creative-brief-composer` | Phase 5 artifact-composer. ✅ Required input `brand_context` now built (B02); runnable end-to-end on the Wendy's example set. |
 | I01 | `TAXONOMY.md` | 7 phases → 35 objects, object resolution index. |
@@ -52,14 +56,14 @@ Item ids: `B##` = object builder, `C##` = composer, `I##` = infrastructure/docs.
 
 Grouped by milestone (see [`ROADMAP.md`](ROADMAP.md)). Within a milestone, order is a suggestion, not a hard gate.
 
-### Milestone A — Finish the Context foundation
+### Milestone A — Finish the Context foundation ✅ COMPLETE
 *Context objects are referenced by every Work Product and consumed by composers. Completing this layer unblocks everything downstream.*
 
-| ID | Builder | Phase | Why it's prioritized |
-|----|---------|------:|----------------------|
-| B08 | `osmm-keyword-builder` | 2 | Search/intent Context; feeds Keyword Strategy (B09). **Next up — last item in Milestone A.** |
-
-> ✅ B02 `osmm-brand-context-builder` and B06 `osmm-audience-builder` shipped — see Done. Milestone A is **2 of 3 complete**; only Keyword (B08) remains to finish the Context foundation.
+> ✅ **Milestone A is done.** All six Context objects have builders: Business (B01),
+> Brand (B02), Product (B35), Audience (B06), Persona (B07), and Keyword (B08) — see
+> Done. The Creative Brief composer runs on fully-real inputs, and Keyword (B08) now
+> unblocks Keyword Strategy (B09) in Milestone B. **Next up: Milestone B — finish the
+> Strategy layer (Targeting Strategy B05, Keyword Strategy B09).**
 
 ### Milestone B — Strategy layer (Phase 1–2 Work Products)
 | ID | Builder | Phase |
@@ -70,7 +74,7 @@ Grouped by milestone (see [`ROADMAP.md`](ROADMAP.md)). Within a milestone, order
 > ✅ B03 `osmm-marketing-strategy-builder` and B04 `osmm-measurement-framework-builder`
 > shipped — see Done. The MKS ↔ MEF edge is realized and the **Strategy Brief composer
 > (C03) is now fully sourced** for IBM and Wendy's. Targeting Strategy (B05) and Keyword
-> Strategy (B09) remain — both depend on Phase 2 Context (Audience shipped; Keyword B08 still open).
+> Strategy (B09) remain — both depend on Phase 2 Context, **now fully shipped** (Audience B06 and Keyword B08 both done).
 
 ### Milestone C — Offer & Activation (Phase 3–4)
 | ID | Builder | Phase |
