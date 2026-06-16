@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/open-semantic-marketing-model/osmm/main/schemas/audience.schema.json",
+  "title": "OSMM Audience Object",
+  "description": "Durable, reusable Context: the addressable segment. Captures the membership rules that say who is in and who is out, the lens the segment is drawn on, and its lifecycle and value position. Canonical schema for object_type 'audience'. The osmm-audience-builder skill references this file; it is the single source of truth for the object's shape.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "osmm_version",
+    "audience_id",
+    "version",
+    "status",
+    "name",
+    "description",
+    "segmentation_basis",
+    "inclusion_criteria"
+  ],
+  "properties": {
+    "object_type": {
+      "const": "audience",
+      "description": "Object type discriminator. Always 'audience'."
+    },
+    "osmm_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "OSMM schema version this instance conforms to (semantic version)."
+    },
+    "audience_id": {
+      "type": "string",
+      "pattern": "^AUD-[a-z0-9-]+$",
+      "description": "Stable, human-readable id. Prefix 'AUD-' + lowercase hyphen slug. Never changes once assigned."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "Instance version (e.g. '1.0'). Bump on revision; the id stays stable."
+    },
+    "status": {
+      "enum": ["draft", "proposed", "stable", "deprecated"],
+      "description": "Object lifecycle state."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The audience/segment name. Self-describing (e.g. 'Lapsed value buyers'), not a code."
+    },
+    "linked_business_context": {
+      "type": "string",
+      "pattern": "^BIZ-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the Business Context this audience belongs to. Use 'BIZ-PLACEHOLDER-<slug>' until it exists. Optional but strongly recommended."
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "description": "2-3 sentences in plain language: who this segment is and why it matters to marketing."
+    },
+    "segmentation_basis": {
+      "enum": [
+        "demographic",
+        "geographic",
+        "psychographic",
+        "behavioral",
+        "firmographic",
+        "technographic",
+        "needs_based",
+        "value_based",
+        "lifecycle",
+        "intent",
+        "lookalike"
+      ],
+      "description": "Governed vocabulary — the primary lens the segment is drawn on. Pick the single closest value."
+    },
+    "lifecycle_stage": {
+      "enum": [
+        "prospect",
+        "lead",
+        "new_customer",
+        "active",
+        "lapsed",
+        "loyal",
+        "advocate",
+        "churned"
+      ],
+      "description": "Optional governed vocabulary — lifecycle position. Include only if the segment is defined by lifecycle position."
+    },
+    "inclusion_criteria": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "The membership rules that DEFINE the segment — operational and queryable, not prose. 2-8 items."
+    },
+    "exclusion_criteria": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional — who is explicitly out. Include only where exclusion does real work."
+    },
+    "defining_signals": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional — the handful of attributes/behaviors that most distinguish this segment from adjacent ones."
+    },
+    "size_estimate": {
+      "type": "string",
+      "description": "Optional — rough, marketing-relevant scale as a band or qualitative note, never a precise count."
+    },
+    "value_characterization": {
+      "type": "string",
+      "description": "Optional — the segment's economic value/worth (LTV tier, price sensitivity, frequency)."
+    },
+    "linked_personas": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^PER-(PLACEHOLDER-)?[a-z0-9-]+$"
+      },
+      "description": "Optional — Persona ids that humanize this audience. Use 'PER-PLACEHOLDER-<slug>' if none exists yet."
+    },
+    "activation_notes": {
+      "type": "string",
+      "description": "Optional — lightweight note on where/how the segment is addressable (channels/platforms). Not a full delivery spec."
+    },
+    "source": {
+      "type": "string",
+      "description": "One line: what source(s) this was built from and approximate date."
+    }
+  }
+}

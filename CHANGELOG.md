@@ -11,6 +11,23 @@ governance). The current schema version is **0.1.0**.
 
 ## [Unreleased]
 
+### Added
+- **Canonical schemas for the remaining 7 shipped objects** — `schemas/` now holds
+  all 8: `brand_context`, `product_context`, `persona`, `audience`, `keyword`
+  (Context) and `marketing_strategy`, `measurement_framework` (Work Product), each
+  a strict JSON Schema (`additionalProperties: false`) derived from its builder's
+  inline spec, with id/reference patterns (`PLACEHOLDER` allowed on cross-object
+  refs), governed enums (e.g. `persona_type`, `segmentation_basis`, `offering_type`,
+  the keyword search/intent vocabularies, the measurement `tier` enum), and nested
+  shapes (persona `demographics`, product `product_messaging`/`key_features`,
+  measurement `metrics[]`). Each builder's `SKILL.md` now references its canonical
+  schema and marks the inline block illustrative. All 11 example instances validate
+  against their schemas.
+- **Validation is now strict** — `scripts/validate.py` flips `STRICT_REQUIRE_SCHEMA`
+  to `True`: every shipped object has a schema, so an example whose `object_type`
+  lacks one is a hard error rather than a skip. New builders ship their schema with
+  their first example.
+
 ### Changed
 - **Schemas are now standalone, canonical JSON Schema files** under `schemas/`
   (`schemas/<object_type>.schema.json`), the single source of truth for each

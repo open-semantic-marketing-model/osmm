@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/open-semantic-marketing-model/osmm/main/schemas/brand_context.schema.json",
+  "title": "OSMM Brand Context Object",
+  "description": "Durable, foundational Context: how a brand sounds, feels, and expresses itself — its personality, voice, tone, core messages, and the guardrails governing what it can and cannot say. Canonical schema for object_type 'brand_context'. The osmm-brand-context-builder skill references this file; it is the single source of truth for the object's shape.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "osmm_version",
+    "brand_context_id",
+    "version",
+    "status",
+    "name",
+    "brand_promise",
+    "brand_personality",
+    "voice_principles",
+    "tone_principles",
+    "messaging_pillars",
+    "messaging_guardrails"
+  ],
+  "properties": {
+    "object_type": {
+      "const": "brand_context",
+      "description": "Object type discriminator. Always 'brand_context'."
+    },
+    "osmm_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "OSMM schema version this instance conforms to (semantic version)."
+    },
+    "brand_context_id": {
+      "type": "string",
+      "pattern": "^BRC-[a-z0-9-]+$",
+      "description": "Stable, human-readable id. Prefix 'BRC-' + lowercase hyphen slug, normally the same slug as the owning Business Context. Never changes once assigned."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "Instance version (e.g. '1.0'). Bump on revision; the id stays stable."
+    },
+    "status": {
+      "enum": ["draft", "proposed", "stable", "deprecated"],
+      "description": "Object lifecycle state."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Brand name. May differ from the legal company name in Business Context."
+    },
+    "linked_business_context": {
+      "type": "string",
+      "pattern": "^BIZ-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the owning Business Context Object. Use 'BIZ-PLACEHOLDER-<slug>' until it exists. Strongly recommended."
+    },
+    "brand_promise": {
+      "type": "string",
+      "minLength": 1,
+      "description": "One sentence: the core idea/promise the brand stands for — its emotional/identity core, distinct from the business value proposition."
+    },
+    "brand_archetype": {
+      "enum": [
+        "innocent",
+        "everyperson",
+        "hero",
+        "outlaw",
+        "explorer",
+        "creator",
+        "ruler",
+        "magician",
+        "lover",
+        "caregiver",
+        "jester",
+        "sage"
+      ],
+      "description": "Optional governed enum from the 12 brand archetypes. Pick the single closest; omit if the sources don't clearly support one."
+    },
+    "brand_personality": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "3-7 personality traits — who the brand is if it were a person. Adjectives or short phrases."
+    },
+    "voice_principles": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "How the brand always speaks (durable) — principles, not adjectives. 3-6 items."
+    },
+    "tone_principles": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "How tone flexes by situation/emotion (e.g. celebratory launch vs. service apology). 2-5 items."
+    },
+    "tagline": {
+      "type": "string",
+      "description": "Optional. The brand's tagline/slogan, if it has one."
+    },
+    "messaging_pillars": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "The core, durable messages the brand repeats across campaigns. 2-5 items — enduring themes, not campaign copy."
+    },
+    "vocabulary_preferred": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional. Signature words/phrases the brand uses."
+    },
+    "vocabulary_avoid": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional. Words/phrases the brand deliberately avoids."
+    },
+    "writing_dos": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional. Concrete, actionable voice do's. Strongly encouraged for downstream operability."
+    },
+    "writing_donts": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional. Concrete, actionable voice don'ts."
+    },
+    "messaging_guardrails": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Non-negotiable message rules: claims that must always be made and claims that must never be made. Read by the creative-brief composer as guardrails."
+    },
+    "mandatories": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional. Required brand/legal elements every execution must carry (disclaimers, required phrasing, logo lockups)."
+    },
+    "compliance_notes": {
+      "type": "string",
+      "description": "Optional. Regulated-industry or legal constraints on messaging."
+    },
+    "visual_identity_notes": {
+      "type": "string",
+      "description": "Optional. Brief note on visual identity as it affects marketing. Full design system is out of scope — link it via design_system_reference."
+    },
+    "design_system_reference": {
+      "type": "string",
+      "description": "Optional. Pointer to the brand's external design system / design language, if one exists. OSMM references this upstream system rather than modeling it."
+    },
+    "source": {
+      "type": "string",
+      "description": "One line: what source(s) this was built from and approximate date."
+    }
+  }
+}

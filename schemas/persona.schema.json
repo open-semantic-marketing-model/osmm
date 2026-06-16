@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/open-semantic-marketing-model/osmm/main/schemas/persona.schema.json",
+  "title": "OSMM Persona Object",
+  "description": "Durable, reusable Context: the human-centered understanding of who a customer is, what drives them, and how to reach them. Captures the canonical psychographic fields — triggers, goals, motivations, pain points, decision criteria, and messaging preferences — plus an optional descriptive demographic snapshot and (for B2B) a role block. Canonical schema for object_type 'persona'. The osmm-persona-builder skill references this file; it is the single source of truth for the object's shape.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "osmm_version",
+    "persona_id",
+    "version",
+    "status",
+    "name",
+    "persona_type",
+    "summary",
+    "representative_quote",
+    "triggers",
+    "goals",
+    "motivations",
+    "pain_points",
+    "behavioral_traits",
+    "decision_criteria",
+    "messaging_preferences"
+  ],
+  "properties": {
+    "object_type": {
+      "const": "persona",
+      "description": "Object type discriminator. Always 'persona'."
+    },
+    "osmm_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "OSMM schema version this instance conforms to (semantic version)."
+    },
+    "persona_id": {
+      "type": "string",
+      "pattern": "^PER-[a-z0-9-]+$",
+      "description": "Stable, human-readable id. Prefix 'PER-' + lowercase hyphen slug. Never changes once assigned; bump version instead."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "Instance version (e.g. '1.0'). Bump on revision; the id stays stable."
+    },
+    "status": {
+      "enum": ["draft", "proposed", "stable", "deprecated"],
+      "description": "Object lifecycle state."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The persona's name/handle."
+    },
+    "persona_type": {
+      "enum": [
+        "consumer",
+        "consumer_household_decision_maker",
+        "consumer_influencer",
+        "b2b_decision_maker",
+        "b2b_economic_buyer",
+        "b2b_champion",
+        "b2b_influencer",
+        "b2b_end_user",
+        "b2b_gatekeeper"
+      ],
+      "description": "Governed persona-type vocabulary — the persona's relationship to the purchase/decision. Pick the single closest snake_case value."
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "description": "1-2 sentences capturing who this person is and what defines them."
+    },
+    "representative_quote": {
+      "type": "string",
+      "minLength": 1,
+      "description": "A short line in the persona's own voice. Voice, not description."
+    },
+    "demographics": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional descriptive snapshot of individual attributes that ground the persona. NOT targeting logic. All keys optional; include what the source provides.",
+      "properties": {
+        "age": {
+          "type": "string",
+          "description": "Age value or range."
+        },
+        "gender": {
+          "type": "string",
+          "description": "Gender description."
+        },
+        "household": {
+          "type": "string",
+          "description": "Marital status, children, living situation."
+        },
+        "income": {
+          "type": "string",
+          "description": "Income level or band, as plain language."
+        },
+        "education": {
+          "type": "string",
+          "description": "Education level/background."
+        },
+        "location": {
+          "type": "string",
+          "description": "Geography / setting (urban, suburban, region)."
+        },
+        "occupation": {
+          "type": "string",
+          "description": "Occupation or role description."
+        }
+      }
+    },
+    "triggers": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "What prompts them to act now — events or pressures that move them off the status quo."
+    },
+    "goals": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "What they are trying to achieve."
+    },
+    "motivations": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "The underlying drivers behind those goals."
+    },
+    "pain_points": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Frustrations and obstacles in their way."
+    },
+    "objections": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Reasons they hesitate or resist. Optional — often not stated in source material; leave empty rather than padding."
+    },
+    "behavioral_traits": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "A handful of crisp characteristic behaviors and habits, not a data dump."
+    },
+    "decision_criteria": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "What they weigh when choosing/buying. Plain phrases, no weights/percentages in v0.1."
+    },
+    "messaging_preferences": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "How to communicate with them effectively."
+    },
+    "role": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional B2B detail block — title, responsibilities, influence level. Omit entirely for B2C personas. The committee role itself lives in persona_type.",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Job title."
+        },
+        "responsibilities": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "What they own."
+        },
+        "influence_level": {
+          "type": "string",
+          "description": "Influence over the decision, e.g. high | medium | low."
+        }
+      }
+    },
+    "linked_audiences": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^AUD-(PLACEHOLDER-)?[a-z0-9-]+$"
+      },
+      "description": "Ids of Audience Objects this persona brings to life. Use 'AUD-PLACEHOLDER-<slug>' until one exists."
+    },
+    "source": {
+      "type": "string",
+      "description": "One line: what source(s) this was built from and approximate date."
+    }
+  }
+}

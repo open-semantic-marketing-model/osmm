@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/open-semantic-marketing-model/osmm/main/schemas/measurement_framework.schema.json",
+  "title": "OSMM Measurement Framework Object",
+  "description": "Work Product that operationalizes a Marketing Strategy's objectives into measurable KPIs: the tiered metric set, each metric's definition and target, and the cadence and approach for reporting over a planning horizon. The framework is the plan (what will be measured and the targets); actuals are recorded by the Phase 7 Performance Measurement Object. Canonical schema for object_type 'measurement_framework'. The osmm-measurement-framework-builder skill references this file; it is the single source of truth for the object's shape.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "osmm_version",
+    "measurement_framework_id",
+    "version",
+    "status",
+    "name",
+    "linked_business_context",
+    "linked_marketing_strategy",
+    "time_horizon",
+    "metrics"
+  ],
+  "properties": {
+    "object_type": {
+      "const": "measurement_framework",
+      "description": "Object type discriminator. Always 'measurement_framework'."
+    },
+    "osmm_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "OSMM schema version this instance conforms to (semantic version)."
+    },
+    "measurement_framework_id": {
+      "type": "string",
+      "pattern": "^MEF-[a-z0-9-]+$",
+      "description": "Stable, human-readable id. Prefix 'MEF-' + lowercase hyphen slug, scoped to business plus horizon. Never changes once assigned."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "Instance version (e.g. '1.0'). Bump on revision; the id stays stable."
+    },
+    "status": {
+      "enum": ["draft", "proposed", "stable", "deprecated"],
+      "description": "Object lifecycle state."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The framework's readable label, usually entity + horizon (e.g. \"IBM 2026 Measurement Framework\")."
+    },
+    "linked_business_context": {
+      "type": "string",
+      "pattern": "^BIZ-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the owning Business Context. Use 'BIZ-PLACEHOLDER-<slug>' until it exists."
+    },
+    "linked_marketing_strategy": {
+      "type": "string",
+      "pattern": "^MKS-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the Marketing Strategy this framework measures. Use 'MKS-PLACEHOLDER-<slug>' until it exists. Realizes the inverse of the strategy's linked_measurement_framework."
+    },
+    "time_horizon": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The period measured; should match the linked strategy's time_horizon."
+    },
+    "north_star_metric": {
+      "type": "string",
+      "description": "The single most important measure for the horizon, if there is one. Optional."
+    },
+    "metrics": {
+      "type": "array",
+      "minItems": 1,
+      "description": "The KPI set (typically 3-8 metrics). Each carries a name, tier, and definition.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "tier", "definition"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Metric name."
+          },
+          "tier": {
+            "enum": ["primary", "supporting", "guardrail"],
+            "description": "Governed tier: 'primary' (headline KPIs reported to leadership), 'supporting' (diagnostic metrics), or 'guardrail' (health metrics that must not degrade)."
+          },
+          "definition": {
+            "type": "string",
+            "minLength": 1,
+            "description": "What the metric counts / how it is calculated — unambiguous enough that two analysts count it the same."
+          },
+          "supports_objective": {
+            "type": "string",
+            "description": "The strategy objective this metric measures (text echo of the strategy's wording). Optional."
+          },
+          "target": {
+            "type": "string",
+            "description": "Directional or banded goal. Optional."
+          },
+          "cadence": {
+            "type": "string",
+            "description": "Measurement frequency (e.g. monthly, quarterly, per-campaign). Optional."
+          },
+          "data_source": {
+            "type": "string",
+            "description": "Where the data comes from. Optional."
+          }
+        }
+      }
+    },
+    "measurement_cadence": {
+      "type": "string",
+      "description": "Overall reporting/review rhythm (e.g. \"Monthly business review; quarterly strategic review\"). Optional."
+    },
+    "measurement_approach": {
+      "type": "string",
+      "description": "Notes on attribution method or measurement design. Optional."
+    },
+    "source": {
+      "type": "string",
+      "description": "One line: what source(s) this was built from and approximate date."
+    }
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/open-semantic-marketing-model/osmm/main/schemas/keyword.schema.json",
+  "title": "OSMM Keyword Object",
+  "description": "Durable, foundational Context: one addressable unit of search demand — a single term, topic, or question, its intent, journey stage, banded metrics, the personas who search it, and the surfaces (SEO/AEO/paid/social) it is targeted on. Canonical schema for object_type 'keyword'. The osmm-keyword-builder skill references this file; it is the single source of truth for the object's shape.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "osmm_version",
+    "keyword_id",
+    "version",
+    "status",
+    "term",
+    "term_type",
+    "branded",
+    "search_intent",
+    "optimization_channels"
+  ],
+  "properties": {
+    "object_type": {
+      "const": "keyword",
+      "description": "Object type discriminator. Always 'keyword'."
+    },
+    "osmm_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "OSMM schema version this instance conforms to (semantic version)."
+    },
+    "keyword_id": {
+      "type": "string",
+      "pattern": "^KW-[a-z0-9-]+$",
+      "description": "Stable, human-readable id. Prefix 'KW-' + lowercase hyphen slug derived from the term. Never changes once assigned."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "Instance version (e.g. '1.0'). Bump on revision; the id stays stable."
+    },
+    "status": {
+      "enum": ["draft", "proposed", "stable", "deprecated"],
+      "description": "Object lifecycle state."
+    },
+    "term": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The keyword / topic / query phrase, as searched. Lowercase unless the term is a proper noun."
+    },
+    "term_type": {
+      "enum": ["keyword", "topic", "question"],
+      "description": "Governed vocabulary: 'keyword' (a discrete query), 'topic' (a cluster theme), or 'question' (a natural-language query)."
+    },
+    "branded": {
+      "type": "boolean",
+      "description": "True if the term contains the brand/product name. Drives SEO vs. demand-capture treatment."
+    },
+    "search_intent": {
+      "enum": ["informational", "navigational", "commercial", "transactional"],
+      "description": "The single dominant intent. Note secondary intent in intent_notes."
+    },
+    "intent_notes": {
+      "type": "string",
+      "description": "One line on what the searcher is really after. Optional."
+    },
+    "journey_stage": {
+      "enum": ["awareness", "consideration", "decision", "retention", "advocacy"],
+      "description": "Where this demand sits in the funnel. Optional."
+    },
+    "optimization_channels": {
+      "type": "array",
+      "items": {
+        "enum": ["seo", "aeo", "paid_search", "social"]
+      },
+      "minItems": 1,
+      "description": "Surfaces this term is targeted on. At least one."
+    },
+    "serp_features": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "featured_snippet",
+          "people_also_ask",
+          "ai_overview",
+          "knowledge_panel",
+          "local_pack",
+          "shopping",
+          "video",
+          "image_pack"
+        ]
+      },
+      "description": "Observed SERP features — what winning the term actually requires. Optional."
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Banded, directional signal. Omit the block, or any sub-field, when unknown. Optional.",
+      "properties": {
+        "monthly_search_volume": {
+          "type": "string",
+          "description": "Order-of-magnitude band (e.g. '<100', '100-1K', '1K-10K', '10K-100K', '100K+'), not a precise figure."
+        },
+        "keyword_difficulty": {
+          "type": "string",
+          "description": "'low' | 'medium' | 'high', or a 0-100 score if a tool provides one."
+        },
+        "cpc_usd": {
+          "type": "string",
+          "description": "Typical paid cost-per-click band; include only if paid is in play."
+        },
+        "trend": {
+          "enum": ["rising", "stable", "declining", "seasonal"],
+          "description": "Directional trend of the term's demand."
+        }
+      }
+    },
+    "variations": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Close variants and synonyms that share this intent (don't create separate objects for these)."
+    },
+    "questions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "The question forms of this demand — for AEO, People-Also-Ask, and voice. Optional."
+    },
+    "parent_topic": {
+      "type": "string",
+      "pattern": "^KW-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "KW- id of the topic cluster this term rolls up to. Use 'KW-PLACEHOLDER-<slug>' until it exists. Optional."
+    },
+    "related_keywords": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^KW-(PLACEHOLDER-)?[a-z0-9-]+$"
+      },
+      "description": "KW- ids of semantically related terms (the cluster). Placeholders ok. Optional."
+    },
+    "linked_personas": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^PER-(PLACEHOLDER-)?[a-z0-9-]+$"
+      },
+      "description": "PER- ids of the personas who search this term. Use 'PER-PLACEHOLDER-<slug>' until built. Optional."
+    },
+    "linked_business_context": {
+      "type": "string",
+      "pattern": "^BIZ-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "BIZ- id whose search strategy this term belongs to. Use 'BIZ-PLACEHOLDER-<slug>' ok; omit for a brand-agnostic term. Optional."
+    },
+    "source": {
+      "type": "string",
+      "description": "One line: what source(s)/tool this was built from and approximate date. Optional."
+    }
+  }
+}

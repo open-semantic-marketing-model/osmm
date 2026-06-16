@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/open-semantic-marketing-model/osmm/main/schemas/marketing_strategy.schema.json",
+  "title": "OSMM Marketing Strategy Object",
+  "description": "A time-boxed set of strategic marketing choices for a planning horizon: the business and marketing objectives pursued, how the brand positions and differentiates, and which audiences and growth bets it prioritizes. Canonical schema for object_type 'marketing_strategy'. The osmm-marketing-strategy-builder skill references this file; it is the single source of truth for the object's shape.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "osmm_version",
+    "marketing_strategy_id",
+    "version",
+    "status",
+    "name",
+    "linked_business_context",
+    "time_horizon",
+    "business_objectives",
+    "marketing_objectives",
+    "positioning_statement"
+  ],
+  "properties": {
+    "object_type": {
+      "const": "marketing_strategy",
+      "description": "Object type discriminator. Always 'marketing_strategy'."
+    },
+    "osmm_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "OSMM schema version this instance conforms to (semantic version)."
+    },
+    "marketing_strategy_id": {
+      "type": "string",
+      "pattern": "^MKS-[a-z0-9-]+$",
+      "description": "Stable, human-readable id. Prefix 'MKS-' + lowercase hyphen slug, scoped to owning business plus horizon. Never changes once assigned."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "Instance version (e.g. '1.0'). Bump on revision; the id stays stable."
+    },
+    "status": {
+      "enum": ["draft", "proposed", "stable", "deprecated"],
+      "description": "Object lifecycle state."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "A readable label for the strategy, usually entity + horizon (e.g. 'IBM 2026 Marketing Strategy')."
+    },
+    "linked_business_context": {
+      "type": "string",
+      "pattern": "^BIZ-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the owning Business Context Object. Use 'BIZ-PLACEHOLDER-<slug>' until it exists."
+    },
+    "linked_brand_context": {
+      "type": "string",
+      "pattern": "^BRC-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Optional. Id of the Brand Context Object this strategy applies. Use 'BRC-PLACEHOLDER-<slug>' if expected but unbuilt."
+    },
+    "time_horizon": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The planning period this strategy covers — a year, half, quarter, or named initiative window (e.g. 'FY2026', 'FY2026 H1', 'Always-on 2026')."
+    },
+    "business_objectives": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "The business goals marketing is in service of. Outcomes the business cares about, drawn from (not a copy of) Business Context strategic priorities."
+    },
+    "marketing_objectives": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Marketing's own prioritized goals for the horizon. Outcomes, not activities."
+    },
+    "success_criteria": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional. Strategy-level description of what success looks like, kept qualitative/directional. Metric definitions and numeric targets live in the Measurement Framework."
+    },
+    "positioning_statement": {
+      "type": "string",
+      "minLength": 1,
+      "description": "One to three sentences: how the brand chooses to compete this horizon. Distinct from the durable brand_promise and standing value_proposition."
+    },
+    "differentiation_strategy": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional. The concrete ways the brand will win vs. its competitive set, expressed as what marketing will lead with."
+    },
+    "priority_audiences": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^AUD-(PLACEHOLDER-)?[a-z0-9-]+$"
+      },
+      "description": "Optional. Ids of the prioritized Audience Objects. Use 'AUD-PLACEHOLDER-<slug>' for an unbuilt audience."
+    },
+    "growth_priorities": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional. The growth bets — dayparts, segments, products, or motions the brand will lean into."
+    },
+    "linked_measurement_framework": {
+      "type": "string",
+      "pattern": "^MEF-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Optional. Id of the Measurement Framework Object that operationalizes these objectives into KPIs. Use 'MEF-PLACEHOLDER-<slug>' until that object is built."
+    },
+    "source": {
+      "type": "string",
+      "description": "One line: what source(s) this was built from and approximate date."
+    }
+  }
+}
