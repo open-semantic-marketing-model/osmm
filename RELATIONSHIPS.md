@@ -8,7 +8,7 @@ references to other objects, so an agent can resolve a campaign to its audience,
 its offer, its creative, and its measurement framework without bespoke
 integration code ([README](README.md)). This document defines **how those
 references work** and **what the reference graph looks like** — the layer that
-turns 35 standalone objects into a connected model.
+turns 27 standalone objects into a connected model.
 
 It complements the other three docs:
 
@@ -226,19 +226,15 @@ into the established table. Listed in registry order
 
 | Object | Proposed prefix |
 |--------|-----------------|
-| Targeting Strategy | `TGS-` |
 | Keyword Strategy | `KWS-` |
-| Offer Strategy | `OFS-` |
 | Offer | `OFR-` |
-| Offer Test Strategy | `OTS-` |
+| Experiment Strategy | `XPR-` |
 | Campaign Strategy | `CMS-` |
 | Journey Strategy | `JNS-` |
-| Campaign Measurement | `CMM-` |
 | Messaging Framework | `MSF-` |
 | Creative Strategy | `CRS-` |
 | Content Strategy | `CTS-` |
 | Experience Design | `EXD-` |
-| Creative Test Strategy | `CTS2-` → resolve clash with Content Strategy |
 | Experience Specification | `EXS-` |
 | Experience Component | `EXC-` |
 | Journey Configuration | `JNC-` |
@@ -246,15 +242,13 @@ into the established table. Listed in registry order
 | Experience Delivery | `EXV-` → resolve vs. Experience Validation |
 | Experience Validation | `EXL-` |
 | Campaign Deployment | `CMD-` |
-| Experience Performance | `EXP-` |
 | Performance Measurement | `PFM-` |
 | Customer Insight | `CIN-` |
-| Offer Performance | `OFP-` |
-| Creative Performance | `CRP-` |
-| Journey Performance | `JNP-` |
 | Optimization Recommendation | `OPR-` |
 
-The two flagged clashes (`Content Strategy`/`Creative Test Strategy`,
-`Experience Delivery`/`Experience Validation`) are exactly why prefixes are
-ratified deliberately rather than auto-generated: short codes collide, and the
-model needs unique, stable ones.
+The remaining flagged clash — `Experience Delivery` (`EXV-`) vs. `Experience
+Validation` (`EXL-`) — is exactly why prefixes are ratified deliberately rather
+than auto-generated: short codes collide among the several `Experience *` objects,
+and the model needs unique, stable ones. (The earlier Content Strategy / Creative
+Test Strategy clash dissolved when Creative Test Strategy folded into Experiment
+Strategy in the v0.5 right-sizing.)

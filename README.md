@@ -62,7 +62,7 @@ examples.
 
 ## The object model
 
-OSMM currently spans **35 objects** across **7 workflow phases**, grouped into
+OSMM currently spans **27 objects** across **7 workflow phases**, grouped into
 **5 categories** by their read/write and governance profile:
 
 | Category | Purpose |

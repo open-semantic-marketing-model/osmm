@@ -21,7 +21,7 @@ status: draft
 
 Build a valid **OSMM Audience Object** from any source that defines a targetable group of customers.
 
-An Audience Object is durable, reusable Context — the structured, **addressable segment**: the membership rules that say who is in and who is out, the lens the segment is drawn on, and its lifecycle and value position. Work Products (Targeting Strategy, Campaign Strategy) and Configurations reference it to decide *who* a campaign is for. Where a Persona answers "who is this person and what drives them," an Audience answers "who exactly are we targeting, and how is that group defined."
+An Audience Object is durable, reusable Context — the structured, **addressable segment**: the membership rules that say who is in and who is out, the lens the segment is drawn on, and its lifecycle and value position. Work Products (Marketing Strategy, Campaign Strategy) and Configurations reference it to decide *who* a campaign is for. Where a Persona answers "who is this person and what drives them," an Audience answers "who exactly are we targeting, and how is that group defined."
 
 This is the lean v0.1 builder. It captures what a marketing workflow needs to *select* a group and nothing more. Raw segmentation math (index/composition tables, model coefficients, exact counts) is deliberately out of scope — distill it into operational membership criteria instead of transcribing the numbers.
 
@@ -40,7 +40,7 @@ This is the central boundary in the Context layer (it mirrors the rule stated in
 
 Same subject, different jobs. A demographic fact lives in the Persona as colour ("a busy parent in their 30s") and in the Audience as a **rule** ("age 30–45 AND has children in household"). A Persona *brings an Audience to life*; link them with `linked_personas` (and the Persona's `linked_audiences`).
 
-**Not here:** *prioritizing* audiences against each other is the **Targeting Strategy Object** (2.1, 2.8), a Work Product. The Audience Object defines a segment; it does not rank it.
+**Not here:** *prioritizing* audiences against each other is part of the **Marketing Strategy Object** (`priority_audiences` / `growth_priorities`; sub-processes 2.1, 2.8, 2.9). The Audience Object defines a segment; it does not rank it.
 
 ## The output schema
 
@@ -147,7 +147,7 @@ Emit a single JSON object with this exact shape. Field order should match.
 1. **Criteria must be operational, not descriptive.** The test: could someone build this segment from the criteria? "Cares about value" is description (Persona); "redeemed ≥2 value-menu offers in 90 days" is a criterion (Audience). Translate attitudes into the observable signals that stand in for them.
 2. **Pick the basis that actually defines the segment.** A "lapsed high-value buyer" is primarily `lifecycle` or `value_based`, not `demographic` — choose the lens that does the defining work; note secondary lenses in `description`.
 3. **Keep description and criteria distinct.** `description` is plain "who and why"; `inclusion_criteria` is the rule set. Don't restate one as the other.
-4. **Don't prioritize here.** If the source ranks segments, that ranking belongs to a Targeting Strategy Object. Capture *this* segment's definition only.
+4. **Don't prioritize here.** If the source ranks segments, that ranking belongs to the Marketing Strategy Object (`priority_audiences`). Capture *this* segment's definition only.
 5. **Value and lifecycle are signal-bearing, not mandatory.** Fill `value_characterization`/`lifecycle_stage` when the source supports them; omit rather than guess.
 6. **Link the human.** If a Persona for this segment exists (or is planned), set `linked_personas` (placeholder ok) — the describe/select pair is most useful connected.
 7. **One segment per object.** A segmentation study with five segments yields five Audience Objects, each linked to the same Business Context.

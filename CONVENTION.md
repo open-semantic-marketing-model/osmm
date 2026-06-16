@@ -1,7 +1,7 @@
 # OSMM™ Skill Naming Convention
 
 **Open Semantic Marketing Model — builder skills**
-Status: Draft v0.4
+Status: Draft v0.5
 
 This document defines how skills that build OSMM objects are named, organized, and described. Every object in the model gets exactly one builder skill, and the name of that skill is keyed to the one thing about the object that never changes: its identity. Phase, category, and release wave can all be re-debated over the life of the standard. The object's identity cannot, so it — and only it — drives the name.
 
@@ -173,7 +173,9 @@ Mirrors the OSMM object lifecycle so a builder's maturity tracks its object's:
 
 ## Full builder registry
 
-All 35 objects in the OSMM object model, mapped to their builder skill names.
+All 27 objects in the OSMM object model, mapped to their builder skill names.
+(Eight speculative objects were consolidated in the v0.5 right-sizing — see
+[TAXONOMY.md](TAXONOMY.md) → the note under the object resolution index.)
 
 | Phase | Object | Category | Skill name |
 |------:|--------|----------|------------|
@@ -182,22 +184,18 @@ All 35 objects in the OSMM object model, mapped to their builder skill names.
 | 1 | Product Context | Context | `osmm-product-context-builder` |
 | 1 | Marketing Strategy | Work Product | `osmm-marketing-strategy-builder` |
 | 1 | Measurement Framework | Work Product | `osmm-measurement-framework-builder` |
-| 2 | Targeting Strategy | Work Product | `osmm-targeting-strategy-builder` |
 | 2 | Audience | Context | `osmm-audience-builder` |
 | 2 | Persona | Context | `osmm-persona-builder` |
 | 2 | Keyword | Context | `osmm-keyword-builder` |
 | 2 | Keyword Strategy | Work Product | `osmm-keyword-strategy-builder` |
-| 3 | Offer Strategy | Work Product | `osmm-offer-strategy-builder` |
 | 3 | Offer | Work Product | `osmm-offer-builder` |
-| 3 | Offer Test Strategy | Work Product | `osmm-offer-test-strategy-builder` |
+| 3 | Experiment Strategy | Work Product | `osmm-experiment-strategy-builder` |
 | 4 | Campaign Strategy | Work Product | `osmm-campaign-strategy-builder` |
 | 4 | Journey Strategy | Work Product | `osmm-journey-strategy-builder` |
-| 4 | Campaign Measurement | Work Product | `osmm-campaign-measurement-builder` |
 | 5 | Messaging Framework | Work Product | `osmm-messaging-framework-builder` |
 | 5 | Creative Strategy | Work Product | `osmm-creative-strategy-builder` |
 | 5 | Content Strategy | Work Product | `osmm-content-strategy-builder` |
 | 5 | Experience Design | Work Product | `osmm-experience-design-builder` |
-| 5 | Creative Test Strategy | Work Product | `osmm-creative-test-strategy-builder` |
 | 6 | Experience Specification | Work Product | `osmm-experience-specification-builder` |
 | 6 | Experience Component | Work Product | `osmm-experience-component-builder` |
 | 6 | Journey Configuration | Configuration | `osmm-journey-configuration-builder` |
@@ -205,13 +203,15 @@ All 35 objects in the OSMM object model, mapped to their builder skill names.
 | 6 | Experience Delivery | Work Product | `osmm-experience-delivery-builder` |
 | 6 | Experience Validation | Work Product | `osmm-experience-validation-builder` |
 | 6 | Campaign Deployment | Work Product | `osmm-campaign-deployment-builder` |
-| 6 | Experience Performance | Measurement | `osmm-experience-performance-builder` |
 | 7 | Performance Measurement | Measurement | `osmm-performance-measurement-builder` |
 | 7 | Customer Insight | Learning | `osmm-customer-insight-builder` |
-| 7 | Offer Performance | Learning | `osmm-offer-performance-builder` |
-| 7 | Creative Performance | Learning | `osmm-creative-performance-builder` |
-| 7 | Journey Performance | Learning | `osmm-journey-performance-builder` |
 | 7 | Optimization Recommendation | Learning | `osmm-optimization-recommendation-builder` |
+
+The **Experiment Strategy** object is cross-phase (it serves the test sub-processes
+3.7, 4.7, and 5.7); it is listed once, at its earliest phase. Performance
+Measurement absorbs the former per-dimension performance objects via a `dimension`
+facet, and Measurement Framework absorbs campaign-scope measurement via a `scope`
+facet.
 
 ---
 
@@ -340,7 +340,7 @@ Two parts separated by a single underscore:
 | Business Context | Wendy's | — | `BUSINESS-CONTEXT_wendys.json` |
 | Campaign Strategy | Wendy's | Baconator Launch | `CAMPAIGN-STRATEGY_wendys-baconator-launch.json` |
 | Keyword | — | Marketing Operating Model | `KEYWORD_marketing-operating-model.json` |
-| Journey Performance | Wendy's | Breakfast Daypart | `JOURNEY-PERFORMANCE_wendys-breakfast-daypart.json` |
+| Performance Measurement | Wendy's | Breakfast Daypart | `PERFORMANCE-MEASUREMENT_wendys-breakfast-daypart.json` |
 
 ### Where instance files live
 
@@ -381,7 +381,7 @@ Some object fields are governed enums, not free text (e.g. Persona `persona_type
 The concept papers and the L1 summary reference a **Creative Brief** *object*
 (Wave 1 / Phase 5 work product), but the detailed object registry has no object
 by that name — it carries Messaging Framework, Creative Strategy, Content
-Strategy, Experience Design, and Creative Test Strategy instead.
+Strategy, and Experience Design instead.
 
 **Resolution:** the Creative Brief is a **human-readable artifact, not an OSMM
 object.** It is the rendered view of the underlying objects — specifically the
@@ -396,7 +396,7 @@ typed objects.
 
 Consequences at the **data-standard layer**: there is no Creative Brief object,
 no `object_type: creative_brief`, and no `osmm-creative-brief-builder` (an object
-*builder* has no object to build). The object model stands at **35 objects**;
+*builder* has no object to build). The object model stands at **27 objects**;
 nothing is added or removed by this resolution. "Creative Brief" remains valid
 only as an artifact label (e.g. in the TAXONOMY artifact column).
 
@@ -408,6 +408,20 @@ a first-draft brief a client can tailor. The composer is non-normative: it
 defines no schema and emits an artifact, not an object. So the standard stays
 pure (objects only) while the skill library still delivers the brief as an
 accelerator.
+
+---
+
+## Changes in v0.5
+
+- **Right-sized the registry from 35 to 27 objects** — five consolidations removed
+  eight speculative (unbuilt) objects, applying "prefer a facet over a near-duplicate
+  object; a new object must do work the others can't": Targeting Strategy → Marketing
+  Strategy; Offer Strategy → Offer; per-dimension Performance objects (Offer/Creative/
+  Journey/Experience) → Performance Measurement (`dimension` facet); Campaign
+  Measurement → Measurement Framework (`scope` facet); Offer Test Strategy + Creative
+  Test Strategy → a single cross-phase **Experiment Strategy**. Details in
+  [TAXONOMY.md](TAXONOMY.md). Remaining unbuilt boundaries are provisional and confirmed
+  at build time.
 
 ---
 

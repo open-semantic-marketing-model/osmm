@@ -11,6 +11,26 @@ governance). The current schema version is **0.1.0**.
 
 ## [Unreleased]
 
+### Changed
+- **Right-sized the object model from 35 to 27 objects** (v0.5) — five consolidations
+  removed eight speculative, *unbuilt* objects, applying "prefer a facet over a
+  near-duplicate object; a new object must do work the others can't; collapse on paper
+  and split only when building reveals the need":
+  - **Targeting Strategy → Marketing Strategy** (audience prioritization is
+    `priority_audiences` / `growth_priorities`, not a separate object).
+  - **Offer Strategy → Offer** (incentive philosophy / behavior-change objective are
+    fields on the Offer).
+  - **Offer/Creative/Journey/Experience Performance → Performance Measurement** via a
+    `dimension` facet.
+  - **Campaign Measurement → Measurement Framework** via a `scope` facet.
+  - **Offer Test Strategy + Creative Test Strategy → a single cross-phase Experiment
+    Strategy.**
+  Reconciled across `TAXONOMY.md` (Phase 2/3/4/5/6/7 re-pointing + resolution index +
+  a consolidation note), `CONVENTION.md` (registry → 27, v0.5 changes note),
+  `RELATIONSHIPS.md` (proposed-prefix appendix, count), the roadmap tracker, README,
+  CLAUDE.md, and the `GOVERNANCE.md` design tenet (added the facet-over-object rule).
+  Remaining unbuilt boundaries are provisional, confirmed at build time.
+
 ### Added
 - **Canonical schemas for the remaining 7 shipped objects** — `schemas/` now holds
   all 8: `brand_context`, `product_context`, `persona`, `audience`, `keyword`
