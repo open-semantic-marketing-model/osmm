@@ -84,6 +84,7 @@ osmm/
 ├── examples/       # validated example instances grounded in real assets
 ├── skills/          # builder skills (osmm-<object>-builder), by category
 ├── brand/           # logo, color tokens, usage — see brand/LOGO.md
+├── roadmap/         # backlog (Kanban) + sequenced roadmap — the live build board
 ├── TAXONOMY.md      # workflow phases → objects (the phase view)
 ├── CONVENTION.md    # object registry + skill naming convention
 ├── RELATIONSHIPS.md # the object reference model (the graph view)
@@ -95,12 +96,18 @@ osmm/
 
 ## Status
 
-Early and active — **draft v0.1**. The standard is being built iteratively:
-ship a concrete, validated artifact, then refine. The first two builders have
-shipped — `osmm-persona-builder` and `osmm-business-context-builder`, both
-Context-layer objects — out of the 35 in the registry. Schemas evolve under
-strict semantic versioning with formal deprecation, never silent breaks; the
-versioning and deprecation policy is in [`GOVERNANCE.md`](GOVERNANCE.md).
+Early and active — **draft v0.1**. The standard is built iteratively: ship a
+concrete, validated artifact, then refine. **8 of the 35 object builders have
+shipped** (plus one artifact composer, `osmm-creative-brief-composer`). The
+durable **Context foundation is complete** — all six Context builders are live
+(`osmm-business-context-builder`, `osmm-brand-context-builder`,
+`osmm-product-context-builder`, `osmm-persona-builder`, `osmm-audience-builder`,
+`osmm-keyword-builder`) — alongside the two Phase 1 Work Products,
+`osmm-marketing-strategy-builder` and `osmm-measurement-framework-builder`. Work
+is now moving into the Strategy layer (Phase 1–2 Work Products). The live build
+board is [`roadmap/BACKLOG.md`](roadmap/BACKLOG.md). Schemas evolve under strict
+semantic versioning with formal deprecation, never silent breaks; the policy is
+in [`GOVERNANCE.md`](GOVERNANCE.md).
 
 ## Relationship to OSI
 
