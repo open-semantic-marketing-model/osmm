@@ -36,6 +36,11 @@ The Marketing Strategy resolves workflow sub-processes **1.3–1.6 and 1.8** (`T
 
 ## The output schema
 
+> **Canonical schema:** [`schemas/marketing_strategy.schema.json`](../../../schemas/marketing_strategy.schema.json)
+> is the single source of truth for this object's shape, and example instances are
+> validated against it in CI. The field list and table below are an *illustrative*
+> guide for building — if they ever disagree with the schema file, the schema wins.
+
 Emit a single JSON object with this exact shape. Field order should match.
 
 ```jsonc

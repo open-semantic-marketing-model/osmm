@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/open-semantic-marketing-model/osmm/main/schemas/product_context.schema.json",
+  "title": "OSMM Product Context Object",
+  "description": "Durable, foundational Context describing the thing being marketed: what an offering is, what it does, how it works, the customer outcomes it delivers, and its product-level messaging. Canonical schema for object_type 'product_context'. The osmm-product-context-builder skill references this file; it is the single source of truth for the object's shape.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "osmm_version",
+    "product_id",
+    "version",
+    "status",
+    "name",
+    "offering_type",
+    "offering_category",
+    "description",
+    "what_it_does",
+    "how_it_works",
+    "key_features",
+    "benefits",
+    "use_cases",
+    "differentiators",
+    "product_messaging",
+    "linked_business_context"
+  ],
+  "properties": {
+    "object_type": {
+      "const": "product_context",
+      "description": "Object type discriminator. Always 'product_context'."
+    },
+    "osmm_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "OSMM schema version this instance conforms to (semantic version)."
+    },
+    "product_id": {
+      "type": "string",
+      "pattern": "^PRD-[a-z0-9-]+$",
+      "description": "Stable, human-readable id. Prefix 'PRD-' + lowercase hyphen slug. Never changes once assigned."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "Instance version (e.g. '1.0'). Bump on revision; the id stays stable."
+    },
+    "status": {
+      "enum": ["draft", "proposed", "stable", "deprecated"],
+      "description": "Object lifecycle state."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Go-to-market name of the offering."
+    },
+    "offering_type": {
+      "enum": ["product", "service", "solution", "platform", "bundle"],
+      "description": "Governed offering-type vocabulary. Pick the single closest value."
+    },
+    "offering_category": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Plain-language 'what kind of thing it is' (not a taxonomy code)."
+    },
+    "tagline": {
+      "type": "string",
+      "description": "The offering's own short line, if it has a recognizable one. Optional."
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "description": "2-3 neutral, factual sentences: what it is, who it's for, the job it does."
+    },
+    "what_it_does": {
+      "type": "string",
+      "minLength": 1,
+      "description": "One to three sentences on the core function — the job the offering performs."
+    },
+    "how_it_works": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Key mechanics / components / steps that deliver the value. Substance, not brochure copy."
+    },
+    "key_features": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "feature": { "type": "string" },
+          "description": { "type": "string" }
+        },
+        "required": ["feature", "description"]
+      },
+      "minItems": 1,
+      "description": "Notable capabilities/attributes, each { feature, description }."
+    },
+    "benefits": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Customer outcomes phrased as benefits, not features."
+    },
+    "use_cases": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Primary jobs-to-be-done / scenarios the offering addresses."
+    },
+    "differentiators": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Product-level distinction vs. alternatives, grounded in evidence."
+    },
+    "product_messaging": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The durable product-level messaging — the source for downstream creative/messaging.",
+      "required": ["primary_message", "value_pillars", "proof_points"],
+      "properties": {
+        "primary_message": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The single thing to land about the offering."
+        },
+        "value_pillars": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1,
+          "description": "2-4 supporting message pillars."
+        },
+        "proof_points": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1,
+          "description": "Evidence substantiating the claims (stats, certifications, named customers, awards)."
+        },
+        "objections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "objection": { "type": "string" },
+              "response": { "type": "string" }
+            },
+            "required": ["objection", "response"]
+          },
+          "description": "Known buyer pushback and the counter, each { objection, response }. Optional."
+        }
+      }
+    },
+    "pricing_model": {
+      "type": "string",
+      "description": "How it's priced at all (subscription, per-seat, tiered, menu price). A promotion is an Offer, not this. Optional."
+    },
+    "tiers_or_variants": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Editions, sizes, configurations, or SKUs if relevant. Optional."
+    },
+    "target_segments": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Plain descriptions of who it's for; structure lives in linked Audience/Persona objects. Optional."
+    },
+    "lifecycle_stage": {
+      "enum": ["new", "growth", "mature", "sunset"],
+      "description": "Where the offering sits in its lifecycle. Optional."
+    },
+    "linked_business_context": {
+      "type": "string",
+      "pattern": "^BIZ-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the Business Context that offers it. Use 'BIZ-PLACEHOLDER-<slug>' until it exists."
+    },
+    "linked_brand_context": {
+      "type": "string",
+      "pattern": "^BRC-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the Brand Context if marketed under a specific brand. 'BRC-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "related_offerings": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^PRD-(PLACEHOLDER-)?[a-z0-9-]+$"
+      },
+      "description": "'PRD-' ids of complementary, parent, or bundled offerings. 'PRD-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "source": {
+      "type": "string",
+      "description": "One line: what source(s) this was built from and approximate date. Optional."
+    }
+  }
+}

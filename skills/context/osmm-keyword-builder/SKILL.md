@@ -58,6 +58,11 @@ Rules of thumb:
 
 ## The output schema
 
+> **Canonical schema:** [`schemas/keyword.schema.json`](../../../schemas/keyword.schema.json)
+> is the single source of truth for this object's shape, and example instances are
+> validated against it in CI. The field list and table below are an *illustrative*
+> guide for building — if they ever disagree with the schema file, the schema wins.
+
 Emit a single JSON object with this exact shape. Field order should match.
 
 ```jsonc

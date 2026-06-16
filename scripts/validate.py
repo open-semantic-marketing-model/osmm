@@ -35,8 +35,10 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 SCHEMA_DIR = REPO_ROOT / "schemas"
 EXAMPLES_DIR = REPO_ROOT / "examples"
 
-# Flip to True once every shipped object has a schema (post full migration).
-STRICT_REQUIRE_SCHEMA = False
+# Every shipped object now has a schema, so a missing schema for an example's
+# object_type is a hard error (not a skip). New builders ship their schema with
+# their first example, so this stays satisfiable.
+STRICT_REQUIRE_SCHEMA = True
 
 
 def load_json(path: Path):
