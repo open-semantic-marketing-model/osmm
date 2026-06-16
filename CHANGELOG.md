@@ -32,6 +32,12 @@ governance). The current schema version is **0.1.0**.
   Remaining unbuilt boundaries are provisional, confirmed at build time.
 
 ### Added
+- **`GRAPH.md` — a whole-model object-graph view.** A rendered graph-database picture
+  of all 27 objects (built + backlog) by category, with realized (solid) vs envisioned
+  (dashed) reference edges and the learning loop, plus an inline Mermaid version that
+  renders on GitHub. Generated from a single source — `scripts/gen_object_graph.py`
+  (object + edge tables; `dot` renders the committed `osmm-object-graph.svg`) — so it
+  regenerates as builders ship and edges become real. Linked from README and RELATIONSHIPS.
 - **Canonical schemas for the remaining 7 shipped objects** — `schemas/` now holds
   all 8: `brand_context`, `product_context`, `persona`, `audience`, `keyword`
   (Context) and `marketing_strategy`, `measurement_framework` (Work Product), each

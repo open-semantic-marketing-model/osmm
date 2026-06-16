@@ -17,6 +17,9 @@ It complements the other three docs:
 - [CONVENTION.md](CONVENTION.md) — how builder skills, instance files, and slugs
   are named.
 - This document — how objects *point at each other* (the graph view).
+- [GRAPH.md](GRAPH.md) — a rendered, whole-model **graph-database view** (all 27
+  objects + their edges, built and backlog), generated from this document's
+  reference data via [`scripts/gen_object_graph.py`](scripts/gen_object_graph.py).
 
 ---
 
