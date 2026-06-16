@@ -8,7 +8,7 @@ references to other objects, so an agent can resolve a campaign to its audience,
 its offer, its creative, and its measurement framework without bespoke
 integration code ([README](README.md)). This document defines **how those
 references work** and **what the reference graph looks like** — the layer that
-turns 26 standalone objects into a connected model.
+turns 25 standalone objects into a connected model.
 
 It complements the other three docs:
 
@@ -81,14 +81,17 @@ a lookup) and namespaces ids so they stay unique across a portfolio.
 | Campaign Strategy | `CMS-` | `campaign_strategy_id` | `CMS-wendys-biggie-bag` |
 | Journey | `JNY-` | `journey_id` | `JNY-wendys-app-habit` |
 | Messaging Framework | `MSF-` | `messaging_framework_id` | `MSF-ibm-watsonx` |
+| Creative Strategy | `CRS-` | `creative_strategy_id` | `CRS-ibm-watsonx` |
+| Content Strategy | `CTS-` | `content_strategy_id` | `CTS-ibm-watsonx` |
 
-> Twelve prefixes are owned by shipped builders — the six Context builders
+> Fourteen prefixes are owned by shipped builders — the six Context builders
 > (`osmm-business-context-builder`, `osmm-brand-context-builder`,
 > `osmm-product-context-builder`, `osmm-persona-builder`, `osmm-audience-builder`,
-> `osmm-keyword-builder`) plus six Work Product builders:
+> `osmm-keyword-builder`) plus eight Work Product builders:
 > `osmm-marketing-strategy-builder`, `osmm-measurement-framework-builder`,
-> `osmm-offer-builder`, `osmm-campaign-strategy-builder`,
-> `osmm-journey-builder`, and `osmm-messaging-framework-builder`.
+> `osmm-offer-builder`, `osmm-campaign-strategy-builder`, `osmm-journey-builder`,
+> `osmm-messaging-framework-builder`, `osmm-creative-strategy-builder`, and
+> `osmm-content-strategy-builder`.
 
 **Assigning new prefixes.** Every object gets a prefix when its builder is
 authored. Prefixes are assigned by maintainers (like controlled vocabularies,
@@ -211,6 +214,10 @@ reference fields it introduces.
 | Messaging Framework | `linked_product` | one (optional) | Product Context | Sources the durable `product_messaging`. `PRD-PLACEHOLDER-<slug>` until built. |
 | Messaging Framework | `linked_brand_context` | one (optional) | Brand Context | Voice/guardrails. `BRC-PLACEHOLDER-<slug>` until built. |
 | Messaging Framework | `linked_personas` / `linked_campaign_strategy` / `linked_business_context` | many / one / one (optional) | Persona / Campaign Strategy / Business Context | Personas served, campaign scope, owning business. Placeholders until built. |
+| Creative Strategy | `linked_messaging_framework` | one (optional) | Messaging Framework | The message architecture this expresses. `MSF-PLACEHOLDER-<slug>` until built. |
+| Creative Strategy | `linked_brand_context` / `linked_product` / `linked_personas` / `linked_campaign_strategy` / `linked_business_context` | one / one / many / one / one (optional) | Brand Context / Product Context / Persona / Campaign Strategy / Business Context | Brand voice it operates within, offering, personas, campaign, business. Placeholders until built. |
+| Content Strategy | `linked_messaging_framework` / `linked_creative_strategy` | one / one (optional) | Messaging Framework / Creative Strategy | The messages it conveys and the creative direction it sits under. Placeholders until built. |
+| Content Strategy | `linked_keywords` / `linked_personas` / `linked_journey` / `linked_campaign_strategy` / `linked_business_context` | many / many / one / one / one (optional) | Keyword / Persona / Journey / Campaign Strategy / Business Context | Target terms, personas, the journey it supports, campaign, business. Placeholders until built. |
 
 > Two bidirectional Context edges are realized (Business Context ↔ Brand Context,
 > Persona ↔ Audience); the **first Work Product → Context edges** are live (a
@@ -226,8 +233,10 @@ reference fields it introduces.
 > live: **Offer → Product Context** (the first Work Product → Product Context edge),
 > **Campaign Strategy → Marketing Strategy / Journey / Audience / Offer**, **Journey →
 > Campaign Strategy / Audience / Persona**, and **Messaging Framework → Persona** (its
-> `persona_variants` differentiate by Persona) **/ Product Context** — wiring strategy to
-> activation to message. Inbound references implied by the model but not yet realized (e.g. a
+> `persona_variants` differentiate by Persona) **/ Product Context**, plus **Creative
+> Strategy → Messaging Framework / Brand Context** and **Content Strategy → Messaging
+> Framework / Creative Strategy / Keyword / Journey** — wiring strategy to activation to
+> message to creative and content. Inbound references implied by the model but not yet realized (e.g. a
 > Customer Insight proposing Persona updates; an Experiment Strategy referencing the
 > Offer/Campaign/Creative it tests) are defined when those builders are authored.
 
@@ -258,9 +267,6 @@ into the established table. Listed in registry order
 |--------|-----------------|
 | Keyword Strategy | `KWS-` |
 | Experiment Strategy | `XPR-` |
-| Creative Strategy | `CRS-` |
-| Content Strategy | `CTS-` |
-| Experience Design | `EXD-` |
 | Experience Specification | `EXS-` |
 | Experience Component | `EXC-` |
 | Personalization Configuration | `PZC-` |

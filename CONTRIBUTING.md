@@ -36,7 +36,7 @@ Every contribution is measured against the tenets in
 proposals:
 
 - **Lean over over-engineered.** A new field must earn its place; a new object
-  must do work the existing 26 cannot. "It would be nice to also capture X" is
+  must do work the existing 25 cannot. "It would be nice to also capture X" is
   usually a no unless X changes a decision downstream.
 - **Grounded in real assets.** Objects and examples are validated against real
   marketing artifacts, not invented to round out the model.

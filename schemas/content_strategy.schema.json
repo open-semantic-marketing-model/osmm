@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/open-semantic-marketing-model/osmm/main/schemas/content_strategy.schema.json",
+  "title": "OSMM Content Strategy Object",
+  "description": "The content plan for an offering or campaign: the content goal, the content pillars/themes (and the formats under each), the content priorities and types in scope, how content is sequenced across the journey/funnel, and the publishing cadence. Canonical schema for object_type 'content_strategy'. The osmm-content-strategy-builder skill references this file; it is the single source of truth for the object's shape. Content Strategy is the *what content we produce and in what order* (5.3) — distinct from Creative Strategy (the creative direction / how it looks and feels), the Messaging Framework (the message architecture it conveys), and the Journey (the path it supports).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "osmm_version",
+    "content_strategy_id",
+    "version",
+    "status",
+    "name",
+    "content_goal",
+    "content_pillars"
+  ],
+  "properties": {
+    "object_type": {
+      "const": "content_strategy",
+      "description": "Object type discriminator. Always 'content_strategy'."
+    },
+    "osmm_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "OSMM schema version this instance conforms to (semantic version)."
+    },
+    "content_strategy_id": {
+      "type": "string",
+      "pattern": "^CTS-[a-z0-9-]+$",
+      "description": "Stable, human-readable id. Prefix 'CTS-' + lowercase hyphen slug. Never changes once assigned."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "Instance version (e.g. '1.0'). Bump on revision; the id stays stable."
+    },
+    "status": {
+      "enum": ["draft", "proposed", "stable", "deprecated"],
+      "description": "Object lifecycle state."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "A readable label for the content strategy, usually entity + offering (e.g. 'IBM watsonx Content Strategy')."
+    },
+    "content_goal": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The outcome the content plan drives — what producing this content is meant to achieve (an outcome, not a list of deliverables)."
+    },
+    "content_pillars": {
+      "type": "array",
+      "minItems": 1,
+      "description": "The content themes/pillars and the formats produced under each — the spine of the plan (5.3).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["pillar", "description"],
+        "properties": {
+          "pillar": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The pillar's name — a recurring content theme the plan organizes around."
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "description": "What this pillar covers and why it advances the content goal."
+          },
+          "formats": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "The content formats/types produced under this pillar (e.g. blog, video, webinar). Optional."
+          }
+        }
+      }
+    },
+    "content_priorities": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "What to produce first / where to concentrate effort — the emphasis order across pillars or topics. Optional."
+    },
+    "content_types": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "The formats/types in scope overall (e.g. blog, video, webinar, social, email, case study, whitepaper). Optional."
+    },
+    "sequencing": {
+      "type": "string",
+      "description": "How content is sequenced across the journey/funnel — ordering and pacing of content by stage (5.3). Optional."
+    },
+    "cadence": {
+      "type": "string",
+      "description": "Publishing frequency/pacing (e.g. 'weekly long-form, daily social'). Optional."
+    },
+    "channels": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Channels the content is published to/through. Optional."
+    },
+    "journey_mapping": {
+      "type": "array",
+      "description": "Which content supports which journey stage — the funnel/journey-to-content mapping (5.3). Optional.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["stage", "content"],
+        "properties": {
+          "stage": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The journey/funnel stage (e.g. 'Awareness', 'Consideration', 'Decision')."
+          },
+          "content": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The content produced for / serving this stage."
+          }
+        }
+      }
+    },
+    "linked_messaging_framework": {
+      "type": "string",
+      "pattern": "^MSF-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the Messaging Framework whose message architecture this content conveys. 'MSF-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "linked_creative_strategy": {
+      "type": "string",
+      "pattern": "^CRS-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the Creative Strategy that sets the creative direction this content is produced within. 'CRS-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "linked_keywords": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^KW-(PLACEHOLDER-)?[a-z0-9-]+$"
+      },
+      "description": "Ids of the target Keywords/topics this content addresses. 'KW-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "linked_personas": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^PER-(PLACEHOLDER-)?[a-z0-9-]+$"
+      },
+      "description": "Ids of the Persona objects this content is written for. 'PER-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "linked_journey": {
+      "type": "string",
+      "pattern": "^JNY-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the Journey this content supports — the path the sequencing maps against. 'JNY-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "linked_campaign_strategy": {
+      "type": "string",
+      "pattern": "^CMS-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the Campaign Strategy if this content strategy is scoped to a specific campaign. 'CMS-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "linked_business_context": {
+      "type": "string",
+      "pattern": "^BIZ-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the owning Business Context. 'BIZ-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "source": {
+      "type": "string",
+      "description": "One line: what source(s) this was built from and approximate date. Optional."
+    }
+  }
+}

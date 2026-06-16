@@ -12,14 +12,32 @@ governance). The current schema version is **0.1.0**.
 ## [Unreleased]
 
 ### Added
+- **Milestone D creative layer — two Work Product builders** (`status: draft`), taking the
+  model to **14 of 25 builders shipped**:
+  - **`osmm-creative-strategy-builder`** (B17, Phase 5) — the creative direction:
+    `creative_platform` (big idea), `creative_themes[]`, `channel_creative[]` (5.6), and
+    `experience_concepts[]`. **Absorbs the former Experience Design object** (creative system
+    & experience concepts, 5.5). Ratifies `CRS-`; references Messaging Framework, Brand
+    Context, Product Context.
+  - **`osmm-content-strategy-builder`** (B18, Phase 5) — the content plan: `content_goal`,
+    `content_pillars[]` (with formats), sequencing, and `journey_mapping[]` (5.3). Ratifies
+    `CTS-`; references Messaging Framework, Creative Strategy, Keywords, Personas, Journey.
+  - Each ships its strict canonical schema; `RELATIONSHIPS.md` records the new edges and
+    ratifies the prefixes; `GRAPH.md`/SVG regenerated (14 built, 25 nodes, 37 realized edges).
+    **Milestone D complete.**
+
 - **`osmm-messaging-framework-builder`** (B16, Phase 5) — the Messaging Framework Object:
   the message architecture — `primary_message`, `message_pillars[]`, framework `proof_points`,
   and **`persona_variants[]`** (message variants differentiated **by Persona**, embodying the
   Phase 5 rule). Sources from Product Context `product_messaging`; carries no audience-membership
   logic. Ratifies the `MSF-` prefix; realizes Messaging Framework → Persona / Product Context /
-  Brand Context edges. Model now **12 of 26 builders shipped**.
+  Brand Context edges.
 
 ### Changed
+- **Folded Experience Design → Creative Strategy** (v0.7; 26 → 25 objects). The creative
+  system & experience concepts (sub-process 5.5) are creative direction, captured as the
+  Creative Strategy's `experience_concepts` — no separate Experience Design object. Content
+  Strategy was kept separate (a distinct content-planning discipline).
 - **Merged Journey Strategy + Journey Configuration → a single `journey` object** (v0.6;
   27 → 26 objects). The designed path (stages, triggers, cadence) and its operational build are
   two views of one thing; the operational specifics live in the Journey Object's optional
