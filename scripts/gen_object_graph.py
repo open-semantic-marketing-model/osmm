@@ -31,9 +31,8 @@ OBJ = {
  'campaign_strategy':('Campaign Strategy','Work Product',True),
  'journey':('Journey','Work Product',True),
  'messaging_framework':('Messaging Framework','Work Product',True),
- 'creative_strategy':('Creative Strategy','Work Product',False),
- 'content_strategy':('Content Strategy','Work Product',False),
- 'experience_design':('Experience Design','Work Product',False),
+ 'creative_strategy':('Creative Strategy','Work Product',True),
+ 'content_strategy':('Content Strategy','Work Product',True),
  'experience_specification':('Experience Specification','Work Product',False),
  'experience_component':('Experience Component','Work Product',False),
  'experience_delivery':('Experience Delivery','Work Product',False),
@@ -87,15 +86,23 @@ REALIZED = [
  ('messaging_framework','persona',False),
  ('messaging_framework','product_context',False),
  ('messaging_framework','brand_context',False),
+ # Creative Strategy (B17) — absorbs former Experience Design
+ ('creative_strategy','messaging_framework',False),
+ ('creative_strategy','brand_context',False),
+ ('creative_strategy','product_context',False),
+ ('creative_strategy','business_context',False),
+ # Content Strategy (B18)
+ ('content_strategy','messaging_framework',False),
+ ('content_strategy','creative_strategy',False),
+ ('content_strategy','keyword',False),
+ ('content_strategy','journey',False),
+ ('content_strategy','business_context',False),
 ]
 # Envisioned edges — illustrative, not yet defined in a builder.
 ENVISIONED = [
  ('keyword_strategy','keyword'),('keyword_strategy','audience'),
  ('experiment_strategy','offer'),('experiment_strategy','campaign_strategy'),('experiment_strategy','creative_strategy'),
- ('creative_strategy','messaging_framework'),('creative_strategy','brand_context'),
- ('content_strategy','creative_strategy'),('content_strategy','keyword'),
- ('experience_design','creative_strategy'),
- ('experience_specification','experience_design'),('experience_specification','campaign_strategy'),
+ ('experience_specification','creative_strategy'),('experience_specification','campaign_strategy'),
  ('experience_component','experience_specification'),
  ('personalization_configuration','campaign_strategy'),('personalization_configuration','audience'),
  ('experience_delivery','experience_component'),('experience_delivery','journey'),
@@ -128,7 +135,7 @@ def build_dot():
          '  node [shape=box, fontname="Helvetica", fontsize=13, margin="0.20,0.12", height=0.45];',
          '  edge [arrowsize=0.8];',
          '  labelloc="t"; fontsize=26; fontname="Helvetica-Bold";',
-         '  label="OSMM™ Object Graph — 26 objects across 5 categories\\n'
+         '  label="OSMM™ Object Graph — 25 objects across 5 categories\\n'
          f'solid node = builder shipped ({BUILT})   ·   dashed node = backlog ({BACKLOG})   ·   '
          'solid edge = realized reference   ·   dashed edge = envisioned   ·   mint edge = learning loop";']
     for i, cat in enumerate(CAT_ORDER):

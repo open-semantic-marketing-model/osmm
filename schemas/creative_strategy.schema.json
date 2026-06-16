@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/open-semantic-marketing-model/osmm/main/schemas/creative_strategy.schema.json",
+  "title": "OSMM Creative Strategy Object",
+  "description": "The creative direction for an offering or campaign: the central creative platform (big idea), the creative themes/territories, the emotional strategy, the creative system & experience concepts (the former Experience Design object, absorbed here), and channel-specific creative requirements. Canonical schema for object_type 'creative_strategy'. The osmm-creative-strategy-builder skill references this file; it is the single source of truth for the object's shape. Creative Strategy is HOW we express the message — distinct from the Messaging Framework (what we say, the message architecture it draws from via linked_messaging_framework), the Content Strategy (the content plan), and the Brand Context (the durable brand voice/identity it operates within). It resolves sub-processes 5.2, 5.5, 5.6, and (with the Messaging Framework) 5.8.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "osmm_version",
+    "creative_strategy_id",
+    "version",
+    "status",
+    "name",
+    "creative_platform",
+    "creative_themes"
+  ],
+  "properties": {
+    "object_type": {
+      "const": "creative_strategy",
+      "description": "Object type discriminator. Always 'creative_strategy'."
+    },
+    "osmm_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "OSMM schema version this instance conforms to (semantic version)."
+    },
+    "creative_strategy_id": {
+      "type": "string",
+      "pattern": "^CRS-[a-z0-9-]+$",
+      "description": "Stable, human-readable id. Prefix 'CRS-' + lowercase hyphen slug. Never changes once assigned."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "Instance version (e.g. '1.0'). Bump on revision; the id stays stable."
+    },
+    "status": {
+      "enum": ["draft", "proposed", "stable", "deprecated"],
+      "description": "Object lifecycle state."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "A readable label for the creative strategy, usually entity + offering or campaign (e.g. 'IBM watsonx Creative Strategy')."
+    },
+    "creative_platform": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The central creative idea — the big idea / creative platform that organizes all expression. The one creative concept everything ladders up to."
+    },
+    "creative_themes": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" },
+      "description": "The creative themes / territories the platform explores — the recurring creative angles or motifs (5.2)."
+    },
+    "emotional_strategy": {
+      "type": "string",
+      "description": "The emotional approach — the feeling the creative is meant to evoke and how it gets there (5.2). Optional."
+    },
+    "experience_concepts": {
+      "type": "array",
+      "description": "The creative system & experience concepts — the former Experience Design object, absorbed here (5.5). Each entry is a named concept and what it is.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["concept", "description"],
+        "properties": {
+          "concept": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The experience concept's name — a creative-system element or experience idea (e.g. a signature interaction, a visual system, an experiential motif)."
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "description": "What the concept is and how it expresses the platform."
+          }
+        }
+      }
+    },
+    "channel_creative": {
+      "type": "array",
+      "description": "Channel-specific creative requirements — how the platform translates per channel (5.6). Each entry pairs a channel with its requirements.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["channel", "requirements"],
+        "properties": {
+          "channel": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The channel or medium (e.g. social, OOH, web, email, video, in-store)."
+          },
+          "requirements": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The creative requirements / treatment for this channel — what the creative must do or look like here."
+          }
+        }
+      }
+    },
+    "creative_principles": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Creative guardrails / do's — the principles that keep execution on platform. Optional."
+    },
+    "linked_messaging_framework": {
+      "type": "string",
+      "pattern": "^MSF-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the Messaging Framework whose message architecture this creative strategy expresses. 'MSF-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "linked_brand_context": {
+      "type": "string",
+      "pattern": "^BRC-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the Brand Context whose voice/identity this operates within. 'BRC-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "linked_product": {
+      "type": "string",
+      "pattern": "^PRD-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the Product Context this creative is for. 'PRD-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "linked_personas": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^PER-(PLACEHOLDER-)?[a-z0-9-]+$"
+      },
+      "description": "Ids of the Persona objects this creative speaks to. 'PER-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "linked_campaign_strategy": {
+      "type": "string",
+      "pattern": "^CMS-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the Campaign Strategy if this creative strategy is scoped to a specific campaign. 'CMS-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "linked_business_context": {
+      "type": "string",
+      "pattern": "^BIZ-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the owning Business Context. 'BIZ-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "source": {
+      "type": "string",
+      "description": "One line: what source(s) this was built from and approximate date. Optional."
+    }
+  }
+}

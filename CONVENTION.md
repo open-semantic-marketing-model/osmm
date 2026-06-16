@@ -1,7 +1,7 @@
 # OSMM™ Skill Naming Convention
 
 **Open Semantic Marketing Model — builder skills**
-Status: Draft v0.6
+Status: Draft v0.7
 
 This document defines how skills that build OSMM objects are named, organized, and described. Every object in the model gets exactly one builder skill, and the name of that skill is keyed to the one thing about the object that never changes: its identity. Phase, category, and release wave can all be re-debated over the life of the standard. The object's identity cannot, so it — and only it — drives the name.
 
@@ -172,7 +172,7 @@ Mirrors the OSMM object lifecycle so a builder's maturity tracks its object's:
 
 ## Full builder registry
 
-All 26 objects in the OSMM object model, mapped to their builder skill names.
+All 25 objects in the OSMM object model, mapped to their builder skill names.
 (Speculative objects were consolidated in the v0.5/v0.6 right-sizing — see
 [TAXONOMY.md](TAXONOMY.md) → the note under the object resolution index.)
 
@@ -194,7 +194,6 @@ All 26 objects in the OSMM object model, mapped to their builder skill names.
 | 5 | Messaging Framework | Work Product | `osmm-messaging-framework-builder` |
 | 5 | Creative Strategy | Work Product | `osmm-creative-strategy-builder` |
 | 5 | Content Strategy | Work Product | `osmm-content-strategy-builder` |
-| 5 | Experience Design | Work Product | `osmm-experience-design-builder` |
 | 6 | Experience Specification | Work Product | `osmm-experience-specification-builder` |
 | 6 | Experience Component | Work Product | `osmm-experience-component-builder` |
 | 6 | Personalization Configuration | Configuration | `osmm-personalization-configuration-builder` |
@@ -378,8 +377,8 @@ Some object fields are governed enums, not free text (e.g. Persona `persona_type
 
 The concept papers and the L1 summary reference a **Creative Brief** *object*
 (Wave 1 / Phase 5 work product), but the detailed object registry has no object
-by that name — it carries Messaging Framework, Creative Strategy, Content
-Strategy, and Experience Design instead.
+by that name — it carries Messaging Framework, Creative Strategy, and Content
+Strategy instead.
 
 **Resolution:** the Creative Brief is a **human-readable artifact, not an OSMM
 object.** It is the rendered view of the underlying objects — specifically the
@@ -394,7 +393,7 @@ typed objects.
 
 Consequences at the **data-standard layer**: there is no Creative Brief object,
 no `object_type: creative_brief`, and no `osmm-creative-brief-builder` (an object
-*builder* has no object to build). The object model stands at **26 objects**;
+*builder* has no object to build). The object model stands at **25 objects**;
 nothing is added or removed by this resolution. "Creative Brief" remains valid
 only as an artifact label (e.g. in the TAXONOMY artifact column).
 
@@ -406,6 +405,15 @@ a first-draft brief a client can tailor. The composer is non-normative: it
 defines no schema and emits an artifact, not an object. So the standard stays
 pure (objects only) while the skill library still delivers the brief as an
 accelerator.
+
+---
+
+## Changes in v0.7
+
+- **Folded Experience Design → Creative Strategy** (26 → 25). The creative system &
+  experience concepts (sub-process 5.5) are creative direction, captured as the Creative
+  Strategy's `experience_concepts`; no separate Experience Design object. Shipped the
+  **Creative Strategy** (`CRS-`) and **Content Strategy** (`CTS-`) builders.
 
 ---
 

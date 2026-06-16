@@ -4,7 +4,7 @@ This folder is the project-management layer for building out OSMM — what's don
 what's in flight, and what's next. It complements (does not replace) the
 standard's own docs:
 
-- [`../TAXONOMY.md`](../TAXONOMY.md) — the 7 phases and the 26 objects each resolves to.
+- [`../TAXONOMY.md`](../TAXONOMY.md) — the 7 phases and the 25 objects each resolves to.
 - [`../CONVENTION.md`](../CONVENTION.md) — the full builder registry and naming rules.
 - [`../RELATIONSHIPS.md`](../RELATIONSHIPS.md) — how objects reference each other.
 - [`../GOVERNANCE.md`](../GOVERNANCE.md) — design tenets and the object lifecycle.
@@ -20,7 +20,7 @@ standard's own docs:
 
 Three kinds of deliverable make up the build-out:
 
-1. **Object builders** (`osmm-<object>-builder`) — one per object. **12 of 26 shipped.**
+1. **Object builders** (`osmm-<object>-builder`) — one per object. **14 of 25 shipped.**
    This is the bulk of the work and the spine of the roadmap.
 2. **Artifact composers** (`osmm-<artifact>-composer`) — non-normative
    accelerators that read several objects and render a human artifact. **1 shipped.**

@@ -128,7 +128,7 @@ flowchart LR
 | 5.2 Define Creative Strategy | Creative themes, emotional strategy | Creative Strategy Object | Creative Direction Summary |
 | 5.3 Define Content Strategy | Content priorities, content sequencing | Content Strategy Object | Content Plan |
 | 5.4 Define Message Hierarchy & Variations | Message prioritization | Messaging Framework Object | Messaging Architecture |
-| 5.5 Define Creative System & Experience Concepts | Experience concepts | Experience Design Object | Experience Concepts |
+| 5.5 Define Creative System & Experience Concepts | Experience concepts | Creative Strategy Object (`experience_concepts`) | Experience Concepts |
 | 5.6 Define Channel-Specific Creative Requirements | Channel creative rules | Creative Strategy Object | Channel Creative Matrix |
 | 5.7 Define Content & Creative Testing Strategy | Test priorities | Experiment Strategy Object | Creative Experiment Plan |
 | 5.8 Confirm Content & Creative Direction | Final creative direction | Creative Strategy Object + Messaging Framework Object | Creative Brief |
@@ -199,9 +199,8 @@ Every object mapped to the sub-processes that write it and its builder skill (pe
 | Campaign Strategy Object | 4.1, 4.3, 4.4, 4.6, 4.8 | `osmm-campaign-strategy-builder` |
 | Journey Object | 4.2, 4.5, 4.8, 6.3 | `osmm-journey-builder` |
 | Messaging Framework Object | 5.1, 5.4, 5.8 | `osmm-messaging-framework-builder` |
-| Creative Strategy Object | 5.2, 5.6, 5.8 | `osmm-creative-strategy-builder` |
+| Creative Strategy Object | 5.2, 5.5, 5.6, 5.8 | `osmm-creative-strategy-builder` |
 | Content Strategy Object | 5.3 | `osmm-content-strategy-builder` |
-| Experience Design Object | 5.5 | `osmm-experience-design-builder` |
 | Experience Specification Object | 6.1 | `osmm-experience-specification-builder` |
 | Experience Component Object | 6.2 | `osmm-experience-component-builder` |
 | Personalization Configuration Object | 6.4 | `osmm-personalization-configuration-builder` |
@@ -212,13 +211,15 @@ Every object mapped to the sub-processes that write it and its builder skill (pe
 | Customer Insight Object | 7.2 | `osmm-customer-insight-builder` |
 | Optimization Recommendation Object | 7.6 | `osmm-optimization-recommendation-builder` |
 
-> **Right-sizing — the model holds 26 objects.** Consolidations applying the rule
+> **Right-sizing — the model holds 25 objects.** Consolidations applying the rule
 > *prefer a facet field over a near-duplicate object; a new object must do work the
-> others can't*. The v0.5 pass removed eight speculative (unbuilt) objects; a v0.6
-> pass then merged **Journey Strategy + Journey Configuration → a single Journey
-> Object** (the designed path and its delivery logic are two views of one thing; the
-> operational specifics live in the Journey Object's optional `delivery_logic`,
-> resolving 6.3):
+> others can't*. The v0.5 pass removed eight speculative (unbuilt) objects; v0.6
+> merged **Journey Strategy + Journey Configuration → a single Journey Object** (the
+> designed path and its delivery logic are two views of one thing; the operational
+> specifics live in the Journey Object's optional `delivery_logic`, resolving 6.3);
+> v0.7 folded **Experience Design → Creative Strategy** (the creative system &
+> experience concepts of 5.5 are creative direction — the Creative Strategy's
+> `experience_concepts`):
 >
 > - **Targeting Strategy → Marketing Strategy.** Audience prioritization (2.1, 2.8,
 >   2.9) is a section of the strategy (`priority_audiences`, `growth_priorities`),
@@ -235,7 +236,7 @@ Every object mapped to the sub-processes that write it and its builder skill (pe
 >   cross-phase experiment/test object referenced from 3.7, 4.7, and 5.7.
 >
 > Several remaining boundaries (Experience Validation, Personalization Configuration,
-> Experience Design, Content Strategy, Experience Component, Keyword Strategy) are
+> Experience Component, Keyword Strategy) are
 > **provisional** — they stay until their builder is authored, when each must clear
 > the "earns its own object" bar or fold. We collapse on paper and split only when
 > building reveals the need.
