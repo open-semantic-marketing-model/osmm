@@ -1,7 +1,7 @@
 # OSMM™ Object Graph
 
 A graph-database view of the OSMM object model — all **27 objects**
-(8 with shipped builders, 19 in the backlog) across the 5 categories,
+(11 with shipped builders, 16 in the backlog) across the 5 categories,
 and the reference edges between them.
 
 > **This file is generated** by [`scripts/gen_object_graph.py`](scripts/gen_object_graph.py).
@@ -10,7 +10,7 @@ and the reference edges between them.
 ## How to read it
 
 - **Node fill** = category: Context, Work Product, Configuration, Measurement, Learning.
-- **Solid node** = builder shipped (8); **dashed node** = backlog (19).
+- **Solid node** = builder shipped (11); **dashed node** = backlog (16).
 - **Solid edge** = a *realized* reference (a reference field defined in a shipped
   builder; mirrors the established table in [`RELATIONSHIPS.md`](RELATIONSHIPS.md)).
 - **Dashed gray edge** = an *envisioned* reference — illustrative, not yet defined in a
@@ -78,18 +78,24 @@ flowchart LR
   marketing_strategy --> audience
   marketing_strategy <--> measurement_framework
   measurement_framework --> business_context
+  offer --> product_context
+  offer --> audience
+  offer --> business_context
+  campaign_strategy --> marketing_strategy
+  campaign_strategy --> journey_strategy
+  campaign_strategy --> audience
+  campaign_strategy --> offer
+  campaign_strategy --> business_context
+  campaign_strategy --> measurement_framework
+  journey_strategy --> campaign_strategy
+  journey_strategy --> audience
+  journey_strategy --> persona
+  journey_strategy --> business_context
   keyword_strategy -.-> keyword
   keyword_strategy -.-> audience
-  offer -.-> product_context
-  offer -.-> audience
   experiment_strategy -.-> offer
   experiment_strategy -.-> campaign_strategy
   experiment_strategy -.-> creative_strategy
-  campaign_strategy -.-> marketing_strategy
-  campaign_strategy -.-> audience
-  campaign_strategy -.-> offer
-  campaign_strategy -.-> journey_strategy
-  journey_strategy -.-> persona
   messaging_framework -.-> product_context
   messaging_framework -.-> persona
   messaging_framework -.-> brand_context
@@ -126,8 +132,8 @@ flowchart LR
   class journey_configuration,personalization_configuration configuration;
   class performance_measurement measurement;
   class customer_insight,optimization_recommendation learning;
-  class keyword_strategy,offer,experiment_strategy,campaign_strategy,journey_strategy,messaging_framework,creative_strategy,content_strategy,experience_design,experience_specification,experience_component,experience_delivery,experience_validation,campaign_deployment,journey_configuration,personalization_configuration,performance_measurement,customer_insight,optimization_recommendation backlog;
-  linkStyle 0,1,2,3,4,5,6,7,8,9,10,11 stroke:#222222,stroke-width:2px;
-  linkStyle 12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46 stroke:#9aa3af,stroke-width:1px;
-  linkStyle 47,48 stroke:#1aa179,stroke-width:2px;
+  class keyword_strategy,experiment_strategy,messaging_framework,creative_strategy,content_strategy,experience_design,experience_specification,experience_component,experience_delivery,experience_validation,campaign_deployment,journey_configuration,personalization_configuration,performance_measurement,customer_insight,optimization_recommendation backlog;
+  linkStyle 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24 stroke:#222222,stroke-width:2px;
+  linkStyle 25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52 stroke:#9aa3af,stroke-width:1px;
+  linkStyle 53,54 stroke:#1aa179,stroke-width:2px;
 ```

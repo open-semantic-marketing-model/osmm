@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/open-semantic-marketing-model/osmm/main/schemas/campaign_strategy.schema.json",
+  "title": "OSMM Campaign Strategy Object",
+  "description": "The activation plan for a campaign: its objective and scope, which audiences receive which offers (audience-to-offer mapping), the channel and touchpoint strategy, and the personalization approach. It references the Marketing Strategy it executes, the Journey Strategy it uses, and the Audiences and Offers it activates. Canonical schema for object_type 'campaign_strategy'. The osmm-campaign-strategy-builder skill references this file; it is the single source of truth for the object's shape.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "osmm_version",
+    "campaign_strategy_id",
+    "version",
+    "status",
+    "name",
+    "campaign_objective",
+    "success_criteria",
+    "scope",
+    "audience_offer_mapping",
+    "channel_strategy"
+  ],
+  "properties": {
+    "object_type": {
+      "const": "campaign_strategy",
+      "description": "Object type discriminator. Always 'campaign_strategy'."
+    },
+    "osmm_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "OSMM schema version this instance conforms to (semantic version)."
+    },
+    "campaign_strategy_id": {
+      "type": "string",
+      "pattern": "^CMS-[a-z0-9-]+$",
+      "description": "Stable, human-readable id. Prefix 'CMS-' + lowercase hyphen slug, scoped to the campaign. Never changes once assigned."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "Instance version (e.g. '1.0'). Bump on revision; the id stays stable."
+    },
+    "status": {
+      "enum": ["draft", "proposed", "stable", "deprecated"],
+      "description": "Object lifecycle state."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "A readable label for the campaign (e.g. \"Wendy's Biggie Bag Value Campaign\")."
+    },
+    "campaign_objective": {
+      "type": "string",
+      "minLength": 1,
+      "description": "What the campaign is trying to achieve — the single activation outcome it drives toward (sub-process 4.1). An outcome, not a list of activities."
+    },
+    "success_criteria": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "How the campaign's success is judged, kept directional (4.1). Metric definitions and numeric targets live in the linked Measurement Framework (campaign scope)."
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1,
+      "description": "What is in and out of scope for this campaign — boundaries, included markets/products/dayparts, and explicit exclusions (4.1)."
+    },
+    "campaign_window": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional. The timing of the campaign.",
+      "properties": {
+        "start": {
+          "type": "string",
+          "description": "When the campaign starts (e.g. '2026-01-06' or 'FY2026 Q1')."
+        },
+        "end": {
+          "type": "string",
+          "description": "When the campaign ends."
+        },
+        "duration": {
+          "type": "string",
+          "description": "Human-readable duration (e.g. '6 weeks', 'always-on')."
+        }
+      }
+    },
+    "audience_offer_mapping": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["audience", "offer"],
+        "properties": {
+          "audience": {
+            "type": "string",
+            "pattern": "^AUD-(PLACEHOLDER-)?[a-z0-9-]+$",
+            "description": "Id of the Audience Object this row activates. Use 'AUD-PLACEHOLDER-<slug>' until it exists."
+          },
+          "offer": {
+            "type": "string",
+            "pattern": "^OFR-(PLACEHOLDER-)?[a-z0-9-]+$",
+            "description": "Id of the Offer Object extended to that audience. Use 'OFR-PLACEHOLDER-<slug>' until it exists."
+          },
+          "rationale": {
+            "type": "string",
+            "description": "Optional. Why this offer fits this audience for this campaign."
+          }
+        }
+      },
+      "minItems": 1,
+      "description": "The core 4.3 audience-to-offer matrix: which audiences receive which offers. References Audience and Offer objects; it does not restate their definitions."
+    },
+    "channel_strategy": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["channel"],
+        "properties": {
+          "channel": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The channel or touchpoint (e.g. 'Mobile app', 'Paid social', 'Paid search', 'LinkedIn', 'OOH', 'Events')."
+          },
+          "role": {
+            "type": "string",
+            "description": "Optional. What this channel does in the campaign (e.g. 'drive offer redemption', 'build awareness', 'capture intent demand')."
+          },
+          "priority": {
+            "enum": ["primary", "secondary", "supporting"],
+            "description": "Optional. Channel priority within the mix."
+          }
+        }
+      },
+      "minItems": 1,
+      "description": "The 4.4 channel and touchpoint strategy: the channels the campaign runs on and their roles/priority. Channel sequencing along the customer path lives in the Journey Strategy, not here."
+    },
+    "personalization_strategy": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional. The 4.6 personalization approach — the rules/dimensions used to tailor the campaign by audience, behavior, or context. The executable rule configuration lives in the Personalization Configuration object."
+    },
+    "linked_marketing_strategy": {
+      "type": "string",
+      "pattern": "^MKS-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Optional. Id of the Marketing Strategy Object this campaign executes. Use 'MKS-PLACEHOLDER-<slug>' until it exists."
+    },
+    "linked_journey_strategy": {
+      "type": "string",
+      "pattern": "^JNS-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Optional. Id of the Journey Strategy Object this campaign uses for the customer path and sequencing. Use 'JNS-PLACEHOLDER-<slug>' until it exists."
+    },
+    "linked_audiences": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^AUD-(PLACEHOLDER-)?[a-z0-9-]+$"
+      },
+      "description": "Optional. Ids of the Audience Objects this campaign activates. Use 'AUD-PLACEHOLDER-<slug>' for an unbuilt audience."
+    },
+    "linked_offers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^OFR-(PLACEHOLDER-)?[a-z0-9-]+$"
+      },
+      "description": "Optional. Ids of the Offer Objects this campaign activates. Use 'OFR-PLACEHOLDER-<slug>' for an unbuilt offer."
+    },
+    "linked_business_context": {
+      "type": "string",
+      "pattern": "^BIZ-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Optional. Id of the owning Business Context Object. Use 'BIZ-PLACEHOLDER-<slug>' until it exists."
+    },
+    "linked_measurement_framework": {
+      "type": "string",
+      "pattern": "^MEF-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Optional. Id of the campaign-scope Measurement Framework Object (campaign measurement is folded into Measurement Framework via a scope facet). Use 'MEF-PLACEHOLDER-<slug>' until it exists."
+    },
+    "source": {
+      "type": "string",
+      "description": "Optional. One line: what source(s) this was built from and approximate date."
+    }
+  }
+}

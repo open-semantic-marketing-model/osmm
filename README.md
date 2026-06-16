@@ -107,15 +107,15 @@ drift. Schemas are added per object as their builder ships; see
 ## Status
 
 Early and active — **draft v0.1**. The standard is built iteratively: ship a
-concrete, validated artifact, then refine. **8 of the 35 object builders have
+concrete, validated artifact, then refine. **11 of the 27 object builders have
 shipped** (plus one artifact composer, `osmm-creative-brief-composer`). The
 durable **Context foundation is complete** — all six Context builders are live
 (`osmm-business-context-builder`, `osmm-brand-context-builder`,
 `osmm-product-context-builder`, `osmm-persona-builder`, `osmm-audience-builder`,
-`osmm-keyword-builder`) — alongside the two Phase 1 Work Products,
-`osmm-marketing-strategy-builder` and `osmm-measurement-framework-builder`. Work
-is now moving into the Strategy layer (Phase 1–2 Work Products). The live build
-board is [`roadmap/BACKLOG.md`](roadmap/BACKLOG.md). Schemas evolve under strict
+`osmm-keyword-builder`) — alongside the Phase 1 Work Products (Marketing Strategy,
+Measurement Framework) and the Phase 3–4 activation layer (Offer, Campaign Strategy,
+Journey Strategy). Work continues through the activation and creative phases. The live
+build board is [`roadmap/BACKLOG.md`](roadmap/BACKLOG.md). Schemas evolve under strict
 semantic versioning with formal deprecation, never silent breaks; the policy is
 in [`GOVERNANCE.md`](GOVERNANCE.md).
 
