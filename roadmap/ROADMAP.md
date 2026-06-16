@@ -1,6 +1,6 @@
 # OSMM™ Roadmap
 
-The sequenced plan for building OSMM out from its current state (11 of 27 object
+The sequenced plan for building OSMM out from its current state (12 of 26 object
 builders, 1 composer) to a complete, connected model. For live status see
 [`BACKLOG.md`](BACKLOG.md).
 
@@ -59,34 +59,32 @@ v0.5 right-sizing, so only Keyword Strategy (B09) remains — and it must clear 
 "earns its own object" bar at build time.
 **Composers unlocked:** Strategy Brief (C03), Audience Strategy (C05).
 
-### Milestone C — Offer & Activation (Phase 3–4)
-**Objects:** ~~Offer (B11)~~ ✅, ~~Campaign Strategy (B13)~~ ✅, ~~Journey Strategy (B14)~~ ✅,
-Experiment Strategy (B36, cross-phase).
+### Milestone C — Offer & Activation (Phase 3–4) ✅ shipped
+**Objects:** ~~Offer (B11)~~ ✅, ~~Campaign Strategy (B13)~~ ✅, ~~Journey (B14)~~ ✅.
 **Why:** turns strategy into activatable plans. **Offer, Campaign Strategy, and Journey
-Strategy shipped** — realizing the Phase 3–4 activation edges (Campaign → Marketing/
-Journey/Audience/Offer; Offer → Product Context). Only **Experiment Strategy (B36)**
-remains, and should clear the "earns its own object" bar at build time. *Right-sized:
-Offer Strategy folded into Offer; Offer/Creative Test Strategy → Experiment Strategy;
-Campaign Measurement → Measurement Framework.*
+shipped** — realizing the Phase 3–4 activation edges (Campaign → Marketing/Journey/Audience/
+Offer; Offer → Product Context). *Right-sized: Offer Strategy folded into Offer; Campaign
+Measurement → Measurement Framework; Journey Strategy + Journey Configuration → the single
+Journey Object (v0.6).* Experiment Strategy (B36) is **parked** (deprioritized).
 **Composers unlocked:** Campaign Brief (C02), Journey Map (C06).
 
 ### Milestone D — Content & Creative (Phase 5)
-**Objects:** Messaging Framework (B16), Creative Strategy (B17), Content Strategy
+**Objects:** ~~Messaging Framework (B16)~~ ✅, Creative Strategy (B17), Content Strategy
 (B18), Experience Design (B19).
 **Why:** completes the inputs to the Creative Brief composer's *optional* tier,
-making that artifact fully-sourced rather than synthesized-and-flagged. *Right-sized:
-Creative Test Strategy folded into Experiment Strategy; Content Strategy / Experience
-Design may fold into Creative Strategy at build time.*
+making that artifact fully-sourced rather than synthesized-and-flagged. **Messaging
+Framework shipped** (persona-differentiated message architecture). *Right-sized: Content
+Strategy / Experience Design may fold into Creative Strategy at build time.*
 
 ### Milestone E — Build & Deliver (Phase 6)
-**Objects:** Experience Specification (B21), Experience Component (B22), Journey
-Configuration (B23), Personalization Configuration (B24), Experience Delivery
-(B25), Experience Validation (B26), Campaign Deployment (B27).
+**Objects:** Experience Specification (B21), Experience Component (B22), Personalization
+Configuration (B24), Experience Delivery (B25), Experience Validation (B26), Campaign
+Deployment (B27).
 **Why:** the operational layer — specs, components, configuration, delivery, QA,
-deployment. *Right-sized: Experience Performance folded into Performance Measurement
-(`dimension: experience`). Experience Validation may become a state on Delivery, and
-Personalization Configuration may merge with Journey Configuration — decided at build
-time.*
+deployment. *Right-sized: Journey Configuration merged into the Journey Object (v0.6, its
+`delivery_logic`); Experience Performance folded into Performance Measurement
+(`dimension: experience`); Experience Validation may become a state on Delivery — decided
+at build time.*
 
 ### Milestone F — Measure, Learn & Optimize (Phase 7)
 **Objects:** Performance Measurement (B29), Customer Insight (B30), Optimization
@@ -114,13 +112,13 @@ Measurement via a `dimension` facet.*
 
 | Milestone | Builders | Cumulative builders done |
 |-----------|---------:|-------------------------:|
-| (shipped) | 11 | 11 / 27 |
-| A ✅ complete (Brand, Audience, Keyword, Product Context all done) | 0 | 11 / 27 |
-| B (Keyword Strategy; Targeting folded into Marketing Strategy) | 1 | 12 / 27 |
-| C (Offer + Campaign + Journey shipped; Experiment Strategy remains) | 1 | 13 / 27 |
-| D | 4 | 17 / 27 |
-| E | 7 | 24 / 27 |
-| F | 3 | 27 / 27 |
+| (shipped) | 12 | 12 / 26 |
+| A ✅ complete · B parked (Keyword Strategy) | 0 | 12 / 26 |
+| C ✅ shipped (Experiment Strategy parked) | 0 | 12 / 26 |
+| D (Messaging Framework shipped; 3 remain) | 3 | 15 / 26 |
+| E | 6 | 21 / 26 |
+| F | 3 | 24 / 26 |
+| Parked (Keyword Strategy, Experiment Strategy) | 2 | 26 / 26 |
 
 Composers and infrastructure are additive on top of the builder count.
 

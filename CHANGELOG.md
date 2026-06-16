@@ -11,7 +11,26 @@ governance). The current schema version is **0.1.0**.
 
 ## [Unreleased]
 
+### Added
+- **`osmm-messaging-framework-builder`** (B16, Phase 5) — the Messaging Framework Object:
+  the message architecture — `primary_message`, `message_pillars[]`, framework `proof_points`,
+  and **`persona_variants[]`** (message variants differentiated **by Persona**, embodying the
+  Phase 5 rule). Sources from Product Context `product_messaging`; carries no audience-membership
+  logic. Ratifies the `MSF-` prefix; realizes Messaging Framework → Persona / Product Context /
+  Brand Context edges. Model now **12 of 26 builders shipped**.
+
 ### Changed
+- **Merged Journey Strategy + Journey Configuration → a single `journey` object** (v0.6;
+  27 → 26 objects). The designed path (stages, triggers, cadence) and its operational build are
+  two views of one thing; the operational specifics live in the Journey Object's optional
+  `delivery_logic` (resolving sub-process 6.3). Renamed the builder `osmm-journey-builder`
+  (was `osmm-journey-strategy-builder`), object_type `journey`, prefix `JNY-` (was `JNS-`);
+  Campaign Strategy now references it via `linked_journey`. Reconciled across TAXONOMY,
+  CONVENTION (registry + v0.6 note), RELATIONSHIPS (prefix, edges, appendix), the graph
+  (`GRAPH.md`/SVG regenerated — 12 built, 26 nodes), README, and the tracker.
+- **Deprioritized (parked) the Keyword Strategy (B09) and Experiment Strategy (B36) builders** —
+  a sequencing decision; both remain in the model, moved to a "Parked / deprioritized" section
+  of the backlog.
 - **Clarified: messaging is differentiated by Persona, delivered by Audience.** Message
   angle/value framing/variations respond to Persona attributes (`motivations`,
   `decision_criteria`, `messaging_preferences`), so the Messaging Framework will vary its

@@ -63,7 +63,7 @@ Rules of thumb:
   or its product-level messaging — those live in the Product Context the Offer points to via
   `linked_product`. The Offer carries only the value exchange and its mechanics.
 - **The Offer is not the campaign.** *Which* audiences get *which* offer, on *which* channels, in
-  *what* sequence is Campaign/Journey Strategy (Phase 4). The Offer defines the deal itself and the
+  *what* sequence is Campaign Strategy / Journey (Phase 4). The Offer defines the deal itself and the
   behavior it's meant to drive; the campaign decides how to put it in market.
 - **Positioning here frames the deal, not the product.** `positioning` is how the *offer* is sold
   ("a meal for the price of a snack"); product positioning and messaging are Product Context's job.
@@ -211,7 +211,7 @@ Keep it stable: once assigned, Campaign and Journey objects reference it. On rev
 6. **Positioning frames the offer, not the product.** Keep `positioning` about the deal's angle. If
    you find yourself writing product benefits, that belongs in the Product Context.
 7. **Don't smuggle in the campaign.** Audience-to-offer mapping, channel plans, and sequencing are
-   Campaign/Journey Strategy. The Offer may *link* the audiences it's for, but it doesn't decide how
+   Campaign Strategy / Journey. The Offer may *link* the audiences it's for, but it doesn't decide how
    the campaign deploys it.
 8. **Keep arrays signal-bearing.** A few real terms/eligibility rules beat a padded list. Resist
    restating the obvious.

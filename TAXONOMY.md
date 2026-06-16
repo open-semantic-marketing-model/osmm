@@ -108,13 +108,13 @@ flowchart LR
 | L2 sub-process | Key decisions | Resolves to object | Human-readable artifact |
 |---|---|---|---|
 | 4.1 Define Campaign Objective & Scope | Campaign objective, success criteria, scope | Campaign Strategy Object | Campaign Charter |
-| 4.2 Define Journey Strategy | Journey goals, customer path | Journey Strategy Object | Journey Map |
+| 4.2 Define Journey Strategy | Journey goals, customer path | Journey Object | Journey Map |
 | 4.3 Define Audience-to-Offer Mapping | Audience-offer mapping | Campaign Strategy Object | Audience Strategy Matrix |
 | 4.4 Define Channel & Touchpoint Strategy | Channel prioritization | Campaign Strategy Object | Channel Plan |
-| 4.5 Define Triggering & Sequencing Logic | Trigger logic, cadence | Journey Strategy Object | Journey Flow Diagram |
+| 4.5 Define Triggering & Sequencing Logic | Trigger logic, cadence | Journey Object | Journey Flow Diagram |
 | 4.6 Define Personalization Strategy | Personalization rules | Campaign Strategy Object | Personalization Framework |
 | 4.7 Define Measurement & Test Strategy | Test priorities, KPI logic | Measurement Framework Object + Experiment Strategy Object | Measurement Plan |
-| 4.8 Confirm Campaign & Journey Definition | Final campaign direction | Campaign Strategy Object + Journey Strategy Object | Campaign Brief |
+| 4.8 Confirm Campaign & Journey Definition | Final campaign direction | Campaign Strategy Object + Journey Object | Campaign Brief |
 
 ## Phase 5. Define Content & Creative
 
@@ -155,7 +155,7 @@ flowchart LR
 |---|---|---|---|
 | 6.1 Define Experience Specifications | Experience scope, dependencies | Experience Specification Object | Experience Blueprint |
 | 6.2 Build Experience Components | Component selection | Experience Component Object | Wireframes, Designs, Copy Decks (headline / hero / CTA / offer card / trust block / content block / landing page wireframe / image treatment / copy variations) |
-| 6.3 Configure Journey & Delivery Logic | Trigger rules, sequencing | Journey Configuration Object | Journey Flow Diagram |
+| 6.3 Configure Journey & Delivery Logic | Trigger rules, sequencing | Journey Object (`delivery_logic`) | Journey Flow Diagram |
 | 6.4 Configure Personalization Rules | Personalization logic | Personalization Configuration Object | Personalization Matrix |
 | 6.5 Build Channel-Specific Experiences | Channel adaptations | Experience Delivery Object | Winback Email #1, Landing Page Variant B, Paid Social Ad Set, Triggered SMS, Homepage Hero Experience |
 | 6.6 Quality Assurance & Compliance Validation | Release readiness | Experience Validation Object | QA Checklist |
@@ -197,14 +197,13 @@ Every object mapped to the sub-processes that write it and its builder skill (pe
 | Offer Object | 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.8 | `osmm-offer-builder` |
 | Experiment Strategy Object | 3.7, 4.7, 5.7 | `osmm-experiment-strategy-builder` |
 | Campaign Strategy Object | 4.1, 4.3, 4.4, 4.6, 4.8 | `osmm-campaign-strategy-builder` |
-| Journey Strategy Object | 4.2, 4.5, 4.8 | `osmm-journey-strategy-builder` |
+| Journey Object | 4.2, 4.5, 4.8, 6.3 | `osmm-journey-builder` |
 | Messaging Framework Object | 5.1, 5.4, 5.8 | `osmm-messaging-framework-builder` |
 | Creative Strategy Object | 5.2, 5.6, 5.8 | `osmm-creative-strategy-builder` |
 | Content Strategy Object | 5.3 | `osmm-content-strategy-builder` |
 | Experience Design Object | 5.5 | `osmm-experience-design-builder` |
 | Experience Specification Object | 6.1 | `osmm-experience-specification-builder` |
 | Experience Component Object | 6.2 | `osmm-experience-component-builder` |
-| Journey Configuration Object | 6.3 | `osmm-journey-configuration-builder` |
 | Personalization Configuration Object | 6.4 | `osmm-personalization-configuration-builder` |
 | Experience Delivery Object | 6.5 | `osmm-experience-delivery-builder` |
 | Experience Validation Object | 6.6 | `osmm-experience-validation-builder` |
@@ -213,9 +212,13 @@ Every object mapped to the sub-processes that write it and its builder skill (pe
 | Customer Insight Object | 7.2 | `osmm-customer-insight-builder` |
 | Optimization Recommendation Object | 7.6 | `osmm-optimization-recommendation-builder` |
 
-> **v0.5 right-sizing — the model holds 27 objects.** Five consolidations removed
-> eight speculative objects (none built), applying the rule *prefer a facet field
-> over a near-duplicate object; a new object must do work the others can't*:
+> **Right-sizing — the model holds 26 objects.** Consolidations applying the rule
+> *prefer a facet field over a near-duplicate object; a new object must do work the
+> others can't*. The v0.5 pass removed eight speculative (unbuilt) objects; a v0.6
+> pass then merged **Journey Strategy + Journey Configuration → a single Journey
+> Object** (the designed path and its delivery logic are two views of one thing; the
+> operational specifics live in the Journey Object's optional `delivery_logic`,
+> resolving 6.3):
 >
 > - **Targeting Strategy → Marketing Strategy.** Audience prioritization (2.1, 2.8,
 >   2.9) is a section of the strategy (`priority_audiences`, `growth_priorities`),

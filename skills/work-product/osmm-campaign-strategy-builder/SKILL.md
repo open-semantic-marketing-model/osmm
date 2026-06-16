@@ -10,7 +10,7 @@ description: >-
   approach: "build a campaign strategy object," "structure this campaign brief," "objectify our
   activation plan," "map audiences to offers," "build a channel plan," or "capture our
   personalization strategy." This is the activation plan that turns strategy into a coordinated
-  campaign. It is NOT the customer path/sequencing (that's Journey Strategy) and it does NOT
+  campaign. It is NOT the customer path/sequencing (that's Journey) and it does NOT
   restate audiences or offers — it references them.
 object: Campaign Strategy Object
 object_type: campaign_strategy
@@ -30,13 +30,13 @@ A Campaign Strategy Object is the **activation plan** — the typed record of th
 marketing strategy into a coordinated campaign: the campaign's objective and scope, *which audiences
 get which offers* (the audience-to-offer mapping), the channel and touchpoint strategy, and the
 personalization approach. It is a Work Product that references the strategic spine it executes (the
-**Marketing Strategy**), the customer path it uses (the **Journey Strategy**), and the
+**Marketing Strategy**), the customer path it uses (the **Journey**), and the
 **Audiences** and **Offers** it activates. Making it explicit means every downstream creative,
 content, and delivery decision is anchored to the same activation plan instead of re-deriving it.
 
 This is the lean v0.1 builder. It captures the activation decisions a marketing workflow needs to
 coordinate a campaign, and nothing more. It deliberately does **not** model the customer path,
-triggering, or sequencing — that is the **Journey Strategy Object** (sub-processes 4.2/4.5) — and
+triggering, or sequencing — that is the **Journey Object** (sub-processes 4.2/4.5) — and
 it does **not** restate audience criteria or offer mechanics, which live in their own objects and
 are referenced here.
 
@@ -54,15 +54,15 @@ the whole point of giving the activation plan its own object:
 |--------|---------|-------------------|---------------|
 | **Marketing Strategy** | What are we trying to achieve this *horizon*, and how do we position/compete? | "Wendy's 2026 Marketing Strategy" — grow breakfast, digital, loyalty | "IBM 2026 Marketing Strategy" — establish watsonx as enterprise AI of record |
 | **Campaign Strategy** (this) | How does *this campaign* activate — objective, who gets which offer, on what channels, personalized how? | "Biggie Bag Value Campaign" — value-seekers get the Biggie Bag via app/paid social/OOH | "watsonx Enterprise AI Launch" — enterprise IT gets a trial/demo via paid search/LinkedIn/events |
-| **Journey Strategy** | What is the *customer path* — the sequence, triggers, and cadence across touchpoints? | The value-seeker's path from social impression → app open → redemption | The buyer's path from search → content → demo request → sales |
+| **Journey** | What is the *customer path* — the sequence, triggers, and cadence across touchpoints? | The value-seeker's path from social impression → app open → redemption | The buyer's path from search → content → demo request → sales |
 | **Offer** | What's the *value exchange / CTA*? | "$5 Biggie Bag" | "Start a free watsonx trial" / "Book a demo" |
 
 Rules of thumb:
 
-- **Campaign Strategy is the activation plan; Journey Strategy is the path.** The *what gets
+- **Campaign Strategy is the activation plan; Journey is the path.** The *what gets
   activated, for whom, on which channels* lives here. The *order, triggers, and cadence* a customer
-  moves through lives in the Journey Strategy. A campaign references the journey it uses
-  (`linked_journey_strategy`); it does not encode the sequence in `channel_strategy`.
+  moves through lives in the Journey. A campaign references the journey it uses
+  (`linked_journey`); it does not encode the sequence in `channel_strategy`.
 - **Reference audiences and offers; never restate them.** `audience_offer_mapping` holds `AUD-` and
   `OFR-` ids. The audience's criteria live in the Audience Object and the offer's mechanics in the
   Offer Object — the campaign only says *which audience gets which offer, and why*.
@@ -109,7 +109,7 @@ Emit a single JSON object with this exact shape. Field order should match.
   "personalization_strategy": [],           // OPTIONAL — the 4.6 personalization rules/approach
 
   "linked_marketing_strategy": "",          // OPTIONAL — MKS-<slug> of the strategy this executes (placeholder ok)
-  "linked_journey_strategy": "",            // OPTIONAL — JNS-<slug> of the journey it uses (placeholder ok)
+  "linked_journey": "",            // OPTIONAL — JNY-<slug> of the journey it uses (placeholder ok)
   "linked_audiences": [],                   // OPTIONAL — AUD-<slug> ids this campaign activates
   "linked_offers": [],                      // OPTIONAL — OFR-<slug> ids this campaign activates
   "linked_business_context": "",            // OPTIONAL — BIZ-<slug> of the owning Business Context (placeholder ok)
@@ -136,7 +136,7 @@ Emit a single JSON object with this exact shape. Field order should match.
 | `channel_strategy` | object[] | yes | The 4.4 strategy. Each `{ channel, role, priority }`. 1+ items. `priority` ∈ `primary` \| `secondary` \| `supporting`. Channels/roles, not sequence. |
 | `personalization_strategy` | string[] | no | The 4.6 approach — the rules/dimensions used to tailor the campaign. Executable rule config lives in Personalization Configuration. |
 | `linked_marketing_strategy` | string | no | `MKS-<slug>` of the strategy this executes. Use `MKS-PLACEHOLDER-<slug>` until built. |
-| `linked_journey_strategy` | string | no | `JNS-<slug>` of the journey this campaign uses. Use `JNS-PLACEHOLDER-<slug>` until built. |
+| `linked_journey` | string | no | `JNY-<slug>` of the journey this campaign uses. Use `JNY-PLACEHOLDER-<slug>` until built. |
 | `linked_audiences` | string[] | no | `AUD-<slug>` ids the campaign activates. `AUD-PLACEHOLDER-<slug>` ok. |
 | `linked_offers` | string[] | no | `OFR-<slug>` ids the campaign activates. `OFR-PLACEHOLDER-<slug>` ok. |
 | `linked_business_context` | string | no | `BIZ-<slug>` of the owning Business Context. `BIZ-PLACEHOLDER-<slug>` ok. |
@@ -151,7 +151,7 @@ entity plus the campaign**, so multiple campaigns for the same business stay dis
 - Wendy's Biggie Bag value campaign → `CMS-wendys-biggie-bag` (pairs with `BIZ-wendys`)
 - IBM watsonx enterprise AI launch → `CMS-ibm-watsonx-launch` (pairs with `BIZ-ibm`)
 
-Keep it stable once assigned: downstream Journey Configuration, Experience Delivery, and Campaign
+Keep it stable once assigned: downstream Journey, Experience Delivery, and Campaign
 Deployment objects reference it. A **materially different campaign is a new instance** (a new id),
 not an edit of the old one.
 
@@ -167,9 +167,9 @@ not an edit of the old one.
 3. **Reference audiences and offers; don't restate them.** `audience_offer_mapping` is the heart of
    the object — it holds `AUD-` and `OFR-` ids plus the rationale for the pairing. The audience's
    criteria and the offer's mechanics live in their own objects.
-4. **The journey/sequencing lives in Journey Strategy.** Channels and their roles/priority belong
+4. **The journey/sequencing lives in Journey.** Channels and their roles/priority belong
    here; the *order, triggers, and cadence* a customer moves through do not — link the Journey
-   Strategy via `linked_journey_strategy` rather than encoding the path in `channel_strategy`.
+   Strategy via `linked_journey` rather than encoding the path in `channel_strategy`.
 5. **Personalization here is the approach, not the rule engine.** `personalization_strategy`
    captures the dimensions and rules-of-thumb for tailoring; the executable rules live downstream in
    the Personalization Configuration object.
@@ -186,7 +186,7 @@ not an edit of the old one.
   uppercase object name, underscore join, lowercase entity slug. Append an instance slug only if
   one entity has multiple campaign strategies. See `CONVENTION.md` → "Instance file naming". The
   `campaign_strategy_id` (`CMS-<slug>`) remains the id *inside* the object; it is not the filename.
-- Set reference fields to the real ids if they exist (`AUD-`, `OFR-`, `MKS-`, `JNS-`, `BIZ-`,
+- Set reference fields to the real ids if they exist (`AUD-`, `OFR-`, `MKS-`, `JNY-`, `BIZ-`,
   `MEF-`); otherwise use a `…-PLACEHOLDER-<slug>` id and tell the user to resolve it once that
   object is built.
 - Validate it parses before returning it.
@@ -199,7 +199,7 @@ not an edit of the old one.
 > Build an OSMM Campaign Strategy Object for [Brand]'s [campaign name]. Sources: [campaign brief /
 > activation plan / channel plan / media plan]. Capture the objective and scope, the
 > audience-to-offer mapping, the channel/touchpoint strategy, and the personalization approach. Link
-> the Marketing Strategy it executes, the Journey Strategy it uses, and the Audiences and Offers it
+> the Marketing Strategy it executes, the Journey it uses, and the Audiences and Offers it
 > activates.
 
 **From public signals (no internal brief):**
@@ -272,12 +272,12 @@ app, paid social, and OOH; executes the Wendy's 2026 Marketing Strategy.
     "Prioritize loyalty enrollment prompts for first-time app redeemers"
   ],
   "linked_marketing_strategy": "MKS-wendys-2026",
-  "linked_journey_strategy": "JNS-PLACEHOLDER-wendys-value-redemption",
+  "linked_journey": "JNY-PLACEHOLDER-wendys-value-redemption",
   "linked_audiences": ["AUD-wendys-value-seekers"],
   "linked_offers": ["OFR-PLACEHOLDER-wendys-biggie-bag"],
   "linked_business_context": "BIZ-wendys",
   "linked_measurement_framework": "MEF-PLACEHOLDER-wendys-biggie-bag",
-  "source": "Built from public information: wendys.com, the Wendy's app, and public reporting on the brand's value-menu marketing (2024). Audience-offer mapping and channel mix synthesized from public signals; the Offer and Journey Strategy are placeholders until those objects are built."
+  "source": "Built from public information: wendys.com, the Wendy's app, and public reporting on the brand's value-menu marketing (2024). Audience-offer mapping and channel mix synthesized from public signals; the Offer and Journey are placeholders until those objects are built."
 }
 ```
 
@@ -335,11 +335,11 @@ trial/demo offer across paid search, LinkedIn, and events; executes the IBM 2026
     "Account-based prioritization for named enterprise target accounts"
   ],
   "linked_marketing_strategy": "MKS-ibm-2026",
-  "linked_journey_strategy": "JNS-PLACEHOLDER-ibm-enterprise-evaluation",
+  "linked_journey": "JNY-PLACEHOLDER-ibm-enterprise-evaluation",
   "linked_audiences": ["AUD-ibm-enterprise-it"],
   "linked_offers": ["OFR-PLACEHOLDER-ibm-watsonx-trial"],
   "linked_business_context": "BIZ-ibm",
   "linked_measurement_framework": "MEF-PLACEHOLDER-ibm-watsonx-launch",
-  "source": "Built from public information: ibm.com/watsonx, IBM earnings commentary, and public marketing (2024). Audience-offer mapping and channel mix synthesized from public strategic priorities; the Offer and Journey Strategy are placeholders until those objects are built."
+  "source": "Built from public information: ibm.com/watsonx, IBM earnings commentary, and public marketing (2024). Audience-offer mapping and channel mix synthesized from public strategic priorities; the Offer and Journey are placeholders until those objects are built."
 }
 ```

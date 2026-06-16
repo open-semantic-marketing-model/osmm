@@ -29,8 +29,8 @@ OBJ = {
  'offer':('Offer','Work Product',True),
  'experiment_strategy':('Experiment Strategy','Work Product',False),
  'campaign_strategy':('Campaign Strategy','Work Product',True),
- 'journey_strategy':('Journey Strategy','Work Product',True),
- 'messaging_framework':('Messaging Framework','Work Product',False),
+ 'journey':('Journey','Work Product',True),
+ 'messaging_framework':('Messaging Framework','Work Product',True),
  'creative_strategy':('Creative Strategy','Work Product',False),
  'content_strategy':('Content Strategy','Work Product',False),
  'experience_design':('Experience Design','Work Product',False),
@@ -39,7 +39,6 @@ OBJ = {
  'experience_delivery':('Experience Delivery','Work Product',False),
  'experience_validation':('Experience Validation','Work Product',False),
  'campaign_deployment':('Campaign Deployment','Work Product',False),
- 'journey_configuration':('Journey Configuration','Configuration',False),
  'personalization_configuration':('Personalization Configuration','Configuration',False),
  'performance_measurement':('Performance Measurement','Measurement',False),
  'customer_insight':('Customer Insight','Learning',False),
@@ -74,30 +73,32 @@ REALIZED = [
  ('offer','business_context',False),
  # Campaign Strategy (B13)
  ('campaign_strategy','marketing_strategy',False),
- ('campaign_strategy','journey_strategy',False),
+ ('campaign_strategy','journey',False),
  ('campaign_strategy','audience',False),
  ('campaign_strategy','offer',False),
  ('campaign_strategy','business_context',False),
  ('campaign_strategy','measurement_framework',False),
  # Journey Strategy (B14)
- ('journey_strategy','campaign_strategy',False),
- ('journey_strategy','audience',False),
- ('journey_strategy','persona',False),
- ('journey_strategy','business_context',False),
+ ('journey','campaign_strategy',False),
+ ('journey','audience',False),
+ ('journey','persona',False),
+ ('journey','business_context',False),
+ # Messaging Framework (B16)
+ ('messaging_framework','persona',False),
+ ('messaging_framework','product_context',False),
+ ('messaging_framework','brand_context',False),
 ]
 # Envisioned edges — illustrative, not yet defined in a builder.
 ENVISIONED = [
  ('keyword_strategy','keyword'),('keyword_strategy','audience'),
  ('experiment_strategy','offer'),('experiment_strategy','campaign_strategy'),('experiment_strategy','creative_strategy'),
- ('messaging_framework','product_context'),('messaging_framework','persona'),('messaging_framework','brand_context'),
  ('creative_strategy','messaging_framework'),('creative_strategy','brand_context'),
  ('content_strategy','creative_strategy'),('content_strategy','keyword'),
  ('experience_design','creative_strategy'),
  ('experience_specification','experience_design'),('experience_specification','campaign_strategy'),
  ('experience_component','experience_specification'),
- ('journey_configuration','journey_strategy'),
  ('personalization_configuration','campaign_strategy'),('personalization_configuration','audience'),
- ('experience_delivery','experience_component'),('experience_delivery','journey_configuration'),
+ ('experience_delivery','experience_component'),('experience_delivery','journey'),
  ('experience_validation','experience_delivery'),
  ('campaign_deployment','experience_delivery'),
  ('performance_measurement','campaign_strategy'),('performance_measurement','experience_delivery'),('performance_measurement','measurement_framework'),
@@ -127,7 +128,7 @@ def build_dot():
          '  node [shape=box, fontname="Helvetica", fontsize=13, margin="0.20,0.12", height=0.45];',
          '  edge [arrowsize=0.8];',
          '  labelloc="t"; fontsize=26; fontname="Helvetica-Bold";',
-         '  label="OSMM™ Object Graph — 27 objects across 5 categories\\n'
+         '  label="OSMM™ Object Graph — 26 objects across 5 categories\\n'
          f'solid node = builder shipped ({BUILT})   ·   dashed node = backlog ({BACKLOG})   ·   '
          'solid edge = realized reference   ·   dashed edge = envisioned   ·   mint edge = learning loop";']
     for i, cat in enumerate(CAT_ORDER):
