@@ -11,6 +11,16 @@ governance). The current schema version is **0.1.0**.
 
 ## [Unreleased]
 
+### Changed
+- **Clarified: messaging is differentiated by Persona, delivered by Audience.** Message
+  angle/value framing/variations respond to Persona attributes (`motivations`,
+  `decision_criteria`, `messaging_preferences`), so the Messaging Framework will vary its
+  messages **by Persona** (`linked_personas`, sourced from Product Context
+  `product_messaging`); *which* segment receives *which* variant is a delivery decision that
+  targets the **Audience** via the Campaign Strategy. Documented in `TAXONOMY.md` (Phase 5
+  note) and the Audience builder's "Persona vs. Audience" section; the Audience Object carries
+  no message-variant logic. Guides the not-yet-built Messaging Framework (B16).
+
 ### Added
 - **Phase 3–4 activation layer — three Work Product builders** (`status: draft`),
   taking the model to **11 of 27 builders shipped**:

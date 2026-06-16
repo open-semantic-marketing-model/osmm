@@ -133,6 +133,18 @@ flowchart LR
 | 5.7 Define Content & Creative Testing Strategy | Test priorities | Experiment Strategy Object | Creative Experiment Plan |
 | 5.8 Confirm Content & Creative Direction | Final creative direction | Creative Strategy Object + Messaging Framework Object | Creative Brief |
 
+> **Messaging is differentiated by Persona, delivered by Audience.** The message —
+> its angle, value framing, and variations (5.1, 5.4) — is tuned to what *moves* a
+> reader: `motivations`, `pain_points`, `decision_criteria`, `messaging_preferences`,
+> which are **Persona** attributes. So the **Messaging Framework Object** differentiates
+> variants **by Persona** (`linked_personas`) and sources its raw material from Product
+> Context's `product_messaging`. *Which* segment receives *which* variant is a
+> **delivery** decision — that targets the **Audience** (a Persona isn't addressable),
+> and lives in the **Campaign Strategy** (personalization + `audience_offer_mapping`)
+> via the Persona ↔ Audience link. The Messaging Framework therefore carries no
+> audience-membership logic — that would duplicate the Audience Object. (This mirrors
+> the model-wide rule: a Persona *describes*; an Audience *selects*.)
+
 ## Phase 6. Build & Deliver Experiences
 
 **Theme** — Bring the experience to life  

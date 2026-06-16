@@ -40,6 +40,8 @@ This is the central boundary in the Context layer (it mirrors the rule stated in
 
 Same subject, different jobs. A demographic fact lives in the Persona as colour ("a busy parent in their 30s") and in the Audience as a **rule** ("age 30–45 AND has children in household"). A Persona *brings an Audience to life*; link them with `linked_personas` (and the Persona's `linked_audiences`).
 
+**Worked consequence — messaging.** This is why **message differentiation keys to the Persona, not the Audience.** The angle and value framing of a message respond to *motivations and decision criteria* (Persona attributes), so the Messaging Framework varies its messages **by Persona**. *Delivery* — which segment actually receives which variant — targets the **Audience** (a Persona isn't addressable), handled in the Campaign Strategy. Don't put message variants on the Audience Object; that conflates "who's in the set" with "what argument moves them."
+
 **Not here:** *prioritizing* audiences against each other is part of the **Marketing Strategy Object** (`priority_audiences` / `growth_priorities`; sub-processes 2.1, 2.8, 2.9). The Audience Object defines a segment; it does not rank it.
 
 ## The output schema
