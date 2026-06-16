@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/open-semantic-marketing-model/osmm/main/schemas/campaign_strategy.schema.json",
   "title": "OSMM Campaign Strategy Object",
-  "description": "The activation plan for a campaign: its objective and scope, which audiences receive which offers (audience-to-offer mapping), the channel and touchpoint strategy, and the personalization approach. It references the Marketing Strategy it executes, the Journey Strategy it uses, and the Audiences and Offers it activates. Canonical schema for object_type 'campaign_strategy'. The osmm-campaign-strategy-builder skill references this file; it is the single source of truth for the object's shape.",
+  "description": "The activation plan for a campaign: its objective and scope, which audiences receive which offers (audience-to-offer mapping), the channel and touchpoint strategy, and the personalization approach. It references the Marketing Strategy it executes, the Journey it uses, and the Audiences and Offers it activates. Canonical schema for object_type 'campaign_strategy'. The osmm-campaign-strategy-builder skill references this file; it is the single source of truth for the object's shape.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -131,7 +131,7 @@
         }
       },
       "minItems": 1,
-      "description": "The 4.4 channel and touchpoint strategy: the channels the campaign runs on and their roles/priority. Channel sequencing along the customer path lives in the Journey Strategy, not here."
+      "description": "The 4.4 channel and touchpoint strategy: the channels the campaign runs on and their roles/priority. Channel sequencing along the customer path lives in the Journey Object, not here."
     },
     "personalization_strategy": {
       "type": "array",
@@ -143,10 +143,10 @@
       "pattern": "^MKS-(PLACEHOLDER-)?[a-z0-9-]+$",
       "description": "Optional. Id of the Marketing Strategy Object this campaign executes. Use 'MKS-PLACEHOLDER-<slug>' until it exists."
     },
-    "linked_journey_strategy": {
+    "linked_journey": {
       "type": "string",
-      "pattern": "^JNS-(PLACEHOLDER-)?[a-z0-9-]+$",
-      "description": "Optional. Id of the Journey Strategy Object this campaign uses for the customer path and sequencing. Use 'JNS-PLACEHOLDER-<slug>' until it exists."
+      "pattern": "^JNY-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Optional. Id of the Journey Object this campaign uses for the customer path, sequencing, and delivery. Use 'JNY-PLACEHOLDER-<slug>' until it exists."
     },
     "linked_audiences": {
       "type": "array",

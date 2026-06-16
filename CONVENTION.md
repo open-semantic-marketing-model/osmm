@@ -1,7 +1,7 @@
 # OSMM™ Skill Naming Convention
 
 **Open Semantic Marketing Model — builder skills**
-Status: Draft v0.5
+Status: Draft v0.6
 
 This document defines how skills that build OSMM objects are named, organized, and described. Every object in the model gets exactly one builder skill, and the name of that skill is keyed to the one thing about the object that never changes: its identity. Phase, category, and release wave can all be re-debated over the life of the standard. The object's identity cannot, so it — and only it — drives the name.
 
@@ -117,7 +117,6 @@ osmm/
 │   │   ├── osmm-marketing-strategy-builder/SKILL.md
 │   │   └── ...
 │   ├── configuration/
-│   │   ├── osmm-journey-configuration-builder/SKILL.md
 │   │   └── osmm-personalization-configuration-builder/SKILL.md
 │   ├── measurement/
 │   │   ├── osmm-experience-performance-builder/SKILL.md
@@ -173,8 +172,8 @@ Mirrors the OSMM object lifecycle so a builder's maturity tracks its object's:
 
 ## Full builder registry
 
-All 27 objects in the OSMM object model, mapped to their builder skill names.
-(Eight speculative objects were consolidated in the v0.5 right-sizing — see
+All 26 objects in the OSMM object model, mapped to their builder skill names.
+(Speculative objects were consolidated in the v0.5/v0.6 right-sizing — see
 [TAXONOMY.md](TAXONOMY.md) → the note under the object resolution index.)
 
 | Phase | Object | Category | Skill name |
@@ -191,14 +190,13 @@ All 27 objects in the OSMM object model, mapped to their builder skill names.
 | 3 | Offer | Work Product | `osmm-offer-builder` |
 | 3 | Experiment Strategy | Work Product | `osmm-experiment-strategy-builder` |
 | 4 | Campaign Strategy | Work Product | `osmm-campaign-strategy-builder` |
-| 4 | Journey Strategy | Work Product | `osmm-journey-strategy-builder` |
+| 4 | Journey | Work Product | `osmm-journey-builder` |
 | 5 | Messaging Framework | Work Product | `osmm-messaging-framework-builder` |
 | 5 | Creative Strategy | Work Product | `osmm-creative-strategy-builder` |
 | 5 | Content Strategy | Work Product | `osmm-content-strategy-builder` |
 | 5 | Experience Design | Work Product | `osmm-experience-design-builder` |
 | 6 | Experience Specification | Work Product | `osmm-experience-specification-builder` |
 | 6 | Experience Component | Work Product | `osmm-experience-component-builder` |
-| 6 | Journey Configuration | Configuration | `osmm-journey-configuration-builder` |
 | 6 | Personalization Configuration | Configuration | `osmm-personalization-configuration-builder` |
 | 6 | Experience Delivery | Work Product | `osmm-experience-delivery-builder` |
 | 6 | Experience Validation | Work Product | `osmm-experience-validation-builder` |
@@ -396,7 +394,7 @@ typed objects.
 
 Consequences at the **data-standard layer**: there is no Creative Brief object,
 no `object_type: creative_brief`, and no `osmm-creative-brief-builder` (an object
-*builder* has no object to build). The object model stands at **27 objects**;
+*builder* has no object to build). The object model stands at **26 objects**;
 nothing is added or removed by this resolution. "Creative Brief" remains valid
 only as an artifact label (e.g. in the TAXONOMY artifact column).
 
@@ -408,6 +406,19 @@ a first-draft brief a client can tailor. The composer is non-normative: it
 defines no schema and emits an artifact, not an object. So the standard stays
 pure (objects only) while the skill library still delivers the brief as an
 accelerator.
+
+---
+
+## Changes in v0.6
+
+- **Merged Journey Strategy + Journey Configuration → a single `journey` object**
+  (27 → 26). The designed path (stages, triggers, cadence) and its operational build
+  are two views of one thing; the operational specifics live in the Journey Object's
+  optional `delivery_logic` (resolving sub-process 6.3). Renamed the builder to
+  `osmm-journey-builder` (prefix `JNY-`); Campaign Strategy now references it via
+  `linked_journey`.
+- **Deprioritized** the Keyword Strategy and Experiment Strategy builders (parked in
+  the backlog) — no change to the object model, a sequencing decision.
 
 ---
 

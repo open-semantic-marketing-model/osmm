@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/open-semantic-marketing-model/osmm/main/schemas/journey.schema.json",
+  "title": "OSMM Journey Object",
+  "description": "The orchestrated customer path AND its delivery configuration: the journey goal, the stages a customer moves through, the triggers that advance them, the sequencing/cadence, and the operational delivery logic that implements it. Spans the former Journey Strategy and Journey Configuration objects. Canonical schema for object_type 'journey'. The osmm-journey-builder skill references this file; it is the single source of truth for the object's shape.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "osmm_version",
+    "journey_id",
+    "version",
+    "status",
+    "name",
+    "journey_goal",
+    "stages",
+    "triggers"
+  ],
+  "properties": {
+    "object_type": { "const": "journey", "description": "Object type discriminator. Always 'journey'." },
+    "osmm_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$", "description": "OSMM schema version this instance conforms to." },
+    "journey_id": { "type": "string", "pattern": "^JNY-[a-z0-9-]+$", "description": "Stable id: 'JNY-' + lowercase hyphen slug. Never changes once assigned." },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+$", "description": "Instance version (e.g. '1.0'). Bump on revision." },
+    "status": { "enum": ["draft", "proposed", "stable", "deprecated"], "description": "Object lifecycle state." },
+    "name": { "type": "string", "minLength": 1, "description": "Readable label, usually entity + journey." },
+    "journey_goal": { "type": "string", "minLength": 1, "description": "The single outcome the journey drives (4.2). An outcome, not an activity." },
+    "journey_type": {
+      "enum": ["acquisition", "onboarding", "nurture", "conversion", "retention", "winback", "advocacy", "lifecycle"],
+      "description": "Optional governed motion. Use 'lifecycle' for an always-on journey spanning several motions."
+    },
+    "stages": {
+      "type": "array",
+      "minItems": 1,
+      "description": "The ordered customer path (4.2). Array order is journey order.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["stage", "objective"],
+        "properties": {
+          "stage": { "type": "string", "description": "Stage name." },
+          "objective": { "type": "string", "description": "What this stage is trying to achieve." },
+          "touchpoints": { "type": "array", "items": { "type": "string" }, "description": "Interactions/messages in this stage." },
+          "entry_criteria": { "type": "string", "description": "What moves a customer into this stage." },
+          "exit_criteria": { "type": "string", "description": "What moves them out." }
+        }
+      }
+    },
+    "triggers": {
+      "type": "array",
+      "minItems": 1,
+      "description": "The triggering logic (4.5): the events that advance a customer and what each fires.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["trigger", "action"],
+        "properties": {
+          "trigger": { "type": "string", "description": "The event/condition that fires." },
+          "action": { "type": "string", "description": "The response it fires." },
+          "timing": { "type": "string", "description": "When, relative to the trigger." }
+        }
+      }
+    },
+    "sequencing_logic": { "type": "string", "description": "How stages/messages are sequenced — ordering, branching, pacing (4.5)." },
+    "cadence": { "type": "string", "description": "Frequency/pacing guidance (contact limits, suppression windows)." },
+    "channels": { "type": "array", "items": { "type": "string" }, "description": "Touchpoint channels used across the journey." },
+    "entry_criteria": { "type": "array", "items": { "type": "string" }, "description": "Who/what enters the journey overall." },
+    "exit_criteria": { "type": "array", "items": { "type": "string" }, "description": "Who/what exits — completion, disqualification, opt-out." },
+    "delivery_logic": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional operational delivery/configuration notes (the former Journey Configuration, sub-process 6.3): platform flow shape, wait steps, audience-sync mechanics, branch conditions, message bindings. Distilled, not a platform export."
+    },
+    "linked_campaign_strategy": { "type": "string", "pattern": "^CMS-(PLACEHOLDER-)?[a-z0-9-]+$", "description": "Optional. The Campaign Strategy this journey serves — omit for always-on lifecycle journeys." },
+    "linked_audiences": { "type": "array", "items": { "type": "string", "pattern": "^AUD-(PLACEHOLDER-)?[a-z0-9-]+$" }, "description": "Audience ids this journey serves." },
+    "linked_personas": { "type": "array", "items": { "type": "string", "pattern": "^PER-(PLACEHOLDER-)?[a-z0-9-]+$" }, "description": "Persona ids this journey is designed around." },
+    "linked_business_context": { "type": "string", "pattern": "^BIZ-(PLACEHOLDER-)?[a-z0-9-]+$", "description": "The owning Business Context." },
+    "source": { "type": "string", "description": "One line: provenance and approximate date." }
+  }
+}
