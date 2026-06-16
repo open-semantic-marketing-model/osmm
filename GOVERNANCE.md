@@ -64,7 +64,11 @@ it.
 
 Promotion is a maintainer decision, not an automatic graduation. The typical
 path is `draft → proposed → stable`, with `proposed` requiring at least one
-validated instance built from a real asset.
+validated instance built from a real asset. Every object ships with its
+canonical schema (`schemas/<object_type>.schema.json`) from `draft` onward — the
+schema is part of a builder's definition of done — and committed instances must
+validate against it (enforced in CI). See
+[CONVENTION.md → "Where the schema lives"](CONVENTION.md).
 
 ## Versioning
 

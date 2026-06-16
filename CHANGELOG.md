@@ -29,6 +29,12 @@ governance). The current schema version is **0.1.0**.
   their first example.
 
 ### Changed
+- **Contributor rules updated for the schema-canonical model** — `CONTRIBUTING.md`
+  now makes shipping the canonical `schemas/<object_type>.schema.json` part of a
+  builder's definition of done (replacing the stale "schema lives inline" step),
+  requires committed instances to validate via `scripts/validate.py`, and notes the
+  CI check on `schemas/`/`examples/` changes. `GOVERNANCE.md`'s object lifecycle
+  records that every object ships with its schema from `draft` onward.
 - **Schemas are now standalone, canonical JSON Schema files** under `schemas/`
   (`schemas/<object_type>.schema.json`), the single source of truth for each
   object's shape — superseding the v0.1–v0.3 "schema inline in `SKILL.md` until a

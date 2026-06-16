@@ -69,17 +69,23 @@ Builders follow the convention exactly — read
    `description` (trigger-rich — this is what makes the skill discoverable),
    `object`, `object_type`, `category`, `phase`, `wave`, `osmm_version`,
    `status`.
-4. **Schema lives inline.** In v0.1 the object's field list, types, and a worked
-   example live in the `SKILL.md` body — not as a separate file. A schema is
-   promoted to `schemas/<object_type>.schema.json` only when a second tool needs
-   to read it independently of the builder.
+4. **Ship the canonical schema.** Each object's contract is a standalone JSON
+   Schema at `schemas/<object_type>.schema.json` — the single source of truth for
+   its shape, and **strict** (`additionalProperties: false`). A builder is not
+   complete without it: your PR adds the schema file, and the `SKILL.md`
+   *references* it (keeping only an illustrative excerpt plus the human guidance —
+   extraction principles, vocabularies, ID rules). If the inline excerpt ever
+   disagrees with the schema, the schema wins. See
+   [CONVENTION.md → "Where the schema lives"](CONVENTION.md).
 5. **Instance output.** The builder must save instances using the
    [instance file naming](CONVENTION.md#instance-file-naming) pattern
    (`<OBJECT-NAME>_<entity-slug>.json`, e.g. `PERSONA_wendys-deal-savvy-craver.json`),
    and the in-object id (`PER-…`, `BIZ-…`) stays the id, not the filename.
 6. **Validate against a real asset.** A builder reaching `proposed` needs at
    least one instance built from a real source — ideally contributed alongside
-   it under `examples/` (see below).
+   it under `examples/` (see below). Any committed instance **must validate
+   against its object's schema**: run `python scripts/validate.py` (CI runs it on
+   every PR; it is a hard error if an example's `object_type` has no schema).
 
 Use the two shipped Context builders
 (`skills/context/osmm-business-context-builder`,
@@ -98,7 +104,8 @@ was built from.
 
 1. Branch from `main`.
 2. Make your change. Keep PRs focused — one object, one fix, or one example per
-   PR where practical.
+   PR where practical. If you touch `schemas/` or `examples/`, run
+   `python scripts/validate.py` before pushing (CI runs it too).
 3. Open the PR with a clear description: what it changes and why, and which
    tenet(s) it serves. Link any related issue.
 4. A maintainer reviews against the tenets and the object model
