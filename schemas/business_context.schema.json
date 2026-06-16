@@ -1,0 +1,192 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/open-semantic-marketing-model/osmm/main/schemas/business_context.schema.json",
+  "title": "OSMM Business Context Object",
+  "description": "Durable, foundational Context: who a business is, what it sells, who it competes with, and what marketing is trying to accomplish for it. Canonical schema for object_type 'business_context'. The osmm-business-context-builder skill references this file; it is the single source of truth for the object's shape.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "osmm_version",
+    "business_id",
+    "version",
+    "status",
+    "name",
+    "industry",
+    "business_type",
+    "description",
+    "products_and_services",
+    "value_proposition",
+    "target_customers",
+    "revenue_model",
+    "market_position",
+    "competitors",
+    "competitive_differentiators",
+    "marketing_objectives",
+    "marketing_challenges",
+    "strategic_priorities"
+  ],
+  "properties": {
+    "object_type": {
+      "const": "business_context",
+      "description": "Object type discriminator. Always 'business_context'."
+    },
+    "osmm_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "OSMM schema version this instance conforms to (semantic version)."
+    },
+    "business_id": {
+      "type": "string",
+      "pattern": "^BIZ-[a-z0-9-]+$",
+      "description": "Stable, human-readable id. Prefix 'BIZ-' + lowercase hyphen slug. Never changes once assigned."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "Instance version (e.g. '1.0'). Bump on revision; the id stays stable."
+    },
+    "status": {
+      "enum": ["draft", "proposed", "stable", "deprecated"],
+      "description": "Object lifecycle state."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Company name."
+    },
+    "industry": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Primary industry / sector, in plain language (not a taxonomy code)."
+    },
+    "business_type": {
+      "enum": [
+        "b2c",
+        "b2b",
+        "b2b2c",
+        "dtc",
+        "marketplace",
+        "saas",
+        "enterprise_software",
+        "media",
+        "nonprofit",
+        "professional_services",
+        "retail",
+        "ecommerce"
+      ],
+      "description": "Governed business-type vocabulary. Pick the single closest value."
+    },
+    "founded": {
+      "type": "string",
+      "description": "Year founded, as a string. Optional."
+    },
+    "hq_location": {
+      "type": "string",
+      "description": "City, state/country. Optional."
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "description": "2-3 neutral, factual sentences: what the company does, who it serves, how it's distinctive."
+    },
+    "products_and_services": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Key offerings the company actually sells (names/types, not brochure copy). A lightweight portfolio list; each offering is structured in depth by a Product Context Object."
+    },
+    "value_proposition": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The core 'why us' as a single synthesized claim."
+    },
+    "target_customers": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Plain descriptions of who the business serves. Structure lives in linked Persona/Audience objects."
+    },
+    "revenue_model": {
+      "type": "string",
+      "minLength": 1,
+      "description": "How the business makes money (one phrase or sentence)."
+    },
+    "scale_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional marketing-relevant scale signal; never a precise financial filing.",
+      "properties": {
+        "revenue_range": {
+          "type": "string",
+          "description": "Order-of-magnitude band (e.g. '$50-250M', '$10B+'), not a precise figure."
+        },
+        "revenue_mix_notes": {
+          "type": "string",
+          "description": "Segment or channel mix, if it shapes marketing's mandate."
+        },
+        "growth_trajectory": {
+          "type": "string",
+          "description": "Directional characterization of growth."
+        }
+      }
+    },
+    "business_model_notes": {
+      "type": "string",
+      "description": "Anything structurally distinctive about how the business operates. Optional."
+    },
+    "market_position": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Where they sit in the market: challenger, category leader, premium niche, etc."
+    },
+    "competitors": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Primary competitive set (names only)."
+    },
+    "competitive_differentiators": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "What makes them meaningfully different from competitors, grounded in evidence."
+    },
+    "marketing_objectives": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "What marketing is actively trying to accomplish."
+    },
+    "marketing_challenges": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "The structural or situational obstacles marketing faces."
+    },
+    "strategic_priorities": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "The broader business priorities that shape marketing's mandate."
+    },
+    "brand_tone_notes": {
+      "type": "string",
+      "description": "Brief characterization of brand voice/tone if evident. Optional; full brand identity lives in the Brand Context Object."
+    },
+    "key_markets": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Geographies or segments that matter. Optional."
+    },
+    "linked_brand_context": {
+      "type": "string",
+      "pattern": "^BRC-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the Brand Context Object for this business. Use 'BRC-PLACEHOLDER-<slug>' until it exists."
+    },
+    "source": {
+      "type": "string",
+      "description": "One line: what source(s) this was built from and approximate date."
+    }
+  }
+}

@@ -1,0 +1,28 @@
+name: validate
+
+# Enforces the reconciliation guarantee: every example instance in examples/
+# must validate against the canonical JSON Schema for its object_type, and
+# every schema must itself be a valid JSON Schema.
+
+on:
+  pull_request:
+    paths:
+      - "schemas/**"
+      - "examples/**"
+      - "scripts/validate.py"
+      - ".github/workflows/validate.yml"
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install jsonschema
+      - name: Validate schemas and examples
+        run: python scripts/validate.py

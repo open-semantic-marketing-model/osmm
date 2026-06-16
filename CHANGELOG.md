@@ -11,7 +11,26 @@ governance). The current schema version is **0.1.0**.
 
 ## [Unreleased]
 
+### Changed
+- **Schemas are now standalone, canonical JSON Schema files** under `schemas/`
+  (`schemas/<object_type>.schema.json`), the single source of truth for each
+  object's shape — superseding the v0.1–v0.3 "schema inline in `SKILL.md` until a
+  second tool needs it" rule. Reflects OSMM's positioning as an interoperability
+  standard (the machine-readable schema is the product), and lets a consumer adopt
+  the contract without the skills. Builders now ship with their schema; the
+  `SKILL.md` references it and keeps only an illustrative excerpt + guidance. Drift
+  is avoided by keeping one source of truth rather than two hand-maintained copies.
+  Documented in `CONVENTION.md` (v0.4).
+
 ### Added
+- **First canonical schema + validation harness (Foundation):**
+  `schemas/business_context.schema.json` (strict, `additionalProperties: false`) as
+  the reference implementation; `scripts/validate.py` and a `validate` GitHub
+  Actions workflow that check every `examples/` instance against its object's
+  schema and meta-validate each schema. Migration-aware: objects whose schema
+  hasn't been written yet are skipped, not failed, so CI stays green while the
+  remaining shipped objects are migrated. The two Business Context examples (IBM,
+  Wendy's) validate clean.
 - **`osmm-keyword-builder`** — the eighth object builder (Phase 2 · Context), **completing
   Milestone A, the Context foundation** (all six Context objects now have builders). Builds a
   Keyword Object: OSMM's addressable unit of search demand — one `term` with its `term_type`

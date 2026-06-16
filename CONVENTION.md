@@ -1,7 +1,7 @@
 # OSMM™ Skill Naming Convention
 
 **Open Semantic Marketing Model — builder skills**
-Status: Draft v0.3
+Status: Draft v0.4
 
 This document defines how skills that build OSMM objects are named, organized, and described. Every object in the model gets exactly one builder skill, and the name of that skill is keyed to the one thing about the object that never changes: its identity. Phase, category, and release wave can all be re-debated over the life of the standard. The object's identity cannot, so it — and only it — drives the name.
 
@@ -35,9 +35,37 @@ The verb is uniform across all categories. A Learning or Measurement object is *
 
 ## Where the schema lives
 
-In v0.1, a builder's object schema is defined **inline in its `SKILL.md` body** — a lean field list with types, requirements, and a worked example — not as a separate file. This keeps the standard shippable and avoids over-engineering a formal JSON Schema before the object has been exercised against real inputs.
+Every object's canonical schema is a standalone **JSON Schema** file at
+`schemas/<object_type>.schema.json` (e.g. `schemas/business_context.schema.json`).
+**That file is the single source of truth for the object's shape** — types,
+required fields, governed enums, id patterns, and cardinality. Schemas are strict
+(`additionalProperties: false`) so typos and stray fields fail loudly.
 
-A schema is promoted to a standalone `schemas/<object_type>.schema.json` **only when a second tool needs to read it independently of the builder** — a validator, a third-party importer, another implementation. Until that moment the skill is the single source of truth, and the frontmatter `osmm_version` records which schema version the builder conforms to. (Reference proven out by `osmm-persona-builder`, the first built skill.)
+A builder **ships with its schema file** — authoring the schema is part of the
+definition of done for an object, not a later promotion. The `SKILL.md` does
+**not** carry a parallel field spec; it *references* the schema file and keeps
+only a short, explicitly *illustrative* excerpt plus one or two worked examples to
+teach the shape at the point of use, alongside the human guidance (extraction
+principles, vocabularies, ID rules) that a schema can't capture. The excerpt is
+teaching material, not a second source of truth — **if it ever disagrees with the
+schema, the schema wins.**
+
+Every instance in `examples/` **must validate** against its object's schema; this
+is enforced by `scripts/validate.py` in CI (see the `validate` workflow). That is
+the reconciliation guarantee: examples cannot drift from schemas without CI going
+red.
+
+This rule applies to an object **when its builder ships**. Objects without a
+builder yet do not get a schema — we don't formalize contracts that don't exist.
+During the migration of already-shipped builders, an object whose schema hasn't
+landed yet is *skipped* by the validator rather than failing it.
+
+> **Why standalone, not inline?** OSMM is an interoperability *standard*, and for a
+> standard the machine-readable schema is the product, not a supporting artifact —
+> implementers, validators, and IDEs expect `schemas/<name>.schema.json`, and a
+> consumer can adopt the contract without adopting the skills. Drift is avoided by
+> keeping a *single* source of truth (the schema file) rather than hand-maintaining
+> two. This supersedes the v0.1–v0.3 "inline until a second tool needs it" rule.
 
 ---
 
@@ -99,8 +127,9 @@ osmm/
 │   │   └── ...
 │   └── artifacts/    # artifact-composer skills (NOT object builders) — see "Artifact-composer skills"
 │       └── osmm-creative-brief-composer/SKILL.md
-├── schemas/          # added per-object only when a schema is promoted out of its skill
-└── examples/         # validated example instances (e.g. PERSONA_wendys-deal-savvy-craver.json)
+├── schemas/          # canonical JSON Schema per object — schemas/<object_type>.schema.json (single source of truth)
+├── examples/         # validated example instances (e.g. PERSONA_wendys-deal-savvy-craver.json)
+└── scripts/          # validate.py — checks every example against its object's schema (run in CI)
 ```
 
 The first five `skills/` subfolders are the **object categories**; `artifacts/`
@@ -379,6 +408,22 @@ a first-draft brief a client can tailor. The composer is non-normative: it
 defines no schema and emits an artifact, not an object. So the standard stays
 pure (objects only) while the skill library still delivers the brief as an
 accelerator.
+
+---
+
+## Changes in v0.4
+
+- Rewrote **"Where the schema lives"** — the canonical schema is now a standalone,
+  strict JSON Schema file at `schemas/<object_type>.schema.json` (single source of
+  truth), shipped with each builder; the `SKILL.md` references it and keeps only an
+  illustrative excerpt + guidance. This **supersedes** the v0.2 inline-until-promoted
+  rule. Reflects OSMM's positioning as an interoperability standard (the schema is
+  the product) and removes drift by keeping one source of truth.
+- Added **`scripts/validate.py`** + a `validate` CI workflow: every `examples/`
+  instance must validate against its object's schema; migration-aware (objects
+  without a schema yet are skipped, not failed).
+- Updated the **repository structure** example: `schemas/` is canonical-per-object;
+  added `scripts/`.
 
 ---
 

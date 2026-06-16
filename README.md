@@ -80,9 +80,10 @@ and naming convention live in [`CONVENTION.md`](CONVENTION.md).
 
 ```
 osmm/
-├── schemas/        # canonical JSON schemas, by category
+├── schemas/        # canonical JSON Schema per object (schemas/<object_type>.schema.json)
 ├── examples/       # validated example instances grounded in real assets
-├── skills/          # builder skills (osmm-<object>-builder), by category
+├── skills/          # builder skills (osmm-<object>-builder); each references its object's schema
+├── scripts/         # validate.py — checks every example against its schema (run in CI)
 ├── brand/           # logo, color tokens, usage — see brand/LOGO.md
 ├── roadmap/         # backlog (Kanban) + sequenced roadmap — the live build board
 ├── TAXONOMY.md      # workflow phases → objects (the phase view)
@@ -93,6 +94,13 @@ osmm/
 ├── CHANGELOG.md     # notable changes to the standard
 └── README.md
 ```
+
+Each object's contract is a standalone **JSON Schema** in
+[`schemas/`](schemas) — the single source of truth for its shape. The builder
+skill references it (rather than embedding a parallel spec), and every instance
+in `examples/` is validated against it in CI, so the schemas and examples can't
+drift. Schemas are added per object as their builder ships; see
+[`CONVENTION.md`](CONVENTION.md) → "Where the schema lives".
 
 ## Status
 
