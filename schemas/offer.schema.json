@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/open-semantic-marketing-model/osmm/main/schemas/offer.schema.json",
+  "title": "OSMM Offer Object",
+  "description": "The intended value exchange extended to an audience in exchange for a call to action — a time-bound, promotional incentive to act (financial offer, free trial, demo, discount, bundle, BOGO, etc.). It carries the behavior-change objective and incentive philosophy (folded from the former Offer Strategy object) and references the Product Context it promotes rather than restating product features. Canonical schema for object_type 'offer'. The osmm-offer-builder skill references this file; it is the single source of truth for the object's shape.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "osmm_version",
+    "offer_id",
+    "version",
+    "status",
+    "name",
+    "offer_type",
+    "description",
+    "value_exchange",
+    "call_to_action",
+    "incentive_structure",
+    "behavior_change_objective"
+  ],
+  "properties": {
+    "object_type": {
+      "const": "offer",
+      "description": "Object type discriminator. Always 'offer'."
+    },
+    "osmm_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "OSMM schema version this instance conforms to (semantic version)."
+    },
+    "offer_id": {
+      "type": "string",
+      "pattern": "^OFR-[a-z0-9-]+$",
+      "description": "Stable, human-readable id. Prefix 'OFR-' + lowercase hyphen slug. Never changes once assigned."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "Instance version (e.g. '1.0'). Bump on revision; the id stays stable."
+    },
+    "status": {
+      "enum": ["draft", "proposed", "stable", "deprecated"],
+      "description": "Object lifecycle state."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The offer's go-to-market name (e.g. '$5 Biggie Bag', 'watsonx 30-Day Free Trial')."
+    },
+    "offer_type": {
+      "enum": [
+        "financial",
+        "discount",
+        "free_trial",
+        "freemium",
+        "demo",
+        "consultation",
+        "bundle",
+        "bogo",
+        "gift_with_purchase",
+        "loyalty_reward",
+        "sample",
+        "content_offer",
+        "sweepstakes",
+        "financing"
+      ],
+      "description": "Governed offer-type vocabulary. Pick the single closest value."
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "description": "2-3 neutral, factual sentences: what the offer is, who it's for, and the action it asks for."
+    },
+    "value_exchange": {
+      "type": "string",
+      "minLength": 1,
+      "description": "What the customer gets in return for taking the action."
+    },
+    "call_to_action": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The action requested of the customer (e.g. 'Start a free trial', 'Book a demo', 'Order in the app')."
+    },
+    "incentive_structure": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The mechanics of the incentive (e.g. '30 days free, no card required', '$5 for a 4-item meal', '0% APR for 60 months')."
+    },
+    "behavior_change_objective": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The desired behavior change this offer drives (folded from the former Offer Strategy object)."
+    },
+    "strategic_rationale": {
+      "type": "string",
+      "description": "Incentive philosophy / why this offer is the right value exchange (folded from the former Offer Strategy object). Optional."
+    },
+    "eligibility": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Who qualifies / inclusion rules for the offer. Optional."
+    },
+    "redemption": {
+      "type": "string",
+      "description": "How the offer is redeemed or fulfilled. Optional."
+    },
+    "economics": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Directional offer economics — not precise finance. Optional.",
+      "properties": {
+        "cost_basis": {
+          "type": "string",
+          "description": "What the offer costs to extend, directionally (e.g. 'discounted margin on a 4-item meal')."
+        },
+        "profitability_threshold": {
+          "type": "string",
+          "description": "The directional break-even / profitability bar (e.g. 'profitable above N redemptions or with attach of a drink upsell')."
+        },
+        "margin_notes": {
+          "type": "string",
+          "description": "Directional notes on margin impact, subsidy, or LTV rationale."
+        }
+      }
+    },
+    "positioning": {
+      "type": "string",
+      "description": "How the offer is framed to the audience (the angle the deal is sold on). Optional."
+    },
+    "terms_conditions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Key terms, restrictions, or limitations on the offer. Optional."
+    },
+    "availability": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The time-bound window and channels the offer runs in. Optional.",
+      "properties": {
+        "start": {
+          "type": "string",
+          "description": "When the offer becomes available (date or plain-language)."
+        },
+        "end": {
+          "type": "string",
+          "description": "When the offer ends (date or plain-language)."
+        },
+        "duration": {
+          "type": "string",
+          "description": "How long the offer runs (e.g. 'limited-time', '30 days', 'ongoing while in market')."
+        },
+        "channels": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Channels the offer is available through (e.g. app, web, in-store)."
+        }
+      }
+    },
+    "linked_product": {
+      "type": "string",
+      "pattern": "^PRD-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the Product Context this offer promotes. Use 'PRD-PLACEHOLDER-<slug>' until it exists. Optional."
+    },
+    "linked_audiences": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^AUD-(PLACEHOLDER-)?[a-z0-9-]+$"
+      },
+      "description": "Ids of the Audiences the offer is for. 'AUD-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "linked_business_context": {
+      "type": "string",
+      "pattern": "^BIZ-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the Business Context that extends the offer. 'BIZ-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "source": {
+      "type": "string",
+      "description": "One line: what source(s) this was built from and approximate date. Optional."
+    }
+  }
+}

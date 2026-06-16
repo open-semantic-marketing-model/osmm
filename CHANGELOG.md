@@ -11,6 +11,29 @@ governance). The current schema version is **0.1.0**.
 
 ## [Unreleased]
 
+### Added
+- **Phase 3–4 activation layer — three Work Product builders** (`status: draft`),
+  taking the model to **11 of 27 builders shipped**:
+  - **`osmm-offer-builder`** (B11, Phase 3) — the Offer Object: the time-bound **value
+    exchange / call to action** (financial, free trial, demo, discount, bundle, BOGO,
+    financing, …) with a governed `offer_type` enum. Folds in the former *Offer Strategy*
+    (`behavior_change_objective`, `strategic_rationale`). Ratifies `OFR-`; realizes the
+    first **Work Product → Product Context** edge (`linked_product`) plus Offer → Audience /
+    Business Context.
+  - **`osmm-campaign-strategy-builder`** (B13, Phase 4) — the activation plan:
+    `campaign_objective`, `scope`, the `audience_offer_mapping[]` matrix (4.3),
+    `channel_strategy[]` (4.4), and personalization (4.6). Ratifies `CMS-`; references
+    Marketing Strategy, Journey Strategy, Audiences, Offers, Business Context, and
+    campaign-scope Measurement Framework.
+  - **`osmm-journey-strategy-builder`** (B14, Phase 4) — the orchestrated customer path:
+    `journey_goal`, `stages[]`, `triggers[]`, sequencing/cadence (4.2, 4.5), with a
+    governed `journey_type` enum. May serve a campaign or run always-on (optional
+    `linked_campaign_strategy`). Ratifies `JNS-`; distinct from Journey Configuration
+    (Phase 6 implementation).
+  - Each ships its strict canonical schema (`schemas/{offer,campaign_strategy,journey_strategy}.schema.json`)
+    per the definition-of-done; `RELATIONSHIPS.md` records the new realized edges and ratifies
+    the three prefixes; `GRAPH.md`/SVG regenerated (11 built nodes, 25 realized edges).
+
 ### Changed
 - **Right-sized the object model from 35 to 27 objects** (v0.5) — five consolidations
   removed eight speculative, *unbuilt* objects, applying "prefer a facet over a

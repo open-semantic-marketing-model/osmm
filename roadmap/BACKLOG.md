@@ -3,13 +3,13 @@
 The single source of truth for **what's done, what's in flight, and what's next**.
 For the sequencing rationale and milestones, see [`ROADMAP.md`](ROADMAP.md).
 
-**Last updated:** 2026-06-16
+**Last updated:** 2026-06-16 (B11 Offer, B13 Campaign Strategy, B14 Journey Strategy shipped)
 
 **Progress at a glance**
 
 | Track | Done | In Progress | To Do | Total |
 |-------|-----:|------------:|------:|------:|
-| Object builders | 8 | 0 | 19 | 27 |
+| Object builders | 11 | 0 | 16 | 27 |
 | Artifact composers | 1 | 0 | 6 (candidates) | 7 |
 | Infrastructure / docs | 11 | 0 | 5 | 16 |
 
@@ -39,6 +39,9 @@ Item ids: `B##` = object builder, `C##` = composer, `I##` = infrastructure/docs.
 | B07 | `osmm-persona-builder` | Phase 2 · Context. Shipped (`status: draft`). First built skill. |
 | B08 | `osmm-keyword-builder` | Phase 2 · Context. Shipped (`status: draft`). OSMM's addressable unit of **search demand** — one term, its intent, banded metrics, SERP features, and the surfaces it's targeted on (SEO/**AEO**/paid). Ratifies the `KW-` prefix; realizes the Keyword → Persona edge (`linked_personas`). **Completes Milestone A — the Context foundation.** |
 | B35 | `osmm-product-context-builder` | Phase 1 · Context. Shipped (`status: draft`). The offering layer (features, how it works, benefits, product-level messaging). Distinct from Business Context (the company) and the Offer (the value exchange / CTA). Ratifies the `PRD-` prefix; realizes Product → Business/Brand Context edges. Id assigned by ship order (appended), not registry position. |
+| B11 | `osmm-offer-builder` | Phase 3 · Work Product. Shipped (`status: draft`). The value exchange / CTA — the time-bound incentive to act (financial, free trial, demo, discount, bundle, BOGO, financing, etc.). Folds in the former **Offer Strategy** (`behavior_change_objective`, `strategic_rationale`). Ratifies the `OFR-` prefix; realizes Offer → Product Context (`linked_product`), Offer → Audience (`linked_audiences`), and Offer → Business Context edges. First Phase 3 / Milestone C object. |
+| B13 | `osmm-campaign-strategy-builder` | Phase 4 · Work Product. Shipped (`status: draft`). The activation plan — objective/scope, the `audience_offer_mapping` matrix (4.3), `channel_strategy` (4.4), and personalization (4.6). Ratifies the `CMS-` prefix; references Marketing Strategy, Journey Strategy, Audiences, Offers, Business Context, and (campaign-scope) Measurement Framework. |
+| B14 | `osmm-journey-strategy-builder` | Phase 4 · Work Product. Shipped (`status: draft`). The orchestrated customer path — `journey_goal`, `stages[]`, `triggers[]`, sequencing/cadence (4.2, 4.5). Ratifies the `JNS-` prefix; may serve a campaign or run always-on (optional `linked_campaign_strategy`). Distinct from Journey Configuration (Phase 6 implementation). |
 | C01 | `osmm-creative-brief-composer` | Phase 5 artifact-composer. ✅ Required input `brand_context` now built (B02); runnable end-to-end on the Wendy's example set. |
 | I01 | `TAXONOMY.md` | 7 phases → 27 objects, object resolution index. |
 | I02 | `CONVENTION.md` | Naming, frontmatter contract, full builder registry, composer class, schema/example promotion rules. |
@@ -90,15 +93,14 @@ Grouped by milestone (see [`ROADMAP.md`](ROADMAP.md)). Within a milestone, order
 ### Milestone C — Offer & Activation (Phase 3–4)
 | ID | Builder | Phase |
 |----|---------|------:|
-| B11 | `osmm-offer-builder` | 3 |
 | B36 | `osmm-experiment-strategy-builder` | 3 (cross-phase) |
-| B13 | `osmm-campaign-strategy-builder` | 4 |
-| B14 | `osmm-journey-strategy-builder` | 4 |
 
+> ✅ **B11 Offer, B13 Campaign Strategy, and B14 Journey Strategy shipped** — see Done.
 > Offer Strategy (former B10) folded into **Offer** (B11); Offer Test Strategy (B12) and
 > Creative Test Strategy (B20) folded into **Experiment Strategy** (B36, cross-phase);
-> Campaign Measurement (B15) folded into **Measurement Framework**. Confirm each surviving
-> object earns its own object at build time.
+> Campaign Measurement (B15) folded into **Measurement Framework**. Only **B36 Experiment
+> Strategy** remains in Milestone C — and it should clear the "earns its own object" bar at
+> build time (one cross-phase test/experiment object for 3.7 / 4.7 / 5.7).
 
 ### Milestone D — Content & Creative (Phase 5)
 | ID | Builder | Phase |

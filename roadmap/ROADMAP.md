@@ -1,6 +1,6 @@
 # OSMM™ Roadmap
 
-The sequenced plan for building OSMM out from its current state (8 of 27 object
+The sequenced plan for building OSMM out from its current state (11 of 27 object
 builders, 1 composer) to a complete, connected model. For live status see
 [`BACKLOG.md`](BACKLOG.md).
 
@@ -60,12 +60,14 @@ v0.5 right-sizing, so only Keyword Strategy (B09) remains — and it must clear 
 **Composers unlocked:** Strategy Brief (C03), Audience Strategy (C05).
 
 ### Milestone C — Offer & Activation (Phase 3–4)
-**Objects:** Offer (B11), Experiment Strategy (B36, cross-phase), Campaign Strategy
-(B13), Journey Strategy (B14).
-**Why:** turns strategy into activatable plans. Campaign and Journey Strategy are
-high-value, frequently-referenced objects. *Right-sized: Offer Strategy folded into
-Offer; Offer Test Strategy folded into Experiment Strategy; Campaign Measurement
-folded into Measurement Framework.*
+**Objects:** ~~Offer (B11)~~ ✅, ~~Campaign Strategy (B13)~~ ✅, ~~Journey Strategy (B14)~~ ✅,
+Experiment Strategy (B36, cross-phase).
+**Why:** turns strategy into activatable plans. **Offer, Campaign Strategy, and Journey
+Strategy shipped** — realizing the Phase 3–4 activation edges (Campaign → Marketing/
+Journey/Audience/Offer; Offer → Product Context). Only **Experiment Strategy (B36)**
+remains, and should clear the "earns its own object" bar at build time. *Right-sized:
+Offer Strategy folded into Offer; Offer/Creative Test Strategy → Experiment Strategy;
+Campaign Measurement → Measurement Framework.*
 **Composers unlocked:** Campaign Brief (C02), Journey Map (C06).
 
 ### Milestone D — Content & Creative (Phase 5)
@@ -112,10 +114,10 @@ Measurement via a `dimension` facet.*
 
 | Milestone | Builders | Cumulative builders done |
 |-----------|---------:|-------------------------:|
-| (shipped) | 8 | 8 / 27 |
-| A ✅ complete (Brand, Audience, Keyword, Product Context all done) | 0 | 8 / 27 |
-| B (Keyword Strategy; Targeting folded into Marketing Strategy) | 1 | 9 / 27 |
-| C | 4 | 13 / 27 |
+| (shipped) | 11 | 11 / 27 |
+| A ✅ complete (Brand, Audience, Keyword, Product Context all done) | 0 | 11 / 27 |
+| B (Keyword Strategy; Targeting folded into Marketing Strategy) | 1 | 12 / 27 |
+| C (Offer + Campaign + Journey shipped; Experiment Strategy remains) | 1 | 13 / 27 |
 | D | 4 | 17 / 27 |
 | E | 7 | 24 / 27 |
 | F | 3 | 27 / 27 |
