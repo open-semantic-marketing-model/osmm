@@ -1,25 +1,30 @@
 # OSMM™ Object Graph
 
 A graph-database view of the OSMM object model — all **25 objects**
-(14 with shipped builders, 11 in the backlog) across the 5 categories,
-and the reference edges between them.
+(14 with shipped builders, 11 in the backlog), laid out **left → right by
+workflow phase (1 → 7)**, matching the [TAXONOMY](TAXONOMY.md) flow, with the reference
+edges between them.
 
 > **This file is generated** by [`scripts/gen_object_graph.py`](scripts/gen_object_graph.py).
 > Edit the object/edge tables in that script and regenerate — do not hand-edit below.
 
 ## How to read it
 
-- **Node fill** = category: Context, Work Product, Configuration, Measurement, Learning.
+- **Left → right = workflow phase** (Phase 1 Define Strategy … Phase 7 Measure, Learn &
+  Optimize). Each labeled column is one phase.
+- **Node color = category** (Context, Work Product, Configuration, Measurement, Learning) —
+  a secondary cue, not the grouping axis.
 - **Solid node** = builder shipped (14); **dashed node** = backlog (11).
-- **Solid edge** = a *realized* reference (a reference field defined in a shipped
-  builder; mirrors the established table in [`RELATIONSHIPS.md`](RELATIONSHIPS.md)).
+- **Solid edge** = a *realized* reference (a reference field defined in a shipped builder;
+  mirrors the established table in [`RELATIONSHIPS.md`](RELATIONSHIPS.md)).
 - **Dashed gray edge** = an *envisioned* reference — illustrative, not yet defined in a
   builder; it becomes solid when that builder ships and declares the field.
-- **Mint edge** = the **learning loop** (Learning objects propose updates back into
-  durable Context / Strategy — sub-process 7.7).
+- **Mint edge** = the **learning loop** (Phase 7 Learning objects propose updates back into
+  the durable Phase 1–2 Context — sub-process 7.7).
 
-Context sits as the high-read foundation that everything references; Work Products flow
-into Configuration → Delivery → Measurement; Learning closes the loop.
+Most reference edges point **right → left** (a later-phase Work Product references the
+earlier-phase Context it depends on); the mint learning-loop edges close the cycle from
+Phase 7 back to Phase 1.
 
 ## Full view (SVG)
 
@@ -29,38 +34,42 @@ into Configuration → Delivery → Measurement; Learning closes the loop.
 
 ```mermaid
 flowchart LR
-  subgraph context["Context"]
+  subgraph p1["1 · Define Strategy"]
     business_context["Business Context"]
     brand_context["Brand Context"]
     product_context["Product Context"]
+    marketing_strategy["Marketing Strategy"]
+    measurement_framework["Measurement Framework"]
+  end
+  subgraph p2["2 · Define Audience"]
     persona["Persona"]
     audience["Audience"]
     keyword["Keyword"]
-  end
-  subgraph workproduct["Work Product"]
-    marketing_strategy["Marketing Strategy"]
-    measurement_framework["Measurement Framework"]
     keyword_strategy["Keyword Strategy"]
+  end
+  subgraph p3["3 · Define Offer"]
     offer["Offer"]
     experiment_strategy["Experiment Strategy"]
+  end
+  subgraph p4["4 · Campaign and Journey"]
     campaign_strategy["Campaign Strategy"]
     journey["Journey"]
+  end
+  subgraph p5["5 · Content and Creative"]
     messaging_framework["Messaging Framework"]
     creative_strategy["Creative Strategy"]
     content_strategy["Content Strategy"]
+  end
+  subgraph p6["6 · Build and Deliver"]
     experience_specification["Experience Specification"]
     experience_component["Experience Component"]
+    personalization_configuration["Personalization Configuration"]
     experience_delivery["Experience Delivery"]
     experience_validation["Experience Validation"]
     campaign_deployment["Campaign Deployment"]
   end
-  subgraph configuration["Configuration"]
-    personalization_configuration["Personalization Configuration"]
-  end
-  subgraph measurement["Measurement"]
+  subgraph p7["7 · Measure, Learn and Optimize"]
     performance_measurement["Performance Measurement"]
-  end
-  subgraph learning["Learning"]
     customer_insight["Customer Insight"]
     optimization_recommendation["Optimization Recommendation"]
   end
@@ -133,7 +142,7 @@ flowchart LR
   class personalization_configuration configuration;
   class performance_measurement measurement;
   class customer_insight,optimization_recommendation learning;
-  class keyword_strategy,experiment_strategy,experience_specification,experience_component,experience_delivery,experience_validation,campaign_deployment,personalization_configuration,performance_measurement,customer_insight,optimization_recommendation backlog;
+  class keyword_strategy,experiment_strategy,experience_specification,experience_component,personalization_configuration,experience_delivery,experience_validation,campaign_deployment,performance_measurement,customer_insight,optimization_recommendation backlog;
   linkStyle 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36 stroke:#222222,stroke-width:2px;
   linkStyle 37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55 stroke:#9aa3af,stroke-width:1px;
   linkStyle 56,57 stroke:#1aa179,stroke-width:2px;

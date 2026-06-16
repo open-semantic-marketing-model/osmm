@@ -17,3 +17,7 @@ Thumbs.db
 /*.json
 /scratch/
 !examples/**/*.json
+
+# Python
+__pycache__/
+*.pyc

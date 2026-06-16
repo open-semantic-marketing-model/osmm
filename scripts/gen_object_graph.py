@@ -6,8 +6,10 @@ Single source of truth for the object graph. Edit the OBJ / REALIZED / ENVISIONE
 
     python scripts/gen_object_graph.py     # needs graphviz `dot` on PATH for the SVG
 
-`REALIZED` edges should mirror the established reference fields in RELATIONSHIPS.md
-(solid). `ENVISIONED` edges are illustrative (dashed) until a builder defines them.
+Objects are laid out left -> right by **workflow phase** (1 -> 7), matching the
+TAXONOMY flow. Category is shown as node color only (a secondary cue), not the
+grouping axis. `REALIZED` edges mirror the established reference fields in
+RELATIONSHIPS.md (solid); `ENVISIONED` edges are illustrative (dashed).
 """
 from __future__ import annotations
 import subprocess, textwrap, shutil
@@ -15,33 +17,43 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 
-# object_type -> (label, category, built)
+# object_type -> (label, category, built, phase)
 OBJ = {
- 'business_context':('Business Context','Context',True),
- 'brand_context':('Brand Context','Context',True),
- 'product_context':('Product Context','Context',True),
- 'persona':('Persona','Context',True),
- 'audience':('Audience','Context',True),
- 'keyword':('Keyword','Context',True),
- 'marketing_strategy':('Marketing Strategy','Work Product',True),
- 'measurement_framework':('Measurement Framework','Work Product',True),
- 'keyword_strategy':('Keyword Strategy','Work Product',False),
- 'offer':('Offer','Work Product',True),
- 'experiment_strategy':('Experiment Strategy','Work Product',False),
- 'campaign_strategy':('Campaign Strategy','Work Product',True),
- 'journey':('Journey','Work Product',True),
- 'messaging_framework':('Messaging Framework','Work Product',True),
- 'creative_strategy':('Creative Strategy','Work Product',True),
- 'content_strategy':('Content Strategy','Work Product',True),
- 'experience_specification':('Experience Specification','Work Product',False),
- 'experience_component':('Experience Component','Work Product',False),
- 'experience_delivery':('Experience Delivery','Work Product',False),
- 'experience_validation':('Experience Validation','Work Product',False),
- 'campaign_deployment':('Campaign Deployment','Work Product',False),
- 'personalization_configuration':('Personalization Configuration','Configuration',False),
- 'performance_measurement':('Performance Measurement','Measurement',False),
- 'customer_insight':('Customer Insight','Learning',False),
- 'optimization_recommendation':('Optimization Recommendation','Learning',False),
+ 'business_context':('Business Context','Context',True,1),
+ 'brand_context':('Brand Context','Context',True,1),
+ 'product_context':('Product Context','Context',True,1),
+ 'marketing_strategy':('Marketing Strategy','Work Product',True,1),
+ 'measurement_framework':('Measurement Framework','Work Product',True,1),
+ 'persona':('Persona','Context',True,2),
+ 'audience':('Audience','Context',True,2),
+ 'keyword':('Keyword','Context',True,2),
+ 'keyword_strategy':('Keyword Strategy','Work Product',False,2),
+ 'offer':('Offer','Work Product',True,3),
+ 'experiment_strategy':('Experiment Strategy','Work Product',False,3),
+ 'campaign_strategy':('Campaign Strategy','Work Product',True,4),
+ 'journey':('Journey','Work Product',True,4),
+ 'messaging_framework':('Messaging Framework','Work Product',True,5),
+ 'creative_strategy':('Creative Strategy','Work Product',True,5),
+ 'content_strategy':('Content Strategy','Work Product',True,5),
+ 'experience_specification':('Experience Specification','Work Product',False,6),
+ 'experience_component':('Experience Component','Work Product',False,6),
+ 'personalization_configuration':('Personalization Configuration','Configuration',False,6),
+ 'experience_delivery':('Experience Delivery','Work Product',False,6),
+ 'experience_validation':('Experience Validation','Work Product',False,6),
+ 'campaign_deployment':('Campaign Deployment','Work Product',False,6),
+ 'performance_measurement':('Performance Measurement','Measurement',False,7),
+ 'customer_insight':('Customer Insight','Learning',False,7),
+ 'optimization_recommendation':('Optimization Recommendation','Learning',False,7),
+}
+
+PHASE_LABEL = {
+ 1: '1 · Define Strategy',
+ 2: '2 · Define Audience',
+ 3: '3 · Define Offer',
+ 4: '4 · Campaign & Journey',
+ 5: '5 · Content & Creative',
+ 6: '6 · Build & Deliver',
+ 7: '7 · Measure, Learn & Optimize',
 }
 
 CAT_FILL = {'Context':'#d4f2ec','Work Product':'#dbe7fb','Configuration':'#ece1f9',
@@ -49,8 +61,6 @@ CAT_FILL = {'Context':'#d4f2ec','Work Product':'#dbe7fb','Configuration':'#ece1f
 CAT_BORDER = {'Context':'#0f1b35','Work Product':'#2c5fb3','Configuration':'#6b4ca3',
               'Measurement':'#b87811','Learning':'#2e7d32'}
 CAT_ORDER = ['Context','Work Product','Configuration','Measurement','Learning']
-CAT_SLUG = {'Context':'context','Work Product':'workproduct','Configuration':'configuration',
-            'Measurement':'measurement','Learning':'learning'}
 
 # Realized reference edges — mirror RELATIONSHIPS.md established table. (a, b, bidirectional)
 REALIZED = [
@@ -77,7 +87,7 @@ REALIZED = [
  ('campaign_strategy','offer',False),
  ('campaign_strategy','business_context',False),
  ('campaign_strategy','measurement_framework',False),
- # Journey Strategy (B14)
+ # Journey (B14)
  ('journey','campaign_strategy',False),
  ('journey','audience',False),
  ('journey','persona',False),
@@ -115,12 +125,17 @@ ENVISIONED = [
 # The compounding loop (Learning -> durable Context / Strategy).
 LOOP = [('customer_insight','persona'),('optimization_recommendation','marketing_strategy')]
 
-BUILT = sum(1 for _,_,b in OBJ.values() if b)
+BUILT = sum(1 for v in OBJ.values() if v[2])
 BACKLOG = len(OBJ) - BUILT
+PHASES = sorted(PHASE_LABEL)
+
+
+def phase_nodes(p):
+    return [o for o, v in OBJ.items() if v[3] == p]
 
 
 def gv_node(o):
-    label, cat, built = OBJ[o]
+    label, cat, built, _ = OBJ[o]
     wl = '\\n'.join(textwrap.wrap(label, 14))
     style = 'rounded,filled' + ('' if built else ',dashed')
     pen = '2.4' if built else '1.1'
@@ -130,39 +145,47 @@ def gv_node(o):
 
 def build_dot():
     L = ['digraph OSMM {',
-         '  graph [rankdir=LR, fontname="Helvetica", bgcolor="white", nodesep=0.5, ranksep=2.0, '
-         'pad=0.5, splines=true, overlap=false, concentrate=true, newrank=true];',
-         '  node [shape=box, fontname="Helvetica", fontsize=13, margin="0.20,0.12", height=0.45];',
-         '  edge [arrowsize=0.8];',
-         '  labelloc="t"; fontsize=26; fontname="Helvetica-Bold";',
-         '  label="OSMM™ Object Graph — 25 objects across 5 categories\\n'
+         '  graph [rankdir=LR, fontname="Helvetica", bgcolor="white", nodesep=0.28, ranksep=2.2, '
+         'pad=0.5, splines=true, overlap=false, newrank=true];',
+         '  node [shape=box, fontname="Helvetica", fontsize=12.5, margin="0.18,0.10", height=0.42];',
+         '  edge [arrowsize=0.75];',
+         '  labelloc="t"; fontsize=24; fontname="Helvetica-Bold";',
+         '  label="OSMM™ Object Graph — 25 objects, ordered left→right by workflow phase (1→7)\\n'
          f'solid node = builder shipped ({BUILT})   ·   dashed node = backlog ({BACKLOG})   ·   '
-         'solid edge = realized reference   ·   dashed edge = envisioned   ·   mint edge = learning loop";']
-    for i, cat in enumerate(CAT_ORDER):
-        L.append(f'  subgraph cluster_{i} {{')
-        L.append(f'    label="{cat}"; style="rounded,filled"; fillcolor="#f7f9fb"; '
-                 f'color="{CAT_BORDER[cat]}"; fontname="Helvetica-Bold"; fontsize=18; margin=18; penwidth=2;')
-        for o, (_, c, _) in OBJ.items():
-            if c == cat:
-                L.append(gv_node(o))
+         'node color = category   ·   solid edge = realized reference   ·   '
+         'dashed edge = envisioned   ·   mint edge = learning loop";']
+    # one labeled cluster (column) per phase, in order
+    for p in PHASES:
+        L.append(f'  subgraph cluster_p{p} {{')
+        L.append(f'    label="{PHASE_LABEL[p]}"; labelloc="t"; style="rounded,filled"; '
+                 f'fillcolor="#f4f6f9"; color="#aab3c0"; fontname="Helvetica-Bold"; '
+                 f'fontsize=15; margin=14; penwidth=1.5;')
+        for o in phase_nodes(p):
+            L.append(gv_node(o))
+        # keep this phase's objects in one vertical column
+        L.append(f'    {{ rank=same; {"; ".join(phase_nodes(p))}; }}')
         L.append('  }')
+    # force the columns left -> right by phase (invisible anchor chain)
+    anchors = [phase_nodes(p)[0] for p in PHASES]
+    L.append('  ' + ' -> '.join(anchors) + ' [style=invis, weight=10];')
+    # reference edges are decoration only (constraint=false) so they don't distort the columns
     for a, b, both in REALIZED:
-        L.append(f'  {a} -> {b} [color="#222222", penwidth=1.7{", dir=both" if both else ""}];')
+        L.append(f'  {a} -> {b} [color="#222222", penwidth=1.6, constraint=false{", dir=both" if both else ""}];')
     for a, b in ENVISIONED:
-        L.append(f'  {a} -> {b} [color="#9aa3af", penwidth=1.0, style=dashed];')
+        L.append(f'  {a} -> {b} [color="#9aa3af", penwidth=1.0, style=dashed, constraint=false];')
     for a, b in LOOP:
-        L.append(f'  {a} -> {b} [color="#1aa179", penwidth=1.8, style=dashed, constraint=false];')
+        L.append(f'  {a} -> {b} [color="#1aa179", penwidth=1.7, style=dashed, constraint=false];')
     L.append('}')
     return '\n'.join(L)
 
 
 def build_mermaid():
     L = ['flowchart LR']
-    for cat in CAT_ORDER:
-        L.append(f'  subgraph {CAT_SLUG[cat]}["{cat}"]')
-        for o, (label, c, _) in OBJ.items():
-            if c == cat:
-                L.append(f'    {o}["{label}"]')
+    for p in PHASES:
+        safe = PHASE_LABEL[p].replace('&', 'and')
+        L.append(f'  subgraph p{p}["{safe}"]')
+        for o in phase_nodes(p):
+            L.append(f'    {o}["{OBJ[o][0]}"]')
         L.append('  end')
     idx = 0
     realized_idx, env_idx, loop_idx = [], [], []
@@ -175,14 +198,16 @@ def build_mermaid():
     for a, b in LOOP:
         L.append(f'  {a} -.-> {b}')
         loop_idx.append(idx); idx += 1
-    # category fills
+    # node color by category (secondary cue)
     for cat in CAT_ORDER:
-        L.append(f'  classDef {CAT_SLUG[cat]} fill:{CAT_FILL[cat]},stroke:{CAT_BORDER[cat]},color:#0f1b35;')
+        slug = cat.replace(' ', '').lower()
+        L.append(f'  classDef {slug} fill:{CAT_FILL[cat]},stroke:{CAT_BORDER[cat]},color:#0f1b35;')
     L.append('  classDef backlog stroke-dasharray:6 4;')
     for cat in CAT_ORDER:
-        ids = [o for o, (_, c, _) in OBJ.items() if c == cat]
-        L.append(f'  class {",".join(ids)} {CAT_SLUG[cat]};')
-    backlog_ids = [o for o, (_, _, b) in OBJ.items() if not b]
+        ids = [o for o, v in OBJ.items() if v[1] == cat]
+        if ids:
+            L.append(f'  class {",".join(ids)} {cat.replace(" ", "").lower()};')
+    backlog_ids = [o for o, v in OBJ.items() if not v[2]]
     L.append(f'  class {",".join(backlog_ids)} backlog;')
     L.append(f'  linkStyle {",".join(map(str, realized_idx))} stroke:#222222,stroke-width:2px;')
     L.append(f'  linkStyle {",".join(map(str, env_idx))} stroke:#9aa3af,stroke-width:1px;')
@@ -194,25 +219,30 @@ def build_md(mermaid):
     return f"""# OSMM™ Object Graph
 
 A graph-database view of the OSMM object model — all **{len(OBJ)} objects**
-({BUILT} with shipped builders, {BACKLOG} in the backlog) across the 5 categories,
-and the reference edges between them.
+({BUILT} with shipped builders, {BACKLOG} in the backlog), laid out **left → right by
+workflow phase (1 → 7)**, matching the [TAXONOMY](TAXONOMY.md) flow, with the reference
+edges between them.
 
 > **This file is generated** by [`scripts/gen_object_graph.py`](scripts/gen_object_graph.py).
 > Edit the object/edge tables in that script and regenerate — do not hand-edit below.
 
 ## How to read it
 
-- **Node fill** = category: Context, Work Product, Configuration, Measurement, Learning.
+- **Left → right = workflow phase** (Phase 1 Define Strategy … Phase 7 Measure, Learn &
+  Optimize). Each labeled column is one phase.
+- **Node color = category** (Context, Work Product, Configuration, Measurement, Learning) —
+  a secondary cue, not the grouping axis.
 - **Solid node** = builder shipped ({BUILT}); **dashed node** = backlog ({BACKLOG}).
-- **Solid edge** = a *realized* reference (a reference field defined in a shipped
-  builder; mirrors the established table in [`RELATIONSHIPS.md`](RELATIONSHIPS.md)).
+- **Solid edge** = a *realized* reference (a reference field defined in a shipped builder;
+  mirrors the established table in [`RELATIONSHIPS.md`](RELATIONSHIPS.md)).
 - **Dashed gray edge** = an *envisioned* reference — illustrative, not yet defined in a
   builder; it becomes solid when that builder ships and declares the field.
-- **Mint edge** = the **learning loop** (Learning objects propose updates back into
-  durable Context / Strategy — sub-process 7.7).
+- **Mint edge** = the **learning loop** (Phase 7 Learning objects propose updates back into
+  the durable Phase 1–2 Context — sub-process 7.7).
 
-Context sits as the high-read foundation that everything references; Work Products flow
-into Configuration → Delivery → Measurement; Learning closes the loop.
+Most reference edges point **right → left** (a later-phase Work Product references the
+earlier-phase Context it depends on); the mint learning-loop edges close the cycle from
+Phase 7 back to Phase 1.
 
 ## Full view (SVG)
 
