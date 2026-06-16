@@ -74,7 +74,9 @@ OSMM currently spans **27 objects** across **7 workflow phases**, grouped into
 | **Learning** | Durable insight that updates the Context layer — the loop that makes the model compound rather than reset. |
 
 Each builder is a skill named `osmm-<object-slug>-builder`; the full registry
-and naming convention live in [`CONVENTION.md`](CONVENTION.md).
+and naming convention live in [`CONVENTION.md`](CONVENTION.md). For a visual,
+whole-model **graph view** of all objects and their reference edges, see
+[`GRAPH.md`](GRAPH.md).
 
 ## Repository structure
 
