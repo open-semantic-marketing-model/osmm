@@ -80,9 +80,8 @@ and naming convention live in [`CONVENTION.md`](CONVENTION.md).
 
 ```
 osmm/
-├── schemas/        # canonical JSON schemas, by category
+├── skills/          # builder skills (osmm-<object>-builder), by category — schema lives inline in each skill
 ├── examples/       # validated example instances grounded in real assets
-├── skills/          # builder skills (osmm-<object>-builder), by category
 ├── brand/           # logo, color tokens, usage — see brand/LOGO.md
 ├── roadmap/         # backlog (Kanban) + sequenced roadmap — the live build board
 ├── TAXONOMY.md      # workflow phases → objects (the phase view)
@@ -93,6 +92,12 @@ osmm/
 ├── CHANGELOG.md     # notable changes to the standard
 └── README.md
 ```
+
+There is no top-level `schemas/` folder yet: each object's schema lives **inline
+in its builder's `SKILL.md`**, and is promoted to a standalone
+`schemas/<object_type>.schema.json` only when a second tool needs to read it
+independently of the builder (see [`CONVENTION.md`](CONVENTION.md) → "Where the
+schema lives").
 
 ## Status
 
