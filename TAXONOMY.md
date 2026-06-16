@@ -51,15 +51,15 @@ flowchart LR
 
 | L2 sub-process | Key decisions | Resolves to object | Human-readable artifact |
 |---|---|---|---|
-| 2.1 Define Audience Strategy | Priority audiences, strategic segments | Targeting Strategy Object | Audience Strategy Summary |
+| 2.1 Define Audience Strategy | Priority audiences, strategic segments | Marketing Strategy Object | Audience Strategy Summary |
 | 2.2 Define Audience Segments | Segment definitions, inclusion criteria | Audience Object | Audience Definitions |
 | 2.3 Define Audience Qualification Rules | Inclusion / exclusion logic | Audience Object | Audience Rules Summary |
 | 2.4 Define Customer Needs & Behaviors | Priority behaviors, customer needs | Persona Object | Persona Profiles |
 | 2.5 Define Personas | Persona definitions | Persona Object | Persona Profiles |
 | 2.6 Define Lifecycle & Value Framework | Lifecycle framework, value segmentation | Audience Object | Lifecycle Framework |
 | 2.7 Define Keyword & Topic Strategy | Priority keywords and topics, intent distribution, AEO targets, SEO targets, topic-to-journey mapping | Keyword Object, Keyword Strategy Object | Keyword & Topic Strategy |
-| 2.8 Define Audience Prioritization | Target audience prioritization | Targeting Strategy Object | Prioritization Matrix |
-| 2.9 Confirm Audience Definition | Final audience strategy | Targeting Strategy Object | Audience Summary |
+| 2.8 Define Audience Prioritization | Target audience prioritization | Marketing Strategy Object | Prioritization Matrix |
+| 2.9 Confirm Audience Definition | Final audience strategy | Marketing Strategy Object | Audience Summary |
 
 > **"Segment" is the Audience Object — not a separate object.** Sub-process 2.2
 > ("Define Audience Segments"), 2.3 (inclusion/exclusion logic), and 2.6
@@ -67,8 +67,11 @@ flowchart LR
 > is OSMM's addressable segment. The `segmentation_basis` field on the object
 > records *which kind* of segment it is (demographic, behavioral, firmographic,
 > value-based, lifecycle, etc.). A Persona *describes* the member; the Audience
-> *selects* the group. Audience *prioritization* (2.1, 2.8) is separate again —
-> that's the Targeting Strategy Object.
+> *selects* the group. Audience *prioritization* (2.1, 2.8, 2.9) is **part of the
+> Marketing Strategy Object** — it names which Audiences matter and in what
+> priority (`priority_audiences`, `growth_priorities`), so OSMM does not carry a
+> separate Targeting Strategy object. (Consolidated in the v0.5 right-sizing — see
+> the note under the resolution index.)
 
 ## Phase 3. Define Offer
 
@@ -78,13 +81,13 @@ flowchart LR
 
 | L2 sub-process | Key decisions | Resolves to object | Human-readable artifact |
 |---|---|---|---|
-| 3.1 Define Desired Behavior Change | Behavior-change objective | Offer Strategy Object | Behavior Change Summary |
-| 3.2 Define Offer Strategy | Offer strategy, incentive philosophy | Offer Strategy Object | Offer Strategy Summary |
+| 3.1 Define Desired Behavior Change | Behavior-change objective | Offer Object | Behavior Change Summary |
+| 3.2 Define Offer Strategy | Offer strategy, incentive philosophy | Offer Object | Offer Strategy Summary |
 | 3.3 Define Offer Architecture | Offer structure | Offer Object | Offer Framework |
 | 3.4 Define Incentive & Economics | Incentive structure, profitability thresholds | Offer Object | Incentive Framework |
 | 3.5 Define Offer Positioning | Positioning approach | Offer Object | Offer Positioning Summary |
 | 3.6 Define Eligibility & Rules | Eligibility logic | Offer Object | Offer Rules Summary |
-| 3.7 Define Testing Strategy | Test priorities | Offer Test Strategy Object | Experiment Design |
+| 3.7 Define Testing Strategy | Test priorities | Experiment Strategy Object | Experiment Design |
 | 3.8 Confirm Offer Definition | Final offer approval | Offer Object | Offer Summary |
 
 > **The Offer is the value exchange, not the offering.** Phase 3 objects define the
@@ -110,7 +113,7 @@ flowchart LR
 | 4.4 Define Channel & Touchpoint Strategy | Channel prioritization | Campaign Strategy Object | Channel Plan |
 | 4.5 Define Triggering & Sequencing Logic | Trigger logic, cadence | Journey Strategy Object | Journey Flow Diagram |
 | 4.6 Define Personalization Strategy | Personalization rules | Campaign Strategy Object | Personalization Framework |
-| 4.7 Define Measurement & Test Strategy | Test priorities, KPI logic | Campaign Measurement Object | Measurement Plan |
+| 4.7 Define Measurement & Test Strategy | Test priorities, KPI logic | Measurement Framework Object + Experiment Strategy Object | Measurement Plan |
 | 4.8 Confirm Campaign & Journey Definition | Final campaign direction | Campaign Strategy Object + Journey Strategy Object | Campaign Brief |
 
 ## Phase 5. Define Content & Creative
@@ -127,7 +130,7 @@ flowchart LR
 | 5.4 Define Message Hierarchy & Variations | Message prioritization | Messaging Framework Object | Messaging Architecture |
 | 5.5 Define Creative System & Experience Concepts | Experience concepts | Experience Design Object | Experience Concepts |
 | 5.6 Define Channel-Specific Creative Requirements | Channel creative rules | Creative Strategy Object | Channel Creative Matrix |
-| 5.7 Define Content & Creative Testing Strategy | Test priorities | Creative Test Strategy Object | Creative Experiment Plan |
+| 5.7 Define Content & Creative Testing Strategy | Test priorities | Experiment Strategy Object | Creative Experiment Plan |
 | 5.8 Confirm Content & Creative Direction | Final creative direction | Creative Strategy Object + Messaging Framework Object | Creative Brief |
 
 ## Phase 6. Build & Deliver Experiences
@@ -145,7 +148,7 @@ flowchart LR
 | 6.5 Build Channel-Specific Experiences | Channel adaptations | Experience Delivery Object | Winback Email #1, Landing Page Variant B, Paid Social Ad Set, Triggered SMS, Homepage Hero Experience |
 | 6.6 Quality Assurance & Compliance Validation | Release readiness | Experience Validation Object | QA Checklist |
 | 6.7 Deploy & Activate Experiences | Deployment timing | Campaign Deployment Object | Launch Plan |
-| 6.8 Monitor Delivery & In-Flight Optimization | Operational optimizations | Experience Performance Object | Performance Dashboard |
+| 6.8 Monitor Delivery & In-Flight Optimization | Operational optimizations | Performance Measurement Object | Performance Dashboard |
 
 ## Phase 7. Measure, Learn & Optimize
 
@@ -157,11 +160,11 @@ flowchart LR
 |---|---|---|---|
 | 7.1 Measure Performance | KPI interpretation | Performance Measurement Object | Performance Dashboard |
 | 7.2 Analyze Customer Behavior & Response | Customer insights | Customer Insight Object | Audience Insights Report |
-| 7.3 Evaluate Offer Performance | Offer effectiveness | Offer Performance Object | Offer Analysis |
-| 7.4 Evaluate Messaging & Creative Effectiveness | Creative learning | Creative Performance Object | Creative Performance Summary |
-| 7.5 Evaluate Journey & Channel Performance | Journey optimization opportunities | Journey Performance Object | Journey Analysis |
+| 7.3 Evaluate Offer Performance | Offer effectiveness | Performance Measurement Object (`dimension: offer`) | Offer Analysis |
+| 7.4 Evaluate Messaging & Creative Effectiveness | Creative learning | Performance Measurement Object (`dimension: creative`) | Creative Performance Summary |
+| 7.5 Evaluate Journey & Channel Performance | Journey optimization opportunities | Performance Measurement Object (`dimension: journey`) | Journey Analysis |
 | 7.6 Generate Optimization Recommendations | Optimization priorities | Optimization Recommendation Object | Optimization Plan |
-| 7.7 Update Durable Context & Strategy | Persistent learning decisions | Business Context Object, Brand Context Object, Product Context Object, Marketing Strategy Object, Persona Object, Targeting Strategy Object, Keyword Object | Updated Strategy Summary |
+| 7.7 Update Durable Context & Strategy | Persistent learning decisions | Business Context Object, Brand Context Object, Product Context Object, Marketing Strategy Object, Persona Object, Keyword Object | Updated Strategy Summary |
 | 7.8 Confirm Learning & Next Action | Next-step decision | Marketing Strategy Object | Executive Learning Summary |
 
 ## Object resolution index
@@ -173,24 +176,20 @@ Every object mapped to the sub-processes that write it and its builder skill (pe
 | Business Context Object | 1.1, 7.7 | `osmm-business-context-builder` |
 | Brand Context Object | 1.2, 7.7 | `osmm-brand-context-builder` |
 | Product Context Object | 1.3, 7.7 | `osmm-product-context-builder` |
-| Marketing Strategy Object | 1.4, 1.5, 1.6, 1.7, 1.9, 7.7, 7.8 | `osmm-marketing-strategy-builder` |
-| Measurement Framework Object | 1.8 | `osmm-measurement-framework-builder` |
-| Targeting Strategy Object | 2.1, 2.8, 2.9, 7.7 | `osmm-targeting-strategy-builder` |
+| Marketing Strategy Object | 1.4, 1.5, 1.6, 1.7, 1.9, 2.1, 2.8, 2.9, 7.7, 7.8 | `osmm-marketing-strategy-builder` |
+| Measurement Framework Object | 1.8, 4.7 | `osmm-measurement-framework-builder` |
 | Audience Object | 2.2, 2.3, 2.6 | `osmm-audience-builder` |
 | Persona Object | 2.4, 2.5, 7.7 | `osmm-persona-builder` |
 | Keyword Object | 2.7, 7.7 | `osmm-keyword-builder` |
 | Keyword Strategy Object | 2.7 | `osmm-keyword-strategy-builder` |
-| Offer Strategy Object | 3.1, 3.2 | `osmm-offer-strategy-builder` |
-| Offer Object | 3.3, 3.4, 3.5, 3.6, 3.8 | `osmm-offer-builder` |
-| Offer Test Strategy Object | 3.7 | `osmm-offer-test-strategy-builder` |
+| Offer Object | 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.8 | `osmm-offer-builder` |
+| Experiment Strategy Object | 3.7, 4.7, 5.7 | `osmm-experiment-strategy-builder` |
 | Campaign Strategy Object | 4.1, 4.3, 4.4, 4.6, 4.8 | `osmm-campaign-strategy-builder` |
 | Journey Strategy Object | 4.2, 4.5, 4.8 | `osmm-journey-strategy-builder` |
-| Campaign Measurement Object | 4.7 | `osmm-campaign-measurement-builder` |
 | Messaging Framework Object | 5.1, 5.4, 5.8 | `osmm-messaging-framework-builder` |
 | Creative Strategy Object | 5.2, 5.6, 5.8 | `osmm-creative-strategy-builder` |
 | Content Strategy Object | 5.3 | `osmm-content-strategy-builder` |
 | Experience Design Object | 5.5 | `osmm-experience-design-builder` |
-| Creative Test Strategy Object | 5.7 | `osmm-creative-test-strategy-builder` |
 | Experience Specification Object | 6.1 | `osmm-experience-specification-builder` |
 | Experience Component Object | 6.2 | `osmm-experience-component-builder` |
 | Journey Configuration Object | 6.3 | `osmm-journey-configuration-builder` |
@@ -198,10 +197,30 @@ Every object mapped to the sub-processes that write it and its builder skill (pe
 | Experience Delivery Object | 6.5 | `osmm-experience-delivery-builder` |
 | Experience Validation Object | 6.6 | `osmm-experience-validation-builder` |
 | Campaign Deployment Object | 6.7 | `osmm-campaign-deployment-builder` |
-| Experience Performance Object | 6.8 | `osmm-experience-performance-builder` |
-| Performance Measurement Object | 7.1 | `osmm-performance-measurement-builder` |
+| Performance Measurement Object | 6.8, 7.1, 7.3, 7.4, 7.5 | `osmm-performance-measurement-builder` |
 | Customer Insight Object | 7.2 | `osmm-customer-insight-builder` |
-| Offer Performance Object | 7.3 | `osmm-offer-performance-builder` |
-| Creative Performance Object | 7.4 | `osmm-creative-performance-builder` |
-| Journey Performance Object | 7.5 | `osmm-journey-performance-builder` |
 | Optimization Recommendation Object | 7.6 | `osmm-optimization-recommendation-builder` |
+
+> **v0.5 right-sizing — the model holds 27 objects.** Five consolidations removed
+> eight speculative objects (none built), applying the rule *prefer a facet field
+> over a near-duplicate object; a new object must do work the others can't*:
+>
+> - **Targeting Strategy → Marketing Strategy.** Audience prioritization (2.1, 2.8,
+>   2.9) is a section of the strategy (`priority_audiences`, `growth_priorities`),
+>   not a separate object.
+> - **Offer Strategy → Offer.** Incentive philosophy / behavior-change objective
+>   (3.1, 3.2) are fields on the Offer, not a thin strategy layer above it.
+> - **Per-dimension Performance objects → Performance Measurement.** Offer, Creative,
+>   Journey, and Experience performance (7.3–7.5, 6.8) are one object faceted by a
+>   `dimension` field (offer / creative / journey / channel / experience) and timing
+>   (in-flight vs post) — the same move OSMM made for Audience `segmentation_basis`.
+> - **Campaign Measurement → Measurement Framework.** A measurement plan scoped by a
+>   `scope` field (strategy / campaign), not a separate object (4.7).
+> - **Offer Test Strategy + Creative Test Strategy → Experiment Strategy.** One
+>   cross-phase experiment/test object referenced from 3.7, 4.7, and 5.7.
+>
+> Several remaining boundaries (Experience Validation, Personalization Configuration,
+> Experience Design, Content Strategy, Experience Component, Keyword Strategy) are
+> **provisional** — they stay until their builder is authored, when each must clear
+> the "earns its own object" bar or fold. We collapse on paper and split only when
+> building reveals the need.
