@@ -16,7 +16,7 @@ skill_class: artifact-composer
 artifact: Creative Brief
 consumes:
   required: [business_context, brand_context, persona]
-  optional: [marketing_strategy, creative_strategy, messaging_framework, audience, offer, campaign_strategy, measurement_framework, keyword]
+  optional: [marketing_strategy, creative_strategy, content_strategy, product_context, journey, audience, offer, campaign_strategy, measurement_framework]
 phase: 5
 osmm_version: 0.1.0
 status: draft
@@ -63,7 +63,7 @@ the section, because a brief without an objective or a proposition isn't a brief
 |--------|----------|-----------|
 | `marketing_strategy` | The business/marketing objective the creative must serve. | Infer a provisional objective from `business_context` marketing objectives; flag it. |
 | `creative_strategy` | Creative themes, emotional strategy, channel creative requirements. | Synthesize a provisional creative angle from persona + brand; flag it. |
-| `messaging_framework` | Message hierarchy; the single-minded proposition + support. | Draft a provisional proposition from persona motivations + business differentiators; flag it. |
+| the message cascade (`brand_context` `brand_promise`/`messaging_pillars` → `product_context` `product_messaging` → `journey` `persona_tracks.key_messages`) | The single-minded proposition + support, resolved at the persona/stage. | Draft a provisional proposition from persona motivations + product value pillars; flag it. |
 
 **Tier 3 — Add-ons (optional).** Include when present; **omit the section
 entirely when absent** — never fabricate an offer, metrics, or a campaign that
@@ -74,8 +74,9 @@ wasn't decided:
 | `audience` | Sharper targeting context behind the persona. |
 | `offer` | The value exchange / what we're asking the audience to act on. |
 | `campaign_strategy` | Campaign objective, channels, timing, audience-to-offer mapping. |
-| `measurement_framework` / `campaign_measurement` | Success metrics the creative is accountable to. |
-| `keyword` | SEO/AEO topics and intent the creative should serve. |
+| `measurement_framework` | Success metrics the creative is accountable to. |
+| `journey` | The persona/stage `key_questions` (directional keywords) and `key_messages` the creative should serve. |
+| `content_strategy` | The content plan the creative produces against. |
 
 ### Handling missing objects (how the pull-through works)
 
@@ -92,8 +93,8 @@ Before composing, check which objects are available, then apply the tier rule:
 - **Tier 2 missing** — synthesize the section provisionally from Tier 1, flag it
   inline, and recommend the builder so the client knows how to firm it up:
 
-  > `[DRAFT: no Messaging Framework — proposition synthesized from Persona +
-  > Business Context. Firm up with osmm-messaging-framework-builder.]`
+  > `[DRAFT: no Journey key_messages / product_messaging — proposition synthesized
+  > from Persona + Product Context. Firm up with osmm-journey-builder / osmm-product-context-builder.]`
 
 - **Tier 3 missing** — omit the section silently or note it lightly; never
   fabricate the underlying decision.
@@ -110,7 +111,8 @@ The builder map:
 | `persona` | `osmm-persona-builder` | 1 |
 | `marketing_strategy` | `osmm-marketing-strategy-builder` | 2 |
 | `creative_strategy` | `osmm-creative-strategy-builder` | 2 |
-| `messaging_framework` | `osmm-messaging-framework-builder` | 2 |
+| `product_context` | `osmm-product-context-builder` | 2 |
+| `journey` | `osmm-journey-builder` | 2 |
 
 ## Template selection (data-driven, not hand-toggled)
 
@@ -146,11 +148,12 @@ object is absent (after the missing-object handling above).
 4. **Key insight** — the one human truth the creative turns on. *Synthesized from
    `persona` motivations/triggers/pain points and `creative_strategy`.* This is
    the section most worth getting sharp; one sentence beats a list.
-5. **Single-minded proposition** — the one thing to land. *From
-   `messaging_framework` (primary message / value framing).*
+5. **Single-minded proposition** — the one thing to land. *From the message cascade:
+   `brand_context` `brand_promise` → `product_context` `product_messaging` →
+   `journey` `persona_tracks.key_messages` for the relevant persona/stage.*
 6. **Reasons to believe** — the support that makes the proposition credible.
-   *From `messaging_framework` supporting messages, `business_context`
-   differentiators, and `offer`.*
+   *From `product_context` `product_messaging` proof points / value pillars,
+   `business_context` differentiators, and `offer`.*
 7. **Tone & personality** — how it must sound and feel. *From `brand_context`
    (voice, tone principles).*
 8. **Offer** *(optional)* — the value exchange and the action we're asking for.
@@ -206,8 +209,8 @@ object is absent (after the missing-object handling above).
 
 **Inputs available:** `BIZ-acme-wile-e-coyote-corp` (`business_context`,
 `business_type: b2c`), `BRC-acme...` (`brand_context`), `PER-acme-busy-parent`
-(`persona`), a `marketing_strategy`, a `creative_strategy`, and a
-`messaging_framework`. No `offer` object → the Offer section is omitted.
+(`persona`), a `marketing_strategy`, a `creative_strategy`, a `product_context`,
+and a `journey`. No `offer` object → the Offer section is omitted.
 
 > *OSMM-composed first draft — tailor before use. Variant: **B2C** (Business
 > Context `business_type: b2c`; single primary persona).*
@@ -249,8 +252,8 @@ amplification. Deliverables per the creative strategy's channel matrix.
 real social proof; honor brand voice guardrails; no interruptive ad formats.
 
 **Sources.** `BIZ-acme-wile-e-coyote-corp`, `BRC-acme...`, `PER-acme-busy-parent`,
-plus the campaign's `marketing_strategy`, `creative_strategy`, and
-`messaging_framework` objects.
+plus the campaign's `marketing_strategy`, `creative_strategy`, `product_context`,
+and `journey` objects.
 
 ---
 

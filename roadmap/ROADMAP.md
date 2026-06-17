@@ -1,6 +1,6 @@
 # OSMM™ Roadmap
 
-The sequenced plan for building OSMM out from its current state (14 of 25 object
+The sequenced plan for building OSMM out from its current state (12 of 22 object
 builders, 1 composer) to a complete, connected model. For live status see
 [`BACKLOG.md`](BACKLOG.md).
 
@@ -27,10 +27,10 @@ at `status: draft`, ideally with one public-sourced example instance.
 
 ```mermaid
 flowchart TD
-  A["Milestone A<br/>Finish Context foundation<br/>(Brand Context, Audience, Keyword)"]
-  B["Milestone B<br/>Strategy layer · Ph 1-2<br/>(Marketing/Targeting/Keyword Strategy,<br/>Measurement Framework)"]
-  C["Milestone C<br/>Offer & Activation · Ph 3-4<br/>(Offer, Campaign, Journey)"]
-  D["Milestone D<br/>Content & Creative · Ph 5<br/>(Messaging, Creative, Content)"]
+  A["Milestone A ✅<br/>Finish Context foundation<br/>(Brand Context, Audience, Product)"]
+  B["Milestone B ✅<br/>Strategy layer · Ph 1-2<br/>(Marketing Strategy,<br/>Measurement Framework)"]
+  C["Milestone C ✅<br/>Offer & Activation · Ph 3-4<br/>(Offer, Campaign, Journey)"]
+  D["Milestone D ✅<br/>Content & Creative · Ph 5<br/>(Creative, Content)"]
   E["Milestone E<br/>Build & Deliver · Ph 6<br/>(Spec, Component, Config, Delivery, Deploy)"]
   F["Milestone F<br/>Measure, Learn & Optimize · Ph 7<br/>(Performance, Insight, Optimization)"]
   A --> B --> C --> D --> E --> F
@@ -38,25 +38,21 @@ flowchart TD
 ```
 
 ### Milestone A — Finish the Context foundation ✅ COMPLETE
-**Objects:** ~~Brand Context (B02)~~ ✅, ~~Audience (B06)~~ ✅, ~~Keyword (B08)~~ ✅
-(plus ~~Product Context (B35)~~ ✅, added out of band).
-**Why first:** Context is the foundation the whole model references. With Keyword
-shipped, **all six Context objects now have builders** — the Creative Brief composer
-runs end-to-end on the Wendy's set, the Persona ↔ Audience and Keyword → Persona
-edges are realized, and Keyword unblocks Keyword Strategy (B09) in Milestone B.
-**Exit state (met):** Business, Brand, Product, Audience, Persona, and Keyword all
-have builders.
+**Objects:** ~~Brand Context (B02)~~ ✅, ~~Audience (B06)~~ ✅ (plus ~~Product Context
+(B35)~~ ✅, added out of band).
+**Why first:** Context is the foundation the whole model references. **All five Context
+objects now have builders** (Business, Brand, Product, Audience, Persona) — the Creative
+Brief composer runs end-to-end on the Wendy's set and the Persona ↔ Audience edge is
+realized. (Keyword was later dissolved into the Journey in v0.8.)
+**Exit state (met):** Business, Brand, Product, Audience, Persona all have builders.
 **Composer unlocked:** Brand Playbook (C04).
 
-### Milestone B — Strategy layer (Phase 1–2 Work Products)
-**Objects:** ~~Marketing Strategy (B03)~~ ✅, ~~Measurement Framework (B04)~~ ✅,
-Keyword Strategy (B09).
+### Milestone B — Strategy layer (Phase 1–2 Work Products) ✅ COMPLETE
+**Objects:** ~~Marketing Strategy (B03)~~ ✅, ~~Measurement Framework (B04)~~ ✅.
 **Why next:** these are the first Work Products and they reference the Context
-layer from Milestone A. **Marketing Strategy (B03) and Measurement Framework (B04)
-shipped early** — the MKS ↔ MEF edge is realized, so the Strategy Brief composer
-(C03) is fully sourced. **Targeting Strategy folded into Marketing Strategy** in the
-v0.5 right-sizing, so only Keyword Strategy (B09) remains — and it must clear the
-"earns its own object" bar at build time.
+layer from Milestone A. **Both shipped** — the MKS ↔ MEF edge is realized, so the
+Strategy Brief composer (C03) is fully sourced. *Right-sized: Targeting Strategy folded
+into Marketing Strategy (v0.5); Keyword Strategy dissolved into the Journey (v0.8).*
 **Composers unlocked:** Strategy Brief (C03), Audience Strategy (C05).
 
 ### Milestone C — Offer & Activation (Phase 3–4) ✅ shipped
@@ -68,15 +64,14 @@ Measurement → Measurement Framework; Journey Strategy + Journey Configuration 
 Journey Object (v0.6).* Experiment Strategy (B36) is **parked** (deprioritized).
 **Composers unlocked:** Campaign Brief (C02), Journey Map (C06).
 
-### Milestone D — Content & Creative (Phase 5)
-**Objects:** ~~Messaging Framework (B16)~~ ✅, ~~Creative Strategy (B17)~~ ✅, ~~Content Strategy
-(B18)~~ ✅.
+### Milestone D — Content & Creative (Phase 5) ✅ COMPLETE
+**Objects:** ~~Creative Strategy (B17)~~ ✅, ~~Content Strategy (B18)~~ ✅.
 **Why:** completes the inputs to the Creative Brief composer's *optional* tier, making
-that artifact fully-sourced rather than synthesized-and-flagged. **All shipped** —
-persona-differentiated message architecture (Messaging), creative direction (Creative
-Strategy), and the content plan (Content Strategy). *Right-sized: Experience Design folded
-into Creative Strategy (v0.7, `experience_concepts`); Content Strategy was kept separate
-(distinct content-planning discipline).* **Milestone D complete.**
+that artifact fully-sourced rather than synthesized-and-flagged. **Both shipped** — creative
+direction (Creative Strategy) and the content plan (Content Strategy). *Right-sized: Experience
+Design folded into Creative Strategy (v0.7, `experience_concepts`); Messaging Framework dissolved
+into the message cascade (v0.8 — Brand → Product `product_messaging` → Journey
+`persona_tracks.key_messages`).* **Milestone D complete.**
 
 ### Milestone E — Build & Deliver (Phase 6)
 **Objects:** Experience Specification (B21), Experience Component (B22), Personalization
@@ -114,13 +109,11 @@ Measurement via a `dimension` facet.*
 
 | Milestone | Builders | Cumulative builders done |
 |-----------|---------:|-------------------------:|
-| (shipped) | 14 | 14 / 25 |
-| A ✅ complete · B parked (Keyword Strategy) | 0 | 14 / 25 |
-| C ✅ shipped (Experiment Strategy parked) | 0 | 14 / 25 |
-| D ✅ complete (Experience Design folded into Creative Strategy) | 0 | 14 / 25 |
-| E | 6 | 20 / 25 |
-| F | 3 | 23 / 25 |
-| Parked (Keyword Strategy, Experiment Strategy) | 2 | 25 / 25 |
+| (shipped) | 12 | 12 / 22 |
+| A–D ✅ complete | 0 | 12 / 22 |
+| E (Build & Deliver) | 6 | 18 / 22 |
+| F (Measure, Learn & Optimize) | 3 | 21 / 22 |
+| Parked (Experiment Strategy) | 1 | 22 / 22 |
 
 Composers and infrastructure are additive on top of the builder count.
 

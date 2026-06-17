@@ -10,8 +10,9 @@ description: >-
   strategy object," "structure our content strategy," lay out a content plan or editorial plan, set
   content priorities or content pillars, plan a content calendar, define content sequencing, or list
   content types/formats. This object is the *what content we produce and in what order* — it is NOT
-  the Creative Strategy (the creative direction / how it looks and feels), NOT the Messaging
-  Framework (the messages it conveys), and NOT the Journey (the path it supports).
+  the Creative Strategy (the creative direction / how it looks and feels) and NOT the Journey (the
+  path it supports, whose persona tracks carry the questions content answers and the messages it
+  conveys).
 object: Content Strategy Object
 object_type: content_strategy
 category: Work Product
@@ -35,31 +36,35 @@ Downstream production and channel work reference this so every piece ladders up 
 instead of being commissioned ad hoc.
 
 This is the lean v0.1 builder. It captures the content plan and its sequencing, and nothing more.
-Creative direction (look, feel, emotional strategy), the message architecture, and the journey
-mechanics are deliberately out of scope — they belong to neighboring objects; this object stays at
-the level of *what gets produced and when*.
+Creative direction (look, feel, emotional strategy), the messages the content conveys, and the
+journey mechanics are deliberately out of scope — they belong to neighboring objects; this object
+stays at the level of *what gets produced and when*. The message the content conveys cascades from
+Brand Context (`brand_promise`/`messaging_pillars`), Product Context (`product_messaging`), and the
+Journey's per-persona, per-stage `key_messages`; the questions and topics the content answers live
+in the Journey's `persona_tracks[].key_questions`. Reference the Journey via `linked_journey`.
 
 ## Boundaries — what this object is and is NOT
 
-Content Strategy sits among three Phase 5 / Phase 4 neighbors that are easy to blur. Keeping the
+Content Strategy sits among two Phase 5 / Phase 4 neighbors that are easy to blur. Keeping the
 lines clean is the whole point of giving the content plan its own object:
 
 | Object | Owns | This object's relationship |
 |--------|------|----------------------------|
 | **Content Strategy** (this) | The content plan: content goal, pillars/themes, formats, priorities, sequencing across the funnel, cadence (5.3) — *what content we produce and in what order*. | — |
 | **Creative Strategy** | The creative direction — themes, emotional strategy, look and feel, channel creative requirements (5.2/5.6) — *how it looks and feels*. | **Referenced** via `linked_creative_strategy`. Content is produced *within* that direction; this object does not set look/feel. |
-| **Messaging Framework** | The message architecture — primary message, pillars, proof, persona variants (5.1/5.4) — *what we say*. | **Referenced** via `linked_messaging_framework`. The content *conveys* the message; it does not redefine it. |
-| **Journey** | The orchestrated path — stages, triggers, sequencing of the experience (4.x) — *the path the customer takes*. | **Referenced** via `linked_journey`. `journey_mapping` maps content *to* journey stages; it does not redesign the path. |
+| **Journey** | The orchestrated path — stages, triggers, sequencing of the experience, and per-persona, per-stage `key_messages` and `key_questions` (4.x) — *the path the customer takes, the messages it conveys, and the questions it answers*. | **Referenced** via `linked_journey`. `journey_mapping` maps content *to* journey stages; it does not redesign the path. The messages the content conveys and the questions/topics it answers come *from* the Journey's `persona_tracks`. |
 
 Rules of thumb:
 
 - **This object is the *what and when of content*, not the *how it looks* or *what it says*.** If a
-  line is about visual direction or tone, it is Creative Strategy. If it is the message itself, it
-  is the Messaging Framework. Keep this object to the plan.
-- **`content_pillars` are themes the content organizes around, not message pillars.** A content
-  pillar is a recurring topic/theme that generates many pieces (with `formats` under it); a message
-  pillar (in the Messaging Framework) is an argument that supports the primary message. They can
-  align, but they are different objects.
+  line is about visual direction or tone, it is Creative Strategy. If it is the message itself or the
+  question the content answers, it belongs to the Journey's `persona_tracks` (`key_messages` /
+  `key_questions`). Keep this object to the plan.
+- **`content_pillars` are themes the content organizes around, not messages or questions.** A content
+  pillar is a recurring topic/theme that generates many pieces (with `formats` under it); the
+  messages the content conveys cascade from Brand Context, Product Context `product_messaging`, and
+  the Journey's `key_messages`, and the questions/topics it answers live in the Journey's
+  `key_questions`. Pillars can align with those, but they are different objects.
 - **`journey_mapping` maps content onto an existing path; it does not author the path.** Reference
   the Journey via `linked_journey` and place content against its stages. Stage definitions, triggers,
   and cadence of the *experience* live in the Journey Object.
@@ -108,11 +113,9 @@ Emit a single JSON object with this exact shape. Field order should match.
     }
   ],
 
-  "linked_messaging_framework": "MSF-<slug>", // OPTIONAL — the message architecture this conveys
   "linked_creative_strategy": "CRS-<slug>",   // OPTIONAL — the creative direction this is produced within
-  "linked_keywords": [],                      // OPTIONAL — KW- ids: target keywords/topics this addresses
   "linked_personas": [],                      // OPTIONAL — PER- ids this content is written for
-  "linked_journey": "JNY-<slug>",             // OPTIONAL — the journey this content supports
+  "linked_journey": "JNY-<slug>",             // OPTIONAL — the journey whose persona_tracks carry the messages this conveys and the questions it answers
   "linked_campaign_strategy": "CMS-<slug>",   // OPTIONAL — if scoped to a campaign
   "linked_business_context": "BIZ-<slug>",    // OPTIONAL — the owning business
   "source": ""                                // one line: what source(s) this was built from and approximate date
@@ -142,11 +145,9 @@ Emit a single JSON object with this exact shape. Field order should match.
 | `journey_mapping` | object[] | no | Each `{ stage, content }`. Maps content onto journey/funnel stages — does not author the path. |
 | `journey_mapping[].stage` | string | yes (within item) | The journey/funnel stage. |
 | `journey_mapping[].content` | string | yes (within item) | The content serving that stage. |
-| `linked_messaging_framework` | string | no | `MSF-<slug>`. `MSF-PLACEHOLDER-<slug>` ok. |
 | `linked_creative_strategy` | string | no | `CRS-<slug>`. `CRS-PLACEHOLDER-<slug>` ok. |
-| `linked_keywords` | string[] | no | `KW-` ids of target keywords/topics. `KW-PLACEHOLDER-<slug>` ok. |
 | `linked_personas` | string[] | no | `PER-` ids this content is written for. `PER-PLACEHOLDER-<slug>` ok. |
-| `linked_journey` | string | no | `JNY-<slug>`. `JNY-PLACEHOLDER-<slug>` ok. |
+| `linked_journey` | string | no | `JNY-<slug>`. The Journey's `persona_tracks` carry the `key_messages` this content conveys and the `key_questions` it answers. `JNY-PLACEHOLDER-<slug>` ok. |
 | `linked_campaign_strategy` | string | no | `CMS-<slug>` if scoped to a campaign. `CMS-PLACEHOLDER-<slug>` ok. |
 | `linked_business_context` | string | no | `BIZ-<slug>` of the owning business. `BIZ-PLACEHOLDER-<slug>` ok. |
 | `source` | string | no | One line. Provenance and approximate date. |
@@ -167,11 +168,13 @@ production references it. Bump `version` on revision, never the id.
 ## Extraction principles
 
 1. **Capture *what* and *when*, not *how it looks* or *what it says*.** Visual direction and tone are
-   Creative Strategy; the message itself is the Messaging Framework. If a sentence is about look/feel
-   or the wording of a claim, it belongs in a linked object, not here.
+   Creative Strategy; the messages the content conveys cascade from Brand Context, Product Context
+   `product_messaging`, and the Journey's per-persona, per-stage `key_messages`, and the questions it
+   answers live in the Journey's `key_questions`. If a sentence is about look/feel, the wording of a
+   claim, or the question a piece answers, it belongs in a linked object, not here.
 2. **Pillars are themes that generate many pieces.** Each `content_pillars` entry is a recurring topic
    the plan organizes around, with the `formats` produced under it. Keep pillars distinct from the
-   message pillars in the Messaging Framework — align them, don't duplicate them.
+   Journey's `key_messages` and `key_questions` — align them, don't duplicate them.
 3. **Sequencing is content sequencing (5.3).** `sequencing` describes the order and pacing in which
    content is produced/released across the funnel. Don't smuggle in trigger logic or branching — that
    is the Journey's.
@@ -192,14 +195,14 @@ production references it. Bump `version` on revision, never the id.
   lowercase entity slug. See `CONVENTION.md` → "Instance file naming". The `content_strategy_id`
   (`CTS-<slug>`) remains the id *inside* the object; it is not the filename.
 - Set each reference to the real id if it exists; otherwise use the `PLACEHOLDER-` form
-  (`MSF-PLACEHOLDER-<slug>`, `CRS-PLACEHOLDER-<slug>`, `KW-PLACEHOLDER-<slug>`,
-  `PER-PLACEHOLDER-<slug>`, `JNY-PLACEHOLDER-<slug>`, `CMS-PLACEHOLDER-<slug>`,
-  `BIZ-PLACEHOLDER-<slug>`) and tell the user to resolve it.
+  (`CRS-PLACEHOLDER-<slug>`, `PER-PLACEHOLDER-<slug>`, `JNY-PLACEHOLDER-<slug>`,
+  `CMS-PLACEHOLDER-<slug>`, `BIZ-PLACEHOLDER-<slug>`) and tell the user to resolve it.
 - Validate it parses before returning it.
 - Briefly tell the user what you inferred vs. extracted, and flag anything thin (especially the
   per-stage `journey_mapping` and `sequencing`) so they can fill gaps. If you find creative direction
-  or message wording in the source, note it and point the user to the Creative Strategy or Messaging
-  Framework Object rather than smuggling it into this one.
+  or message/question wording in the source, note it and point the user to the Creative Strategy
+  Object or the Journey's `persona_tracks` (`key_messages` / `key_questions`) rather than smuggling
+  it into this one.
 
 ## Starter prompts
 
@@ -207,13 +210,15 @@ production references it. Bump `version` on revision, never the id.
 > Build an OSMM Content Strategy Object for [Offering] by [Brand] from this editorial plan. Set a
 > content goal, 2-5 content pillars with the formats under each, the content types in scope, and the
 > cadence. Map the priority content to the journey stages and describe how it's sequenced across the
-> funnel. Link the Messaging Framework it conveys and the Creative Strategy it's produced within.
+> funnel. Link the Journey it supports (whose `persona_tracks` carry the messages it conveys and the
+> questions it answers) and the Creative Strategy it's produced within.
 
 **From a topic/SEO plan (no journey mapped yet):**
 > Build an OSMM Content Strategy Object for [Brand]/[Offering] from this topic plan. Capture the
-> content pillars and the target keywords/topics as `linked_keywords` (use `KW-PLACEHOLDER-<slug>`
-> where the keyword objects don't exist yet), set priorities and cadence, and flag that the
-> journey_mapping is inferred and should be confirmed against the Journey Object.
+> content pillars, set priorities and cadence, and link the Journey via `linked_journey` (use
+> `JNY-PLACEHOLDER-<slug>` if it doesn't exist yet) — the topics/questions this content answers live
+> in the Journey's `persona_tracks[].key_questions`. Flag that the journey_mapping is inferred and
+> should be confirmed against the Journey Object.
 
 ---
 
@@ -225,7 +230,8 @@ illustrate the shape; both validate against the canonical schema.
 ### Example 1 — B2B platform content plan (IBM watsonx)
 
 Built from IBM's public watsonx content footprint. Organized around enterprise-AI themes, mapped to
-a B2B funnel, and linked to the watsonx Messaging Framework and target keywords.
+a B2B funnel, and linked to the watsonx acquisition Journey (whose persona tracks carry the messages
+this conveys and the questions it answers).
 
 ```json
 {
@@ -266,20 +272,19 @@ a B2B funnel, and linked to the watsonx Messaging Framework and target keywords.
     { "stage": "Consideration", "content": "Hybrid-cloud reference architectures, solution briefs, and how-to webinars" },
     { "stage": "Decision", "content": "Production case studies, demo videos, and watsonx component deep-dives" }
   ],
-  "linked_messaging_framework": "MSF-ibm-watsonx",
   "linked_creative_strategy": "CRS-PLACEHOLDER-ibm-watsonx",
-  "linked_keywords": ["KW-PLACEHOLDER-hybrid-cloud", "KW-PLACEHOLDER-enterprise-ai-governance", "KW-PLACEHOLDER-foundation-models"],
   "linked_personas": ["PER-PLACEHOLDER-ibm-enterprise-it-decision-maker"],
   "linked_journey": "JNY-PLACEHOLDER-ibm-watsonx-acquisition",
   "linked_business_context": "BIZ-ibm",
-  "source": "Built from public information: ibm.com/watsonx content footprint and the MSF-ibm-watsonx Messaging Framework (2024). Keyword, creative, journey, and persona links are placeholders until those objects ship."
+  "source": "Built from public information: ibm.com/watsonx content footprint (2024). The messages this conveys and the questions it answers cascade from IBM Brand/Product Context and the watsonx Journey's persona/stage tracks. Creative, journey, and persona links are placeholders until those objects ship."
 }
 ```
 
 ### Example 2 — B2C product content plan (Wendy's Baconator launch)
 
 Built from Wendy's public social-led content style. Organized around culturally-fluent food content,
-mapped to a B2C funnel, and linked to the deal-savvy craver persona.
+mapped to a B2C funnel, and linked to the deal-savvy craver persona and the Baconator launch Journey
+(whose persona tracks carry the messages this conveys and the questions it answers).
 
 ```json
 {
@@ -320,12 +325,11 @@ mapped to a B2C funnel, and linked to the deal-savvy craver persona.
     { "stage": "Consideration", "content": "Sharp social banter and craving-driving meme content" },
     { "stage": "Conversion", "content": "App-order promo video, in-app banner, and value/deal email" }
   ],
-  "linked_messaging_framework": "MSF-wendys-baconator",
   "linked_creative_strategy": "CRS-PLACEHOLDER-wendys-baconator",
   "linked_personas": ["PER-wendys-deal-savvy-craver"],
   "linked_journey": "JNY-PLACEHOLDER-wendys-baconator-launch",
   "linked_campaign_strategy": "CMS-PLACEHOLDER-wendys-baconator-launch",
   "linked_business_context": "BIZ-wendys",
-  "source": "Built from public information: Wendy's social content style and the MSF-wendys-baconator Messaging Framework (2024). Creative, journey, and campaign links are placeholders until those objects ship."
+  "source": "Built from public information: Wendy's social content style (2024). The messages this conveys and the questions it answers cascade from Wendy's Brand/Product Context and the Baconator launch Journey's persona/stage tracks. Creative, journey, and campaign links are placeholders until those objects ship."
 }
 ```

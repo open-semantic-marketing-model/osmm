@@ -26,13 +26,10 @@ OBJ = {
  'measurement_framework':('Measurement Framework','Work Product',True,1),
  'persona':('Persona','Context',True,2),
  'audience':('Audience','Context',True,2),
- 'keyword':('Keyword','Context',True,2),
- 'keyword_strategy':('Keyword Strategy','Work Product',False,2),
  'offer':('Offer','Work Product',True,3),
  'experiment_strategy':('Experiment Strategy','Work Product',False,3),
  'campaign_strategy':('Campaign Strategy','Work Product',True,4),
  'journey':('Journey','Work Product',True,4),
- 'messaging_framework':('Messaging Framework','Work Product',True,5),
  'creative_strategy':('Creative Strategy','Work Product',True,5),
  'content_strategy':('Content Strategy','Work Product',True,5),
  'experience_specification':('Experience Specification','Work Product',False,6),
@@ -69,8 +66,6 @@ REALIZED = [
  ('product_context','brand_context',False),
  ('persona','audience',True),
  ('audience','business_context',False),
- ('keyword','persona',False),
- ('keyword','business_context',False),
  ('marketing_strategy','business_context',False),
  ('marketing_strategy','brand_context',False),
  ('marketing_strategy','audience',False),
@@ -92,25 +87,17 @@ REALIZED = [
  ('journey','audience',False),
  ('journey','persona',False),
  ('journey','business_context',False),
- # Messaging Framework (B16)
- ('messaging_framework','persona',False),
- ('messaging_framework','product_context',False),
- ('messaging_framework','brand_context',False),
  # Creative Strategy (B17) — absorbs former Experience Design
- ('creative_strategy','messaging_framework',False),
  ('creative_strategy','brand_context',False),
  ('creative_strategy','product_context',False),
  ('creative_strategy','business_context',False),
  # Content Strategy (B18)
- ('content_strategy','messaging_framework',False),
  ('content_strategy','creative_strategy',False),
- ('content_strategy','keyword',False),
  ('content_strategy','journey',False),
  ('content_strategy','business_context',False),
 ]
 # Envisioned edges — illustrative, not yet defined in a builder.
 ENVISIONED = [
- ('keyword_strategy','keyword'),('keyword_strategy','audience'),
  ('experiment_strategy','offer'),('experiment_strategy','campaign_strategy'),('experiment_strategy','creative_strategy'),
  ('experience_specification','creative_strategy'),('experience_specification','campaign_strategy'),
  ('experience_component','experience_specification'),
@@ -150,7 +137,7 @@ def build_dot():
          '  node [shape=box, fontname="Helvetica", fontsize=12.5, margin="0.18,0.10", height=0.42];',
          '  edge [arrowsize=0.75];',
          '  labelloc="t"; fontsize=24; fontname="Helvetica-Bold";',
-         '  label="OSMM™ Object Graph — 25 objects, ordered left→right by workflow phase (1→7)\\n'
+         '  label="OSMM™ Object Graph — 22 objects, ordered left→right by workflow phase (1→7)\\n'
          f'solid node = builder shipped ({BUILT})   ·   dashed node = backlog ({BACKLOG})   ·   '
          'node color = category   ·   solid edge = realized reference   ·   '
          'dashed edge = envisioned   ·   mint edge = learning loop";']

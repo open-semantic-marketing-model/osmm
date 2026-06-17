@@ -11,6 +11,24 @@ governance). The current schema version is **0.1.0**.
 
 ## [Unreleased]
 
+### Changed
+- **Dissolved Keyword, Keyword Strategy, and Messaging Framework into the Journey** (v0.8;
+  25 → 22 objects). Reframes two things around the **(persona × journey-stage) cell**:
+  - **Directional keywords** are now a stage's `persona_tracks.key_questions` — "just enough
+    to point downstream teams, not an SEO database." The Keyword (B08) and Keyword Strategy
+    (B09) objects are removed.
+  - **Messaging is a three-layer cascade**, not an object: **brand** (Brand Context
+    `brand_promise`/`messaging_pillars`) → **product/solution** (Product Context
+    `product_messaging`) → **persona × stage** (the Journey's `persona_tracks.key_messages`).
+    A "messaging framework" is a *rendered artifact* composed from the three layers; the
+    Messaging Framework object (B16) is removed.
+  - **Journey** stages gain `persona_tracks[]` — per persona: `buyer_goal`, `milestones`,
+    `key_activities`, `key_questions`, `key_messages`. Creative/Content Strategy dropped their
+    `linked_messaging_framework`/`linked_keywords`; the creative-brief composer now draws the
+    proposition from the cascade. Reconciled across TAXONOMY, CONVENTION (registry → 22, v0.8
+    note), RELATIONSHIPS, the graph (regenerated — 22 nodes), the roadmap, README, and CHANGELOG.
+
+
 ### Added
 - **Milestone D creative layer — two Work Product builders** (`status: draft`), taking the
   model to **14 of 25 builders shipped**:

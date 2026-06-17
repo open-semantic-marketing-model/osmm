@@ -28,9 +28,10 @@ solution that a business markets.
 
 A Product Context Object is durable, foundational Context — the structured understanding of **the
 thing being marketed**: what it is, what it does, how it works, what the customer gets, and the
-product-level messaging that carries it. Campaigns, messaging frameworks, creative, and offers all
-reference an offering; making that offering explicit and structured means agents and humans frame
-the *same* product the same way instead of each re-deriving it from a datasheet.
+product-level messaging that carries it — **layer 2 of the message cascade** (brand → product →
+persona/journey). Campaigns, creative, content, journeys, and offers all reference an offering;
+making that offering explicit and structured means agents and humans frame the *same* product the
+same way instead of each re-deriving it from a datasheet.
 
 This is the lean v0.1 builder. It captures the marketing-relevant substance of an offering and
 nothing more. Engineering specs, internal roadmaps, and operational detail that don't inform
@@ -187,8 +188,9 @@ never the id.
    understand the offering — components, steps, the model of delivery — distilled from spec/brochure
    copy, not the copy itself.
 4. **`product_messaging` is durable, not a campaign.** Capture the product's standing story — the
-   message you'd lead with regardless of campaign. Campaign-specific angles live downstream in the
-   Messaging Framework and Creative objects, which reference this.
+   message you'd lead with regardless of campaign. Campaign- and persona-specific angles live
+   downstream in the Journey's `persona_tracks.key_messages` and the Creative/Content objects, which
+   draw from this.
 5. **Ground proof points.** Prefer stated, verifiable evidence (published stats, certifications,
    named customers, analyst placements). If a claim is asserted without evidence, either omit it or
    note the thinness rather than laundering it into a proof point.

@@ -1,7 +1,7 @@
 # OSMM™ Skill Naming Convention
 
 **Open Semantic Marketing Model — builder skills**
-Status: Draft v0.7
+Status: Draft v0.8
 
 This document defines how skills that build OSMM objects are named, organized, and described. Every object in the model gets exactly one builder skill, and the name of that skill is keyed to the one thing about the object that never changes: its identity. Phase, category, and release wave can all be re-debated over the life of the standard. The object's identity cannot, so it — and only it — drives the name.
 
@@ -111,8 +111,7 @@ osmm/
 │   │   ├── osmm-business-context-builder/SKILL.md
 │   │   ├── osmm-brand-context-builder/SKILL.md
 │   │   ├── osmm-audience-builder/SKILL.md
-│   │   ├── osmm-persona-builder/SKILL.md
-│   │   └── osmm-keyword-builder/SKILL.md
+│   │   └── osmm-persona-builder/SKILL.md
 │   ├── work-product/
 │   │   ├── osmm-marketing-strategy-builder/SKILL.md
 │   │   └── ...
@@ -172,7 +171,7 @@ Mirrors the OSMM object lifecycle so a builder's maturity tracks its object's:
 
 ## Full builder registry
 
-All 25 objects in the OSMM object model, mapped to their builder skill names.
+All 22 objects in the OSMM object model, mapped to their builder skill names.
 (Speculative objects were consolidated in the v0.5/v0.6 right-sizing — see
 [TAXONOMY.md](TAXONOMY.md) → the note under the object resolution index.)
 
@@ -185,13 +184,10 @@ All 25 objects in the OSMM object model, mapped to their builder skill names.
 | 1 | Measurement Framework | Work Product | `osmm-measurement-framework-builder` |
 | 2 | Audience | Context | `osmm-audience-builder` |
 | 2 | Persona | Context | `osmm-persona-builder` |
-| 2 | Keyword | Context | `osmm-keyword-builder` |
-| 2 | Keyword Strategy | Work Product | `osmm-keyword-strategy-builder` |
 | 3 | Offer | Work Product | `osmm-offer-builder` |
 | 3 | Experiment Strategy | Work Product | `osmm-experiment-strategy-builder` |
 | 4 | Campaign Strategy | Work Product | `osmm-campaign-strategy-builder` |
 | 4 | Journey | Work Product | `osmm-journey-builder` |
-| 5 | Messaging Framework | Work Product | `osmm-messaging-framework-builder` |
 | 5 | Creative Strategy | Work Product | `osmm-creative-strategy-builder` |
 | 5 | Content Strategy | Work Product | `osmm-content-strategy-builder` |
 | 6 | Experience Specification | Work Product | `osmm-experience-specification-builder` |
@@ -284,8 +280,8 @@ skill_class: artifact-composer     # distinguishes it from object builders
 artifact: Creative Brief           # the human-readable artifact produced (NOT an object)
 consumes:                          # the object_types it reads as input
   required: [business_context, brand_context, persona]
-  optional: [marketing_strategy, creative_strategy, messaging_framework,
-             audience, offer, campaign_strategy, measurement_framework, keyword]
+  optional: [marketing_strategy, creative_strategy, content_strategy, product_context,
+             journey, audience, offer, campaign_strategy, measurement_framework]
 phase: 5                           # workflow phase the artifact belongs to
 osmm_version: 0.1.0                # OSMM schema version the consumed objects target
 status: draft                      # draft | proposed | stable | deprecated
@@ -336,7 +332,7 @@ Two parts separated by a single underscore:
 | Business Context | IBM | — | `BUSINESS-CONTEXT_ibm.json` |
 | Business Context | Wendy's | — | `BUSINESS-CONTEXT_wendys.json` |
 | Campaign Strategy | Wendy's | Baconator Launch | `CAMPAIGN-STRATEGY_wendys-baconator-launch.json` |
-| Keyword | — | Marketing Operating Model | `KEYWORD_marketing-operating-model.json` |
+| Journey | Wendy's | App Habit | `JOURNEY_wendys-app-habit.json` |
 | Performance Measurement | Wendy's | Breakfast Daypart | `PERFORMANCE-MEASUREMENT_wendys-breakfast-daypart.json` |
 
 ### Where instance files live
@@ -377,13 +373,15 @@ Some object fields are governed enums, not free text (e.g. Persona `persona_type
 
 The concept papers and the L1 summary reference a **Creative Brief** *object*
 (Wave 1 / Phase 5 work product), but the detailed object registry has no object
-by that name — it carries Messaging Framework, Creative Strategy, and Content
-Strategy instead.
+by that name — it carries Creative Strategy and Content Strategy, with the message
+itself cascading from Brand Context, Product Context `product_messaging`, and the
+Journey's `persona_tracks`.
 
 **Resolution:** the Creative Brief is a **human-readable artifact, not an OSMM
 object.** It is the rendered view of the underlying objects — specifically the
 output of sub-process 5.8 (*Confirm Content & Creative Direction*), which
-resolves to the **Creative Strategy Object + Messaging Framework Object** (see
+resolves to the **Creative Strategy Object** plus the cascaded message (Brand
+Context + Product Context `product_messaging` + the Journey's `persona_tracks`; see
 [`TAXONOMY.md`](TAXONOMY.md)). This is the same object-vs-rendering split that
 runs through the rest of OSMM: the "Creative Brief" a person reads is a
 presentation of structured objects, just as a Strategic Brief renders the
@@ -393,18 +391,31 @@ typed objects.
 
 Consequences at the **data-standard layer**: there is no Creative Brief object,
 no `object_type: creative_brief`, and no `osmm-creative-brief-builder` (an object
-*builder* has no object to build). The object model stands at **25 objects**;
+*builder* has no object to build). The object model stands at **22 objects**;
 nothing is added or removed by this resolution. "Creative Brief" remains valid
 only as an artifact label (e.g. in the TAXONOMY artifact column).
 
 At the **skill layer**, this does not preclude an accelerator. OSMM ships an
 `osmm-creative-brief-composer` — an [artifact-composer
 skill](#artifact-composer-skills) that *reads* the underlying objects (Creative
-Strategy, Messaging Framework, and the Context objects behind them) and composes
+Strategy, the Journey, and the Context objects behind them) and composes
 a first-draft brief a client can tailor. The composer is non-normative: it
 defines no schema and emits an artifact, not an object. So the standard stays
 pure (objects only) while the skill library still delivers the brief as an
 accelerator.
+
+---
+
+## Changes in v0.8
+
+- **Dissolved Keyword, Keyword Strategy, and Messaging Framework into the Journey** (25 →
+  22). Directional keywords are now a journey stage's `persona_tracks.key_questions` ("just
+  enough to point downstream teams, not an SEO database"); messaging is a three-layer cascade
+  — Brand Context (`brand_promise`/`messaging_pillars`) → Product Context (`product_messaging`)
+  → the Journey's `persona_tracks.key_messages` — rendered as an artifact, not authored as an
+  object. Each journey stage now carries per-persona tracks (`buyer_goal`, `milestones`,
+  `key_activities`, `key_questions`, `key_messages`). Creative/Content Strategy dropped their
+  `linked_messaging_framework`/`linked_keywords` references.
 
 ---
 

@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/open-semantic-marketing-model/osmm/main/schemas/content_strategy.schema.json",
   "title": "OSMM Content Strategy Object",
-  "description": "The content plan for an offering or campaign: the content goal, the content pillars/themes (and the formats under each), the content priorities and types in scope, how content is sequenced across the journey/funnel, and the publishing cadence. Canonical schema for object_type 'content_strategy'. The osmm-content-strategy-builder skill references this file; it is the single source of truth for the object's shape. Content Strategy is the *what content we produce and in what order* (5.3) — distinct from Creative Strategy (the creative direction / how it looks and feels), the Messaging Framework (the message architecture it conveys), and the Journey (the path it supports).",
+  "description": "The content plan for an offering or campaign: the content goal, the content pillars/themes (and the formats under each), the content priorities and types in scope, how content is sequenced across the journey/funnel, and the publishing cadence. Canonical schema for object_type 'content_strategy'. The osmm-content-strategy-builder skill references this file; it is the single source of truth for the object's shape. Content Strategy is the *what content we produce and in what order* (5.3) — distinct from Creative Strategy (the creative direction / how it looks and feels) and the Journey (the path it supports, whose persona_tracks carry the questions content answers). The message it conveys cascades from Brand Context, Product Context product_messaging, and the Journey's persona/stage key_messages.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -120,23 +120,10 @@
         }
       }
     },
-    "linked_messaging_framework": {
-      "type": "string",
-      "pattern": "^MSF-(PLACEHOLDER-)?[a-z0-9-]+$",
-      "description": "Id of the Messaging Framework whose message architecture this content conveys. 'MSF-PLACEHOLDER-<slug>' ok. Optional."
-    },
     "linked_creative_strategy": {
       "type": "string",
       "pattern": "^CRS-(PLACEHOLDER-)?[a-z0-9-]+$",
       "description": "Id of the Creative Strategy that sets the creative direction this content is produced within. 'CRS-PLACEHOLDER-<slug>' ok. Optional."
-    },
-    "linked_keywords": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "pattern": "^KW-(PLACEHOLDER-)?[a-z0-9-]+$"
-      },
-      "description": "Ids of the target Keywords/topics this content addresses. 'KW-PLACEHOLDER-<slug>' ok. Optional."
     },
     "linked_personas": {
       "type": "array",
