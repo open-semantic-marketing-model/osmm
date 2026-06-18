@@ -10,8 +10,9 @@ description: >-
   set a creative direction, define a big idea or creative platform, lay out creative themes or
   territories, define an emotional strategy, capture a creative system or experience concepts, or
   spell out channel creative requirements. The creative direction — how we express the message,
-  distinct from what we say (Messaging Framework). This object absorbs the former Experience
-  Design object (creative system & experience concepts).
+  distinct from the message itself, which cascades from Brand Context (brand promise/pillars) and
+  Product Context (product_messaging) and resolves per persona/stage in the Journey. This object
+  absorbs the former Experience Design object (creative system & experience concepts).
 object: Creative Strategy Object
 object_type: creative_strategy
 category: Work Product
@@ -32,27 +33,38 @@ the message*: the central **creative platform** (the big idea everything ladders
 the **creative system & experience concepts** that bring the platform to life, and the
 **channel-specific creative requirements** that translate it per medium. It is a Phase 5 Work
 Product resolving sub-processes **5.2** (creative themes, emotional strategy), **5.6**
-(channel-specific creative requirements), and — with the Messaging Framework — **5.8** (confirm the
-final creative direction).
+(channel-specific creative requirements), and **5.8** (confirm the final creative direction).
 
 It **absorbs the former Experience Design object** (sub-process **5.5**, *creative system &
 experience concepts*): that work now lives here in `experience_concepts[]` rather than in a separate
 object. Creative system thinking and experience ideas are part of the same creative direction, so
 they travel with it.
 
-This object is the creative *dressing* of the message. It does not set the message (that is the
-Messaging Framework's job) or plan the content (Content Strategy) or redefine the brand
-(Brand Context). It expresses the message within the brand, in a way the channels can execute.
+This object is the creative *dressing* of the message. It does not set the message (that cascades
+from Brand Context, Product Context, and the Journey — see below) or plan the content (Content
+Strategy) or redefine the brand (Brand Context). It expresses the message within the brand, in a way
+the channels can execute.
 
 ## Core design rule — express the message, don't restate or redefine it
 
-Creative Strategy sits one layer down from the Messaging Framework: it takes *what we say* (the
-message architecture) and decides *how we say it* — the big idea, the themes, the feeling, the
-experience, the channel treatments. It draws from `linked_messaging_framework` and operates inside
-`linked_brand_context`'s voice and identity.
+Creative Strategy sits one layer down from the message itself. The message is not a single object —
+it cascades in three layers, each with its own home:
 
-- It **does not** restate the message hierarchy, pillars, or persona variants — it references the
-  Messaging Framework that owns them and builds expression on top.
+- **Brand level** → **Brand Context** (`brand_promise`, `messaging_pillars`, voice/tone).
+- **Product/solution level** → **Product Context** (`product_messaging`: primary message, value
+  pillars, proof points).
+- **Persona × journey-stage level** → the **Journey** object's
+  `stages[].persona_tracks[].key_messages`.
+
+Creative Strategy takes *what we say* (that cascade) and decides *how we say it* — the big idea, the
+themes, the feeling, the experience, the channel treatments. It draws the message from
+`linked_brand_context` (brand promise/pillars) and `linked_product` (`product_messaging` value
+pillars), resolves it per persona/stage via the Journey, and operates inside `linked_brand_context`'s
+voice and identity.
+
+- It **does not** restate the brand promise/pillars, product value pillars, or persona/stage
+  key messages — it references the Brand Context, Product Context, and Journey that own them and
+  builds expression on top.
 - It **does not** redefine the brand voice, palette, or identity — those are durable Brand Context.
   Creative Strategy applies them to a specific offering/campaign and may extend them creatively, but
   the durable definition stays in Brand Context.
@@ -62,15 +74,17 @@ experience, the channel treatments. It draws from `linked_messaging_framework` a
 
 | Object | Owns | This object's relationship |
 |--------|------|----------------------------|
-| **Messaging Framework** | *What we say* — the message architecture: hierarchy, pillars, proof, persona variants (5.1/5.4). | **Source.** Creative Strategy expresses this; it references it via `linked_messaging_framework` and does not restate the message. Stop dressing once you start rewriting the message. |
+| **Brand Context** | The brand-level message — `brand_promise`, `messaging_pillars` — plus the durable brand voice, identity, and guardrails (who the brand is, across everything). | **Source + referenced** via `linked_brand_context`. Creative Strategy expresses the brand promise/pillars and operates inside the voice; `creative_principles` and `emotional_strategy` apply that identity to this work, they don't redefine it. |
+| **Product Context** | The product-level message — `product_messaging`: the primary message, value pillars, and proof points for the offering. | **Source.** Referenced via `linked_product`. Creative Strategy expresses these value pillars; it does not restate them. Stop dressing once you start rewriting the message. |
+| **Journey** | The persona × stage message — `stages[].persona_tracks[].key_messages`, what each persona needs to hear at each stage. | **Source.** Creative Strategy resolves expression per persona/stage against these key messages; it does not author them. |
 | **Creative Strategy** (this) | *How we express the message* — the big idea / creative platform, creative themes, emotional strategy, creative system & experience concepts, and channel creative requirements (5.2/5.5/5.6/5.8). | — |
 | **Content Strategy** | *The content plan* — content priorities, types, and sequencing (5.3). | **Downstream peer.** It plans what content to make; this sets the creative direction that content executes against. Don't list content deliverables here. |
-| **Brand Context** | The durable brand voice, identity, and guardrails (who the brand is, across everything). | **Referenced** via `linked_brand_context`. `creative_principles` and `emotional_strategy` apply that identity to this work; they don't redefine it. |
 
 Rules of thumb:
 
 - **Express, don't restate.** Themes, emotion, and experience concepts *interpret* the message —
-  they don't repeat the pillars. Reference the Messaging Framework; build on it.
+  they don't repeat the pillars. Reference the message cascade (Brand Context, Product Context,
+  Journey); build on it.
 - **Apply the brand, don't author it.** Voice and identity live in Brand Context. Use
   `creative_principles` for creative-strategy-scoped guardrails only.
 - **The platform is the apex.** `creative_platform` is the single big idea; `creative_themes[]` are
@@ -119,9 +133,8 @@ Emit a single JSON object with this exact shape. Field order should match.
 
   "creative_principles": [],                   // OPTIONAL — creative guardrails / do's that keep execution on platform
 
-  "linked_messaging_framework": "MSF-<slug>",  // OPTIONAL — the message architecture this expresses
-  "linked_brand_context": "BRC-<slug>",        // OPTIONAL — the brand voice / identity it operates within
-  "linked_product": "PRD-<slug>",              // OPTIONAL — the offering this creative is for
+  "linked_brand_context": "BRC-<slug>",        // OPTIONAL — the brand promise/pillars + voice/identity it expresses and operates within
+  "linked_product": "PRD-<slug>",              // OPTIONAL — the offering this creative is for (product_messaging value pillars it expresses)
   "linked_personas": [],                       // OPTIONAL — PER- ids this creative speaks to
   "linked_campaign_strategy": "CMS-<slug>",    // OPTIONAL — if scoped to a campaign
   "linked_business_context": "BIZ-<slug>",     // OPTIONAL — the owning business
@@ -149,9 +162,8 @@ Emit a single JSON object with this exact shape. Field order should match.
 | `channel_creative[].channel` | string | yes (within entry) | The channel / medium (social, OOH, web, email, video, in-store…). |
 | `channel_creative[].requirements` | string | yes (within entry) | What the creative must do / look like in that channel. |
 | `creative_principles` | string[] | no | Creative guardrails / do's that keep execution on platform. |
-| `linked_messaging_framework` | string | no | `MSF-<slug>` of the message architecture this expresses. `MSF-PLACEHOLDER-<slug>` ok. |
-| `linked_brand_context` | string | no | `BRC-<slug>` whose voice/identity this operates within. `BRC-PLACEHOLDER-<slug>` ok. |
-| `linked_product` | string | no | `PRD-<slug>` of the offering. `PRD-PLACEHOLDER-<slug>` ok. |
+| `linked_brand_context` | string | no | `BRC-<slug>` whose brand promise/pillars this expresses and whose voice/identity it operates within. `BRC-PLACEHOLDER-<slug>` ok. |
+| `linked_product` | string | no | `PRD-<slug>` of the offering, whose `product_messaging` value pillars this expresses. `PRD-PLACEHOLDER-<slug>` ok. |
 | `linked_personas` | string[] | no | `PER-` ids this creative speaks to. `PER-PLACEHOLDER-<slug>` ok. |
 | `linked_campaign_strategy` | string | no | `CMS-<slug>` if scoped to a campaign. `CMS-PLACEHOLDER-<slug>` ok. |
 | `linked_business_context` | string | no | `BIZ-<slug>` of the owning business. `BIZ-PLACEHOLDER-<slug>` ok. |
@@ -163,8 +175,8 @@ Emit a single JSON object with this exact shape. Field order should match.
 the offering (or campaign)** the creative direction is for, so strategies stay distinct across a
 portfolio:
 
-- IBM watsonx → `CRS-ibm-watsonx` (expresses `MSF-ibm-watsonx`)
-- Wendy's Baconator → `CRS-wendys-baconator` (expresses `MSF-wendys-baconator`)
+- IBM watsonx → `CRS-ibm-watsonx` (expresses `BRC-ibm` + `PRD-ibm-watsonx`)
+- Wendy's Baconator → `CRS-wendys-baconator` (expresses `BRC-wendys` + `PRD-wendys-baconator`)
 
 If a creative strategy is scoped to a specific campaign rather than the durable offering, name it for
 the campaign (`CRS-wendys-baconator-launch`) and set `linked_campaign_strategy`. Keep the id stable
@@ -173,9 +185,10 @@ Bump `version` on revision.
 
 ## Extraction principles
 
-1. **Express the message, don't restate it.** Draw from the linked Messaging Framework's hierarchy
-   and pillars, then decide *how* to express them — the big idea, themes, feeling, experience. If a
-   line just repeats a message pillar, it belongs upstream, not here.
+1. **Express the message, don't restate it.** Draw from the message cascade — the Brand Context's
+   brand promise/pillars, the Product Context's `product_messaging` value pillars, and the Journey's
+   per persona/stage key messages — then decide *how* to express them: the big idea, themes, feeling,
+   experience. If a line just repeats a message pillar, it belongs upstream, not here.
 2. **One platform, then themes beneath it.** `creative_platform` is the single big idea;
    `creative_themes[]` are the territories it explores. Keep the layers distinct — a theme is an
    angle the platform takes, not a second big idea.
@@ -200,16 +213,17 @@ Bump `version` on revision.
   with an optional instance slug when one entity has multiple creative strategies — uppercase object
   name, underscore join, lowercase entity slug. See `CONVENTION.md` → "Instance file naming". The
   `creative_strategy_id` (`CRS-<slug>`) remains the id *inside* the object; it is not the filename.
-- Set `linked_messaging_framework` to the real `MSF-<slug>` if it exists; otherwise use
-  `MSF-PLACEHOLDER-<slug>` and tell the user to resolve it. Do the same for `linked_brand_context`
-  (`BRC-`), `linked_product` (`PRD-`), `linked_personas` (`PER-`), `linked_campaign_strategy`
-  (`CMS-`), and `linked_business_context` (`BIZ-`).
+- Set `linked_brand_context` to the real `BRC-<slug>` if it exists; otherwise use
+  `BRC-PLACEHOLDER-<slug>` and tell the user to resolve it. Do the same for `linked_product`
+  (`PRD-`), `linked_personas` (`PER-`), `linked_campaign_strategy` (`CMS-`), and
+  `linked_business_context` (`BIZ-`).
 - Validate it parses before returning it.
 - Briefly tell the user what you inferred vs. extracted, and call out anything thin (especially the
   emotional strategy and experience concepts) so they can fill gaps. If you find message content
-  ("our pillar is X") note it belongs in the Messaging Framework; if you find content-plan or
-  media-flighting detail, point the user to Content Strategy / Campaign Strategy rather than
-  smuggling it in here.
+  ("our pillar is X") note it belongs upstream in the cascade — Brand Context (brand promise/pillars),
+  Product Context (`product_messaging`), or the Journey (persona/stage key messages); if you find
+  content-plan or media-flighting detail, point the user to Content Strategy / Campaign Strategy
+  rather than smuggling it in here.
 
 ## Starter prompts
 
@@ -217,15 +231,18 @@ Bump `version` on revision.
 > Build an OSMM Creative Strategy Object for [Offering] by [Brand]. Set the big idea
 > (`creative_platform`), 2-4 creative themes, and the emotional strategy. Capture any creative
 > system / experience concepts in `experience_concepts`, and any channel-specific creative
-> requirements in `channel_creative`. Link the Messaging Framework it expresses
-> (`MSF-[offering-slug]`) and the Brand Context it operates within. Leave the content plan to
-> Content Strategy.
+> requirements in `channel_creative`. Link the Brand Context (`BRC-[brand-slug]`) whose
+> promise/pillars it expresses and operates within, and the Product Context
+> (`PRD-[offering-slug]`) whose `product_messaging` value pillars it expresses. Leave the content
+> plan to Content Strategy.
 
-**From brand campaign work (no messaging framework yet):**
+**From brand campaign work (no Brand/Product Context resolved yet):**
 > Build an OSMM Creative Strategy Object for [Brand]/[Offering] from this campaign deck. Capture the
 > creative platform, themes, emotional strategy, and any experience concepts; set
-> `linked_messaging_framework` to `MSF-PLACEHOLDER-<slug>` and flag that the message architecture
-> should be confirmed against a Messaging Framework Object.
+> `linked_brand_context` to `BRC-PLACEHOLDER-<slug>` and `linked_product` to
+> `PRD-PLACEHOLDER-<slug>`, and flag that the message it expresses should be confirmed against the
+> Brand Context (brand promise/pillars), Product Context (`product_messaging`), and Journey
+> (persona/stage key messages).
 
 ---
 
@@ -236,8 +253,10 @@ illustrate the shape; both validate against the canonical schema.
 
 ### Example 1 — B2B platform creative (IBM watsonx)
 
-Built from IBM's public watsonx brand and "Let's create" campaign work. Expresses `MSF-ibm-watsonx`,
-operates within `BRC-ibm`, and exercises `experience_concepts` and `channel_creative`.
+Built from IBM's public watsonx brand and "Let's create" campaign work. Expresses the message
+cascade — `BRC-ibm`'s brand promise/pillars and `PRD-ibm-watsonx`'s `product_messaging` value
+pillars — operates within `BRC-ibm`'s voice, and exercises `experience_concepts` and
+`channel_creative`.
 
 ```json
 {
@@ -279,19 +298,20 @@ operates within `BRC-ibm`, and exercises `experience_concepts` and `channel_crea
     "Let customer proof and analyst recognition carry the boast",
     "Apply the IBM brand identity from Brand Context; do not invent a parallel visual voice"
   ],
-  "linked_messaging_framework": "MSF-ibm-watsonx",
   "linked_brand_context": "BRC-ibm",
   "linked_product": "PRD-ibm-watsonx",
   "linked_personas": ["PER-PLACEHOLDER-ibm-enterprise-it-decision-maker"],
   "linked_business_context": "BIZ-ibm",
-  "source": "Built from public information: ibm.com/watsonx, IBM 'Let's create' brand campaign, and the MSF-ibm-watsonx Messaging Framework (2024). Experience concepts and channel requirements inferred from public creative; the linked persona is a placeholder until that object ships."
+  "source": "Built from public information: ibm.com/watsonx and IBM 'Let's create' brand campaign (2024). Message expressed draws from BRC-ibm (brand promise/pillars) and PRD-ibm-watsonx (product_messaging value pillars). Experience concepts and channel requirements inferred from public creative; the linked persona is a placeholder until that object ships."
 }
 ```
 
 ### Example 2 — B2C product creative (Wendy's Baconator)
 
-Built from Wendy's public brand and social creative. Expresses `MSF-wendys-baconator`, operates
-within `BRC-wendys`, and exercises `experience_concepts` and `channel_creative`.
+Built from Wendy's public brand and social creative. Expresses the message cascade —
+`BRC-wendys`'s brand promise/pillars and `PRD-wendys-baconator`'s `product_messaging` value
+pillars — operates within `BRC-wendys`'s voice, and exercises `experience_concepts` and
+`channel_creative`.
 
 ```json
 {
@@ -329,11 +349,10 @@ within `BRC-wendys`, and exercises `experience_concepts` and `channel_creative`.
     "Be witty, never generic fast-food; apply the Wendy's brand voice from Brand Context",
     "Punch up at quality, not down at price"
   ],
-  "linked_messaging_framework": "MSF-wendys-baconator",
   "linked_brand_context": "BRC-wendys",
   "linked_product": "PRD-wendys-baconator",
   "linked_personas": ["PER-wendys-deal-savvy-craver"],
   "linked_business_context": "BIZ-wendys",
-  "source": "Built from public information: wendys.com, Wendy's brand social creative, and the MSF-wendys-baconator Messaging Framework (2024). Experience concept and channel requirements inferred from public creative."
+  "source": "Built from public information: wendys.com and Wendy's brand social creative (2024). Message expressed draws from BRC-wendys (brand promise/pillars) and PRD-wendys-baconator (product_messaging value pillars). Experience concept and channel requirements inferred from public creative."
 }
 ```

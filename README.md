@@ -62,12 +62,12 @@ examples.
 
 ## The object model
 
-OSMM currently spans **25 objects** across **7 workflow phases**, grouped into
+OSMM currently spans **22 objects** across **7 workflow phases**, grouped into
 **5 categories** by their read/write and governance profile:
 
 | Category | Purpose |
 |----------|---------|
-| **Context** | Durable, reusable business intelligence (Business Context, Brand Context, Product Context, Audience, Persona, Keyword). High-read, low-write. |
+| **Context** | Durable, reusable business intelligence (Business Context, Brand Context, Product Context, Audience, Persona). High-read, low-write. |
 | **Work Product** | The structured outputs of decisions that today live in documents (Marketing Strategy, Creative Strategy, Campaign Strategy, Journey, …). |
 | **Configuration** | Operational logic for orchestration (Personalization Configuration). |
 | **Measurement** | Performance data structured for analysis. Append-only. |
@@ -107,15 +107,15 @@ drift. Schemas are added per object as their builder ships; see
 ## Status
 
 Early and active — **draft v0.1**. The standard is built iteratively: ship a
-concrete, validated artifact, then refine. **14 of the 25 object builders have
+concrete, validated artifact, then refine. **12 of the 22 object builders have
 shipped** (plus one artifact composer, `osmm-creative-brief-composer`). The
-durable **Context foundation is complete** — all six Context builders are live
+durable **Context foundation is complete** — all five Context builders are live
 (`osmm-business-context-builder`, `osmm-brand-context-builder`,
-`osmm-product-context-builder`, `osmm-persona-builder`, `osmm-audience-builder`,
-`osmm-keyword-builder`) — alongside the Phase 1 Work Products (Marketing Strategy,
-Measurement Framework), the Phase 3–4 activation layer (Offer, Campaign Strategy,
-Journey), and the Phase 5 creative layer (Messaging Framework, Creative Strategy,
-Content Strategy). Work continues through the delivery and measurement phases. The live
+`osmm-product-context-builder`, `osmm-persona-builder`, `osmm-audience-builder`) —
+alongside the Phase 1 Work Products (Marketing Strategy, Measurement Framework), the
+Phase 3–4 activation layer (Offer, Campaign Strategy, Journey), and the Phase 5 creative
+layer (Creative Strategy, Content Strategy). Work continues through the delivery and
+measurement phases. The live
 build board is [`roadmap/BACKLOG.md`](roadmap/BACKLOG.md). Schemas evolve under strict
 semantic versioning with formal deprecation, never silent breaks; the policy is
 in [`GOVERNANCE.md`](GOVERNANCE.md).

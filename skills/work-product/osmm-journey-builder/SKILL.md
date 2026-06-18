@@ -40,6 +40,17 @@ movement is operationalized*, distinct from the campaign that may drive them.
 > goals / path; triggering & sequencing; confirmed direction) **and 6.3** (configure journey &
 > delivery logic).
 
+> **The (persona × stage) cell — where questions and messages live.** Each stage carries
+> `persona_tracks` — one per persona the journey serves — capturing that decision-maker's
+> `buyer_goal`, `milestones`, `key_activities`, the `key_questions` in their mind, and the
+> `key_messages` that respond. This is the home for two things OSMM no longer models as separate
+> objects: **directional keywords** (the `key_questions` — just enough to point downstream teams,
+> not an SEO database) and the **persona/journey layer of messaging**. Messaging cascades in three
+> layers — **brand** (Brand Context `brand_promise` / `messaging_pillars`) → **product/solution**
+> (Product Context `product_messaging` value pillars) → **persona × journey** (these
+> `key_messages`) — and a *messaging-framework* artifact is composed by drawing from all three and
+> resolving at this cell.
+
 A journey can serve a **single campaign** *or* run **always-on as a lifecycle journey** independent
 of any one campaign (a welcome/onboarding flow, a winback program, a loyalty nurture). Its link to
 a Campaign Strategy is therefore **optional** — set `linked_campaign_strategy` only when the journey
@@ -96,7 +107,17 @@ Emit a single JSON object with this exact shape. Field order should match.
       "objective": "",                     // what this stage is trying to achieve
       "touchpoints": [],                   // OPTIONAL — interactions/messages in this stage
       "entry_criteria": "",                // OPTIONAL — what moves a customer into this stage
-      "exit_criteria": ""                  // OPTIONAL — what moves them out
+      "exit_criteria": "",                 // OPTIONAL — what moves them out
+      "persona_tracks": [                  // OPTIONAL — the (persona × stage) cell, one per persona the journey serves
+        {
+          "persona": "PER-<slug>",         // the Persona this track is for
+          "buyer_goal": "",                // what this persona is trying to accomplish at this stage
+          "milestones": [],                // milestones the buyer hits within the stage
+          "key_activities": [],            // what the buyer is doing
+          "key_questions": [],             // the questions/considerations in mind — directional "keywords", not an SEO database
+          "key_messages": []               // the responses to those questions (draw from brand promise + product value pillars)
+        }
+      ]
     }
   ],
   "triggers": [                            // the triggering logic (4.5)
@@ -135,7 +156,8 @@ Emit a single JSON object with this exact shape. Field order should match.
 | `name` | string | yes | A readable label, usually entity + journey: "Wendy's App First-Order to Habitual-Use Journey". |
 | `journey_goal` | string | yes | The single outcome the journey drives (4.2). An outcome, not an activity — "turn first-time app orderers into habitual users," not "send onboarding emails." |
 | `journey_type` | enum | no | Controlled vocabulary — see below. Pick the single closest motion; use `lifecycle` for an always-on journey spanning several. |
-| `stages` | object[] | yes | The ordered customer path (4.2). Each `{ stage, objective, touchpoints?, entry_criteria?, exit_criteria? }`. Array order is journey order. 2–6 stages is usually right. `stage` and `objective` required per item. |
+| `stages` | object[] | yes | The ordered customer path (4.2). Each `{ stage, objective, touchpoints?, entry_criteria?, exit_criteria?, persona_tracks? }`. Array order is journey order. 2–6 stages is usually right. `stage` and `objective` required per item. |
+| `stages[].persona_tracks` | object[] | no | The **(persona × stage) cell** — one per persona the journey serves. Each `{ persona, buyer_goal?, milestones?, key_activities?, key_questions?, key_messages? }`; only `persona` is required. `key_questions` are the directional "keywords" (the considerations in the decision-maker's mind — *not* an SEO keyword database); `key_messages` are the responses, drawn from the brand promise (Brand Context) and product value pillars (Product Context `product_messaging`). |
 | `triggers` | object[] | yes | The triggering logic (4.5). Each `{ trigger, action, timing? }`. `trigger` and `action` required per item. The events that advance a customer and what each fires. |
 | `sequencing_logic` | string | no | How stages/messages are sequenced — ordering, branching, overall pacing (4.5). |
 | `cadence` | string | no | Frequency/pacing guidance (contact limits, suppression windows). |
@@ -268,7 +290,17 @@ view. References the shipped `BIZ-wendys`, `AUD-wendys-value-seekers`, and `PER-
       "objective": "Convert the new account into a first mobile order with a welcome offer.",
       "touchpoints": ["Welcome push", "First-order offer (e.g. free Baconator with first app order)", "Onboarding email"],
       "entry_criteria": "Account created, no orders yet",
-      "exit_criteria": "First app order placed"
+      "exit_criteria": "First app order placed",
+      "persona_tracks": [
+        {
+          "persona": "PER-wendys-deal-savvy-craver",
+          "buyer_goal": "Get the most food for the money on a first app order without friction",
+          "milestones": ["Opened the welcome offer", "Built a first mobile order", "Redeemed the offer"],
+          "key_activities": ["Browsing the app menu", "Comparing the deal to the in-store price", "Checking how to redeem"],
+          "key_questions": ["is the app deal actually worth it?", "how do I redeem the free Baconator?", "is mobile order faster than the line?"],
+          "key_messages": ["Your first app order comes with a free Baconator — more food for less", "Skip the line: order ahead and pick up"]
+        }
+      ]
     },
     {
       "stage": "Retention",

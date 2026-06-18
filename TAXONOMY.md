@@ -57,7 +57,7 @@ flowchart LR
 | 2.4 Define Customer Needs & Behaviors | Priority behaviors, customer needs | Persona Object | Persona Profiles |
 | 2.5 Define Personas | Persona definitions | Persona Object | Persona Profiles |
 | 2.6 Define Lifecycle & Value Framework | Lifecycle framework, value segmentation | Audience Object | Lifecycle Framework |
-| 2.7 Define Keyword & Topic Strategy | Priority keywords and topics, intent distribution, AEO targets, SEO targets, topic-to-journey mapping | Keyword Object, Keyword Strategy Object | Keyword & Topic Strategy |
+| 2.7 Define Keyword & Topic Direction | Directional keywords / key questions per persona-stage | Journey Object (`persona_tracks.key_questions`) | (captured in the journey) |
 | 2.8 Define Audience Prioritization | Target audience prioritization | Marketing Strategy Object | Prioritization Matrix |
 | 2.9 Confirm Audience Definition | Final audience strategy | Marketing Strategy Object | Audience Summary |
 
@@ -124,26 +124,28 @@ flowchart LR
 
 | L2 sub-process | Key decisions | Resolves to object | Human-readable artifact |
 |---|---|---|---|
-| 5.1 Define Messaging Strategy | Message hierarchy, value framing | Messaging Framework Object | Messaging Framework |
+| 5.1 Define Messaging Strategy | Message hierarchy, value framing | Product Context (`product_messaging`) + Brand Context | Messaging Framework (composed) |
 | 5.2 Define Creative Strategy | Creative themes, emotional strategy | Creative Strategy Object | Creative Direction Summary |
 | 5.3 Define Content Strategy | Content priorities, content sequencing | Content Strategy Object | Content Plan |
-| 5.4 Define Message Hierarchy & Variations | Message prioritization | Messaging Framework Object | Messaging Architecture |
+| 5.4 Define Message Hierarchy & Variations | Per-persona/stage message variations | Journey Object (`persona_tracks.key_messages`) | Messaging Framework (composed) |
 | 5.5 Define Creative System & Experience Concepts | Experience concepts | Creative Strategy Object (`experience_concepts`) | Experience Concepts |
 | 5.6 Define Channel-Specific Creative Requirements | Channel creative rules | Creative Strategy Object | Channel Creative Matrix |
 | 5.7 Define Content & Creative Testing Strategy | Test priorities | Experiment Strategy Object | Creative Experiment Plan |
-| 5.8 Confirm Content & Creative Direction | Final creative direction | Creative Strategy Object + Messaging Framework Object | Creative Brief |
+| 5.8 Confirm Content & Creative Direction | Final creative direction | Creative Strategy Object | Creative Brief |
 
-> **Messaging is differentiated by Persona, delivered by Audience.** The message —
-> its angle, value framing, and variations (5.1, 5.4) — is tuned to what *moves* a
-> reader: `motivations`, `pain_points`, `decision_criteria`, `messaging_preferences`,
-> which are **Persona** attributes. So the **Messaging Framework Object** differentiates
-> variants **by Persona** (`linked_personas`) and sources its raw material from Product
-> Context's `product_messaging`. *Which* segment receives *which* variant is a
-> **delivery** decision — that targets the **Audience** (a Persona isn't addressable),
-> and lives in the **Campaign Strategy** (personalization + `audience_offer_mapping`)
-> via the Persona ↔ Audience link. The Messaging Framework therefore carries no
-> audience-membership logic — that would duplicate the Audience Object. (This mirrors
-> the model-wide rule: a Persona *describes*; an Audience *selects*.)
+> **Messaging is a three-layer cascade — not a standalone object.** Messages cascade:
+> **brand** (Brand Context `brand_promise` / `messaging_pillars`) → **product/solution**
+> (Product Context `product_messaging` value pillars) → **persona × journey-stage** (the
+> Journey's `persona_tracks.key_messages` — the response to that cell's `key_questions`).
+> Each layer already has a home, so OSMM carries **no separate Messaging Framework
+> object**; a *Messaging Framework* is a **rendered artifact** composed by drawing from all
+> three layers and resolving at the (persona × stage) cell.
+>
+> The message itself is still **differentiated by Persona** (the cell is per-persona) and
+> **delivered by Audience** (which segment receives it is a Campaign Strategy /
+> `audience_offer_mapping` decision, via the Persona ↔ Audience link) — the model-wide rule
+> (a Persona *describes*; an Audience *selects*) holds; it just resolves in the Journey cell
+> now rather than a dedicated object.
 
 ## Phase 6. Build & Deliver Experiences
 
@@ -176,7 +178,7 @@ flowchart LR
 | 7.4 Evaluate Messaging & Creative Effectiveness | Creative learning | Performance Measurement Object (`dimension: creative`) | Creative Performance Summary |
 | 7.5 Evaluate Journey & Channel Performance | Journey optimization opportunities | Performance Measurement Object (`dimension: journey`) | Journey Analysis |
 | 7.6 Generate Optimization Recommendations | Optimization priorities | Optimization Recommendation Object | Optimization Plan |
-| 7.7 Update Durable Context & Strategy | Persistent learning decisions | Business Context Object, Brand Context Object, Product Context Object, Marketing Strategy Object, Persona Object, Keyword Object | Updated Strategy Summary |
+| 7.7 Update Durable Context & Strategy | Persistent learning decisions | Business Context Object, Brand Context Object, Product Context Object, Marketing Strategy Object, Persona Object | Updated Strategy Summary |
 | 7.8 Confirm Learning & Next Action | Next-step decision | Marketing Strategy Object | Executive Learning Summary |
 
 ## Object resolution index
@@ -187,18 +189,15 @@ Every object mapped to the sub-processes that write it and its builder skill (pe
 |---|---|---|
 | Business Context Object | 1.1, 7.7 | `osmm-business-context-builder` |
 | Brand Context Object | 1.2, 7.7 | `osmm-brand-context-builder` |
-| Product Context Object | 1.3, 7.7 | `osmm-product-context-builder` |
+| Product Context Object | 1.3, 5.1, 7.7 | `osmm-product-context-builder` |
 | Marketing Strategy Object | 1.4, 1.5, 1.6, 1.7, 1.9, 2.1, 2.8, 2.9, 7.7, 7.8 | `osmm-marketing-strategy-builder` |
 | Measurement Framework Object | 1.8, 4.7 | `osmm-measurement-framework-builder` |
 | Audience Object | 2.2, 2.3, 2.6 | `osmm-audience-builder` |
 | Persona Object | 2.4, 2.5, 7.7 | `osmm-persona-builder` |
-| Keyword Object | 2.7, 7.7 | `osmm-keyword-builder` |
-| Keyword Strategy Object | 2.7 | `osmm-keyword-strategy-builder` |
 | Offer Object | 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.8 | `osmm-offer-builder` |
 | Experiment Strategy Object | 3.7, 4.7, 5.7 | `osmm-experiment-strategy-builder` |
 | Campaign Strategy Object | 4.1, 4.3, 4.4, 4.6, 4.8 | `osmm-campaign-strategy-builder` |
-| Journey Object | 4.2, 4.5, 4.8, 6.3 | `osmm-journey-builder` |
-| Messaging Framework Object | 5.1, 5.4, 5.8 | `osmm-messaging-framework-builder` |
+| Journey Object | 2.7, 4.2, 4.5, 4.8, 5.4, 6.3 | `osmm-journey-builder` |
 | Creative Strategy Object | 5.2, 5.5, 5.6, 5.8 | `osmm-creative-strategy-builder` |
 | Content Strategy Object | 5.3 | `osmm-content-strategy-builder` |
 | Experience Specification Object | 6.1 | `osmm-experience-specification-builder` |
@@ -211,15 +210,16 @@ Every object mapped to the sub-processes that write it and its builder skill (pe
 | Customer Insight Object | 7.2 | `osmm-customer-insight-builder` |
 | Optimization Recommendation Object | 7.6 | `osmm-optimization-recommendation-builder` |
 
-> **Right-sizing — the model holds 25 objects.** Consolidations applying the rule
+> **Right-sizing — the model holds 22 objects.** Consolidations applying the rule
 > *prefer a facet field over a near-duplicate object; a new object must do work the
 > others can't*. The v0.5 pass removed eight speculative (unbuilt) objects; v0.6
-> merged **Journey Strategy + Journey Configuration → a single Journey Object** (the
-> designed path and its delivery logic are two views of one thing; the operational
-> specifics live in the Journey Object's optional `delivery_logic`, resolving 6.3);
-> v0.7 folded **Experience Design → Creative Strategy** (the creative system &
-> experience concepts of 5.5 are creative direction — the Creative Strategy's
-> `experience_concepts`):
+> merged **Journey Strategy + Journey Configuration → a single Journey Object**; v0.7
+> folded **Experience Design → Creative Strategy** (`experience_concepts`); and v0.8
+> dissolved **Keyword, Keyword Strategy, and Messaging Framework into the Journey**:
+> directional keywords become a stage's `persona_tracks.key_questions`, and messaging
+> becomes a three-layer cascade (Brand Context → Product Context `product_messaging` →
+> the Journey's `persona_tracks.key_messages`), rendered as an artifact rather than
+> authored as an object. Earlier consolidations:
 >
 > - **Targeting Strategy → Marketing Strategy.** Audience prioritization (2.1, 2.8,
 >   2.9) is a section of the strategy (`priority_audiences`, `growth_priorities`),
@@ -236,7 +236,7 @@ Every object mapped to the sub-processes that write it and its builder skill (pe
 >   cross-phase experiment/test object referenced from 3.7, 4.7, and 5.7.
 >
 > Several remaining boundaries (Experience Validation, Personalization Configuration,
-> Experience Component, Keyword Strategy) are
+> Experience Component) are
 > **provisional** — they stay until their builder is authored, when each must clear
 > the "earns its own object" bar or fold. We collapse on paper and split only when
 > building reveals the need.
