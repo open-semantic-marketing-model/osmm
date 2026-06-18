@@ -1,0 +1,212 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/open-semantic-marketing-model/osmm/main/schemas/experience.schema.json",
+  "title": "OSMM Experience Object",
+  "description": "A single deliverable experience's definition and decision — a winback email, a landing page variant, an ad set, a homepage hero, a triggered SMS. It models the DECISION (what the experience is, who it's for, what it's assembled from, its variants/personalization, its QA/approval status, and its deployment), NOT the rendered HTML/image, which lives in the ESP/CMS/DAM and is referenced via delivery_reference. This object absorbs the former Experience Specification (6.1 — the spec/intent), Personalization Configuration (6.4 — variant targeting), Experience Validation (6.6 — QA/readiness as a status), and Campaign Deployment's per-experience go-live (6.7), plus Experience Delivery itself (6.5). It is assembled from Experience Component objects (6.2), referenced by id. Canonical schema for object_type 'experience'. The osmm-experience-builder skill references this file; it is the single source of truth for the object's shape.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "osmm_version",
+    "experience_id",
+    "version",
+    "status",
+    "name",
+    "experience_type",
+    "objective"
+  ],
+  "properties": {
+    "object_type": {
+      "const": "experience",
+      "description": "Object type discriminator. Always 'experience'."
+    },
+    "osmm_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "OSMM schema version this instance conforms to (semantic version)."
+    },
+    "experience_id": {
+      "type": "string",
+      "pattern": "^EXP-[a-z0-9-]+$",
+      "description": "Stable, human-readable id. Prefix 'EXP-' + lowercase hyphen slug. Never changes once assigned."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "Instance version (e.g. '1.0'). Bump on revision; the id stays stable."
+    },
+    "status": {
+      "enum": ["draft", "proposed", "stable", "deprecated"],
+      "description": "Object lifecycle state."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The experience's go-to-market name (e.g. 'Baconator App Winback Email', 'watsonx Trial Landing Page')."
+    },
+    "experience_type": {
+      "enum": [
+        "email",
+        "landing_page",
+        "web_page",
+        "ad",
+        "display",
+        "paid_social",
+        "push",
+        "sms",
+        "in_app",
+        "homepage_hero",
+        "content_asset",
+        "other"
+      ],
+      "description": "Governed experience-type vocabulary. Pick the single closest value."
+    },
+    "channel": {
+      "type": "string",
+      "description": "The channel this experience is delivered through (e.g. 'Email', 'Web', 'Paid social'). Optional."
+    },
+    "objective": {
+      "type": "string",
+      "minLength": 1,
+      "description": "What this experience is for — the outcome or job it does within the journey/campaign."
+    },
+    "specification": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The experience's spec/intent — scope, dependencies, requirements, and success criteria (the former Experience Specification, 6.1). Optional.",
+      "properties": {
+        "scope": {
+          "type": "string",
+          "description": "What this experience does and does not cover."
+        },
+        "dependencies": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "What this experience depends on (assets, data, upstream decisions)."
+        },
+        "requirements": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Functional/content requirements the experience must meet."
+        },
+        "success_criteria": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "What 'done/working' looks like for this experience."
+        }
+      }
+    },
+    "linked_components": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^EXC-(PLACEHOLDER-)?[a-z0-9-]+$"
+      },
+      "description": "Ids of the Experience Components (6.2) this experience is assembled from. 'EXC-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "structure": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "The assembled layout/sections in order (e.g. headline -> hero -> body -> CTA). Optional."
+    },
+    "variants": {
+      "type": "array",
+      "description": "Channel-specific or A/B variations of this experience (folded from Experience Delivery, 6.5). Optional.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["variant"],
+        "properties": {
+          "variant": { "type": "string", "description": "The variant label (e.g. 'A', 'B', 'short-form', 'mobile')." },
+          "description": { "type": "string", "description": "What differs in this variant." }
+        }
+      }
+    },
+    "personalization_rules": {
+      "type": "array",
+      "description": "Audience/condition-driven treatments (the former Personalization Configuration, 6.4). Optional.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["condition", "treatment"],
+        "properties": {
+          "condition": { "type": "string", "description": "The condition that selects this treatment." },
+          "treatment": { "type": "string", "description": "The personalized treatment applied when the condition is met." },
+          "audience": {
+            "type": "string",
+            "pattern": "^AUD-(PLACEHOLDER-)?[a-z0-9-]+$",
+            "description": "Optional Audience id the rule targets. 'AUD-PLACEHOLDER-<slug>' ok."
+          }
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "QA / compliance / approval readiness as a status (the former Experience Validation, 6.6). Optional.",
+      "properties": {
+        "status": {
+          "enum": ["draft", "in_review", "approved", "rejected"],
+          "description": "Validation/approval state of the experience."
+        },
+        "qa_notes": { "type": "string", "description": "QA findings, checks run, or issues to resolve." },
+        "compliance_notes": { "type": "string", "description": "Legal/brand/regulatory compliance notes." },
+        "approved_by": { "type": "string", "description": "Who approved the experience for release." }
+      }
+    },
+    "deployment": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The per-experience go-live (the former Campaign Deployment per-experience activation, 6.7). Optional.",
+      "properties": {
+        "status": {
+          "enum": ["not_scheduled", "scheduled", "live", "paused", "ended"],
+          "description": "Deployment state of the experience."
+        },
+        "window": { "type": "string", "description": "The activation window (when it goes/went live)." },
+        "activation_notes": { "type": "string", "description": "Go-live notes — targeting cutovers, ramp, dependencies." }
+      }
+    },
+    "delivery_reference": {
+      "type": "string",
+      "description": "URL/id of the rendered asset in the production tool (ESP/CMS/DAM/ad platform). The rendered experience is referenced here, not stored in this object. Optional."
+    },
+    "linked_campaign_strategy": {
+      "type": "string",
+      "pattern": "^CMS-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the Campaign Strategy this experience serves. 'CMS-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "linked_journey": {
+      "type": "string",
+      "pattern": "^JNY-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the Journey this experience serves. 'JNY-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "linked_audiences": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^AUD-(PLACEHOLDER-)?[a-z0-9-]+$"
+      },
+      "description": "Ids of the Audiences this experience is for. 'AUD-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "linked_offer": {
+      "type": "string",
+      "pattern": "^OFR-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the Offer this experience activates. 'OFR-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "linked_creative_strategy": {
+      "type": "string",
+      "pattern": "^CRS-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the Creative Strategy this experience expresses. 'CRS-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "linked_business_context": {
+      "type": "string",
+      "pattern": "^BIZ-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the owning Business Context. 'BIZ-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "source": {
+      "type": "string",
+      "description": "One line: what source(s) this was built from and approximate date. Optional."
+    }
+  }
+}

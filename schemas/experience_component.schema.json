@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/open-semantic-marketing-model/osmm/main/schemas/experience_component.schema.json",
+  "title": "OSMM Experience Component Object",
+  "description": "A reusable building block of experiences — a headline, hero, CTA, copy block, offer card, trust block, content block, wireframe, image treatment, or subject line — defined once and referenced by id into many Experience objects. It is a definition (the copy / the spec of the block), not a rendered asset. Canonical schema for object_type 'experience_component'. The osmm-experience-component-builder skill references this file; it is the single source of truth for the object's shape.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "osmm_version",
+    "experience_component_id",
+    "version",
+    "status",
+    "name",
+    "component_type",
+    "content"
+  ],
+  "properties": {
+    "object_type": {
+      "const": "experience_component",
+      "description": "Object type discriminator. Always 'experience_component'."
+    },
+    "osmm_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "OSMM schema version this instance conforms to (semantic version)."
+    },
+    "experience_component_id": {
+      "type": "string",
+      "pattern": "^EXC-[a-z0-9-]+$",
+      "description": "Stable, human-readable id. Prefix 'EXC-' + lowercase hyphen slug. Never changes once assigned; Experience objects reference it."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "Instance version (e.g. '1.0'). Bump on revision; the id stays stable."
+    },
+    "status": {
+      "enum": ["draft", "proposed", "stable", "deprecated"],
+      "description": "Object lifecycle state."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable name of the component, used to recognize and reference it."
+    },
+    "component_type": {
+      "enum": [
+        "headline",
+        "subheadline",
+        "hero",
+        "cta",
+        "copy_block",
+        "offer_card",
+        "trust_block",
+        "content_block",
+        "wireframe",
+        "image_treatment",
+        "subject_line",
+        "preheader",
+        "other"
+      ],
+      "description": "Governed component-type vocabulary. Pick the single closest value."
+    },
+    "content": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The actual definition of the block. For copy components (headline/cta/copy_block/subject_line) this is the text; for a wireframe or image_treatment it is a description of the block."
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "variant": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Label for this variant (e.g. 'A', 'B', 'value-led', 'urgency-led')."
+          },
+          "content": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The alternate copy / definition for this variant."
+          }
+        },
+        "required": ["variant", "content"]
+      },
+      "description": "Signal-bearing alternate versions of the component (e.g. headline options for testing), each { variant, content }. Optional."
+    },
+    "usage_notes": {
+      "type": "string",
+      "description": "Where and how to use the component — context, placement, fit. Optional."
+    },
+    "guidelines": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Do's and constraints that govern correct use of the component. Optional."
+    },
+    "linked_brand_context": {
+      "type": "string",
+      "pattern": "^BRC-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the Brand Context whose voice and guardrails this component follows. 'BRC-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "linked_product": {
+      "type": "string",
+      "pattern": "^PRD-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the Product Context this component relates to. 'PRD-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "linked_personas": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^PER-(PLACEHOLDER-)?[a-z0-9-]+$"
+      },
+      "description": "'PER-' ids of personas this component is written for. 'PER-PLACEHOLDER-<slug>' ok. Optional."
+    },
+    "source": {
+      "type": "string",
+      "description": "One line: what source(s) this was built from and approximate date. Optional."
+    }
+  }
+}

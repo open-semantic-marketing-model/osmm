@@ -11,6 +11,29 @@ governance). The current schema version is **0.1.0**.
 
 ## [Unreleased]
 
+### Added
+- **Phase 6 build/deliver layer — two builders** (`status: draft`), completing Milestone E and
+  taking the model to **14 of 18 builders shipped**:
+  - **`osmm-experience-builder`** (B37, Phase 6) — the **Experience Object**: a deliverable's
+    *definition* (email, landing page, ad, hero) with `specification`, assembled `linked_components`,
+    `variants`, `personalization_rules`, a `validation` status, and `deployment`. The rendered asset
+    lives in the production tool, referenced via `delivery_reference`. Ratifies `EXP-`.
+  - **`osmm-experience-component-builder`** (B22, Phase 6) — the reusable building blocks (headline,
+    hero, CTA, copy/trust/content block, offer card, wireframe, …) that Experiences are assembled
+    from. Ratifies `EXC-`.
+
+### Changed
+- **Collapsed Phase 6's Experience-\* family into a single `experience` object** (v0.9; 22 → 18).
+  Experience Specification (6.1, `specification`), Experience Delivery (6.5), Personalization
+  Configuration (6.4, `personalization_rules`), and Experience Validation (6.6, `validation` status)
+  are *states/sections of one decision*, not four objects. **Campaign Deployment → Campaign Strategy
+  `launch_plan`** (6.7; per-experience go-live on the Experience's `deployment`). Only **Experience
+  Component** stays separate. The **Configuration** category is now empty (its members folded into
+  the Journey's `delivery_logic` and the Experience's `personalization_rules`). Reconciled across
+  TAXONOMY, CONVENTION (registry → 18, v0.9 note), RELATIONSHIPS, the graph (regenerated — 18 nodes),
+  the roadmap, README, and CHANGELOG.
+
+
 ### Changed
 - **Dissolved Keyword, Keyword Strategy, and Messaging Framework into the Journey** (v0.8;
   25 → 22 objects). Reframes two things around the **(persona × journey-stage) cell**:

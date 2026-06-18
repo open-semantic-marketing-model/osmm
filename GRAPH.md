@@ -1,7 +1,7 @@
 # OSMM™ Object Graph
 
-A graph-database view of the OSMM object model — all **22 objects**
-(12 with shipped builders, 10 in the backlog), laid out **left → right by
+A graph-database view of the OSMM object model — all **18 objects**
+(14 with shipped builders, 4 in the backlog), laid out **left → right by
 workflow phase (1 → 7)**, matching the [TAXONOMY](TAXONOMY.md) flow, with the reference
 edges between them.
 
@@ -14,7 +14,7 @@ edges between them.
   Optimize). Each labeled column is one phase.
 - **Node color = category** (Context, Work Product, Configuration, Measurement, Learning) —
   a secondary cue, not the grouping axis.
-- **Solid node** = builder shipped (12); **dashed node** = backlog (10).
+- **Solid node** = builder shipped (14); **dashed node** = backlog (4).
 - **Solid edge** = a *realized* reference (a reference field defined in a shipped builder;
   mirrors the established table in [`RELATIONSHIPS.md`](RELATIONSHIPS.md)).
 - **Dashed gray edge** = an *envisioned* reference — illustrative, not yet defined in a
@@ -58,12 +58,8 @@ flowchart LR
     content_strategy["Content Strategy"]
   end
   subgraph p6["6 · Build and Deliver"]
-    experience_specification["Experience Specification"]
+    experience["Experience"]
     experience_component["Experience Component"]
-    personalization_configuration["Personalization Configuration"]
-    experience_delivery["Experience Delivery"]
-    experience_validation["Experience Validation"]
-    campaign_deployment["Campaign Deployment"]
   end
   subgraph p7["7 · Measure, Learn and Optimize"]
     performance_measurement["Performance Measurement"]
@@ -99,20 +95,21 @@ flowchart LR
   content_strategy --> creative_strategy
   content_strategy --> journey
   content_strategy --> business_context
+  experience --> experience_component
+  experience --> campaign_strategy
+  experience --> journey
+  experience --> audience
+  experience --> offer
+  experience --> creative_strategy
+  experience --> business_context
+  experience_component --> brand_context
+  experience_component --> product_context
+  experience_component --> persona
   experiment_strategy -.-> offer
   experiment_strategy -.-> campaign_strategy
   experiment_strategy -.-> creative_strategy
-  experience_specification -.-> creative_strategy
-  experience_specification -.-> campaign_strategy
-  experience_component -.-> experience_specification
-  personalization_configuration -.-> campaign_strategy
-  personalization_configuration -.-> audience
-  experience_delivery -.-> experience_component
-  experience_delivery -.-> journey
-  experience_validation -.-> experience_delivery
-  campaign_deployment -.-> experience_delivery
   performance_measurement -.-> campaign_strategy
-  performance_measurement -.-> experience_delivery
+  performance_measurement -.-> experience
   performance_measurement -.-> measurement_framework
   customer_insight -.-> performance_measurement
   optimization_recommendation -.-> performance_measurement
@@ -125,12 +122,11 @@ flowchart LR
   classDef learning fill:#d8f0d6,stroke:#2e7d32,color:#0f1b35;
   classDef backlog stroke-dasharray:6 4;
   class business_context,brand_context,product_context,persona,audience context;
-  class marketing_strategy,measurement_framework,offer,experiment_strategy,campaign_strategy,journey,creative_strategy,content_strategy,experience_specification,experience_component,experience_delivery,experience_validation,campaign_deployment workproduct;
-  class personalization_configuration configuration;
+  class marketing_strategy,measurement_framework,offer,experiment_strategy,campaign_strategy,journey,creative_strategy,content_strategy,experience,experience_component workproduct;
   class performance_measurement measurement;
   class customer_insight,optimization_recommendation learning;
-  class experiment_strategy,experience_specification,experience_component,personalization_configuration,experience_delivery,experience_validation,campaign_deployment,performance_measurement,customer_insight,optimization_recommendation backlog;
-  linkStyle 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28 stroke:#222222,stroke-width:2px;
-  linkStyle 29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45 stroke:#9aa3af,stroke-width:1px;
-  linkStyle 46,47 stroke:#1aa179,stroke-width:2px;
+  class experiment_strategy,performance_measurement,customer_insight,optimization_recommendation backlog;
+  linkStyle 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38 stroke:#222222,stroke-width:2px;
+  linkStyle 39,40,41,42,43,44,45,46 stroke:#9aa3af,stroke-width:1px;
+  linkStyle 47,48 stroke:#1aa179,stroke-width:2px;
 ```

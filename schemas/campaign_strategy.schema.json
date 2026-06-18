@@ -136,7 +136,19 @@
     "personalization_strategy": {
       "type": "array",
       "items": { "type": "string" },
-      "description": "Optional. The 4.6 personalization approach — the rules/dimensions used to tailor the campaign by audience, behavior, or context. The executable rule configuration lives in the Personalization Configuration object."
+      "description": "Optional. The 4.6 personalization approach — the rules/dimensions used to tailor the campaign by audience, behavior, or context. The executable variant rules live on each Experience object's personalization_rules."
+    },
+    "launch_plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional. The campaign-level deployment / go-live plan (the former Campaign Deployment object, sub-process 6.7): how and when the campaign's experiences are launched and activated. Per-experience go-live status lives on each Experience object's deployment.",
+      "properties": {
+        "go_live_date": { "type": "string", "description": "Target launch date/window." },
+        "phases": { "type": "array", "items": { "type": "string" }, "description": "Rollout phases (e.g. pilot → full)." },
+        "channel_sequence": { "type": "array", "items": { "type": "string" }, "description": "The order channels are activated." },
+        "rollout_strategy": { "type": "string", "description": "Big-bang, phased, geo/segment rollout, etc." },
+        "dependencies": { "type": "array", "items": { "type": "string" }, "description": "What must be ready before launch." }
+      }
     },
     "linked_marketing_strategy": {
       "type": "string",
