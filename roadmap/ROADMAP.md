@@ -1,6 +1,6 @@
 # OSMM™ Roadmap
 
-The sequenced plan for building OSMM out from its current state (12 of 22 object
+The sequenced plan for building OSMM out from its current state (14 of 18 object
 builders, 1 composer) to a complete, connected model. For live status see
 [`BACKLOG.md`](BACKLOG.md).
 
@@ -31,7 +31,7 @@ flowchart TD
   B["Milestone B ✅<br/>Strategy layer · Ph 1-2<br/>(Marketing Strategy,<br/>Measurement Framework)"]
   C["Milestone C ✅<br/>Offer & Activation · Ph 3-4<br/>(Offer, Campaign, Journey)"]
   D["Milestone D ✅<br/>Content & Creative · Ph 5<br/>(Creative, Content)"]
-  E["Milestone E<br/>Build & Deliver · Ph 6<br/>(Spec, Component, Config, Delivery, Deploy)"]
+  E["Milestone E ✅<br/>Build & Deliver · Ph 6<br/>(Experience, Experience Component)"]
   F["Milestone F<br/>Measure, Learn & Optimize · Ph 7<br/>(Performance, Insight, Optimization)"]
   A --> B --> C --> D --> E --> F
   A -. "unblocks" .-> C01["Creative Brief composer (shipped)"]
@@ -73,15 +73,15 @@ Design folded into Creative Strategy (v0.7, `experience_concepts`); Messaging Fr
 into the message cascade (v0.8 — Brand → Product `product_messaging` → Journey
 `persona_tracks.key_messages`).* **Milestone D complete.**
 
-### Milestone E — Build & Deliver (Phase 6)
-**Objects:** Experience Specification (B21), Experience Component (B22), Personalization
-Configuration (B24), Experience Delivery (B25), Experience Validation (B26), Campaign
-Deployment (B27).
-**Why:** the operational layer — specs, components, configuration, delivery, QA,
-deployment. *Right-sized: Journey Configuration merged into the Journey Object (v0.6, its
-`delivery_logic`); Experience Performance folded into Performance Measurement
-(`dimension: experience`); Experience Validation may become a state on Delivery — decided
-at build time.*
+### Milestone E — Build & Deliver (Phase 6) ✅ COMPLETE
+**Objects:** ~~Experience (B37)~~ ✅, ~~Experience Component (B22)~~ ✅.
+**Why:** the operational layer — the deliverable experiences and the reusable building blocks.
+**Shipped as 2 objects** (v0.9 collapse): the **Experience** object absorbs Experience
+Specification, Experience Delivery, Personalization Configuration, and Experience Validation
+(spec → built → personalized → validated → deployed are *states* of one decision; the rendered
+asset is referenced, not stored); **Experience Component** stays as the reusable building blocks.
+*Right-sized: Campaign Deployment → Campaign Strategy `launch_plan`; Journey Configuration →
+Journey `delivery_logic` (v0.6); Experience Performance → Performance Measurement (v0.5).*
 
 ### Milestone F — Measure, Learn & Optimize (Phase 7)
 **Objects:** Performance Measurement (B29), Customer Insight (B30), Optimization
@@ -109,11 +109,10 @@ Measurement via a `dimension` facet.*
 
 | Milestone | Builders | Cumulative builders done |
 |-----------|---------:|-------------------------:|
-| (shipped) | 12 | 12 / 22 |
-| A–D ✅ complete | 0 | 12 / 22 |
-| E (Build & Deliver) | 6 | 18 / 22 |
-| F (Measure, Learn & Optimize) | 3 | 21 / 22 |
-| Parked (Experiment Strategy) | 1 | 22 / 22 |
+| (shipped) | 14 | 14 / 18 |
+| A–E ✅ complete | 0 | 14 / 18 |
+| F (Measure, Learn & Optimize) | 3 | 17 / 18 |
+| Parked (Experiment Strategy) | 1 | 18 / 18 |
 
 Composers and infrastructure are additive on top of the builder count.
 

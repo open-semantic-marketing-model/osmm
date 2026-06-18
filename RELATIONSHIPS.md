@@ -8,7 +8,7 @@ references to other objects, so an agent can resolve a campaign to its audience,
 its offer, its creative, and its measurement framework without bespoke
 integration code ([README](README.md)). This document defines **how those
 references work** and **what the reference graph looks like** — the layer that
-turns 22 standalone objects into a connected model.
+turns 18 standalone objects into a connected model.
 
 It complements the other three docs:
 
@@ -81,14 +81,17 @@ a lookup) and namespaces ids so they stay unique across a portfolio.
 | Journey | `JNY-` | `journey_id` | `JNY-wendys-app-habit` |
 | Creative Strategy | `CRS-` | `creative_strategy_id` | `CRS-ibm-watsonx` |
 | Content Strategy | `CTS-` | `content_strategy_id` | `CTS-ibm-watsonx` |
+| Experience | `EXP-` | `experience_id` | `EXP-wendys-baconator-winback-email` |
+| Experience Component | `EXC-` | `experience_component_id` | `EXC-wendys-baconator-cta` |
 
-> Twelve prefixes are owned by shipped builders — the five Context builders
+> Fourteen prefixes are owned by shipped builders — the five Context builders
 > (`osmm-business-context-builder`, `osmm-brand-context-builder`,
 > `osmm-product-context-builder`, `osmm-persona-builder`, `osmm-audience-builder`)
-> plus seven Work Product builders: `osmm-marketing-strategy-builder`,
+> plus nine Work Product builders: `osmm-marketing-strategy-builder`,
 > `osmm-measurement-framework-builder`, `osmm-offer-builder`,
 > `osmm-campaign-strategy-builder`, `osmm-journey-builder`,
-> `osmm-creative-strategy-builder`, and `osmm-content-strategy-builder`.
+> `osmm-creative-strategy-builder`, `osmm-content-strategy-builder`,
+> `osmm-experience-builder`, and `osmm-experience-component-builder`.
 
 **Assigning new prefixes.** Every object gets a prefix when its builder is
 authored. Prefixes are assigned by maintainers (like controlled vocabularies,
@@ -204,6 +207,10 @@ reference fields it introduces.
 | Journey | `linked_business_context` | one (optional) | Business Context | `BIZ-PLACEHOLDER-<slug>` until built. |
 | Creative Strategy | `linked_brand_context` / `linked_product` / `linked_personas` / `linked_campaign_strategy` / `linked_business_context` | one / one / many / one / one (optional) | Brand Context / Product Context / Persona / Campaign Strategy / Business Context | Brand voice it operates within, offering (its `product_messaging` is the message source), personas, campaign, business. Placeholders until built. |
 | Content Strategy | `linked_creative_strategy` / `linked_journey` / `linked_personas` / `linked_campaign_strategy` / `linked_business_context` | one / one / many / one / one (optional) | Creative Strategy / Journey / Persona / Campaign Strategy / Business Context | The creative direction it sits under, the journey it supports (whose `persona_tracks` carry the questions it answers), personas, campaign, business. Placeholders until built. |
+| Experience | `linked_components` | many (optional) | Experience Component | The reusable building blocks it's assembled from (6.2). `EXC-PLACEHOLDER-<slug>` until built. |
+| Experience | `personalization_rules[].audience` | many (optional) | Audience | Which audience gets which variant (the former Personalization Configuration). `AUD-PLACEHOLDER-<slug>` until built. |
+| Experience | `linked_campaign_strategy` / `linked_journey` / `linked_audiences` / `linked_offer` / `linked_creative_strategy` / `linked_business_context` | one / one / many / one / one / one (optional) | Campaign Strategy / Journey / Audience / Offer / Creative Strategy / Business Context | The campaign it runs in, the journey/stage it serves, audiences, offer, creative direction, business. Placeholders until built. |
+| Experience Component | `linked_brand_context` / `linked_product` / `linked_personas` | one / one / many (optional) | Brand Context / Product Context / Persona | The brand voice it follows, the offering, and who it's for. Placeholders until built. |
 
 > Two bidirectional Context edges are realized (Business Context ↔ Brand Context,
 > Persona ↔ Audience); the **first Work Product → Context edges** are live (a
@@ -249,19 +256,10 @@ into the established table. Listed in registry order
 | Object | Proposed prefix |
 |--------|-----------------|
 | Experiment Strategy | `XPR-` |
-| Experience Specification | `EXS-` |
-| Experience Component | `EXC-` |
-| Personalization Configuration | `PZC-` |
-| Experience Delivery | `EXV-` → resolve vs. Experience Validation |
-| Experience Validation | `EXL-` |
-| Campaign Deployment | `CMD-` |
 | Performance Measurement | `PFM-` |
 | Customer Insight | `CIN-` |
 | Optimization Recommendation | `OPR-` |
 
-The remaining flagged clash — `Experience Delivery` (`EXV-`) vs. `Experience
-Validation` (`EXL-`) — is exactly why prefixes are ratified deliberately rather
-than auto-generated: short codes collide among the several `Experience *` objects,
-and the model needs unique, stable ones. (The earlier Content Strategy / Creative
-Test Strategy clash dissolved when Creative Test Strategy folded into Experiment
-Strategy in the v0.5 right-sizing.)
+The earlier `Experience *` prefix clashes dissolved when the Phase 6 Experience-\*
+family collapsed into a single **Experience** object (`EXP-`) in the v0.9 right-sizing;
+only **Experience Component** (`EXC-`) remains alongside it, and both are now ratified.

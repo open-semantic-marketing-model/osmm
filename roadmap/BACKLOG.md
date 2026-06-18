@@ -3,26 +3,26 @@
 The single source of truth for **what's done, what's in flight, and what's next**.
 For the sequencing rationale and milestones, see [`ROADMAP.md`](ROADMAP.md).
 
-**Last updated:** 2026-06-16 (v0.8: Keyword, Keyword Strategy, and Messaging Framework dissolved into the Journey)
+**Last updated:** 2026-06-16 (v0.9: Phase 6 Experience-* family collapsed into a single Experience object → Milestone E complete)
 
 **Progress at a glance**
 
 | Track | Done | In Progress | To Do | Total |
 |-------|-----:|------------:|------:|------:|
-| Object builders | 12 | 0 | 10 | 22 |
+| Object builders | 14 | 0 | 4 | 18 |
 | Artifact composers | 1 | 0 | 6 (candidates) | 7 |
 | Infrastructure / docs | 11 | 0 | 5 | 16 |
 
-> **Milestone A (Context foundation) is complete** — all five Context objects
-> (Business, Brand, Product, Audience, Persona) now have builders.
+> **Milestones A–E complete** — Context foundation, Strategy layer, Offer & Activation,
+> Content & Creative, and Build & Deliver all have builders. Only **Phase 7 (Measure, Learn
+> & Optimize)** remains: Performance Measurement, Customer Insight, Optimization Recommendation.
 >
-> **Right-sizing → 22 objects.** v0.5 removed eight speculative objects; **v0.6** merged
-> **Journey Strategy + Journey Configuration → a single `journey`**; **v0.7** folded
-> **Experience Design → Creative Strategy**; **v0.8** dissolved **Keyword (B08), Keyword
-> Strategy (B09), and Messaging Framework (B16) into the Journey** — directional keywords are
-> now a stage's `persona_tracks.key_questions`, and messaging is a three-layer cascade (Brand
-> Context → Product Context `product_messaging` → the Journey's `persona_tracks.key_messages`),
-> rendered as an artifact rather than authored as an object. See [TAXONOMY.md](../TAXONOMY.md).
+> **Right-sizing → 18 objects.** v0.5–v0.7 (see below); **v0.8** dissolved **Keyword (B08),
+> Keyword Strategy (B09), and Messaging Framework (B16) into the Journey**; **v0.9** collapsed
+> **Phase 6's Experience-\* family (Experience Specification B21, Personalization Configuration
+> B24, Experience Delivery B25, Experience Validation B26) into a single Experience object**,
+> with **Campaign Deployment (B27) → Campaign Strategy `launch_plan`**. Only **Experience
+> Component** stays separate. The **Configuration** category is now empty. See [TAXONOMY.md](../TAXONOMY.md).
 >
 > **Deprioritized (parked):** Experiment Strategy (B36) — a sequencing decision.
 
@@ -46,8 +46,10 @@ Item ids: `B##` = object builder, `C##` = composer, `I##` = infrastructure/docs.
 | B14 | `osmm-journey-builder` | Phase 4 · Work Product. Shipped (`status: draft`). The **Journey Object** — orchestrated customer path, strategy through delivery: `journey_goal`, `stages[]`, `triggers[]`, sequencing/cadence (4.2, 4.5) plus optional `delivery_logic` (6.3). **Merges the former Journey Strategy + Journey Configuration** (v0.6). Ratifies the `JNY-` prefix; may serve a campaign or run always-on. |
 | B17 | `osmm-creative-strategy-builder` | Phase 5 · Work Product. Shipped (`status: draft`). The creative direction — `creative_platform` (big idea), `creative_themes[]`, `channel_creative[]` (5.6), and `experience_concepts[]`. **Absorbs the former Experience Design** (5.5). Ratifies the `CRS-` prefix; references Brand Context, Product Context. |
 | B18 | `osmm-content-strategy-builder` | Phase 5 · Work Product. Shipped (`status: draft`). The content plan — `content_goal`, `content_pillars[]` (with formats), sequencing, and `journey_mapping[]` (5.3). Ratifies the `CTS-` prefix; references Creative Strategy, Journey, Personas. **Completes Milestone D.** |
+| B22 | `osmm-experience-component-builder` | Phase 6 · Work Product. Shipped (`status: draft`). The reusable building blocks (headline, hero, CTA, copy block, offer card, trust block, wireframe, …) that Experiences are assembled from. Ratifies the `EXC-` prefix; references Brand Context, Product Context, Personas. |
+| B37 | `osmm-experience-builder` | Phase 6 · Work Product. Shipped (`status: draft`). The **Experience Object** — a deliverable's *definition* (email, landing page, ad, hero): `specification`, assembled `linked_components`, `variants`, `personalization_rules`, `validation` status, `deployment`. **Collapses Experience Specification (B21), Experience Delivery (B25), Personalization Configuration (B24), Experience Validation (B26)** (v0.9); the rendered asset is referenced via `delivery_reference`. Ratifies the `EXP-` prefix. **Completes Milestone E.** |
 | C01 | `osmm-creative-brief-composer` | Phase 5 artifact-composer. ✅ Required input `brand_context` now built (B02); runnable end-to-end on the Wendy's example set. |
-| I01 | `TAXONOMY.md` | 7 phases → 22 objects, object resolution index. |
+| I01 | `TAXONOMY.md` | 7 phases → 18 objects, object resolution index. |
 | I02 | `CONVENTION.md` | Naming, frontmatter contract, full builder registry, composer class, schema/example promotion rules. |
 | I03 | `RELATIONSHIPS.md` | Reference model, id prefixes, reference graph. |
 | I04 | `GOVERNANCE.md` + `CONTRIBUTING.md` | Decision model, tenets, lifecycle; contribution guide. |
@@ -57,7 +59,7 @@ Item ids: `B##` = object builder, `C##` = composer, `I##` = infrastructure/docs.
 | I08 | Consumer reference brand swap (Warby Parker → Wendy's) | Merged in PR #7. |
 | I14 | Canonical JSON Schemas + CI validation | Standalone `schemas/<object_type>.schema.json` for all 8 shipped objects (strict); `scripts/validate.py` + `validate` workflow; builders now ship their schema (CONVENTION v0.4, CONTRIBUTING/GOVERNANCE definition-of-done). PRs #18–20. |
 | I15 | v0.5 registry right-sizing (35 → 27) | Five consolidations of speculative, unbuilt objects; adopted "prefer a facet over a near-duplicate object; collapse on paper, split at build time." |
-| I16 | Object-graph view (`GRAPH.md`) | Whole-model graph of all 22 objects (built + backlog), ordered left→right by workflow phase, realized vs envisioned edges + learning loop, with an inline Mermaid version; generated by `scripts/gen_object_graph.py` (committed `osmm-object-graph.svg`). |
+| I16 | Object-graph view (`GRAPH.md`) | Whole-model graph of all 18 objects (built + backlog), ordered left→right by workflow phase, realized vs envisioned edges + learning loop, with an inline Mermaid version; generated by `scripts/gen_object_graph.py` (committed `osmm-object-graph.svg`). |
 
 ---
 
@@ -96,21 +98,15 @@ Grouped by milestone (see [`ROADMAP.md`](ROADMAP.md)). Within a milestone, order
 > rendered as an artifact, not authored as an object. **Next up: Milestone E — Build &
 > Deliver (Phase 6).**
 
-### Milestone E — Build & Deliver (Phase 6)
-| ID | Builder | Phase |
-|----|---------|------:|
-| B21 | `osmm-experience-specification-builder` | 6 |
-| B22 | `osmm-experience-component-builder` | 6 |
-| B24 | `osmm-personalization-configuration-builder` | 6 |
-| B25 | `osmm-experience-delivery-builder` | 6 |
-| B26 | `osmm-experience-validation-builder` | 6 |
-| B27 | `osmm-campaign-deployment-builder` | 6 |
+### Milestone E — Build & Deliver (Phase 6) ✅ COMPLETE
 
-> **Journey Configuration (former B23) merged into the Journey Object (B14, v0.6)** — its
-> operational delivery logic is the Journey's optional `delivery_logic` (6.3). Provisional:
-> Experience Validation (B26) may become a state/checklist on Experience Delivery — decide at
-> build time. Experience Performance (former B28) folded into Performance Measurement (B29,
-> `dimension: experience`).
+> ✅ **Milestone E shipped as 2 objects** — **Experience (B37)** and **Experience Component
+> (B22)** (see Done). v0.9 collapsed the Phase 6 Experience-\* family: Experience Specification
+> (B21), Experience Delivery (B25), Personalization Configuration (B24), and Experience
+> Validation (B26) became one **Experience** object (the rendered asset lives in the production
+> tool, referenced); **Campaign Deployment (B27) → Campaign Strategy `launch_plan`**; Journey
+> Configuration (B23) was already merged into the Journey (v0.6); Experience Performance (B28)
+> into Performance Measurement (v0.5). **Next up: Milestone F — Measure, Learn & Optimize.**
 
 ### Milestone F — Measure, Learn & Optimize (Phase 7)
 | ID | Builder | Phase |
@@ -125,12 +121,14 @@ Grouped by milestone (see [`ROADMAP.md`](ROADMAP.md)). Within a milestone, order
 
 > Builder ids are **stable labels, not positions** — they are not renumbered when objects
 > are added or consolidated. B01–B34 came from the original registry; **B35** =
-> `osmm-product-context-builder` (appended); **B36** = `osmm-experiment-strategy-builder`
-> (new in the v0.5 right-sizing). Ids retired by consolidation (B05, B08, B09, B10, B12, B15,
-> B16, B19, B20, B23, B28, B31, B32, B33) are not reused — **B23** (Journey Configuration) in
-> the v0.6 Journey merge, **B19** (Experience Design) in the v0.7 fold into Creative Strategy,
-> and **B08** (Keyword), **B09** (Keyword Strategy), **B16** (Messaging Framework) in the v0.8
-> dissolution into the Journey.
+> `osmm-product-context-builder`; **B36** = `osmm-experiment-strategy-builder` (v0.5);
+> **B37** = `osmm-experience-builder` (the v0.9 Phase 6 collapse). Ids retired by consolidation
+> (B05, B08, B09, B10, B12, B15, B16, B19, B20, B21, B23, B24, B25, B26, B27, B28, B31, B32, B33)
+> are not reused — **B23** (Journey Configuration) in v0.6; **B19** (Experience Design) in v0.7;
+> **B08/B09/B16** (Keyword, Keyword Strategy, Messaging Framework) in v0.8; and **B21, B24, B25,
+> B26** (Experience Specification, Personalization Configuration, Experience Delivery, Experience
+> Validation) into the Experience object plus **B27** (Campaign Deployment) into Campaign
+> Strategy in v0.9.
 
 ### Composer candidates (non-normative; gated on their inputs)
 *Ship each once its input objects exist. These are accelerators, not standard objects — pick the highest-value ones rather than building all.*

@@ -1,12 +1,12 @@
 # OSMM™ — Project Guide for Claude
 
-The Open Semantic Marketing Model: a standard of 22 typed, addressable marketing
+The Open Semantic Marketing Model: a standard of 18 typed, addressable marketing
 **objects**, each built by an `osmm-<object>-builder` skill, plus non-normative
 `osmm-<artifact>-composer` skills that render human artifacts from those objects.
 
 ## Orientation (read these first)
 
-- [`TAXONOMY.md`](TAXONOMY.md) — the 7 phases and the 22 objects.
+- [`TAXONOMY.md`](TAXONOMY.md) — the 7 phases and the 18 objects.
 - [`CONVENTION.md`](CONVENTION.md) — naming, frontmatter contract, builder
   registry, composer class, and the schema/example promotion rules.
 - [`RELATIONSHIPS.md`](RELATIONSHIPS.md) — how objects reference each other.

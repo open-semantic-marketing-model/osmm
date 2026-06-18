@@ -107,6 +107,7 @@ Emit a single JSON object with this exact shape. Field order should match.
     { "channel": "", "role": "", "priority": "" }   // priority: primary | secondary | supporting
   ],
   "personalization_strategy": [],           // OPTIONAL — the 4.6 personalization rules/approach
+  "launch_plan": {},                        // OPTIONAL — the deployment / go-live plan (6.7): { go_live_date, phases[], channel_sequence[], rollout_strategy, dependencies[] }
 
   "linked_marketing_strategy": "",          // OPTIONAL — MKS-<slug> of the strategy this executes (placeholder ok)
   "linked_journey": "",            // OPTIONAL — JNY-<slug> of the journey it uses (placeholder ok)
@@ -134,7 +135,8 @@ Emit a single JSON object with this exact shape. Field order should match.
 | `campaign_window` | object | no | `{ start, end, duration }`. Omit if undated/always-on; or set `duration` only. |
 | `audience_offer_mapping` | object[] | yes | The 4.3 matrix. Each `{ audience: "AUD-<slug>", offer: "OFR-<slug>", rationale }`. 1+ rows. References, not restatements. |
 | `channel_strategy` | object[] | yes | The 4.4 strategy. Each `{ channel, role, priority }`. 1+ items. `priority` ∈ `primary` \| `secondary` \| `supporting`. Channels/roles, not sequence. |
-| `personalization_strategy` | string[] | no | The 4.6 approach — the rules/dimensions used to tailor the campaign. Executable rule config lives in Personalization Configuration. |
+| `personalization_strategy` | string[] | no | The 4.6 approach — the rules/dimensions used to tailor the campaign. Executable variant rules live on each Experience's `personalization_rules`. |
+| `launch_plan` | object | no | The campaign-level deployment / go-live plan (6.7, the former Campaign Deployment object): `{ go_live_date, phases[], channel_sequence[], rollout_strategy, dependencies[] }`. Per-experience go-live lives on each Experience's `deployment`. |
 | `linked_marketing_strategy` | string | no | `MKS-<slug>` of the strategy this executes. Use `MKS-PLACEHOLDER-<slug>` until built. |
 | `linked_journey` | string | no | `JNY-<slug>` of the journey this campaign uses. Use `JNY-PLACEHOLDER-<slug>` until built. |
 | `linked_audiences` | string[] | no | `AUD-<slug>` ids the campaign activates. `AUD-PLACEHOLDER-<slug>` ok. |
@@ -171,8 +173,10 @@ not an edit of the old one.
    here; the *order, triggers, and cadence* a customer moves through do not — link the Journey
    Strategy via `linked_journey` rather than encoding the path in `channel_strategy`.
 5. **Personalization here is the approach, not the rule engine.** `personalization_strategy`
-   captures the dimensions and rules-of-thumb for tailoring; the executable rules live downstream in
-   the Personalization Configuration object.
+   captures the dimensions and rules-of-thumb for tailoring; the executable variant rules live
+   downstream on each **Experience**'s `personalization_rules`. `launch_plan` is the campaign-level
+   deployment plan (the former Campaign Deployment object); per-experience go-live lives on the
+   Experience's `deployment`.
 6. **Scope to one campaign.** Every instance names one campaign with a clear `scope`. A materially
    different campaign is a new instance.
 7. **Keep arrays signal-bearing.** A tight, real set of audience-offer pairs and channels beats a

@@ -155,13 +155,13 @@ flowchart LR
 
 | L2 sub-process | Key decisions | Resolves to object | Human-readable artifact |
 |---|---|---|---|
-| 6.1 Define Experience Specifications | Experience scope, dependencies | Experience Specification Object | Experience Blueprint |
+| 6.1 Define Experience Specifications | Experience scope, dependencies | Experience Object (`specification`) | Experience Blueprint |
 | 6.2 Build Experience Components | Component selection | Experience Component Object | Wireframes, Designs, Copy Decks (headline / hero / CTA / offer card / trust block / content block / landing page wireframe / image treatment / copy variations) |
 | 6.3 Configure Journey & Delivery Logic | Trigger rules, sequencing | Journey Object (`delivery_logic`) | Journey Flow Diagram |
-| 6.4 Configure Personalization Rules | Personalization logic | Personalization Configuration Object | Personalization Matrix |
-| 6.5 Build Channel-Specific Experiences | Channel adaptations | Experience Delivery Object | Winback Email #1, Landing Page Variant B, Paid Social Ad Set, Triggered SMS, Homepage Hero Experience |
-| 6.6 Quality Assurance & Compliance Validation | Release readiness | Experience Validation Object | QA Checklist |
-| 6.7 Deploy & Activate Experiences | Deployment timing | Campaign Deployment Object | Launch Plan |
+| 6.4 Configure Personalization Rules | Personalization logic | Experience Object (`personalization_rules`) | Personalization Matrix |
+| 6.5 Build Channel-Specific Experiences | Channel adaptations | Experience Object | Winback Email #1, Landing Page Variant B, Paid Social Ad Set, Triggered SMS, Homepage Hero Experience |
+| 6.6 Quality Assurance & Compliance Validation | Release readiness | Experience Object (`validation`) | QA Checklist |
+| 6.7 Deploy & Activate Experiences | Deployment timing | Campaign Strategy (`launch_plan`) + Experience (`deployment`) | Launch Plan |
 | 6.8 Monitor Delivery & In-Flight Optimization | Operational optimizations | Performance Measurement Object | Performance Dashboard |
 
 ## Phase 7. Measure, Learn & Optimize
@@ -196,30 +196,32 @@ Every object mapped to the sub-processes that write it and its builder skill (pe
 | Persona Object | 2.4, 2.5, 7.7 | `osmm-persona-builder` |
 | Offer Object | 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.8 | `osmm-offer-builder` |
 | Experiment Strategy Object | 3.7, 4.7, 5.7 | `osmm-experiment-strategy-builder` |
-| Campaign Strategy Object | 4.1, 4.3, 4.4, 4.6, 4.8 | `osmm-campaign-strategy-builder` |
+| Campaign Strategy Object | 4.1, 4.3, 4.4, 4.6, 4.8, 6.7 | `osmm-campaign-strategy-builder` |
 | Journey Object | 2.7, 4.2, 4.5, 4.8, 5.4, 6.3 | `osmm-journey-builder` |
 | Creative Strategy Object | 5.2, 5.5, 5.6, 5.8 | `osmm-creative-strategy-builder` |
 | Content Strategy Object | 5.3 | `osmm-content-strategy-builder` |
-| Experience Specification Object | 6.1 | `osmm-experience-specification-builder` |
+| Experience Object | 6.1, 6.4, 6.5, 6.6, 6.7 | `osmm-experience-builder` |
 | Experience Component Object | 6.2 | `osmm-experience-component-builder` |
-| Personalization Configuration Object | 6.4 | `osmm-personalization-configuration-builder` |
-| Experience Delivery Object | 6.5 | `osmm-experience-delivery-builder` |
-| Experience Validation Object | 6.6 | `osmm-experience-validation-builder` |
-| Campaign Deployment Object | 6.7 | `osmm-campaign-deployment-builder` |
 | Performance Measurement Object | 6.8, 7.1, 7.3, 7.4, 7.5 | `osmm-performance-measurement-builder` |
 | Customer Insight Object | 7.2 | `osmm-customer-insight-builder` |
 | Optimization Recommendation Object | 7.6 | `osmm-optimization-recommendation-builder` |
 
-> **Right-sizing — the model holds 22 objects.** Consolidations applying the rule
+> **Right-sizing — the model holds 18 objects.** Consolidations applying the rule
 > *prefer a facet field over a near-duplicate object; a new object must do work the
 > others can't*. The v0.5 pass removed eight speculative (unbuilt) objects; v0.6
 > merged **Journey Strategy + Journey Configuration → a single Journey Object**; v0.7
-> folded **Experience Design → Creative Strategy** (`experience_concepts`); and v0.8
-> dissolved **Keyword, Keyword Strategy, and Messaging Framework into the Journey**:
-> directional keywords become a stage's `persona_tracks.key_questions`, and messaging
-> becomes a three-layer cascade (Brand Context → Product Context `product_messaging` →
-> the Journey's `persona_tracks.key_messages`), rendered as an artifact rather than
-> authored as an object. Earlier consolidations:
+> folded **Experience Design → Creative Strategy** (`experience_concepts`); v0.8
+> dissolved **Keyword, Keyword Strategy, and Messaging Framework into the Journey**
+> (directional keywords → a stage's `persona_tracks.key_questions`; messaging → a
+> three-layer cascade Brand Context → Product Context `product_messaging` → the Journey's
+> `persona_tracks.key_messages`, rendered as an artifact); and v0.9 collapsed **Phase 6's
+> Experience-\* family into a single Experience Object** — Experience Specification (6.1,
+> `specification`), Experience Delivery (6.5), Personalization Configuration (6.4,
+> `personalization_rules`), and Experience Validation (6.6, `validation` status) are now
+> one decision object (the rendered asset lives in the production tool, referenced via
+> `delivery_reference`), with **Campaign Deployment → Campaign Strategy `launch_plan`**
+> (6.7). Only **Experience Component** stays separate (reusable building blocks). Earlier
+> consolidations:
 >
 > - **Targeting Strategy → Marketing Strategy.** Audience prioritization (2.1, 2.8,
 >   2.9) is a section of the strategy (`priority_audiences`, `growth_priorities`),
@@ -235,8 +237,7 @@ Every object mapped to the sub-processes that write it and its builder skill (pe
 > - **Offer Test Strategy + Creative Test Strategy → Experiment Strategy.** One
 >   cross-phase experiment/test object referenced from 3.7, 4.7, and 5.7.
 >
-> Several remaining boundaries (Experience Validation, Personalization Configuration,
-> Experience Component) are
-> **provisional** — they stay until their builder is authored, when each must clear
-> the "earns its own object" bar or fold. We collapse on paper and split only when
-> building reveals the need.
+> With Phase 6 collapsed, the model has no remaining provisional object boundaries — the
+> Phase 7 Learning objects (Customer Insight, Optimization Recommendation) and Performance
+> Measurement are the last unbuilt objects. We collapse on paper and split only when building
+> reveals the need.

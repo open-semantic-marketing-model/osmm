@@ -1,7 +1,7 @@
 # OSMM™ Skill Naming Convention
 
 **Open Semantic Marketing Model — builder skills**
-Status: Draft v0.8
+Status: Draft v0.9
 
 This document defines how skills that build OSMM objects are named, organized, and described. Every object in the model gets exactly one builder skill, and the name of that skill is keyed to the one thing about the object that never changes: its identity. Phase, category, and release wave can all be re-debated over the life of the standard. The object's identity cannot, so it — and only it — drives the name.
 
@@ -171,7 +171,7 @@ Mirrors the OSMM object lifecycle so a builder's maturity tracks its object's:
 
 ## Full builder registry
 
-All 22 objects in the OSMM object model, mapped to their builder skill names.
+All 18 objects in the OSMM object model, mapped to their builder skill names.
 (Speculative objects were consolidated in the v0.5/v0.6 right-sizing — see
 [TAXONOMY.md](TAXONOMY.md) → the note under the object resolution index.)
 
@@ -190,12 +190,8 @@ All 22 objects in the OSMM object model, mapped to their builder skill names.
 | 4 | Journey | Work Product | `osmm-journey-builder` |
 | 5 | Creative Strategy | Work Product | `osmm-creative-strategy-builder` |
 | 5 | Content Strategy | Work Product | `osmm-content-strategy-builder` |
-| 6 | Experience Specification | Work Product | `osmm-experience-specification-builder` |
+| 6 | Experience | Work Product | `osmm-experience-builder` |
 | 6 | Experience Component | Work Product | `osmm-experience-component-builder` |
-| 6 | Personalization Configuration | Configuration | `osmm-personalization-configuration-builder` |
-| 6 | Experience Delivery | Work Product | `osmm-experience-delivery-builder` |
-| 6 | Experience Validation | Work Product | `osmm-experience-validation-builder` |
-| 6 | Campaign Deployment | Work Product | `osmm-campaign-deployment-builder` |
 | 7 | Performance Measurement | Measurement | `osmm-performance-measurement-builder` |
 | 7 | Customer Insight | Learning | `osmm-customer-insight-builder` |
 | 7 | Optimization Recommendation | Learning | `osmm-optimization-recommendation-builder` |
@@ -391,7 +387,7 @@ typed objects.
 
 Consequences at the **data-standard layer**: there is no Creative Brief object,
 no `object_type: creative_brief`, and no `osmm-creative-brief-builder` (an object
-*builder* has no object to build). The object model stands at **22 objects**;
+*builder* has no object to build). The object model stands at **18 objects**;
 nothing is added or removed by this resolution. "Creative Brief" remains valid
 only as an artifact label (e.g. in the TAXONOMY artifact column).
 
@@ -403,6 +399,20 @@ a first-draft brief a client can tailor. The composer is non-normative: it
 defines no schema and emits an artifact, not an object. So the standard stays
 pure (objects only) while the skill library still delivers the brief as an
 accelerator.
+
+---
+
+## Changes in v0.9
+
+- **Collapsed Phase 6's Experience-\* family into a single `experience` object** (22 → 18).
+  Experience Specification (6.1, `specification`), Experience Delivery (6.5), Personalization
+  Configuration (6.4, `personalization_rules`), and Experience Validation (6.6, `validation`
+  status) are one **Experience** decision object — the rendered asset lives in the production
+  tool, referenced via `delivery_reference`. **Campaign Deployment → Campaign Strategy
+  `launch_plan`** (6.7; per-experience go-live on the Experience's `deployment`). Only
+  **Experience Component** stays separate (reusable building blocks the Experience references).
+  The **Configuration** category is now empty (its members folded into the Journey's
+  `delivery_logic` and the Experience's `personalization_rules`).
 
 ---
 

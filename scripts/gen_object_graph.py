@@ -32,12 +32,8 @@ OBJ = {
  'journey':('Journey','Work Product',True,4),
  'creative_strategy':('Creative Strategy','Work Product',True,5),
  'content_strategy':('Content Strategy','Work Product',True,5),
- 'experience_specification':('Experience Specification','Work Product',False,6),
- 'experience_component':('Experience Component','Work Product',False,6),
- 'personalization_configuration':('Personalization Configuration','Configuration',False,6),
- 'experience_delivery':('Experience Delivery','Work Product',False,6),
- 'experience_validation':('Experience Validation','Work Product',False,6),
- 'campaign_deployment':('Campaign Deployment','Work Product',False,6),
+ 'experience':('Experience','Work Product',True,6),
+ 'experience_component':('Experience Component','Work Product',True,6),
  'performance_measurement':('Performance Measurement','Measurement',False,7),
  'customer_insight':('Customer Insight','Learning',False,7),
  'optimization_recommendation':('Optimization Recommendation','Learning',False,7),
@@ -95,17 +91,23 @@ REALIZED = [
  ('content_strategy','creative_strategy',False),
  ('content_strategy','journey',False),
  ('content_strategy','business_context',False),
+ # Experience (B-new) — Phase 6 deliverable, absorbs Spec / Delivery / Personalization / Validation
+ ('experience','experience_component',False),
+ ('experience','campaign_strategy',False),
+ ('experience','journey',False),
+ ('experience','audience',False),
+ ('experience','offer',False),
+ ('experience','creative_strategy',False),
+ ('experience','business_context',False),
+ # Experience Component — reusable building blocks
+ ('experience_component','brand_context',False),
+ ('experience_component','product_context',False),
+ ('experience_component','persona',False),
 ]
 # Envisioned edges — illustrative, not yet defined in a builder.
 ENVISIONED = [
  ('experiment_strategy','offer'),('experiment_strategy','campaign_strategy'),('experiment_strategy','creative_strategy'),
- ('experience_specification','creative_strategy'),('experience_specification','campaign_strategy'),
- ('experience_component','experience_specification'),
- ('personalization_configuration','campaign_strategy'),('personalization_configuration','audience'),
- ('experience_delivery','experience_component'),('experience_delivery','journey'),
- ('experience_validation','experience_delivery'),
- ('campaign_deployment','experience_delivery'),
- ('performance_measurement','campaign_strategy'),('performance_measurement','experience_delivery'),('performance_measurement','measurement_framework'),
+ ('performance_measurement','campaign_strategy'),('performance_measurement','experience'),('performance_measurement','measurement_framework'),
  ('customer_insight','performance_measurement'),
  ('optimization_recommendation','performance_measurement'),
 ]
@@ -137,7 +139,7 @@ def build_dot():
          '  node [shape=box, fontname="Helvetica", fontsize=12.5, margin="0.18,0.10", height=0.42];',
          '  edge [arrowsize=0.75];',
          '  labelloc="t"; fontsize=24; fontname="Helvetica-Bold";',
-         '  label="OSMM™ Object Graph — 22 objects, ordered left→right by workflow phase (1→7)\\n'
+         '  label="OSMM™ Object Graph — 18 objects, ordered left→right by workflow phase (1→7)\\n'
          f'solid node = builder shipped ({BUILT})   ·   dashed node = backlog ({BACKLOG})   ·   '
          'node color = category   ·   solid edge = realized reference   ·   '
          'dashed edge = envisioned   ·   mint edge = learning loop";']
