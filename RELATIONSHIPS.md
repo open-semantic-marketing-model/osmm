@@ -83,15 +83,21 @@ a lookup) and namespaces ids so they stay unique across a portfolio.
 | Content Strategy | `CTS-` | `content_strategy_id` | `CTS-ibm-watsonx` |
 | Experience | `EXP-` | `experience_id` | `EXP-wendys-baconator-winback-email` |
 | Experience Component | `EXC-` | `experience_component_id` | `EXC-wendys-baconator-cta` |
+| Performance Measurement | `PFM-` | `performance_measurement_id` | `PFM-wendys-2026-q1` |
+| Customer Insight | `CIN-` | `customer_insight_id` | `CIN-wendys-checkout-fee-friction` |
+| Optimization Recommendation | `OPR-` | `optimization_recommendation_id` | `OPR-wendys-checkout-fee-transparency` |
 
-> Fourteen prefixes are owned by shipped builders — the five Context builders
+> Seventeen prefixes are owned by shipped builders — the five Context builders
 > (`osmm-business-context-builder`, `osmm-brand-context-builder`,
 > `osmm-product-context-builder`, `osmm-persona-builder`, `osmm-audience-builder`)
-> plus nine Work Product builders: `osmm-marketing-strategy-builder`,
+> plus nine Work Product builders (`osmm-marketing-strategy-builder`,
 > `osmm-measurement-framework-builder`, `osmm-offer-builder`,
 > `osmm-campaign-strategy-builder`, `osmm-journey-builder`,
 > `osmm-creative-strategy-builder`, `osmm-content-strategy-builder`,
-> `osmm-experience-builder`, and `osmm-experience-component-builder`.
+> `osmm-experience-builder`, `osmm-experience-component-builder`) and the three
+> Phase 7 builders: `osmm-performance-measurement-builder` (Measurement),
+> `osmm-customer-insight-builder`, and `osmm-optimization-recommendation-builder`
+> (Learning). Only **Experiment Strategy** (`XPR-`) is still reserved-but-unbuilt.
 
 **Assigning new prefixes.** Every object gets a prefix when its builder is
 authored. Prefixes are assigned by maintainers (like controlled vocabularies,
@@ -123,16 +129,16 @@ flowchart LR
     WPN["Marketing / Offer / Campaign /\nJourney / Creative / Content\nobjects"]
   end
 
-  subgraph CFG["Configuration"]
-    CFGN["Personalization\nConfiguration"]
+  subgraph CFG["Configuration — empty"]
+    CFGN["(folded into Journey\ndelivery_logic & Experience\npersonalization_rules)"]
   end
 
   subgraph MEAS["Measurement — append-only"]
-    MEASN["Performance &amp; Experience\nMeasurement"]
+    MEASN["Performance\nMeasurement"]
   end
 
   subgraph LRN["Learning — updates Context"]
-    LRNN["Insight, Performance,\nOptimization objects"]
+    LRNN["Customer Insight &amp;\nOptimization Recommendation"]
   end
 
   BIZ --> BRC
@@ -211,6 +217,16 @@ reference fields it introduces.
 | Experience | `personalization_rules[].audience` | many (optional) | Audience | Which audience gets which variant (the former Personalization Configuration). `AUD-PLACEHOLDER-<slug>` until built. |
 | Experience | `linked_campaign_strategy` / `linked_journey` / `linked_audiences` / `linked_offer` / `linked_creative_strategy` / `linked_business_context` | one / one / many / one / one / one (optional) | Campaign Strategy / Journey / Audience / Offer / Creative Strategy / Business Context | The campaign it runs in, the journey/stage it serves, audiences, offer, creative direction, business. Placeholders until built. |
 | Experience Component | `linked_brand_context` / `linked_product` / `linked_personas` | one / one / many (optional) | Brand Context / Product Context / Persona | The brand voice it follows, the offering, and who it's for. Placeholders until built. |
+| Performance Measurement | `linked_measurement_framework` | one (required) | Measurement Framework | The plan it reports actuals against — references the framework's metric names, never redefines them. `MEF-PLACEHOLDER-<slug>` until built. |
+| Performance Measurement | `subject_reference` | one (optional) | Offer / Creative Strategy / Journey / Experience / Campaign Strategy | The specific subject measured when `dimension` ≠ `overall` — a generic, dimension-scoped pointer (`<PREFIX>-PLACEHOLDER-<slug>` until built). |
+| Performance Measurement | `linked_marketing_strategy` / `linked_business_context` | one / one (optional) | Marketing Strategy / Business Context | The strategy the period evaluates and the owning business. Placeholders until built. |
+| Customer Insight | `evidence.linked_performance_measurements` | many (optional) | Performance Measurement | The readings the insight is drawn from. `PFM-PLACEHOLDER-<slug>` until built. |
+| Customer Insight | `affected_personas` / `affected_audiences` | many / many (optional) | Persona / Audience | Who the insight is about. Placeholders until built. |
+| Customer Insight | `proposes_updates_to[].target_id` | many (optional) | Business / Brand / Product Context, Persona, Marketing Strategy | The **Context write-back** (7.7): a lean pointer-plus-prose proposal — applying it produces a new *version* of the target. `<PREFIX>-PLACEHOLDER-<slug>` until built. |
+| Customer Insight | `linked_business_context` | one (optional) | Business Context | The owning business. `BIZ-PLACEHOLDER-<slug>` until built. |
+| Optimization Recommendation | `derived_from.linked_customer_insights` / `derived_from.linked_performance_measurements` | many / many (optional) | Customer Insight / Performance Measurement | The evidence chain (diagnosis + readings) it acts on. Placeholders until built. |
+| Optimization Recommendation | `targets[].target_id` | many (optional) | Marketing / Campaign / Creative Strategy, Offer, Journey, Experience | The **write-forward**: the Work Products/Strategy it would change — lean pointer-plus-prose; applying it produces a new *version* of the target. `<PREFIX>-PLACEHOLDER-<slug>` until built. |
+| Optimization Recommendation | `linked_business_context` | one (optional) | Business Context | The owning business. `BIZ-PLACEHOLDER-<slug>` until built. |
 
 > Two bidirectional Context edges are realized (Business Context ↔ Brand Context,
 > Persona ↔ Audience); the **first Work Product → Context edges** are live (a
@@ -226,9 +242,14 @@ reference fields it introduces.
 > `persona_tracks` carrying each persona's questions and messages), and **Creative
 > Strategy / Content Strategy → Brand/Product Context + Journey** — wiring strategy to
 > activation to creative and content, with messaging cascading Brand → Product → Journey
-> rather than living in a separate object. Inbound references implied by the model but not
-> yet realized (e.g. a Customer Insight proposing Persona updates; an Experiment Strategy
-> referencing the Offer/Campaign/Creative it tests) are defined when those builders are authored.
+> rather than living in a separate object. The **Phase 7 learning loop** is now live too:
+> **Performance Measurement → Measurement Framework** (actuals against the plan),
+> **Customer Insight → Performance Measurement** (the *why* drawn from the readings, plus
+> `proposes_updates_to` writing durable changes back into Context — sub-process 7.7), and
+> **Optimization Recommendation → Customer Insight / Performance Measurement** (the
+> prescription, with `targets` writing forward into the Work Product/Strategy layer). The
+> only inbound references still unrealized are those of the parked **Experiment Strategy**
+> (it would reference the Offer/Campaign/Creative it tests), defined when that builder is authored.
 
 ## Referential integrity
 
@@ -256,10 +277,11 @@ into the established table. Listed in registry order
 | Object | Proposed prefix |
 |--------|-----------------|
 | Experiment Strategy | `XPR-` |
-| Performance Measurement | `PFM-` |
-| Customer Insight | `CIN-` |
-| Optimization Recommendation | `OPR-` |
 
-The earlier `Experience *` prefix clashes dissolved when the Phase 6 Experience-\*
-family collapsed into a single **Experience** object (`EXP-`) in the v0.9 right-sizing;
-only **Experience Component** (`EXC-`) remains alongside it, and both are now ratified.
+The three Phase 7 prefixes — **Performance Measurement** (`PFM-`), **Customer Insight**
+(`CIN-`), and **Optimization Recommendation** (`OPR-`) — were ratified in v0.10 when their
+builders shipped and moved up to the table above. **Experiment Strategy** (`XPR-`) is the
+sole remaining reserved-but-unbuilt prefix (its builder is parked). The earlier `Experience *`
+prefix clashes dissolved when the Phase 6 Experience-\* family collapsed into a single
+**Experience** object (`EXP-`) in the v0.9 right-sizing; only **Experience Component**
+(`EXC-`) remains alongside it.

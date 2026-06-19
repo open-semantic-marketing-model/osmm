@@ -3,19 +3,22 @@
 The single source of truth for **what's done, what's in flight, and what's next**.
 For the sequencing rationale and milestones, see [`ROADMAP.md`](ROADMAP.md).
 
-**Last updated:** 2026-06-16 (v0.9: Phase 6 Experience-* family collapsed into a single Experience object → Milestone E complete)
+**Last updated:** 2026-06-19 (v0.10: Phase 7 Measure-Learn-Optimize layer built — Performance Measurement, Customer Insight, Optimization Recommendation → Milestone F complete)
 
 **Progress at a glance**
 
 | Track | Done | In Progress | To Do | Total |
 |-------|-----:|------------:|------:|------:|
-| Object builders | 14 | 0 | 4 | 18 |
+| Object builders | 17 | 0 | 1 (parked) | 18 |
 | Artifact composers | 1 | 0 | 6 (candidates) | 7 |
 | Infrastructure / docs | 11 | 0 | 5 | 16 |
 
-> **Milestones A–E complete** — Context foundation, Strategy layer, Offer & Activation,
-> Content & Creative, and Build & Deliver all have builders. Only **Phase 7 (Measure, Learn
-> & Optimize)** remains: Performance Measurement, Customer Insight, Optimization Recommendation.
+> **Milestones A–F complete** — Context foundation, Strategy layer, Offer & Activation,
+> Content & Creative, Build & Deliver, and Measure-Learn-Optimize all have builders.
+> **17 of 18 object builders ship**; only the parked **Experiment Strategy (B36)** remains.
+> The Phase 7 layer closes the learning loop: Performance Measurement records actuals against
+> the framework (faceted by `dimension`), Customer Insight is the interpreted *why*, and
+> Optimization Recommendation is the prescription that writes back into Context/Strategy (7.7).
 >
 > **Right-sizing → 18 objects.** v0.5–v0.7 (see below); **v0.8** dissolved **Keyword (B08),
 > Keyword Strategy (B09), and Messaging Framework (B16) into the Journey**; **v0.9** collapsed
@@ -48,6 +51,9 @@ Item ids: `B##` = object builder, `C##` = composer, `I##` = infrastructure/docs.
 | B18 | `osmm-content-strategy-builder` | Phase 5 · Work Product. Shipped (`status: draft`). The content plan — `content_goal`, `content_pillars[]` (with formats), sequencing, and `journey_mapping[]` (5.3). Ratifies the `CTS-` prefix; references Creative Strategy, Journey, Personas. **Completes Milestone D.** |
 | B22 | `osmm-experience-component-builder` | Phase 6 · Work Product. Shipped (`status: draft`). The reusable building blocks (headline, hero, CTA, copy block, offer card, trust block, wireframe, …) that Experiences are assembled from. Ratifies the `EXC-` prefix; references Brand Context, Product Context, Personas. |
 | B37 | `osmm-experience-builder` | Phase 6 · Work Product. Shipped (`status: draft`). The **Experience Object** — a deliverable's *definition* (email, landing page, ad, hero): `specification`, assembled `linked_components`, `variants`, `personalization_rules`, `validation` status, `deployment`. **Collapses Experience Specification (B21), Experience Delivery (B25), Personalization Configuration (B24), Experience Validation (B26)** (v0.9); the rendered asset is referenced via `delivery_reference`. Ratifies the `EXP-` prefix. **Completes Milestone E.** |
+| B29 | `osmm-performance-measurement-builder` | Phase 7 · Measurement. Shipped (`status: draft`). Append-only **actuals** against a Measurement Framework — `period`, per-metric `actual`/`target`/`variance`/`status`, faceted by a `dimension` field (overall / offer / creative / journey / channel / experience / campaign) that serves 7.1/7.3/7.4/7.5 and **absorbs the former per-dimension Performance objects (B31–B33, B28)**. Ratifies the `PFM-` prefix; references the Measurement Framework (and optionally the subject measured, Marketing Strategy, Business Context). First **Measurement-category** object. |
+| B30 | `osmm-customer-insight-builder` | Phase 7 · Learning. Shipped (`status: draft`). The interpreted **why** (7.2) — `insight_statement`, `confidence`, `evidence` (Performance Measurements + external research), affected personas/audiences, and `proposes_updates_to[]` writing durable changes back into Context (7.7). Ratifies the `CIN-` prefix. First **Learning-category** object. |
+| B34 | `osmm-optimization-recommendation-builder` | Phase 7 · Learning. Shipped (`status: draft`). The **prescription** (7.6) — `recommendation`, `rationale`, `derived_from` (insights + measurements), `priority`/`effort`/`expected_impact`, a `disposition` (proposed → accepted/rejected/implemented) distinct from lifecycle `status`, and `targets[]` writing forward into Work Products/Strategy. Lean pointer-plus-prose write-back. Ratifies the `OPR-` prefix. **Completes Milestone F.** Unlocks the Optimization Plan composer (C07). |
 | C01 | `osmm-creative-brief-composer` | Phase 5 artifact-composer. ✅ Required input `brand_context` now built (B02); runnable end-to-end on the Wendy's example set. |
 | I01 | `TAXONOMY.md` | 7 phases → 18 objects, object resolution index. |
 | I02 | `CONVENTION.md` | Naming, frontmatter contract, full builder registry, composer class, schema/example promotion rules. |
@@ -108,16 +114,16 @@ Grouped by milestone (see [`ROADMAP.md`](ROADMAP.md)). Within a milestone, order
 > Configuration (B23) was already merged into the Journey (v0.6); Experience Performance (B28)
 > into Performance Measurement (v0.5). **Next up: Milestone F — Measure, Learn & Optimize.**
 
-### Milestone F — Measure, Learn & Optimize (Phase 7)
-| ID | Builder | Phase |
-|----|---------|------:|
-| B29 | `osmm-performance-measurement-builder` | 7 |
-| B30 | `osmm-customer-insight-builder` | 7 |
-| B34 | `osmm-optimization-recommendation-builder` | 7 |
+### Milestone F — Measure, Learn & Optimize (Phase 7) ✅ COMPLETE
 
-> Offer/Creative/Journey Performance (former B31–B33) folded into **Performance
-> Measurement** (B29) via a `dimension` facet (offer / creative / journey / channel /
-> experience).
+> ✅ **Milestone F shipped** — **Performance Measurement (B29)**, **Customer Insight (B30)**,
+> and **Optimization Recommendation (B34)** (see Done). This populates the previously-empty
+> **Measurement** and **Learning** categories and closes the learning loop (7.7). Offer/Creative/
+> Journey Performance (former B31–B33) and Experience Performance (B28) are folded into
+> **Performance Measurement** via a `dimension` facet (overall / offer / creative / journey /
+> channel / experience / campaign). **All milestones (A–F) are now complete** — only the parked
+> Experiment Strategy (B36) remains unbuilt. **Next: the Optimization Plan composer (C07) is now
+> unblocked, and a Measurement Framework example pair could be promoted to `examples/`.**
 
 > Builder ids are **stable labels, not positions** — they are not renumbered when objects
 > are added or consolidated. B01–B34 came from the original registry; **B35** =

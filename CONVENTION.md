@@ -1,7 +1,7 @@
 # OSMM™ Skill Naming Convention
 
 **Open Semantic Marketing Model — builder skills**
-Status: Draft v0.9
+Status: Draft v0.10
 
 This document defines how skills that build OSMM objects are named, organized, and described. Every object in the model gets exactly one builder skill, and the name of that skill is keyed to the one thing about the object that never changes: its identity. Phase, category, and release wave can all be re-debated over the life of the standard. The object's identity cannot, so it — and only it — drives the name.
 
@@ -329,7 +329,9 @@ Two parts separated by a single underscore:
 | Business Context | Wendy's | — | `BUSINESS-CONTEXT_wendys.json` |
 | Campaign Strategy | Wendy's | Baconator Launch | `CAMPAIGN-STRATEGY_wendys-baconator-launch.json` |
 | Journey | Wendy's | App Habit | `JOURNEY_wendys-app-habit.json` |
-| Performance Measurement | Wendy's | Breakfast Daypart | `PERFORMANCE-MEASUREMENT_wendys-breakfast-daypart.json` |
+| Performance Measurement | Wendy's | FY2026 Q1 | `PERFORMANCE-MEASUREMENT_wendys-2026-q1.json` |
+| Customer Insight | Wendy's | Checkout fee friction | `CUSTOMER-INSIGHT_wendys-checkout-fee-friction.json` |
+| Optimization Recommendation | Wendy's | Checkout fee transparency | `OPTIMIZATION-RECOMMENDATION_wendys-checkout-fee-transparency.json` |
 
 ### Where instance files live
 
@@ -399,6 +401,27 @@ a first-draft brief a client can tailor. The composer is non-normative: it
 defines no schema and emits an artifact, not an object. So the standard stays
 pure (objects only) while the skill library still delivers the brief as an
 accelerator.
+
+---
+
+## Changes in v0.10
+
+- **Built the Phase 7 Measure-Learn-Optimize layer — three objects, completing the model
+  to 17 of 18 builders shipped.** `osmm-performance-measurement-builder` (Measurement
+  category, prefix `PFM-`) records actuals against a Measurement Framework, faceted by a
+  `dimension` field (overall / offer / creative / journey / channel / experience / campaign)
+  so one object serves sub-processes 7.1/7.3/7.4/7.5 and absorbs the former per-dimension
+  Performance objects; it is append-only (each period a new instance). `osmm-customer-insight-builder`
+  (Learning category, prefix `CIN-`) is the interpreted *why*, drawn from Performance
+  Measurements plus external research, and proposes durable updates back into Context
+  (`proposes_updates_to[]`, sub-process 7.7). `osmm-optimization-recommendation-builder`
+  (Learning category, prefix `OPR-`) is the prescription derived from insight + measurement,
+  writing forward into Work Products/Strategy (`targets[]`) and carrying a `disposition`
+  (proposed → accepted/rejected/implemented) distinct from the lifecycle `status`. The
+  write-back is **lean pointer-plus-prose**, not a field-level patch: applying a change
+  produces a new *version* of the target object. This populates the previously-empty
+  **Measurement** and **Learning** categories and closes the learning loop. Only
+  **Experiment Strategy** remains unbuilt (parked).
 
 ---
 

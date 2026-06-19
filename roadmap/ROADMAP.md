@@ -1,10 +1,10 @@
 # OSMM™ Roadmap
 
-The sequenced plan for building OSMM out from its current state (14 of 18 object
+The sequenced plan for building OSMM out from its current state (17 of 18 object
 builders, 1 composer) to a complete, connected model. For live status see
 [`BACKLOG.md`](BACKLOG.md).
 
-**Last updated:** 2026-06-11
+**Last updated:** 2026-06-19
 
 ## Guiding principles
 
@@ -32,7 +32,7 @@ flowchart TD
   C["Milestone C ✅<br/>Offer & Activation · Ph 3-4<br/>(Offer, Campaign, Journey)"]
   D["Milestone D ✅<br/>Content & Creative · Ph 5<br/>(Creative, Content)"]
   E["Milestone E ✅<br/>Build & Deliver · Ph 6<br/>(Experience, Experience Component)"]
-  F["Milestone F<br/>Measure, Learn & Optimize · Ph 7<br/>(Performance, Insight, Optimization)"]
+  F["Milestone F ✅<br/>Measure, Learn & Optimize · Ph 7<br/>(Performance, Insight, Optimization)"]
   A --> B --> C --> D --> E --> F
   A -. "unblocks" .-> C01["Creative Brief composer (shipped)"]
 ```
@@ -83,14 +83,21 @@ asset is referenced, not stored); **Experience Component** stays as the reusable
 *Right-sized: Campaign Deployment → Campaign Strategy `launch_plan`; Journey Configuration →
 Journey `delivery_logic` (v0.6); Experience Performance → Performance Measurement (v0.5).*
 
-### Milestone F — Measure, Learn & Optimize (Phase 7)
-**Objects:** Performance Measurement (B29), Customer Insight (B30), Optimization
-Recommendation (B34).
+### Milestone F — Measure, Learn & Optimize (Phase 7) ✅ COMPLETE
+**Objects:** ~~Performance Measurement (B29)~~ ✅, ~~Customer Insight (B30)~~ ✅, ~~Optimization
+Recommendation (B34)~~ ✅.
 **Why last:** the Learning objects close the loop — they reference what they
 evaluate and *propose updates back into Context* (sub-process 7.7). They are most
-valuable once there's a full pipeline producing things to measure. *Right-sized: the
-per-dimension Offer/Creative/Journey Performance objects folded into Performance
-Measurement via a `dimension` facet.*
+valuable once there's a full pipeline producing things to measure. **All three shipped** —
+**Performance Measurement** (Measurement category, prefix `PFM-`) records append-only actuals
+against the Measurement Framework, faceted by a `dimension` field; **Customer Insight** (`CIN-`)
+is the interpreted *why*, proposing durable Context updates; **Optimization Recommendation**
+(`OPR-`) is the prescription, writing forward into Work Products/Strategy and tracked to a
+`disposition`. The write-back is lean pointer-plus-prose (applying a change produces a new
+*version* of the target). This populates the previously-empty Measurement and Learning
+categories. *Right-sized: the per-dimension Offer/Creative/Journey/Experience Performance
+objects folded into Performance Measurement via the `dimension` facet.* **Only the parked
+Experiment Strategy now remains unbuilt.**
 **Composer unlocked:** Optimization Plan (C07).
 
 ## Parallel tracks (run alongside the milestones)
@@ -111,7 +118,7 @@ Measurement via a `dimension` facet.*
 |-----------|---------:|-------------------------:|
 | (shipped) | 14 | 14 / 18 |
 | A–E ✅ complete | 0 | 14 / 18 |
-| F (Measure, Learn & Optimize) | 3 | 17 / 18 |
+| F ✅ (Measure, Learn & Optimize) | 3 | 17 / 18 |
 | Parked (Experiment Strategy) | 1 | 18 / 18 |
 
 Composers and infrastructure are additive on top of the builder count.
@@ -120,5 +127,5 @@ Composers and infrastructure are additive on top of the builder count.
 
 Per the `lean over over-engineered` tenet ([GOVERNANCE.md](../GOVERNANCE.md)):
 composers (C-track) are **non-normative accelerators** — build the few that earn
-their keep, not all seven. The 27 builders are the standard; the composers are
+their keep, not all seven. The 18 builders are the standard; the composers are
 convenience.

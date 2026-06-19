@@ -12,6 +12,29 @@ governance). The current schema version is **0.1.0**.
 ## [Unreleased]
 
 ### Added
+- **Phase 7 measure-learn-optimize layer — three builders** (`status: draft`), completing
+  Milestone F and taking the model to **17 of 18 builders shipped** (only the parked Experiment
+  Strategy remains). This populates the previously-empty **Measurement** and **Learning**
+  categories and closes the learning loop:
+  - **`osmm-performance-measurement-builder`** (B29, Phase 7, Measurement) — the **Performance
+    Measurement Object**: append-only *actuals* recorded against a Measurement Framework for a
+    `period`, with per-metric `actual`/`target`/`variance`/`status`. A `dimension` facet (overall /
+    offer / creative / journey / channel / experience / campaign) lets one object serve
+    sub-processes 7.1/7.3/7.4/7.5 and absorbs the former per-dimension Performance objects. The
+    framework is the *plan*; this is the *actuals*. Ratifies `PFM-`.
+  - **`osmm-customer-insight-builder`** (B30, Phase 7, Learning) — the **Customer Insight Object**:
+    a durable, interpreted *why* (7.2) drawn from Performance Measurements plus external research,
+    with `proposes_updates_to[]` writing durable changes back into the Context layer (7.7).
+    Ratifies `CIN-`.
+  - **`osmm-optimization-recommendation-builder`** (B34, Phase 7, Learning) — the **Optimization
+    Recommendation Object**: the prioritized *prescription* (7.6) derived from insight + measurement,
+    with `targets[]` writing forward into Work Products/Strategy and a `disposition` (proposed →
+    accepted/rejected/implemented) distinct from the lifecycle `status`. Unlocks the Optimization
+    Plan composer (C07). Ratifies `OPR-`.
+  - The write-back/forward is **lean pointer-plus-prose** (`{target_id, recommended_change}`), not a
+    field-level patch — applying a change produces a new *version* of the target object. Reconciled
+    across TAXONOMY, CONVENTION (v0.10 note), RELATIONSHIPS (prefixes ratified, reference fields +
+    learning-loop edges), the graph (regenerated — 17 built), the roadmap, and README.
 - **Phase 6 build/deliver layer — two builders** (`status: draft`), completing Milestone E and
   taking the model to **14 of 18 builders shipped**:
   - **`osmm-experience-builder`** (B37, Phase 6) — the **Experience Object**: a deliverable's
