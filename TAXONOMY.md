@@ -237,7 +237,11 @@ Every object mapped to the sub-processes that write it and its builder skill (pe
 > - **Offer Test Strategy + Creative Test Strategy → Experiment Strategy.** One
 >   cross-phase experiment/test object referenced from 3.7, 4.7, and 5.7.
 >
-> With Phase 6 collapsed, the model has no remaining provisional object boundaries — the
-> Phase 7 Learning objects (Customer Insight, Optimization Recommendation) and Performance
-> Measurement are the last unbuilt objects. We collapse on paper and split only when building
-> reveals the need.
+> With Phase 7 built (v0.10), the model has no remaining provisional object boundaries.
+> **Performance Measurement** records actuals against the Measurement Framework, faceted by a
+> `dimension` field (overall / offer / creative / journey / channel / experience / campaign);
+> **Customer Insight** is the interpreted *why*, drawn from those measurements; and
+> **Optimization Recommendation** is the prescription that closes the loop, writing back into
+> Context/Strategy (sub-process 7.7). **17 of the 18 builders now ship** — only **Experiment
+> Strategy** (cross-phase test object, 3.7/4.7/5.7) remains parked (deprioritized). We collapse
+> on paper and split only when building reveals the need.

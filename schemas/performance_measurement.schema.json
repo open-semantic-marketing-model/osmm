@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/open-semantic-marketing-model/osmm/main/schemas/performance_measurement.schema.json",
+  "title": "OSMM Performance Measurement Object",
+  "description": "Measurement-category object (append-only) that records actual performance against a Measurement Framework's plan for a period: the readings, their variance to target, and a narrative readout. The framework is the plan (what will be measured and the targets); this object is the actuals. One object type serves Phase 7 sub-processes 7.1/7.3/7.4/7.5 via a 'dimension' facet (overall / offer / creative / journey / channel / experience / campaign). Canonical schema for object_type 'performance_measurement'. The osmm-performance-measurement-builder skill references this file; it is the single source of truth for the object's shape.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "osmm_version",
+    "performance_measurement_id",
+    "version",
+    "status",
+    "name",
+    "linked_measurement_framework",
+    "dimension",
+    "period",
+    "metrics"
+  ],
+  "properties": {
+    "object_type": {
+      "const": "performance_measurement",
+      "description": "Object type discriminator. Always 'performance_measurement'."
+    },
+    "osmm_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "OSMM schema version this instance conforms to (semantic version)."
+    },
+    "performance_measurement_id": {
+      "type": "string",
+      "pattern": "^PFM-[a-z0-9-]+$",
+      "description": "Stable, human-readable id. Prefix 'PFM-' + lowercase hyphen slug, scoped to the subject plus the period (e.g. 'PFM-wendys-2026-q1'). Each period is a new instance — append-only, never overwritten. Never changes once assigned."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "Instance version (e.g. '1.0'). Bump only to correct a recorded reading; new periods are new instances, not new versions."
+    },
+    "status": {
+      "enum": ["draft", "proposed", "stable", "deprecated"],
+      "description": "Object lifecycle state."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Readable label, usually subject + period (e.g. \"Wendy's FY2026 Q1 Performance\")."
+    },
+    "linked_measurement_framework": {
+      "type": "string",
+      "pattern": "^MEF-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the Measurement Framework this reports against — the plan whose targets these readings are measured against. Use 'MEF-PLACEHOLDER-<slug>' until it exists. Measurement references what it measures; it never re-defines the metrics."
+    },
+    "dimension": {
+      "enum": ["overall", "offer", "creative", "journey", "channel", "experience", "campaign"],
+      "description": "The lens of this measurement. 'overall' is the strategy-level rollup (7.1); the rest scope the reading to one subject type (7.3 offer, 7.4 creative, 7.5 journey/channel) and fold in the former per-dimension Performance objects."
+    },
+    "subject_reference": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "The specific object measured when 'dimension' is not 'overall' — e.g. an Offer (OFR-), Creative Strategy (CRS-), Journey (JNY-), Experience (EXP-), or Campaign Strategy (CMS-). Omit for 'overall'. Use the '<PREFIX>-PLACEHOLDER-<slug>' form until the subject exists."
+    },
+    "period": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start"],
+      "description": "The window these readings cover.",
+      "properties": {
+        "start": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Period start (ISO date or readable label, e.g. '2026-01-01' or 'FY2026 Q1')."
+        },
+        "end": {
+          "type": "string",
+          "description": "Period end. Optional for an open or single-label period."
+        },
+        "label": {
+          "type": "string",
+          "description": "Human label for the period (e.g. 'FY2026 Q1'). Optional."
+        }
+      }
+    },
+    "metrics": {
+      "type": "array",
+      "minItems": 1,
+      "description": "The readings — one per KPI measured, reporting the actual against the framework's target. Reference the framework's metric names; do not redefine them.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "actual"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Metric name — should match a metric defined in the linked Measurement Framework."
+          },
+          "actual": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The recorded reading for the period (value or banded/directional result; keep public examples honest)."
+          },
+          "target": {
+            "type": "string",
+            "description": "The target being measured against (echo of the framework's target). Optional."
+          },
+          "variance": {
+            "type": "string",
+            "description": "Actual vs. target, directional or quantified (e.g. '+4 pts', 'below plan'). Optional."
+          },
+          "status": {
+            "enum": ["ahead", "on_track", "behind", "met", "missed", "no_target"],
+            "description": "Governed read of the metric vs. its target. Use 'no_target' when the framework set none. Optional."
+          },
+          "note": {
+            "type": "string",
+            "description": "Short context on the reading (data caveat, driver). Optional."
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "string",
+      "description": "Narrative readout for the period — what performed and the headline takeaways. Optional."
+    },
+    "linked_business_context": {
+      "type": "string",
+      "pattern": "^BIZ-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the owning Business Context. Use 'BIZ-PLACEHOLDER-<slug>' until it exists. Optional."
+    },
+    "linked_marketing_strategy": {
+      "type": "string",
+      "pattern": "^MKS-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the Marketing Strategy whose objectives this period evaluates. Use 'MKS-PLACEHOLDER-<slug>' until it exists. Optional."
+    },
+    "source": {
+      "type": "string",
+      "description": "One line: what source(s) this was built from and approximate date."
+    }
+  }
+}

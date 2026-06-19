@@ -34,9 +34,9 @@ OBJ = {
  'content_strategy':('Content Strategy','Work Product',True,5),
  'experience':('Experience','Work Product',True,6),
  'experience_component':('Experience Component','Work Product',True,6),
- 'performance_measurement':('Performance Measurement','Measurement',False,7),
- 'customer_insight':('Customer Insight','Learning',False,7),
- 'optimization_recommendation':('Optimization Recommendation','Learning',False,7),
+ 'performance_measurement':('Performance Measurement','Measurement',True,7),
+ 'customer_insight':('Customer Insight','Learning',True,7),
+ 'optimization_recommendation':('Optimization Recommendation','Learning',True,7),
 }
 
 PHASE_LABEL = {
@@ -103,13 +103,24 @@ REALIZED = [
  ('experience_component','brand_context',False),
  ('experience_component','product_context',False),
  ('experience_component','persona',False),
+ # Performance Measurement (B29) — Phase 7 actuals against the framework
+ ('performance_measurement','measurement_framework',False),
+ ('performance_measurement','marketing_strategy',False),
+ ('performance_measurement','business_context',False),
+ # Customer Insight (B30) — the interpreted why, drawn from measurements
+ ('customer_insight','performance_measurement',False),
+ ('customer_insight','audience',False),
+ ('customer_insight','business_context',False),
+ # Optimization Recommendation (B34) — the prescription, derived from insight + measurement
+ ('optimization_recommendation','customer_insight',False),
+ ('optimization_recommendation','performance_measurement',False),
+ ('optimization_recommendation','business_context',False),
 ]
 # Envisioned edges — illustrative, not yet defined in a builder.
 ENVISIONED = [
  ('experiment_strategy','offer'),('experiment_strategy','campaign_strategy'),('experiment_strategy','creative_strategy'),
- ('performance_measurement','campaign_strategy'),('performance_measurement','experience'),('performance_measurement','measurement_framework'),
- ('customer_insight','performance_measurement'),
- ('optimization_recommendation','performance_measurement'),
+ # Performance Measurement's generic, dimension-scoped subject_reference reach
+ ('performance_measurement','campaign_strategy'),('performance_measurement','experience'),
 ]
 # The compounding loop (Learning -> durable Context / Strategy).
 LOOP = [('customer_insight','persona'),('optimization_recommendation','marketing_strategy')]

@@ -107,15 +107,17 @@ drift. Schemas are added per object as their builder ships; see
 ## Status
 
 Early and active — **draft v0.1**. The standard is built iteratively: ship a
-concrete, validated artifact, then refine. **14 of the 18 object builders have
+concrete, validated artifact, then refine. **17 of the 18 object builders have
 shipped** (plus one artifact composer, `osmm-creative-brief-composer`). The
 durable **Context foundation is complete** — all five Context builders are live
 (`osmm-business-context-builder`, `osmm-brand-context-builder`,
 `osmm-product-context-builder`, `osmm-persona-builder`, `osmm-audience-builder`) —
 alongside the Phase 1 Work Products (Marketing Strategy, Measurement Framework), the
 Phase 3–4 activation layer (Offer, Campaign Strategy, Journey), the Phase 5 creative
-layer (Creative Strategy, Content Strategy), and the Phase 6 build/deliver layer
-(Experience, Experience Component). Only the Phase 7 measurement/learning objects remain.
+layer (Creative Strategy, Content Strategy), the Phase 6 build/deliver layer
+(Experience, Experience Component), and the Phase 7 measure/learn/optimize layer that
+closes the loop (Performance Measurement, Customer Insight, Optimization Recommendation).
+Only the parked Experiment Strategy object remains unbuilt.
 The live
 build board is [`roadmap/BACKLOG.md`](roadmap/BACKLOG.md). Schemas evolve under strict
 semantic versioning with formal deprecation, never silent breaks; the policy is

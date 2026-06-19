@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/open-semantic-marketing-model/osmm/main/schemas/customer_insight.schema.json",
+  "title": "OSMM Customer Insight Object",
+  "description": "Learning-category object: a durable, interpreted finding about customer behavior or response (Phase 7 sub-process 7.2), drawn from one or more Performance Measurements and external evidence. Where a Performance Measurement is the number, a Customer Insight is the why. It closes the loop by proposing updates back into the Context layer (sub-process 7.7) via lean pointer-plus-prose, so applying an insight produces a new version of the target object. Canonical schema for object_type 'customer_insight'. The osmm-customer-insight-builder skill references this file; it is the single source of truth for the object's shape.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "osmm_version",
+    "customer_insight_id",
+    "version",
+    "status",
+    "name",
+    "insight_statement"
+  ],
+  "properties": {
+    "object_type": {
+      "const": "customer_insight",
+      "description": "Object type discriminator. Always 'customer_insight'."
+    },
+    "osmm_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "OSMM schema version this instance conforms to (semantic version)."
+    },
+    "customer_insight_id": {
+      "type": "string",
+      "pattern": "^CIN-[a-z0-9-]+$",
+      "description": "Stable, human-readable id. Prefix 'CIN-' + lowercase hyphen slug describing the finding (e.g. 'CIN-wendys-checkout-fee-friction'). Never changes once assigned."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "Instance version (e.g. '1.0'). Bump on revision; the id stays stable."
+    },
+    "status": {
+      "enum": ["draft", "proposed", "stable", "deprecated"],
+      "description": "Object lifecycle state."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Short readable label for the insight (e.g. \"Deal-savvy cravers abandon at the payment step\")."
+    },
+    "insight_statement": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The finding itself, stated as an interpreted conclusion — not a metric. The 'why' behind the numbers (e.g. \"Deal-savvy cravers abandon at the payment step because of surprise fees, not price sensitivity\")."
+    },
+    "confidence": {
+      "enum": ["low", "medium", "high"],
+      "description": "How well-supported the insight is by its evidence. Optional."
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "What the insight is drawn from. Optional.",
+      "properties": {
+        "linked_performance_measurements": {
+          "type": "array",
+          "description": "Performance Measurements that evidence this insight.",
+          "items": {
+            "type": "string",
+            "pattern": "^PFM-(PLACEHOLDER-)?[a-z0-9-]+$"
+          }
+        },
+        "external_sources": {
+          "type": "array",
+          "description": "Non-OSMM evidence (research, qualitative studies, support logs) cited for the insight.",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "affected_personas": {
+      "type": "array",
+      "description": "Personas the insight is about. Use 'PER-PLACEHOLDER-<slug>' until built. Optional.",
+      "items": {
+        "type": "string",
+        "pattern": "^PER-(PLACEHOLDER-)?[a-z0-9-]+$"
+      }
+    },
+    "affected_audiences": {
+      "type": "array",
+      "description": "Audiences the insight is about. Use 'AUD-PLACEHOLDER-<slug>' until built. Optional.",
+      "items": {
+        "type": "string",
+        "pattern": "^AUD-(PLACEHOLDER-)?[a-z0-9-]+$"
+      }
+    },
+    "segment_note": {
+      "type": "string",
+      "description": "Free-text scope when the affected group is not yet a modeled Persona or Audience. Optional."
+    },
+    "implication": {
+      "type": "string",
+      "description": "The 'so what' — why this matters for the marketing decisions downstream. Optional."
+    },
+    "proposes_updates_to": {
+      "type": "array",
+      "description": "The Context-layer write-back (sub-process 7.7): durable changes this insight proposes to Business Context, Brand Context, Product Context, Persona, or Marketing Strategy. A lean pointer plus prose — applying a change produces a new version of the target object; this object records the proposal, it does not patch the target. Optional.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["target_id", "recommended_change"],
+        "properties": {
+          "target_id": {
+            "type": "string",
+            "pattern": "^[A-Z]{3}-(PLACEHOLDER-)?[a-z0-9-]+$",
+            "description": "Id of the object to update (e.g. a Persona PER-, Brand Context BRC-, Marketing Strategy MKS-)."
+          },
+          "recommended_change": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Prose description of the proposed change to that object."
+          }
+        }
+      }
+    },
+    "linked_business_context": {
+      "type": "string",
+      "pattern": "^BIZ-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the owning Business Context. Use 'BIZ-PLACEHOLDER-<slug>' until it exists. Optional."
+    },
+    "source": {
+      "type": "string",
+      "description": "One line: what source(s) this was built from and approximate date."
+    }
+  }
+}

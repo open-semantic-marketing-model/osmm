@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/open-semantic-marketing-model/osmm/main/schemas/optimization_recommendation.schema.json",
+  "title": "OSMM Optimization Recommendation Object",
+  "description": "Learning-category object: a prioritized, actionable change proposed from the learning loop (Phase 7 sub-process 7.6), derived from Customer Insights and Performance Measurements. Where a Customer Insight is the diagnosis, an Optimization Recommendation is the prescription. It writes forward into the Work Product / Strategy layer via lean pointer-plus-prose targets, and carries its own disposition (proposed -> accepted/rejected/implemented) distinct from the object lifecycle status. Canonical schema for object_type 'optimization_recommendation'. The osmm-optimization-recommendation-builder skill references this file; it is the single source of truth for the object's shape.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "osmm_version",
+    "optimization_recommendation_id",
+    "version",
+    "status",
+    "name",
+    "recommendation",
+    "rationale"
+  ],
+  "properties": {
+    "object_type": {
+      "const": "optimization_recommendation",
+      "description": "Object type discriminator. Always 'optimization_recommendation'."
+    },
+    "osmm_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "OSMM schema version this instance conforms to (semantic version)."
+    },
+    "optimization_recommendation_id": {
+      "type": "string",
+      "pattern": "^OPR-[a-z0-9-]+$",
+      "description": "Stable, human-readable id. Prefix 'OPR-' + lowercase hyphen slug describing the change (e.g. 'OPR-wendys-checkout-fee-transparency'). Never changes once assigned."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "Instance version (e.g. '1.0'). Bump on revision; the id stays stable."
+    },
+    "status": {
+      "enum": ["draft", "proposed", "stable", "deprecated"],
+      "description": "Object lifecycle state (the standard's draft/proposed/stable/deprecated). Distinct from 'disposition', which tracks whether the recommendation was acted on."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Short readable label for the recommendation (e.g. \"Add fee transparency to app checkout\")."
+    },
+    "recommendation": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The proposed change itself — the prescription, stated as an action (e.g. \"Surface all fees on the checkout review screen and A/B test against the current flow\")."
+    },
+    "rationale": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Why this change — the reasoning that connects the evidence to the proposed action."
+    },
+    "derived_from": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The evidence chain behind the recommendation. Optional.",
+      "properties": {
+        "linked_customer_insights": {
+          "type": "array",
+          "description": "Customer Insights this recommendation acts on.",
+          "items": {
+            "type": "string",
+            "pattern": "^CIN-(PLACEHOLDER-)?[a-z0-9-]+$"
+          }
+        },
+        "linked_performance_measurements": {
+          "type": "array",
+          "description": "Performance Measurements that motivate the recommendation directly.",
+          "items": {
+            "type": "string",
+            "pattern": "^PFM-(PLACEHOLDER-)?[a-z0-9-]+$"
+          }
+        }
+      }
+    },
+    "priority": {
+      "enum": ["low", "medium", "high", "critical"],
+      "description": "Relative priority for acting on the recommendation. Optional."
+    },
+    "effort": {
+      "enum": ["low", "medium", "high"],
+      "description": "Rough implementation effort. Optional."
+    },
+    "expected_impact": {
+      "type": "string",
+      "description": "What improvement is expected if implemented — directional or quantified. Optional."
+    },
+    "disposition": {
+      "enum": ["proposed", "accepted", "rejected", "implemented", "deferred"],
+      "description": "Whether the recommendation has been acted on. Distinct from the lifecycle 'status'. Optional; defaults to proposed in practice."
+    },
+    "targets": {
+      "type": "array",
+      "description": "The write-forward: the Work Product / Strategy objects this recommendation would change (e.g. Marketing Strategy MKS-, Campaign Strategy CMS-, Offer OFR-, Creative Strategy CRS-, Journey JNY-, Experience EXP-). A lean pointer plus prose — applying a change produces a new version of the target; this object records the proposal. Optional.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["target_id", "recommended_change"],
+        "properties": {
+          "target_id": {
+            "type": "string",
+            "pattern": "^[A-Z]{3}-(PLACEHOLDER-)?[a-z0-9-]+$",
+            "description": "Id of the object the change targets."
+          },
+          "recommended_change": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Prose description of the change to that object."
+          }
+        }
+      }
+    },
+    "linked_business_context": {
+      "type": "string",
+      "pattern": "^BIZ-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the owning Business Context. Use 'BIZ-PLACEHOLDER-<slug>' until it exists. Optional."
+    },
+    "source": {
+      "type": "string",
+      "description": "One line: what source(s) this was built from and approximate date."
+    }
+  }
+}
