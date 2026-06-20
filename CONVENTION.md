@@ -1,7 +1,7 @@
 # OSMM™ Skill Naming Convention
 
 **Open Semantic Marketing Model — builder skills**
-Status: Draft v0.10
+Status: Draft v0.11
 
 This document defines how skills that build OSMM objects are named, organized, and described. Every object in the model gets exactly one builder skill, and the name of that skill is keyed to the one thing about the object that never changes: its identity. Phase, category, and release wave can all be re-debated over the life of the standard. The object's identity cannot, so it — and only it — drives the name.
 
@@ -401,6 +401,23 @@ a first-draft brief a client can tailor. The composer is non-normative: it
 defines no schema and emits an artifact, not an object. So the standard stays
 pure (objects only) while the skill library still delivers the brief as an
 accelerator.
+
+---
+
+## Changes in v0.11
+
+- **Journey gains a required `scope` facet and the Campaign↔Journey edge is set to one
+  direction.** A journey is now explicitly either the durable, persona-anchored **`lifecycle`**
+  backbone (the end-to-end view of how a persona experiences the brand — high-read, low-write,
+  referenced by many campaigns) or a **`campaign`**-scoped slice that runs within it. This keeps
+  the Journey a Work Product (it is a *designed* path, not observed Context — the observed truth
+  already lives in Persona + Customer Insight) while capturing its durable, backbone nature as a
+  property rather than a recategorization. The journey's downward `linked_campaign_strategy`
+  reference is **removed**: the canonical edge is **Campaign Strategy → Journey** (the campaign's
+  `linked_journey`), so a journey never points at a campaign. A `lifecycle` journey **must** anchor
+  to ≥1 Persona and ≥1 Audience (its spine), enforced by a conditional `if/then` in the schema.
+  Reconciled across the Journey schema + builder, RELATIONSHIPS (reference table + realized-edge
+  narrative), the graph (regenerated — the `JNY-→CMS-` edge dropped), and CHANGELOG.
 
 ---
 

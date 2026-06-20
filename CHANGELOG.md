@@ -11,6 +11,20 @@ governance). The current schema version is **0.1.0**.
 
 ## [Unreleased]
 
+### Changed
+- **Journey `scope` facet + one-directional Campaign↔Journey edge** (v0.11). The Journey Object
+  gains a **required `scope`** field — **`lifecycle`** (the durable, persona-anchored backbone: the
+  end-to-end view of how a persona experiences the brand; high-read, low-write, referenced by many
+  campaigns) vs **`campaign`** (a scoped activation slice that runs within a lifecycle journey).
+  This captures the journey's durable, comprehensive nature as a *property* while keeping it a Work
+  Product — it is a *designed* path, not observed Context (the observed truth already lives in
+  Persona + Customer Insight). The journey's downward `linked_campaign_strategy` reference is
+  **removed**; the canonical edge is now **Campaign Strategy → Journey** (`linked_journey`) only —
+  campaigns are scoped slices that reference the broader journey, never the reverse. A `lifecycle`
+  journey **must** anchor to ≥1 Persona and ≥1 Audience (its spine), enforced by a conditional
+  `if/then` in `schemas/journey.schema.json`. Reconciled across the Journey schema + builder,
+  RELATIONSHIPS, and the regenerated graph (the `JNY- → CMS-` edge dropped).
+
 ### Added
 - **Phase 7 measure-learn-optimize layer — three builders** (`status: draft`), completing
   Milestone F and taking the model to **17 of 18 builders shipped** (only the parked Experiment

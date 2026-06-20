@@ -197,13 +197,13 @@
 <text text-anchor="middle" x="954.35" y="-1147.71" font-family="Helvetica,sans-Serif" font-size="12.50">Strategy</text>
 </g>
 <!-- experiment_strategy&#45;&gt;offer -->
-<g id="edge55" class="edge">
+<g id="edge54" class="edge">
 <title>experiment_strategy&#45;&gt;offer</title>
 <path fill="none" stroke="#9aa3af" stroke-dasharray="5,2" d="M954.35,-1179.14C954.35,-1183.09 954.35,-1187.04 954.35,-1190.99"/>
 <polygon fill="#9aa3af" stroke="#9aa3af" points="951.73,-1191.09 954.35,-1198.59 956.98,-1191.09 951.73,-1191.09"/>
 </g>
 <!-- experiment_strategy&#45;&gt;campaign_strategy -->
-<g id="edge56" class="edge">
+<g id="edge55" class="edge">
 <title>experiment_strategy&#45;&gt;campaign_strategy</title>
 <path fill="none" stroke="#9aa3af" stroke-dasharray="5,2" d="M1004.39,-1144.24C1061.28,-1128.62 1154.66,-1102.97 1212.8,-1087"/>
 <polygon fill="#9aa3af" stroke="#9aa3af" points="1213.52,-1089.53 1220.06,-1085.01 1212.13,-1084.46 1213.52,-1089.53"/>
@@ -216,7 +216,7 @@
 <text text-anchor="middle" x="1606.85" y="-1062.71" font-family="Helvetica,sans-Serif" font-size="12.50">Strategy</text>
 </g>
 <!-- experiment_strategy&#45;&gt;creative_strategy -->
-<g id="edge57" class="edge">
+<g id="edge56" class="edge">
 <title>experiment_strategy&#45;&gt;creative_strategy</title>
 <path fill="none" stroke="#9aa3af" stroke-dasharray="5,2" d="M971.13,-1136.5C1001.92,-1097.13 1074.39,-1013.9 1158.35,-982.71 1247.93,-949.43 1279.96,-962.5 1373.35,-982.71 1435.37,-996.12 1443.97,-1019.36 1503.35,-1041.71 1521.17,-1048.41 1541.12,-1054.71 1558.66,-1059.85"/>
 <polygon fill="#9aa3af" stroke="#9aa3af" points="1558.08,-1062.42 1566.02,-1061.99 1559.55,-1057.38 1558.08,-1062.42"/>
@@ -260,48 +260,42 @@
 <!-- campaign_strategy&#45;&gt;journey -->
 <g id="edge21" class="edge">
 <title>campaign_strategy&#45;&gt;journey</title>
-<path fill="none" stroke="#222222" stroke-width="1.6" d="M1292.37,-1051.41C1294.45,-1047.07 1294.51,-1042.72 1292.54,-1038.38"/>
-<polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="1294.6,-1036.74 1288.2,-1032.02 1290.26,-1039.69 1294.6,-1036.74"/>
+<path fill="none" stroke="#222222" stroke-width="1.6" d="M1265.85,-1051.41C1265.85,-1047.47 1265.85,-1043.53 1265.85,-1039.59"/>
+<polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="1268.48,-1039.52 1265.85,-1032.02 1263.23,-1039.52 1268.48,-1039.52"/>
 </g>
 <!-- campaign_strategy&#45;&gt;creative_strategy -->
 <!-- journey&#45;&gt;business_context -->
-<g id="edge29" class="edge">
+<g id="edge28" class="edge">
 <title>journey&#45;&gt;business_context</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M1228.3,-1011.85C1121.75,-999.25 804.17,-973 569.35,-1070.71 498.94,-1100.01 505.35,-1144.49 439.35,-1182.71 427.05,-1189.83 412.85,-1195.71 399.48,-1200.37"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="398.44,-1197.95 392.16,-1202.83 400.11,-1202.93 398.44,-1197.95"/>
 </g>
 <!-- journey&#45;&gt;persona -->
-<g id="edge28" class="edge">
+<g id="edge27" class="edge">
 <title>journey&#45;&gt;persona</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M1228.3,-1024.93C1207.71,-1029.66 1181.54,-1035.81 1158.35,-1041.71 1034.63,-1073.19 999.72,-1069.9 881.35,-1117.71 820.31,-1142.36 812.37,-1164 751.35,-1188.71 736.81,-1194.59 720.42,-1199.59 705.62,-1203.53"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="704.64,-1201.07 698.04,-1205.49 705.96,-1206.15 704.64,-1201.07"/>
 </g>
 <!-- journey&#45;&gt;audience -->
-<g id="edge27" class="edge">
+<g id="edge26" class="edge">
 <title>journey&#45;&gt;audience</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M1228.24,-1013.54C1158.9,-1008.71 1004.37,-1003.52 881.35,-1039.71 805.08,-1062.14 726.42,-1114.85 686.89,-1143.8"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="684.9,-1142.01 680.43,-1148.58 688.02,-1146.23 684.9,-1142.01"/>
 </g>
-<!-- journey&#45;&gt;campaign_strategy -->
-<g id="edge26" class="edge">
-<title>journey&#45;&gt;campaign_strategy</title>
-<path fill="none" stroke="#222222" stroke-width="1.6" d="M1243.5,-1032.02C1239.92,-1035.96 1238,-1039.9 1237.75,-1043.83"/>
-<polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="1235.23,-1044.61 1239.34,-1051.41 1240.37,-1043.53 1235.23,-1044.61"/>
-</g>
 <!-- creative_strategy&#45;&gt;business_context -->
-<g id="edge32" class="edge">
+<g id="edge31" class="edge">
 <title>creative_strategy&#45;&gt;business_context</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M1565.94,-1063.48C1546.56,-1058.29 1523.23,-1050.98 1503.35,-1041.71 1440.79,-1012.53 1439.51,-976.42 1373.35,-956.71 1029.94,-854.4 883.13,-843.67 569.35,-1016.71 487.29,-1061.96 515.48,-1128.06 439.35,-1182.71 427.58,-1191.15 413.3,-1197.48 399.69,-1202.14"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="398.54,-1199.75 392.22,-1204.56 400.16,-1204.75 398.54,-1199.75"/>
 </g>
 <!-- creative_strategy&#45;&gt;brand_context -->
-<g id="edge30" class="edge">
+<g id="edge29" class="edge">
 <title>creative_strategy&#45;&gt;brand_context</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M1566.12,-1069.15C1545.14,-1065.36 1520.31,-1057.6 1503.35,-1041.71 1383.19,-929.08 1496.64,-803.9 1373.35,-694.71 1299.76,-629.53 1245.71,-687.79 1158.35,-642.71 1090.32,-607.6 1100.06,-556.51 1028.35,-529.71 932.81,-493.99 648.71,-465.63 569.35,-529.71 356.04,-701.93 626.86,-932.7 439.35,-1132.71 433.07,-1139.4 425.14,-1144.35 416.62,-1148"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="415.43,-1145.64 409.36,-1150.77 417.3,-1150.55 415.43,-1145.64"/>
 </g>
 <!-- creative_strategy&#45;&gt;product_context -->
-<g id="edge31" class="edge">
+<g id="edge30" class="edge">
 <title>creative_strategy&#45;&gt;product_context</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M1566.15,-1069.43C1545.05,-1065.73 1520.09,-1057.96 1503.35,-1041.71 1372.61,-914.68 1507.62,-776 1373.35,-652.71 1300.94,-586.21 1245.71,-645.79 1158.35,-600.71 1090.32,-565.6 1100.06,-514.51 1028.35,-487.71 837.27,-416.27 728.53,-360.12 569.35,-487.71 362.21,-653.75 615.55,-872.13 439.35,-1070.71 428.36,-1083.1 412.1,-1090.54 396.55,-1095"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="395.59,-1092.54 388.99,-1096.96 396.91,-1097.62 395.59,-1092.54"/>
@@ -321,55 +315,55 @@
 <text text-anchor="middle" x="1606.85" y="-1000.71" font-family="Helvetica,sans-Serif" font-size="12.50">Strategy</text>
 </g>
 <!-- content_strategy&#45;&gt;business_context -->
-<g id="edge35" class="edge">
+<g id="edge34" class="edge">
 <title>content_strategy&#45;&gt;business_context</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M1601.59,-989.29C1586.11,-918.04 1525.61,-688.5 1373.35,-599.71 1290.81,-551.57 1250.87,-575.81 1158.35,-599.71 868.66,-674.53 776.95,-710.24 569.35,-925.71 480.54,-1017.89 535.54,-1098.25 439.35,-1182.71 428.05,-1192.63 413.38,-1199.43 399.26,-1204.07"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="398.36,-1201.6 391.95,-1206.3 399.89,-1206.62 398.36,-1201.6"/>
 </g>
 <!-- content_strategy&#45;&gt;journey -->
-<g id="edge34" class="edge">
+<g id="edge33" class="edge">
 <title>content_strategy&#45;&gt;journey</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M1566.28,-1011.41C1502.62,-1012.53 1377.9,-1014.74 1311.28,-1015.92"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="1310.91,-1013.3 1303.45,-1016.06 1311,-1018.55 1310.91,-1013.3"/>
 </g>
 <!-- content_strategy&#45;&gt;creative_strategy -->
-<g id="edge33" class="edge">
+<g id="edge32" class="edge">
 <title>content_strategy&#45;&gt;creative_strategy</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M1606.85,-1032.02C1606.85,-1035.96 1606.85,-1039.9 1606.85,-1043.83"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="1604.23,-1043.91 1606.85,-1051.41 1609.48,-1043.91 1604.23,-1043.91"/>
 </g>
 <!-- experience&#45;&gt;business_context -->
-<g id="edge42" class="edge">
+<g id="edge41" class="edge">
 <title>experience&#45;&gt;business_context</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M1876.59,-763.28C1864.68,-759.72 1852,-755.74 1840.35,-751.71 1629.38,-678.68 1592.64,-608.56 1373.35,-566.71 1156.7,-525.36 1091.69,-565.31 881.35,-631.71 738.9,-676.67 670.4,-646.69 569.35,-756.71 435.44,-902.49 576.32,-1039.79 439.35,-1182.71 428.76,-1193.76 413.99,-1200.88 399.58,-1205.46"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="398.56,-1203.02 392.09,-1207.63 400.03,-1208.06 398.56,-1203.02"/>
 </g>
 <!-- experience&#45;&gt;audience -->
-<g id="edge39" class="edge">
+<g id="edge38" class="edge">
 <title>experience&#45;&gt;audience</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M1876.67,-776.96C1798.28,-778.02 1637.48,-782.95 1503.35,-804.71 1216.17,-851.29 1136.45,-868.83 881.35,-1008.71 805.8,-1050.14 724.85,-1112.16 685.36,-1143.72"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="683.59,-1141.77 679.38,-1148.52 686.87,-1145.87 683.59,-1141.77"/>
 </g>
 <!-- experience&#45;&gt;offer -->
-<g id="edge40" class="edge">
+<g id="edge39" class="edge">
 <title>experience&#45;&gt;offer</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M1876.73,-782.99C1798.08,-793.96 1636.52,-818.98 1503.35,-855.71 1463.97,-866.57 1190.11,-957.01 1158.35,-982.71 1074.19,-1050.8 1113.28,-1121.57 1028.35,-1188.71 1017.46,-1197.32 1003.42,-1203.05 990.57,-1206.83"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="989.72,-1204.34 983.17,-1208.84 991.09,-1209.41 989.72,-1204.34"/>
 </g>
 <!-- experience&#45;&gt;campaign_strategy -->
-<g id="edge37" class="edge">
+<g id="edge36" class="edge">
 <title>experience&#45;&gt;campaign_strategy</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M1904.1,-791.73C1867.25,-818.48 1786.02,-874.75 1710.35,-908.71 1622.73,-948.03 1591.98,-933.71 1503.35,-970.71 1442.6,-996.07 1434.2,-1016.58 1373.35,-1041.71 1355.99,-1048.88 1336.39,-1055.08 1318.78,-1060.02"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="1317.91,-1057.54 1311.37,-1062.06 1319.3,-1062.6 1317.91,-1057.54"/>
 </g>
 <!-- experience&#45;&gt;journey -->
-<g id="edge38" class="edge">
+<g id="edge37" class="edge">
 <title>experience&#45;&gt;journey</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M1882.86,-791.85C1765.42,-834.72 1431.41,-956.64 1310.9,-1000.63"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="1309.76,-998.25 1303.61,-1003.29 1311.56,-1003.18 1309.76,-998.25"/>
 </g>
 <!-- experience&#45;&gt;creative_strategy -->
-<g id="edge41" class="edge">
+<g id="edge40" class="edge">
 <title>experience&#45;&gt;creative_strategy</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M1913.84,-791.79C1886.9,-836.06 1810.42,-964.33 1710.35,-1031.71 1694.02,-1042.7 1673.67,-1049.9 1655.41,-1055.28"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="1654.22,-1052.89 1647.73,-1057.47 1655.67,-1057.93 1654.22,-1052.89"/>
@@ -382,7 +376,7 @@
 <text text-anchor="middle" x="1925.35" y="-710.71" font-family="Helvetica,sans-Serif" font-size="12.50">Component</text>
 </g>
 <!-- experience&#45;&gt;experience_component -->
-<g id="edge36" class="edge">
+<g id="edge35" class="edge">
 <title>experience&#45;&gt;experience_component</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M1925.35,-761.59C1925.35,-757.64 1925.35,-753.69 1925.35,-749.74"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="1927.98,-749.64 1925.35,-742.14 1922.73,-749.64 1927.98,-749.64"/>
@@ -396,49 +390,49 @@
 </g>
 <!-- experience&#45;&gt;performance_measurement -->
 <!-- experience_component&#45;&gt;brand_context -->
-<g id="edge43" class="edge">
+<g id="edge42" class="edge">
 <title>experience_component&#45;&gt;brand_context</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M1895.93,-699.55C1856.47,-671.31 1781.82,-621.92 1710.35,-596.71 1470.92,-512.24 751.03,-478.35 569.35,-655.71 412.12,-809.2 593.89,-976.5 439.35,-1132.71 432.98,-1139.15 425.08,-1143.96 416.65,-1147.54"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="415.54,-1145.16 409.47,-1150.28 417.41,-1150.07 415.54,-1145.16"/>
 </g>
 <!-- experience_component&#45;&gt;product_context -->
-<g id="edge44" class="edge">
+<g id="edge43" class="edge">
 <title>experience_component&#45;&gt;product_context</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M1903.34,-699.54C1867.19,-664.39 1789.48,-594.13 1710.35,-556.71 1596.47,-502.85 1271.15,-483.79 1158.35,-427.71 1091.09,-394.26 1099,-345.22 1028.35,-319.71 836.48,-250.4 725.42,-188.33 569.35,-319.71 310.2,-537.85 658.03,-812 439.35,-1070.71 428.66,-1083.36 412.47,-1090.85 396.87,-1095.28"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="395.91,-1092.82 389.29,-1097.22 397.21,-1097.9 395.91,-1092.82"/>
 </g>
 <!-- experience_component&#45;&gt;persona -->
-<g id="edge45" class="edge">
+<g id="edge44" class="edge">
 <title>experience_component&#45;&gt;persona</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M1875.18,-724.28C1796.02,-730.71 1635.83,-746.58 1503.35,-777.71 1424.54,-796.22 1231.6,-860.22 1158.35,-894.71 1027.45,-956.33 996.06,-977.53 881.35,-1065.71 818.29,-1114.18 820.63,-1149.62 751.35,-1188.71 737.32,-1196.62 720.64,-1202.15 705.44,-1205.96"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="704.81,-1203.41 698.11,-1207.69 706.02,-1208.52 704.81,-1203.41"/>
 </g>
 <!-- performance_measurement&#45;&gt;business_context -->
-<g id="edge48" class="edge">
+<g id="edge47" class="edge">
 <title>performance_measurement&#45;&gt;business_context</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M2222.56,-481.39C2139.51,-480.67 1977.66,-478.33 1840.35,-470.71 1690.25,-462.37 1652.93,-456.77 1503.35,-441.71 1445.48,-435.88 1431.42,-430.05 1373.35,-426.71 1277.95,-421.22 1252.27,-409.09 1158.35,-426.71 882.3,-478.48 754.75,-444.72 569.35,-655.71 410.11,-836.93 601.48,-1004.06 439.35,-1182.71 428.97,-1194.15 414.11,-1201.36 399.55,-1205.92"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="398.48,-1203.49 391.99,-1208.07 399.92,-1208.54 398.48,-1203.49"/>
 </g>
 <!-- performance_measurement&#45;&gt;marketing_strategy -->
-<g id="edge47" class="edge">
+<g id="edge46" class="edge">
 <title>performance_measurement&#45;&gt;marketing_strategy</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M2222.51,-478.27C2139.4,-472.89 1977.47,-461.54 1840.35,-446.71 1533.82,-413.55 1442.08,-440.38 1158.35,-319.71 1095.05,-292.78 1094.33,-255.17 1028.35,-235.71 930.52,-206.85 647.23,-169.83 569.35,-235.71 303.37,-460.7 663.61,-742.11 439.35,-1008.71 430.11,-1019.69 416.73,-1026.78 403.18,-1031.36"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="402.06,-1028.96 395.66,-1033.66 403.6,-1033.98 402.06,-1028.96"/>
 </g>
 <!-- performance_measurement&#45;&gt;measurement_framework -->
-<g id="edge46" class="edge">
+<g id="edge45" class="edge">
 <title>performance_measurement&#45;&gt;measurement_framework</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M2222.54,-474.18C2139.46,-462.79 1977.58,-440.19 1840.35,-418.71 1533.54,-370.68 1445.56,-384.82 1158.35,-266.71 1097.07,-241.5 1092.46,-210.47 1028.35,-193.71 830.99,-142.08 731.78,-70.28 569.35,-193.71 443.2,-289.57 370.75,-819.32 354.75,-949.04"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="352.12,-948.89 353.82,-956.65 357.33,-949.52 352.12,-948.89"/>
 </g>
 <!-- performance_measurement&#45;&gt;campaign_strategy -->
-<g id="edge58" class="edge">
+<g id="edge57" class="edge">
 <title>performance_measurement&#45;&gt;campaign_strategy</title>
 <path fill="none" stroke="#9aa3af" stroke-dasharray="5,2" d="M2247.21,-502.84C2198.99,-535.25 2101.58,-597.41 2011.35,-634.71 1938.62,-664.77 1912.1,-648.35 1840.35,-680.71 1676.63,-754.54 1640.73,-788.02 1503.35,-903.71 1438.9,-957.98 1445.22,-997.72 1373.35,-1041.71 1356.97,-1051.73 1337.18,-1058.65 1319.13,-1063.37"/>
 <polygon fill="#9aa3af" stroke="#9aa3af" points="1318.17,-1060.9 1311.52,-1065.25 1319.43,-1066 1318.17,-1060.9"/>
 </g>
 <!-- performance_measurement&#45;&gt;experience -->
-<g id="edge59" class="edge">
+<g id="edge58" class="edge">
 <title>performance_measurement&#45;&gt;experience</title>
 <path fill="none" stroke="#9aa3af" stroke-dasharray="5,2" d="M2259.05,-502.82C2219.5,-552.38 2122.14,-675.45 2011.35,-741.71 1998.31,-749.51 1982.68,-755.01 1968.4,-759.4"/>
 <polygon fill="#9aa3af" stroke="#9aa3af" points="1967.5,-756.93 1961.07,-761.6 1969.01,-761.96 1967.5,-756.93"/>
@@ -451,25 +445,25 @@
 <text text-anchor="middle" x="2278.85" y="-409.71" font-family="Helvetica,sans-Serif" font-size="12.50">Insight</text>
 </g>
 <!-- customer_insight&#45;&gt;business_context -->
-<g id="edge51" class="edge">
+<g id="edge50" class="edge">
 <title>customer_insight&#45;&gt;business_context</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M2234.83,-416.19C2156.21,-409.47 1984.17,-393.43 1840.35,-370.71 1689.34,-346.84 1652,-337.46 1503.35,-301.71 1445.06,-287.69 1432.76,-273.78 1373.35,-265.71 1278.67,-252.84 1252.13,-247.33 1158.35,-265.71 880.95,-320.05 748.59,-287.12 569.35,-505.71 375.09,-742.63 639.28,-950.54 439.35,-1182.71 429.09,-1194.63 413.95,-1201.96 399.11,-1206.48"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="398.4,-1203.95 391.87,-1208.48 399.8,-1209.01 398.4,-1203.95"/>
 </g>
 <!-- customer_insight&#45;&gt;persona -->
-<g id="edge60" class="edge">
+<g id="edge59" class="edge">
 <title>customer_insight&#45;&gt;persona</title>
 <path fill="none" stroke="#1aa179" stroke-width="1.7" stroke-dasharray="5,2" d="M2234.61,-424.09C2047.27,-445.27 1296.51,-553.22 881.35,-956.71 796.59,-1039.08 844.38,-1115.79 751.35,-1188.71 738.34,-1198.9 721.44,-1204.94 705.77,-1208.52"/>
 <polygon fill="#1aa179" stroke="#1aa179" stroke-width="1.7" points="705.01,-1206 698.2,-1210.09 706.07,-1211.14 705.01,-1206"/>
 </g>
 <!-- customer_insight&#45;&gt;audience -->
-<g id="edge50" class="edge">
+<g id="edge49" class="edge">
 <title>customer_insight&#45;&gt;audience</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M2234.55,-419.6C2050.8,-421.32 1324.66,-450.09 881.35,-787.71 848.76,-812.52 713.57,-1064.32 672.64,-1141.4"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="670.18,-1140.45 668.98,-1148.3 674.82,-1142.91 670.18,-1140.45"/>
 </g>
 <!-- customer_insight&#45;&gt;performance_measurement -->
-<g id="edge49" class="edge">
+<g id="edge48" class="edge">
 <title>customer_insight&#45;&gt;performance_measurement</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M2278.85,-441.02C2278.85,-444.96 2278.85,-448.9 2278.85,-452.83"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="2276.23,-452.91 2278.85,-460.41 2281.48,-452.91 2276.23,-452.91"/>
@@ -482,25 +476,25 @@
 <text text-anchor="middle" x="2278.85" y="-347.71" font-family="Helvetica,sans-Serif" font-size="12.50">Recommendation</text>
 </g>
 <!-- optimization_recommendation&#45;&gt;business_context -->
-<g id="edge54" class="edge">
+<g id="edge53" class="edge">
 <title>optimization_recommendation&#45;&gt;business_context</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M2209.91,-345.04C1920.72,-292.86 796.8,-108.37 569.35,-347.71 310.63,-619.96 679.37,-893.82 439.35,-1182.71 429.3,-1194.8 414.21,-1202.19 399.35,-1206.69"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="398.64,-1204.16 392.1,-1208.67 400.03,-1209.22 398.64,-1204.16"/>
 </g>
 <!-- optimization_recommendation&#45;&gt;marketing_strategy -->
-<g id="edge61" class="edge">
+<g id="edge60" class="edge">
 <title>optimization_recommendation&#45;&gt;marketing_strategy</title>
 <path fill="none" stroke="#1aa179" stroke-width="1.7" stroke-dasharray="5,2" d="M2221.32,-336.69C1954.69,-239.18 824.96,155.02 569.35,-67.71 251.04,-345.06 706.36,-681.67 439.35,-1008.71 430.11,-1020.03 416.44,-1027.23 402.62,-1031.79"/>
 <polygon fill="#1aa179" stroke="#1aa179" stroke-width="1.7" points="401.83,-1029.29 395.4,-1033.95 403.34,-1034.32 401.83,-1029.29"/>
 </g>
 <!-- optimization_recommendation&#45;&gt;performance_measurement -->
-<g id="edge53" class="edge">
+<g id="edge52" class="edge">
 <title>optimization_recommendation&#45;&gt;performance_measurement</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M2209.91,-351.38C2164.49,-351.4 2107.8,-360.25 2076.35,-398.71 2064.53,-413.16 2064.53,-426.26 2076.35,-440.71 2109.05,-480.69 2169.02,-488.66 2215.25,-487.99"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="2215.4,-490.61 2222.83,-487.8 2215.27,-485.36 2215.4,-490.61"/>
 </g>
 <!-- optimization_recommendation&#45;&gt;customer_insight -->
-<g id="edge52" class="edge">
+<g id="edge51" class="edge">
 <title>optimization_recommendation&#45;&gt;customer_insight</title>
 <path fill="none" stroke="#222222" stroke-width="1.6" d="M2278.85,-379.02C2278.85,-382.96 2278.85,-386.9 2278.85,-390.83"/>
 <polygon fill="#222222" stroke="#222222" stroke-width="1.6" points="2276.23,-390.91 2278.85,-398.41 2281.48,-390.91 2276.23,-390.91"/>
