@@ -206,9 +206,9 @@ reference fields it introduces.
 | Campaign Strategy | `linked_audiences` / `linked_offers` | many (optional) | Audience / Offer | The audiences activated and offers carried. Placeholders until built. |
 | Campaign Strategy | `linked_business_context` | one (optional) | Business Context | `BIZ-PLACEHOLDER-<slug>` until built. |
 | Campaign Strategy | `linked_measurement_framework` | one (optional) | Measurement Framework | Campaign-scope measurement (the framework's `scope` facet). `MEF-PLACEHOLDER-<slug>` until built. |
-| Journey | `linked_campaign_strategy` | one (optional) | Campaign Strategy | The campaign it serves — omitted for always-on lifecycle journeys. `CMS-PLACEHOLDER-<slug>` until built. |
-| Journey | `linked_audiences` | many (optional) | Audience | `AUD-PLACEHOLDER-<slug>` until built. |
-| Journey | `linked_personas` | many (optional) | Persona | `PER-PLACEHOLDER-<slug>` until built. |
+| Journey | `scope` | — (facet) | — | `lifecycle` (durable persona-anchored backbone) or `campaign` (a scoped slice within it). Not a reference; governs the requirements below. The Journey carries **no** edge to the Campaign Strategy — campaigns reference the journey (Campaign Strategy → Journey), never the reverse. |
+| Journey | `linked_audiences` | many (required for `lifecycle`) | Audience | The Audience spine. `AUD-PLACEHOLDER-<slug>` until built. Required (≥1) when `scope` is `lifecycle`; optional for a `campaign` slice. |
+| Journey | `linked_personas` | many (required for `lifecycle`) | Persona | The Persona spine the journey is built around. `PER-PLACEHOLDER-<slug>` until built. Required (≥1) when `scope` is `lifecycle`; optional for a `campaign` slice. |
 | Journey | `stages[].persona_tracks[].persona` | many | Persona | The **(persona × stage) cell** — per persona, the stage's `key_questions` (directional keywords) and `key_messages` (the cascaded message). `PER-PLACEHOLDER-<slug>` until built. |
 | Journey | `linked_business_context` | one (optional) | Business Context | `BIZ-PLACEHOLDER-<slug>` until built. |
 | Creative Strategy | `linked_brand_context` / `linked_product` / `linked_personas` / `linked_campaign_strategy` / `linked_business_context` | one / one / many / one / one (optional) | Brand Context / Product Context / Persona / Campaign Strategy / Business Context | Brand voice it operates within, offering (its `product_messaging` is the message source), personas, campaign, business. Placeholders until built. |
@@ -238,7 +238,9 @@ reference fields it introduces.
 > (the watsonx example resolves real `BIZ-ibm` and `BRC-ibm` ids). The **Phase 3–5
 > activation/creative cluster** is live: **Offer → Product Context** (the first Work
 > Product → Product Context edge), **Campaign Strategy → Marketing Strategy / Journey /
-> Audience / Offer**, **Journey → Campaign Strategy / Audience / Persona** (and per-stage
+> Audience / Offer** (the campaign references the journey it runs within — a `lifecycle` journey is
+> the durable backbone, a `campaign` journey a scoped slice; the Journey never points back at the
+> campaign), **Journey → Audience / Persona** (its required spine, plus per-stage
 > `persona_tracks` carrying each persona's questions and messages), and **Creative
 > Strategy / Content Strategy → Brand/Product Context + Journey** — wiring strategy to
 > activation to creative and content, with messaging cascading Brand → Product → Journey

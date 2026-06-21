@@ -78,8 +78,7 @@ REALIZED = [
  ('campaign_strategy','offer',False),
  ('campaign_strategy','business_context',False),
  ('campaign_strategy','measurement_framework',False),
- # Journey (B14)
- ('journey','campaign_strategy',False),
+ # Journey (B14) — the durable backbone; campaigns reference it (CMS->JNY), not the reverse
  ('journey','audience',False),
  ('journey','persona',False),
  ('journey','business_context',False),

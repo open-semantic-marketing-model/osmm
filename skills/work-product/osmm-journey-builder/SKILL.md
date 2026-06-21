@@ -10,8 +10,10 @@ description: >-
   triggering and sequencing logic," "configure the journey flow," or hands over a journey map or
   flow and asks what to do with it. The Journey Object spans the journey end to end — the goal, the
   stages, the triggers that advance customers, the sequencing/cadence, AND the operational delivery
-  logic that implements it. It may serve one campaign or run always-on as a lifecycle journey. It is
-  NOT the Campaign Strategy (scope/channel/offer mapping).
+  logic that implements it. A required `scope` facet separates the durable, persona-anchored
+  `lifecycle` backbone (the end-to-end view of how a persona experiences the brand) from a
+  `campaign`-scoped flow; campaigns are scoped slices within a lifecycle journey. It is NOT the
+  Campaign Strategy (scope/channel/offer mapping).
 object: Journey Object
 object_type: journey
 category: Work Product
@@ -51,10 +53,14 @@ movement is operationalized*, distinct from the campaign that may drive them.
 > `key_messages`) — and a *messaging-framework* artifact is composed by drawing from all three and
 > resolving at this cell.
 
-A journey can serve a **single campaign** *or* run **always-on as a lifecycle journey** independent
-of any one campaign (a welcome/onboarding flow, a winback program, a loyalty nurture). Its link to
-a Campaign Strategy is therefore **optional** — set `linked_campaign_strategy` only when the journey
-is tied to a specific campaign; omit it for an always-on journey.
+> **Scope: the durable backbone vs. the campaign slice.** A required `scope` facet classifies the
+> journey. A **`lifecycle`** journey is the durable, always-on, persona-anchored backbone — the
+> end-to-end view of how a persona experiences the brand (high-read, low-write, referenced by many
+> campaigns). A **`campaign`** journey is a scoped activation flow that runs *within* that backbone
+> for a specific campaign. **Campaigns are scoped slices within a broader journey**, so the
+> canonical reference runs **Campaign Strategy → Journey** (the campaign's `linked_journey`): a
+> Journey never points down at a campaign. A `lifecycle` journey must anchor to at least one
+> **Persona** and **Audience** — the spine it is built around.
 
 This is the lean v0.1 builder. It captures the strategic shape of the journey *and* the
 decision-relevant delivery logic — not a raw platform export. Node-by-node automation dumps,
@@ -70,11 +76,13 @@ credentials, and vendor-specific config stay in the platform; distill the *logic
 Rules of thumb:
 
 - **Campaign Strategy is the *what/where/offer*; Journey is the *path/triggers/pacing/delivery*.**
-  Channel-and-offer mapping for a campaign lives in Campaign Strategy. A journey may *reference* a
-  campaign (`linked_campaign_strategy`) but does not restate its scope or offer mapping.
-- **A journey can stand alone.** An always-on lifecycle journey serves no single campaign — leave
-  `linked_campaign_strategy` unset and classify it with `journey_type: lifecycle` (or the closest
-  motion). The link is optional precisely so standalone journeys are first-class.
+  Channel-and-offer mapping for a campaign lives in Campaign Strategy. The campaign *references* the
+  journey (`Campaign Strategy.linked_journey`); the journey does not point back at the campaign or
+  restate its scope or offer mapping.
+- **The durable journey is the backbone; campaigns are slices of it.** A `scope: lifecycle` journey
+  is the always-on, persona-anchored backbone (`journey_type: lifecycle` or the closest motion); a
+  `scope: campaign` journey is a slice that runs within it for one campaign. Either way the journey
+  is referenced *by* the campaign, never the reverse.
 - **Strategy and configuration in one object.** Capture the designed path *and* its delivery logic
   here. The strategic shape (stages, triggers, cadence) is the required core; operational specifics
   (flow branches, wait steps, audience syncs, message bindings) go in `delivery_logic`. Keep it to
@@ -98,6 +106,7 @@ Emit a single JSON object with this exact shape. Field order should match.
   "status": "draft",                       // draft | proposed | stable | deprecated
 
   "name": "",                              // the journey's name (e.g. "Wendy's App First-Order to Habitual-Use Journey")
+  "scope": "",                             // REQUIRED — lifecycle | campaign (the durable backbone vs. a campaign-scoped slice)
   "journey_goal": "",                      // the outcome the journey drives (4.2)
   "journey_type": "",                      // OPTIONAL — controlled enum (see vocabulary): acquisition | onboarding | nurture | conversion | retention | winback | advocacy | lifecycle
 
@@ -136,9 +145,8 @@ Emit a single JSON object with this exact shape. Field order should match.
 
   "delivery_logic": [],                    // OPTIONAL — operational delivery/configuration (6.3): flow shape, wait steps, audience syncs, branch conditions, message bindings
 
-  "linked_campaign_strategy": "",          // OPTIONAL — CMS-<slug> if the journey serves a campaign; omit for always-on
-  "linked_audiences": [],                  // OPTIONAL — AUD-<slug> ids this journey serves
-  "linked_personas": [],                   // OPTIONAL — PER-<slug> ids this journey is designed around
+  "linked_audiences": [],                  // AUD-<slug> ids this journey serves (REQUIRED for scope: lifecycle — the spine)
+  "linked_personas": [],                   // PER-<slug> ids this journey is designed around (REQUIRED for scope: lifecycle — the spine)
   "linked_business_context": "",           // OPTIONAL — BIZ-<slug> of the owning Business Context
   "source": ""                             // one line: what source(s) this was built from and approximate date
 }
@@ -154,6 +162,7 @@ Emit a single JSON object with this exact shape. Field order should match.
 | `version` | string | yes | Start at `"1.0"`. |
 | `status` | enum | yes | Default `"draft"`. |
 | `name` | string | yes | A readable label, usually entity + journey: "Wendy's App First-Order to Habitual-Use Journey". |
+| `scope` | enum | yes | `lifecycle` (the durable, persona-anchored backbone — high-read, low-write, referenced by many campaigns) or `campaign` (a scoped slice that runs within a lifecycle journey for one campaign). A `lifecycle` journey **must** carry `linked_personas` and `linked_audiences`. |
 | `journey_goal` | string | yes | The single outcome the journey drives (4.2). An outcome, not an activity — "turn first-time app orderers into habitual users," not "send onboarding emails." |
 | `journey_type` | enum | no | Controlled vocabulary — see below. Pick the single closest motion; use `lifecycle` for an always-on journey spanning several. |
 | `stages` | object[] | yes | The ordered customer path (4.2). Each `{ stage, objective, touchpoints?, entry_criteria?, exit_criteria?, persona_tracks? }`. Array order is journey order. 2–6 stages is usually right. `stage` and `objective` required per item. |
@@ -165,11 +174,21 @@ Emit a single JSON object with this exact shape. Field order should match.
 | `entry_criteria` | string[] | no | Who/what enters the journey overall (distinct from a stage's entry). |
 | `exit_criteria` | string[] | no | Who/what exits — completion, disqualification, opt-out. |
 | `delivery_logic` | string[] | no | The operational build (6.3): flow shape, wait steps, branch conditions, audience-sync mechanics, message bindings. Decision-relevant logic, not a platform export. Omit if the journey is captured at the strategic level only. |
-| `linked_campaign_strategy` | string | no | `CMS-<slug>` of the Campaign Strategy this journey serves, **only if tied to one**. Omit for an always-on lifecycle journey. Use `CMS-PLACEHOLDER-<slug>` if expected but unbuilt. |
-| `linked_audiences` | string[] | no | `AUD-<slug>` ids the journey serves. References, not restated definitions. `AUD-PLACEHOLDER-<slug>` ok. |
-| `linked_personas` | string[] | no | `PER-<slug>` ids the journey is designed around. `PER-PLACEHOLDER-<slug>` ok. |
+| `linked_audiences` | string[] | **conditional** | `AUD-<slug>` ids the journey serves — part of the spine. References, not restated definitions. `AUD-PLACEHOLDER-<slug>` ok. **Required (≥1) when `scope` is `lifecycle`.** |
+| `linked_personas` | string[] | **conditional** | `PER-<slug>` ids the journey is designed around — the spine. `PER-PLACEHOLDER-<slug>` ok. **Required (≥1) when `scope` is `lifecycle`.** The journey does **not** reference the Campaign Strategy that uses it — that edge runs Campaign Strategy → Journey. |
 | `linked_business_context` | string | no | `BIZ-<slug>` of the owning Business Context. `BIZ-PLACEHOLDER-<slug>` ok. |
 | `source` | string | no | One line. Provenance and approximate date. |
+
+## Scope: `lifecycle` vs `campaign`
+
+`scope` is a required, governed enum — the primary classifier separating the durable backbone from a campaign slice. Pick exactly one.
+
+| Stored value | Label | Use when |
+|---|---|---|
+| `lifecycle` | Lifecycle backbone | The durable, always-on, persona-anchored journey — the end-to-end view of how a persona experiences the brand (a welcome/onboarding flow, a loyalty nurture, the full acquisition→retention path). High-read, low-write, referenced by many campaigns. **Must** anchor to ≥1 Persona and ≥1 Audience. |
+| `campaign` | Campaign slice | A scoped activation flow that runs *within* a lifecycle journey for a specific campaign. Referenced by that campaign via `Campaign Strategy.linked_journey`. |
+
+Either way the edge runs **Campaign Strategy → Journey**: a journey never points down at a campaign. A `scope: lifecycle` journey will usually also carry `journey_type: lifecycle`, but the two are independent — a `campaign`-scope slice can still be, say, a `winback` motion.
 
 ## Journey type vocabulary
 
@@ -203,10 +222,11 @@ Keep it stable once assigned: campaigns and downstream objects reference it. On 
 
 ## Extraction principles
 
-1. **A journey may stand alone.** Not every journey serves a campaign. If the source describes an
-   always-on lifecycle, welcome, winback, or loyalty flow, leave `linked_campaign_strategy` unset
-   and classify it (`journey_type: lifecycle` or the closest motion). The campaign link is optional
-   by design.
+1. **Set `scope` first — backbone or slice.** Decide whether the source describes the durable,
+   always-on backbone (`scope: lifecycle` — a welcome/onboarding/loyalty/winback program or the full
+   acquisition→retention path) or a campaign-scoped flow (`scope: campaign`). A `lifecycle` journey
+   must anchor to ≥1 Persona and ≥1 Audience. Never add a campaign reference *to* the journey — the
+   campaign references the journey, not the reverse.
 2. **Goal is an outcome, not an activity.** `journey_goal` is the result the path is meant to
    produce, not the mechanics. Keep stage objectives at the outcome level too.
 3. **Stages are the path; triggers are the movement.** `stages` capture *where a customer is*;
@@ -219,8 +239,9 @@ Keep it stable once assigned: campaigns and downstream objects reference it. On 
    platform export: distill the flow shape, branch conditions, wait steps, audience syncs, and
    message bindings into readable logic. If the source is purely strategic, omit `delivery_logic`;
    if it's an implemented flow, capture both the strategy (stages/triggers) and the build.
-6. **Keep Campaign Strategy out.** Channel/offer/scope mapping for a campaign is the Campaign
-   Strategy Object. A journey references a campaign; it does not duplicate its scope or offer.
+6. **Keep Campaign Strategy out — and don't point at it.** Channel/offer/scope mapping for a
+   campaign is the Campaign Strategy Object, which references the journey via `linked_journey`. The
+   journey carries no campaign reference and does not duplicate a campaign's scope or offer.
 7. **Keep arrays signal-bearing.** A tight set of real stages and triggers beats a long generic
    list. 2–6 stages and a matched set of triggers is usually right. Resist padding.
 
@@ -232,10 +253,11 @@ Keep it stable once assigned: campaigns and downstream objects reference it. On 
   underscore join, lowercase entity slug; append an instance slug when a brand has more than one
   journey. See `CONVENTION.md` → "Instance file naming". The `journey_id` (`JNY-<slug>`) remains the
   id *inside* the object; it is not the filename.
-- Set `linked_campaign_strategy` to the real `CMS-<slug>` only if the journey serves a campaign;
-  use a `CMS-PLACEHOLDER-<slug>` if it's expected but unbuilt, and **omit it entirely** for an
-  always-on journey. Do the same for `linked_audiences` (`AUD-`), `linked_personas` (`PER-`), and
-  `linked_business_context` (`BIZ-`) — real ids where they exist, placeholders otherwise.
+- Set `scope` explicitly (`lifecycle` or `campaign`). For a `lifecycle` journey, include at least
+  one `linked_personas` (`PER-`) and one `linked_audiences` (`AUD-`) — the schema requires the spine.
+  Use real ids where they exist, `…-PLACEHOLDER-<slug>` otherwise. Set `linked_business_context`
+  (`BIZ-`) the same way. Do **not** add any campaign reference to the journey — the Campaign Strategy
+  links to the journey via its `linked_journey`, not vice versa.
 - Validate it parses before returning it.
 - Briefly tell the user what you inferred vs. extracted, and call out anything thin (especially
   missing triggers or stage objectives) so they can fill gaps.
@@ -244,15 +266,16 @@ Keep it stable once assigned: campaigns and downstream objects reference it. On 
 
 **From a journey map or lifecycle plan:**
 > Build an OSMM Journey Object for [Brand]'s [journey name]. Sources: [journey map / flow diagram /
-> lifecycle plan / triggering rules]. Capture the journey goal, the stages and their objectives, the
-> triggers that advance customers, the sequencing/cadence, and any operational delivery logic. Link
-> the audiences, personas, and Business Context; link the Campaign Strategy only if this journey
-> serves one.
+> lifecycle plan / triggering rules]. Set `scope` (`lifecycle` for the durable backbone, `campaign`
+> for a campaign slice). Capture the journey goal, the stages and their objectives, the triggers that
+> advance customers, the sequencing/cadence, and any operational delivery logic. Anchor it to the
+> personas and audiences it's built around (required for a lifecycle journey) and the Business Context.
 
-**For an always-on lifecycle journey (no campaign):**
-> Build an OSMM Journey Object for [Brand]'s always-on [onboarding / winback / loyalty] journey. It
-> serves no single campaign — set `journey_type` to the right motion (or `lifecycle`) and leave the
-> campaign link unset. Capture the goal, stages, triggers, cadence, and the delivery logic.
+**For an always-on lifecycle journey (the durable backbone):**
+> Build an OSMM Journey Object for [Brand]'s always-on [onboarding / winback / loyalty] journey. Set
+> `scope: lifecycle` and `journey_type` to the right motion (or `lifecycle`), and anchor it to the
+> persona(s) and audience(s) it serves. Capture the goal, stages, triggers, cadence, and the delivery
+> logic. Campaigns will reference this journey — do not add a campaign link here.
 
 ---
 
@@ -261,10 +284,11 @@ Keep it stable once assigned: campaigns and downstream objects reference it. On 
 Real, public brands (per `CONVENTION.md` → "Where worked examples live"). The blocks below
 illustrate the shape; both validate against `schemas/journey.schema.json`.
 
-### Example 1 — B2C always-on lifecycle journey (Wendy's app, no campaign)
+### Example 1 — B2C lifecycle backbone (Wendy's app)
 
-Built from Wendy's public app, loyalty, and marketing material. An always-on journey, so
-`linked_campaign_strategy` is omitted. Includes `delivery_logic` to show the absorbed configuration
+Built from Wendy's public app, loyalty, and marketing material. The durable, persona-anchored
+backbone, so `scope: lifecycle` and it carries the required Persona/Audience spine; no campaign
+reference (campaigns reference *it*). Includes `delivery_logic` to show the absorbed configuration
 view. References the shipped `BIZ-wendys`, `AUD-wendys-value-seekers`, and `PER-wendys-deal-savvy-craver`.
 
 ```json
@@ -275,6 +299,7 @@ view. References the shipped `BIZ-wendys`, `AUD-wendys-value-seekers`, and `PER-
   "version": "1.0",
   "status": "draft",
   "name": "Wendy's App First-Order to Habitual-Use Journey",
+  "scope": "lifecycle",
   "journey_goal": "Turn new Wendy's app users into habitual, app-led repeat customers by driving a first mobile order and building order frequency over time.",
   "journey_type": "lifecycle",
   "stages": [
@@ -334,11 +359,11 @@ view. References the shipped `BIZ-wendys`, `AUD-wendys-value-seekers`, and `PER-
 }
 ```
 
-### Example 2 — B2B campaign-served evaluation journey (IBM watsonx)
+### Example 2 — B2B campaign-scoped evaluation journey (IBM watsonx)
 
-Built from IBM's public watsonx marketing and trial flow. This journey serves a launch campaign, so
-`linked_campaign_strategy` points to a placeholder Campaign Strategy until that object is built.
-References the shipped `BIZ-ibm`.
+Built from IBM's public watsonx marketing and trial flow. A `scope: campaign` slice that runs for a
+launch campaign — the **Campaign Strategy references this journey** via its `linked_journey`, not the
+reverse, so the journey carries no campaign field. References the shipped `BIZ-ibm`.
 
 ```json
 {
@@ -348,6 +373,7 @@ References the shipped `BIZ-ibm`.
   "version": "1.0",
   "status": "draft",
   "name": "IBM watsonx Enterprise Evaluation Journey",
+  "scope": "campaign",
   "journey_goal": "Move enterprise AI buyers from first awareness of watsonx through hands-on evaluation to a qualified sales opportunity.",
   "journey_type": "acquisition",
   "stages": [
@@ -390,7 +416,8 @@ References the shipped `BIZ-ibm`.
   "channels": ["Email", "Paid search", "Paid social", "Web", "Events"],
   "entry_criteria": ["Enterprise AI buyers (CDO/CIO/heads of AI) engaging watsonx awareness content"],
   "exit_criteria": ["Opportunity created (handed to sales)", "Disqualified or unengaged after nurture window"],
-  "linked_campaign_strategy": "CMS-PLACEHOLDER-ibm-watsonx-launch",
+  "linked_personas": ["PER-PLACEHOLDER-ibm-enterprise-ai-buyer"],
+  "linked_audiences": ["AUD-ibm-enterprise-it"],
   "linked_business_context": "BIZ-ibm",
   "source": "Built from public information: ibm.com/watsonx, the watsonx trial and demo flow, and public IBM enterprise marketing (2024). Triggers, cadence, and qualification logic are illustrative, not internal configuration."
 }

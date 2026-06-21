@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/open-semantic-marketing-model/osmm/main/schemas/journey.schema.json",
   "title": "OSMM Journey Object",
-  "description": "The orchestrated customer path AND its delivery configuration: the journey goal, the stages a customer moves through, the triggers that advance them, the sequencing/cadence, and the operational delivery logic. Each stage carries per-persona tracks (the persona x stage cell): the buyer goal, milestones, activities, the key questions/considerations in mind (directional 'keywords'), and the key messages that respond to them. Spans the former Journey Strategy and Journey Configuration objects, and absorbs the directional-keyword and persona/journey-messaging planning that previously lived in the Keyword, Keyword Strategy, and Messaging Framework objects. Canonical schema for object_type 'journey'.",
+  "description": "The orchestrated customer path AND its delivery configuration: the journey goal, the stages a customer moves through, the triggers that advance them, the sequencing/cadence, and the operational delivery logic. A 'scope' facet separates the durable, persona-anchored 'lifecycle' backbone (the end-to-end view of how a persona experiences the brand) from a 'campaign'-scoped flow; campaigns are scoped slices within a lifecycle journey, so the canonical edge is Campaign Strategy -> Journey (a Journey never points down at a campaign). Each stage carries per-persona tracks (the persona x stage cell): the buyer goal, milestones, activities, the key questions/considerations in mind (directional 'keywords'), and the key messages that respond to them. Spans the former Journey Strategy and Journey Configuration objects, and absorbs the directional-keyword and persona/journey-messaging planning that previously lived in the Keyword, Keyword Strategy, and Messaging Framework objects. Canonical schema for object_type 'journey'.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -12,6 +12,7 @@
     "version",
     "status",
     "name",
+    "scope",
     "journey_goal",
     "stages",
     "triggers"
@@ -23,6 +24,10 @@
     "version": { "type": "string", "pattern": "^\\d+\\.\\d+$", "description": "Instance version (e.g. '1.0'). Bump on revision." },
     "status": { "enum": ["draft", "proposed", "stable", "deprecated"], "description": "Object lifecycle state." },
     "name": { "type": "string", "minLength": 1, "description": "Readable label, usually entity + journey." },
+    "scope": {
+      "enum": ["lifecycle", "campaign"],
+      "description": "The journey's scope. 'lifecycle' = the durable, always-on, persona-anchored backbone (the end-to-end view of how a persona experiences the brand; high-read, low-write, referenced by many campaigns). 'campaign' = a scoped activation flow that runs within a lifecycle journey for a specific campaign. A lifecycle journey must anchor to at least one Persona and Audience (see linked_personas / linked_audiences)."
+    },
     "journey_goal": { "type": "string", "minLength": 1, "description": "The single outcome the journey drives (4.2). An outcome, not an activity." },
     "journey_type": {
       "enum": ["acquisition", "onboarding", "nurture", "conversion", "retention", "winback", "advocacy", "lifecycle"],
@@ -87,10 +92,24 @@
       "items": { "type": "string" },
       "description": "Optional operational delivery/configuration notes (the former Journey Configuration, sub-process 6.3): platform flow shape, wait steps, audience-sync mechanics, branch conditions, message bindings. Distilled, not a platform export."
     },
-    "linked_campaign_strategy": { "type": "string", "pattern": "^CMS-(PLACEHOLDER-)?[a-z0-9-]+$", "description": "Optional. The Campaign Strategy this journey serves — omit for always-on lifecycle journeys." },
-    "linked_audiences": { "type": "array", "items": { "type": "string", "pattern": "^AUD-(PLACEHOLDER-)?[a-z0-9-]+$" }, "description": "Audience ids this journey serves." },
-    "linked_personas": { "type": "array", "items": { "type": "string", "pattern": "^PER-(PLACEHOLDER-)?[a-z0-9-]+$" }, "description": "Persona ids this journey is designed around." },
+    "linked_audiences": { "type": "array", "items": { "type": "string", "pattern": "^AUD-(PLACEHOLDER-)?[a-z0-9-]+$" }, "description": "Audience ids this journey serves — part of the Persona/Audience spine the journey is anchored to. Required for a 'lifecycle'-scope journey." },
+    "linked_personas": { "type": "array", "items": { "type": "string", "pattern": "^PER-(PLACEHOLDER-)?[a-z0-9-]+$" }, "description": "Persona ids this journey is designed around — the spine of a journey. Required for a 'lifecycle'-scope journey. The journey does not reference the Campaign Strategy that uses it; the canonical edge is Campaign Strategy -> Journey (the campaign's linked_journey)." },
     "linked_business_context": { "type": "string", "pattern": "^BIZ-(PLACEHOLDER-)?[a-z0-9-]+$", "description": "The owning Business Context." },
     "source": { "type": "string", "description": "One line: provenance and approximate date." }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "required": ["scope"],
+        "properties": { "scope": { "const": "lifecycle" } }
+      },
+      "then": {
+        "required": ["linked_personas", "linked_audiences"],
+        "properties": {
+          "linked_personas": { "minItems": 1 },
+          "linked_audiences": { "minItems": 1 }
+        }
+      }
+    }
+  ]
 }
