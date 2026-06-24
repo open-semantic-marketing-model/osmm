@@ -1,20 +1,7 @@
 ---
 name: osmm-experience-builder
 description: >-
-  Convert any deliverable-experience source into a structured OSMM Experience Object (canonical
-  JSON). An experience is a single deliverable: a winback email, a landing page or landing-page
-  variant, an ad or ad set, a paid-social unit, a homepage hero, a triggered SMS or push, an in-app
-  message, or a gated content asset. Use this skill whenever the user wants to capture the
-  *definition/decision* of one deliverable experience as a reusable object — "build an experience
-  object," "spec this email/landing page/ad," "objectify this winback email," "structure this hero,"
-  "define this experience's variants," "capture the personalization rules for this email," "record
-  the QA/approval status," or "track this experience's deployment / go-live." It models the
-  experience's spec/intent, the components it's assembled from, its variants and personalization,
-  its QA/approval status, and its deployment. It captures the *decision*, NOT the rendered
-  HTML/image — that lives in the ESP/CMS/DAM/ad platform and is *referenced* via
-  `delivery_reference`. Trigger on experiences, emails, landing pages, web pages, ads, display,
-  paid social, push, SMS, in-app messages, homepage heroes, content assets, experience specs,
-  variants, A/B variations, personalization rules, QA/validation, approval, and deployment/go-live.
+  Convert any deliverable-experience source into a structured OSMM Experience Object (canonical JSON). An experience is a single deliverable: a winback email, a landing page or variant, an ad or ad set, a paid-social unit, a homepage hero, a triggered SMS or push, an in-app message, or a gated content asset. Use this skill whenever the user wants to capture the definition/decision of one deliverable experience as a reusable object — "build an experience object," "spec this email/landing page/ad," "objectify this winback email," "structure this hero," "define this experience's variants," "capture the personalization rules," "record the QA/approval status," or "track this deployment / go-live." It captures the decision (spec, components, variants, personalization, QA/approval, deployment), NOT the rendered HTML/image, which is referenced via delivery_reference. Trigger on experiences, emails, landing pages, ads, paid social, push, SMS, in-app messages, heroes, variants, personalization, QA, approval, and go-live.
 object: Experience Object
 object_type: experience
 category: Work Product

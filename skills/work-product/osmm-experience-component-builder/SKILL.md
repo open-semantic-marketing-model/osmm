@@ -1,21 +1,7 @@
 ---
 name: osmm-experience-component-builder
 description: >-
-  Convert any reusable building block of an experience into a structured OSMM Experience Component
-  Object (canonical JSON). Inputs include a headline, subheadline, hero, CTA / button copy, a copy
-  block or copy deck, an offer card, a trust block, a content block, a landing-page wireframe, an
-  image treatment / art-direction note, an email subject line, or a preheader — together with any
-  copy variations written for testing. Use this skill whenever the user wants to capture a reusable
-  component — a single building block that will be referenced (by id) and assembled into many
-  Experience objects: "build an experience component object," "objectify this headline/hero/CTA,"
-  "structure this copy deck," "capture these copy variations," "make this a reusable building block,"
-  "turn this wireframe into our format," or "create a trust block / offer card we can reuse." This
-  object is a *definition* — the copy or the spec of the block — that is referenced, not copied,
-  across experiences. It is NOT the assembled Experience (the deliverable that references it), NOT
-  the Content Strategy (the content plan), and NOT the Brand Context (the voice it follows). An
-  Experience Component *references* the Brand Context, Product, and personas it serves. Trigger on
-  reusable component, building block, headline, hero, CTA, copy block, copy deck, copy variations,
-  offer card, trust block, content block, wireframe, image treatment, subject line, preheader.
+  Convert any reusable building block of an experience into a structured OSMM Experience Component Object (canonical JSON). Inputs include a headline, subheadline, hero, CTA / button copy, a copy block or copy deck, an offer card, a trust block, a content block, a landing-page wireframe, an image treatment, an email subject line, or a preheader — with any copy variations for testing. Use this skill whenever the user wants to capture a reusable component referenced (by id) and assembled into many Experience objects: "build an experience component object," "objectify this headline/hero/CTA," "structure this copy deck," "capture these copy variations," "make this a reusable building block," "turn this wireframe into our format," or "create a trust block / offer card we can reuse." This is a definition referenced, not copied, across experiences. Trigger on reusable component, building block, headline, hero, CTA, copy deck, copy variations, offer card, trust block, wireframe, subject line, preheader.
 object: Experience Component Object
 object_type: experience_component
 category: Work Product

@@ -1,18 +1,7 @@
 ---
 name: osmm-content-strategy-builder
 description: >-
-  Build the content plan for an offering or campaign as a structured OSMM Content Strategy Object
-  (canonical JSON) — the content goal, the content pillars/themes and the formats under each, the
-  content priorities, the content types/formats in scope, how content is sequenced across the
-  journey/funnel, and the publishing cadence. Inputs include editorial plans, content calendars,
-  content briefs, channel plans, SEO/topic plans, or a content strategist's notes. Use this skill
-  whenever the user wants to structure *what content we produce and in what order*: "build a content
-  strategy object," "structure our content strategy," lay out a content plan or editorial plan, set
-  content priorities or content pillars, plan a content calendar, define content sequencing, or list
-  content types/formats. This object is the *what content we produce and in what order* — it is NOT
-  the Creative Strategy (the creative direction / how it looks and feels) and NOT the Journey (the
-  path it supports, whose persona tracks carry the questions content answers and the messages it
-  conveys).
+  Build the content plan for an offering or campaign as a structured OSMM Content Strategy Object (canonical JSON) — the content goal, the content pillars/themes and the formats under each, the content priorities, the content types/formats in scope, how content is sequenced across the journey/funnel, and the publishing cadence. Inputs include editorial plans, content calendars, content briefs, channel plans, SEO/topic plans, or a content strategist's notes. Use this skill whenever the user wants to structure what content we produce and in what order: "build a content strategy object," "structure our content strategy," lay out a content plan or editorial plan, set content priorities or content pillars, plan a content calendar, define content sequencing, or list content types/formats. This is the content plan — NOT the Creative Strategy (creative direction) and NOT the Journey (the path it supports).
 object: Content Strategy Object
 object_type: content_strategy
 category: Work Product

@@ -1,18 +1,7 @@
 ---
 name: osmm-creative-strategy-builder
 description: >-
-  Build the creative direction for an offering or campaign as a structured OSMM Creative Strategy
-  Object (canonical JSON) — the big idea / creative platform, the creative themes and emotional
-  strategy, the creative system & experience concepts, and channel-specific creative requirements.
-  Inputs include creative briefs, creative platform docs, brand campaign decks, art-direction
-  notes, experience-design concepts, or a creative director's notes. Use this skill whenever the
-  user wants to structure HOW the brand expresses its message: "build a creative strategy object,"
-  set a creative direction, define a big idea or creative platform, lay out creative themes or
-  territories, define an emotional strategy, capture a creative system or experience concepts, or
-  spell out channel creative requirements. The creative direction — how we express the message,
-  distinct from the message itself, which cascades from Brand Context (brand promise/pillars) and
-  Product Context (product_messaging) and resolves per persona/stage in the Journey. This object
-  absorbs the former Experience Design object (creative system & experience concepts).
+  Build the creative direction for an offering or campaign as a structured OSMM Creative Strategy Object (canonical JSON) — the big idea / creative platform, the creative themes and emotional strategy, the creative system & experience concepts, and channel-specific creative requirements. Inputs include creative briefs, creative platform docs, brand campaign decks, art-direction notes, experience-design concepts, or a creative director's notes. Use this skill whenever the user wants to structure HOW the brand expresses its message: "build a creative strategy object," set a creative direction, define a big idea or creative platform, lay out creative themes or territories, define an emotional strategy, capture a creative system or experience concepts, or spell out channel creative requirements. This captures the creative direction — how we express the message, distinct from the message itself — and absorbs the former Experience Design object.
 object: Creative Strategy Object
 object_type: creative_strategy
 category: Work Product
