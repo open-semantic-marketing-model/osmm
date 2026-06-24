@@ -1,19 +1,7 @@
 ---
 name: osmm-offer-builder
 description: >-
-  Convert any promotion, deal, or incentive source into a structured OSMM Offer Object (canonical
-  JSON). Inputs include promo pages, pricing/trial pages, "book a demo" or "request a consultation"
-  CTAs, value-meal and combo deals, BOGO and gift-with-purchase mechanics, financing and lease
-  offers, freemium tiers, samples, sweepstakes, loyalty rewards, or a marketer's notes on an
-  incentive. Use this skill whenever the user wants to capture the *value exchange / call to action*
-  — the time-bound reason to act now — as a reusable object: "build an offer object," "structure
-  this promotion," "objectify this deal/trial/demo," "capture the offer," extract a promotion into
-  JSON, or prepare a structured offer for downstream campaigns and creative. Trigger on offers,
-  promotions, incentives, deals, discounts, free trials, demos, consultations, financial offers,
-  BOGO, gift-with-purchase, bundles, freemium, samples, sweepstakes, financing, and loyalty rewards.
-  This object is the *incentive to act* — it is NOT the Product Context (the thing being marketed,
-  with its features and product messaging) and NOT the Campaign Strategy or creative (how the offer
-  is activated and expressed). An Offer *references* the Product Context it promotes.
+  Convert any promotion, deal, or incentive source into a structured OSMM Offer Object (canonical JSON). Inputs include promo pages, pricing/trial pages, "book a demo" or "request a consultation" CTAs, value-meal and combo deals, BOGO and gift-with-purchase mechanics, financing and lease offers, freemium tiers, samples, sweepstakes, loyalty rewards, or a marketer's notes on an incentive. Use this skill whenever the user wants to capture the value exchange / call to action — the time-bound reason to act now — as a reusable object: "build an offer object," "structure this promotion," "objectify this deal/trial/demo," "capture the offer," extract a promotion into JSON, or prepare a structured offer for downstream campaigns and creative. Trigger on offers, promotions, incentives, deals, discounts, free trials, demos, consultations, financial offers, BOGO, gift-with-purchase, bundles, freemium, samples, sweepstakes, financing, and loyalty rewards. An Offer references the Product Context it promotes.
 object: Offer Object
 object_type: offer
 category: Work Product

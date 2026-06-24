@@ -156,6 +156,12 @@ status: draft                      # draft | proposed | stable | deprecated
 
 The `description` is not decorative — it is what makes the skill discoverable/triggerable, so it should name the object it builds and the situations that should invoke it.
 
+**Length cap:** the `description` field must be **≤ 1024 characters** — the plugin-packaging validator rejects any skill whose description exceeds it. Keep it trigger-rich but within budget; if it grows past the cap, tighten the trigger list rather than dropping the object/boundary framing. Quick check across the repo:
+
+```
+python3 -c "import glob,yaml; [print(len(yaml.safe_load(open(f).read().split('---',2)[1])['description']), f) for f in glob.glob('skills/**/SKILL.md', recursive=True) if len(yaml.safe_load(open(f).read().split('---',2)[1]).get('description','')) > 1024]"
+```
+
 ---
 
 ## Object lifecycle states

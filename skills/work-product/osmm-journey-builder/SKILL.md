@@ -1,19 +1,7 @@
 ---
 name: osmm-journey-builder
 description: >-
-  Convert any customer-journey source into a structured OSMM Journey Object (canonical JSON).
-  Inputs include customer journey maps, lifecycle journey plans, journey/flow diagrams, triggering
-  & sequencing logic, cadence rules, stage definitions, or the operational flow built in a
-  marketing-automation platform. Use this skill whenever the user wants to capture the orchestrated
-  path a customer travels — "build a journey object," "map our customer journey," "design a
-  lifecycle journey," "structure our journey," "define the customer path and stages," "capture our
-  triggering and sequencing logic," "configure the journey flow," or hands over a journey map or
-  flow and asks what to do with it. The Journey Object spans the journey end to end — the goal, the
-  stages, the triggers that advance customers, the sequencing/cadence, AND the operational delivery
-  logic that implements it. A required `scope` facet separates the durable, persona-anchored
-  `lifecycle` backbone (the end-to-end view of how a persona experiences the brand) from a
-  `campaign`-scoped flow; campaigns are scoped slices within a lifecycle journey. It is NOT the
-  Campaign Strategy (scope/channel/offer mapping).
+  Convert any customer-journey source into a structured OSMM Journey Object (canonical JSON). Inputs include customer journey maps, lifecycle journey plans, journey/flow diagrams, triggering & sequencing logic, cadence rules, stage definitions, or the operational flow built in a marketing-automation platform. Use this skill whenever the user wants to capture the orchestrated path a customer travels — "build a journey object," "map our customer journey," "design a lifecycle journey," "structure our journey," "define the customer path and stages," "capture our triggering and sequencing logic," "configure the journey flow," or hands over a journey map or flow. The Journey Object spans end to end — the goal, the stages, the triggers, the sequencing/cadence, AND the operational delivery logic. A required scope facet separates the durable, persona-anchored lifecycle backbone from a campaign-scoped flow. It is NOT the Campaign Strategy.
 object: Journey Object
 object_type: journey
 category: Work Product
