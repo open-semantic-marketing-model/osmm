@@ -139,10 +139,19 @@ changes. See [`GOVERNANCE.md`](GOVERNANCE.md) and [`CONTRIBUTING.md`](CONTRIBUTI
 
 ## License
 
-Schemas and code: **Apache 2.0**. Documentation: **CC BY 4.0**. See
-[`LICENSE`](LICENSE) and [`LICENSE-docs`](LICENSE-docs).
+OSMM is dual-licensed: **Apache 2.0** for schemas, scripts, and skills
+([`LICENSE`](LICENSE)); **CC BY 4.0** for documentation and examples
+([`LICENSE-docs`](LICENSE-docs)). The OSMM name and logo are trademarks of
+Design of Work Partners LLC, governed by [`TRADEMARK.md`](TRADEMARK.md) and
+**not** open-licensed. The authoritative per-path mapping is in
+[`LICENSING.md`](LICENSING.md); copyright and attribution are in
+[`NOTICE`](NOTICE).
+
+Copyright © 2026 Design of Work Partners LLC.
 
 ## Brand
 
 Logo files, color tokens, and usage rules are in
 [`brand/LOGO.md`](brand/LOGO.md). The wordmark is set in IBM Plex Mono (SIL OFL 1.1).
+The OSMM name and logo are trademarks of Design of Work Partners LLC; permitted
+use is described in [`TRADEMARK.md`](TRADEMARK.md).

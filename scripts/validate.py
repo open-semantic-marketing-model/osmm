@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright © 2026 Design of Work Partners LLC
 """OSMM schema validation.
 
 Single source of truth = the canonical JSON Schema files in `schemas/`. This

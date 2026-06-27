@@ -123,6 +123,30 @@ contribution to `stable`; that's a maintainer call.
 ## Licensing of contributions
 
 By contributing you agree that your contributions are licensed under the
-repository's licenses: **Apache 2.0** for schemas and code
-([LICENSE](LICENSE)), **CC BY 4.0** for documentation
-([LICENSE-docs](LICENSE-docs)).
+repository's licenses, per [LICENSING.md](LICENSING.md): **Apache 2.0** for
+schemas, scripts, and skills ([LICENSE](LICENSE)); **CC BY 4.0** for
+documentation and examples ([LICENSE-docs](LICENSE-docs)). The OSMM name and
+logo are trademarks and are not licensed by contributing — see
+[TRADEMARK.md](TRADEMARK.md).
+
+## Sign your work (DCO)
+
+OSMM uses the [Developer Certificate of Origin](DCO) (DCO) for contribution
+provenance — a lightweight, sign-off-based alternative to a CLA. It certifies
+that you wrote the contribution or otherwise have the right to submit it under
+the repository's licenses.
+
+Add a `Signed-off-by` line to every commit by committing with `-s`:
+
+```
+git commit -s -m "Add offer schema"
+```
+
+This appends, using your real name and an email you can be reached at:
+
+```
+Signed-off-by: Jane Doe <jane@example.com>
+```
+
+Commits without a sign-off can't be merged. To sign off the last commit you
+forgot, run `git commit --amend -s`.
