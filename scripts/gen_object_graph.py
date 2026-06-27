@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright © 2026 Design of Work Partners LLC
 """Generate the OSMM object-graph view: `osmm-object-graph.svg` + `GRAPH.md`.
 
 Single source of truth for the object graph. Edit the OBJ / REALIZED / ENVISIONED

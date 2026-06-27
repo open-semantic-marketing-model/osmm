@@ -109,4 +109,7 @@ busy photo — use the reversed or mono version on a solid field instead.
 
 ---
 
-*Logo and documentation released under CC BY 4.0. IBM Plex © IBM Corp., SIL OFL 1.1.*
+*The OSMM name and logo are trademarks of Design of Work Partners LLC and are
+**not** released under CC BY 4.0 — their use is governed by
+[TRADEMARK.md](../TRADEMARK.md). The text of these brand guidelines is released
+under CC BY 4.0. IBM Plex © IBM Corp., SIL OFL 1.1.*

@@ -51,3 +51,7 @@ coherent sets and exercise both `business_type` paths of the composer:
 
 As more builders ship and more public-sourced instances are validated, this
 library grows by category.
+
+---
+
+*Example instances reference third-party companies (e.g., IBM, Wendy's) nominatively, built only from public material, for illustration. Their names and marks belong to their respective owners; inclusion implies no affiliation or endorsement. Examples are licensed CC BY 4.0 (see [`../LICENSING.md`](../LICENSING.md)).*
