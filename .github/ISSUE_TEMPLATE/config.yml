@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Read the contribution guide first
+    url: https://github.com/open-semantic-marketing-model/osmm/blob/main/CONTRIBUTING.md
+    about: How to propose objects, builders, examples, and vocabulary — and the design tenets changes are measured against.
+  - name: Governance & design tenets
+    url: https://github.com/open-semantic-marketing-model/osmm/blob/main/GOVERNANCE.md
+    about: How decisions get made, the object lifecycle, and the tenets that decline most proposals.
+  - name: Report a security or data-exposure concern (private)
+    url: https://github.com/open-semantic-marketing-model/osmm/security/advisories/new
+    about: Do not file security issues publicly — use GitHub private vulnerability reporting. See SECURITY.md.

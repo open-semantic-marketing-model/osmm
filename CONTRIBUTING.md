@@ -5,6 +5,10 @@ Thanks for your interest in the Open Semantic Marketing Model. OSMM is
 and a small maintainer core decides. This guide explains how to propose well so
 your contribution has the best chance of landing.
 
+By participating you agree to abide by our
+[Code of Conduct](CODE_OF_CONDUCT.md). To report a security or data-exposure
+concern, follow [SECURITY.md](SECURITY.md) — do not open a public issue.
+
 Before you start, skim:
 
 - [README.md](README.md) — what OSMM is and the object model at a glance.
