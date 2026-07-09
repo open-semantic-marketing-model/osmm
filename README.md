@@ -132,10 +132,12 @@ decision-object companion to OSI's metrics objects.
 
 ## Governance & contributing
 
-OSMM is **maintainer-led, not consensus-driven** — open standards fragment when
-consensus becomes the goal. The community submits pull requests and proposed
-objects; a small, opinionated maintainer core of operators reviews and approves
-changes. See [`GOVERNANCE.md`](GOVERNANCE.md) and [`CONTRIBUTING.md`](CONTRIBUTING.md).
+OSMM was created by **Rudolph Chang** and is stewarded by Design of Work
+Partners LLC. It is **maintainer-led, not consensus-driven** — open standards
+fragment when consensus becomes the goal. The community submits pull requests and
+proposed objects; a small, opinionated maintainer core of operators reviews and
+approves changes. See [`GOVERNANCE.md`](GOVERNANCE.md),
+[`MAINTAINERS.md`](MAINTAINERS.md), and [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ## License
 

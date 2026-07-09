@@ -28,8 +28,9 @@ high bar to *merge*. Maintainers carry the obligation to keep the model lean
 | **Maintainer** | A small core of practicing marketing operators | Approve and merge changes; assign object lifecycle states; cut releases; own the controlled vocabularies and the object registry. |
 | **Contributor** | Anyone | Open issues, propose objects, submit pull requests, comment on proposals. |
 
-Maintainers are listed in `MAINTAINERS.md` (to be added as the core is named).
-Until then, the repository owner acts as sole maintainer.
+Maintainers are listed in [`MAINTAINERS.md`](MAINTAINERS.md). OSMM was created by
+**Rudolph Chang**, who currently acts as sole maintainer; the core will grow as
+it is named.
 
 ## Design tenets
 

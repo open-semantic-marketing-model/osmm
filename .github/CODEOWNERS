@@ -1,0 +1,21 @@
+# OSMM code owners — requested as reviewers on matching changes.
+# OSMM is maintainer-led (see GOVERNANCE.md); the maintainer core reviews and approves.
+# Syntax: https://docs.github.com/articles/about-code-owners
+
+# Default owner for everything in the repo.
+*                   @BloofusAndClunt
+
+# The standard's core contracts — schemas, conventions, and the object model docs.
+/schemas/           @BloofusAndClunt
+/CONVENTION.md      @BloofusAndClunt
+/TAXONOMY.md        @BloofusAndClunt
+/RELATIONSHIPS.md   @BloofusAndClunt
+/GOVERNANCE.md      @BloofusAndClunt
+
+# Licensing, trademark, and provenance.
+/LICENSE            @BloofusAndClunt
+/LICENSE-docs       @BloofusAndClunt
+/LICENSING.md       @BloofusAndClunt
+/NOTICE             @BloofusAndClunt
+/TRADEMARK.md       @BloofusAndClunt
+/DCO                @BloofusAndClunt
