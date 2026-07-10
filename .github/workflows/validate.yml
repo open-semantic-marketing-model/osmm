@@ -5,12 +5,11 @@ name: validate
 # every schema must itself be a valid JSON Schema.
 
 on:
+  # Runs on every pull request (not path-filtered) so the check always reports a
+  # status and can be a required, non-bypassable branch-protection gate. The full
+  # validation covers the whole repo and completes in well under a minute, so the
+  # cost on docs-only PRs is negligible.
   pull_request:
-    paths:
-      - "schemas/**"
-      - "examples/**"
-      - "scripts/validate.py"
-      - ".github/workflows/validate.yml"
   push:
     branches: [main]
 
