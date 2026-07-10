@@ -43,7 +43,9 @@ official when it isn't.
   could be mistaken for the official standard. You may state that your fork *is
   derived from* OSMM; you may not present it *as* OSMM.
 
-Requests: **rudy@agility-partner.com** (interim contact).
+Requests: open an issue in this repository describing your intended use. A
+trademark or licensing request is a normal, non-confidential inquiry, so a public
+issue is fine.
 
 ## Conformance claims
 

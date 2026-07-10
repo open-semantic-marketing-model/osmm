@@ -17,10 +17,13 @@ The standard is at **draft** and evolves on `main`. Security fixes are applied t
 Please **do not open a public issue** for a security concern.
 
 Report privately using **GitHub's private vulnerability reporting** — go to the
-repository's **Security** tab → **Report a vulnerability** (preferred, keeps the
-report confidential within GitHub).
+repository's **Security** tab → **Report a vulnerability**. This keeps the report
+confidential within GitHub and routes it directly to the maintainers. (If the
+Security tab is not visible, the maintainers have not yet enabled private
+reporting — open a minimal public issue asking them to enable it, without
+disclosing the vulnerability details.)
 
-If that is unavailable, email **rudy@agility-partner.com** (interim contact) with:
+When you report, please include:
 
 - a description of the issue and the file(s) involved,
 - steps to reproduce, and

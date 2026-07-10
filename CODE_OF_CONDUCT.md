@@ -59,9 +59,12 @@ representative at an online or offline event.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the community leaders responsible for enforcement at
-**rudy@agility-partner.com** (interim contact). All complaints will be reviewed
-and investigated promptly and fairly.
+reported **privately** to the community leaders responsible for enforcement. The
+project does not publish a contact email; instead, send a confidential report
+through GitHub using the repository's **Security** tab → **Report a
+vulnerability**, which is delivered privately to the maintainers. This private
+channel is monitored for conduct reports as well as security issues. All
+complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the
 reporter of any incident.
