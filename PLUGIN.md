@@ -56,7 +56,7 @@ The **plugin root is the repository root** (`"source": "./"` in
 `.claude-plugin/marketplace.json`). This is deliberate and load-bearing:
 
 - Each `SKILL.md` points at its canonical schema with a repo-relative path
-  (`../../../schemas/<object_type>.schema.json`).
+  (`../../schemas/<object_type>.schema.json`).
 - Claude copies a plugin into a local cache on install. Files **outside** the
   plugin root are not copied.
 - Making the repo root the plugin root means `schemas/` and `examples/` travel
@@ -67,13 +67,14 @@ If the plugin root were `skills/` alone, every schema reference would break.
 The manifests:
 
 - **`.claude-plugin/plugin.json`** — the plugin manifest. Declares the version and
-  lists the five skill category directories.
+  metadata. It does **not** enumerate skills: Claude auto-discovers every
+  `skills/<skill-name>/SKILL.md` under the flat `skills/` directory.
 - **`.claude-plugin/marketplace.json`** — the marketplace catalog, so this repo can
   be added directly with `/plugin marketplace add`.
 
-Because `plugin.json` lists skill **category directories** (not individual
-skills), a new builder dropped into an existing category is picked up
-automatically — no manifest edit required.
+Because skills are auto-discovered from the flat `skills/` directory, a new
+builder dropped into `skills/<skill-name>/` is picked up automatically — no
+manifest edit required.
 
 ---
 
@@ -99,10 +100,9 @@ adopters on every docs typo.
 5. **Merge to `main`.** Clients pick it up on their next
    `/plugin marketplace update osmm` + `/plugin update osmm`.
 
-**Adding a new builder to an existing category:** steps 1–5 only. No manifest edit.
-
-**Adding a new *category*:** also add its path to the `skills` array in
-`.claude-plugin/plugin.json`.
+**Adding a new builder or composer:** steps 1–5 only. Drop the skill folder under
+`skills/` and it is auto-discovered — no manifest edit, regardless of its object
+category.
 
 > **Do not** set `version` in `marketplace.json` as well. When both are set,
 > `plugin.json` silently wins, and a stale entry can mask the version you meant to

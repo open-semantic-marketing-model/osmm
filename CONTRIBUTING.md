@@ -62,9 +62,10 @@ Builders follow the convention exactly — read
 [CONVENTION.md](CONVENTION.md) in full first. The essentials:
 
 1. **Name and location.** The skill is `osmm-<object-slug>-builder`, the folder
-   name equals the frontmatter `name`, and it lives under
-   `skills/<category>/` — one of `context`, `work-product`, `configuration`,
-   `measurement`, `learning`.
+   name equals the frontmatter `name`, and it lives directly under `skills/`
+   (flat — one folder per skill). Its object category (`context`, `work-product`,
+   `configuration`, `measurement`, `learning`) is declared in frontmatter, not the
+   folder path.
 2. **Slug rules.** Lowercase, hyphens only; drop the trailing "Object"; keep
    every other word. The skill slug uses hyphens (`osmm-business-context-builder`)
    while the JSON field uses underscores (`"object_type": "business_context"`).
@@ -92,12 +93,12 @@ Builders follow the convention exactly — read
    every PR; it is a hard error if an example's `object_type` has no schema).
 
 Use the two shipped Context builders
-(`skills/context/osmm-business-context-builder`,
-`skills/context/osmm-persona-builder`) as references.
+(`skills/osmm-business-context-builder`,
+`skills/osmm-persona-builder`) as references.
 
 ## Contributing an example instance
 
-Validated examples live under `examples/<category>/`, mirroring `skills/`, and
+Validated examples live flat under `examples/` (one file per instance) and
 follow the same instance file naming as builder output. Unvalidated instances
 produced during client or internal work stay **outside** the repo until
 reviewed — the `.gitignore` is configured to keep stray root-level `.json` out

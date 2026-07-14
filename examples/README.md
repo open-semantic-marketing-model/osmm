@@ -22,8 +22,9 @@ to read it independently of the builder. See
 - **Filenames follow the instance-naming convention** —
   `<OBJECT-NAME>_<entity-slug>.json` (see `CONVENTION.md` → "Instance file
   naming").
-- **Organized by object category**, mirroring `skills/` (`context/`,
-  `work-product/`, `configuration/`, `measurement/`, `learning/`).
+- **Flat layout** — every instance sits directly under `examples/`, one file per
+  instance. The object-prefixed filename carries the type, so no category
+  subfolders are needed.
 
 ## Reference brands
 
@@ -37,13 +38,13 @@ coherent sets and exercise both `business_type` paths of the composer:
 
 | File | Object | Entity | Notes |
 |------|--------|--------|-------|
-| `context/BUSINESS-CONTEXT_ibm.json` | Business Context | IBM | Real, public-filing-grounded. |
-| `context/BUSINESS-CONTEXT_wendys.json` | Business Context | Wendy's | Real, public-information-grounded. |
-| `context/BRAND-CONTEXT_ibm.json` | Brand Context | IBM | Voice/guardrails from public brand expression; guardrails inferred. |
-| `context/BRAND-CONTEXT_wendys.json` | Brand Context | Wendy's | Voice/guardrails from public brand expression; guardrails inferred. |
-| `context/AUDIENCE_ibm-enterprise-it.json` | Audience | IBM | B2B firmographic segment; illustrative operational criteria. |
-| `context/AUDIENCE_wendys-value-seekers.json` | Audience | Wendy's | B2C value-based segment; linked to the Wendy's persona (Persona ↔ Audience). |
-| `context/PERSONA_wendys-deal-savvy-craver.json` | Persona | Wendy's | Illustrative persona synthesized from public market knowledge. `linked_audiences` resolved to `AUD-wendys-value-seekers` (v1.1). |
+| `BUSINESS-CONTEXT_ibm.json` | Business Context | IBM | Real, public-filing-grounded. |
+| `BUSINESS-CONTEXT_wendys.json` | Business Context | Wendy's | Real, public-information-grounded. |
+| `BRAND-CONTEXT_ibm.json` | Brand Context | IBM | Voice/guardrails from public brand expression; guardrails inferred. |
+| `BRAND-CONTEXT_wendys.json` | Brand Context | Wendy's | Voice/guardrails from public brand expression; guardrails inferred. |
+| `AUDIENCE_ibm-enterprise-it.json` | Audience | IBM | B2B firmographic segment; illustrative operational criteria. |
+| `AUDIENCE_wendys-value-seekers.json` | Audience | Wendy's | B2C value-based segment; linked to the Wendy's persona (Persona ↔ Audience). |
+| `PERSONA_wendys-deal-savvy-craver.json` | Persona | Wendy's | Illustrative persona synthesized from public market knowledge. `linked_audiences` resolved to `AUD-wendys-value-seekers` (v1.1). |
 
 > The Wendy's set (Business Context + Brand Context + Persona) and the IBM set
 > (Business Context + Brand Context) now cover the **required inputs** of

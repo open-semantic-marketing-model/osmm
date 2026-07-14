@@ -34,8 +34,10 @@ The Open Semantic Marketing Model: a standard of 18 typed, addressable marketing
 
 ## Repo map
 
-- `skills/<category>/` — builder skills (`context`, `work-product`,
-  `configuration`, `measurement`, `learning`) and `skills/artifacts/` (composers).
-- `examples/<category>/` — validated, public-sourced instances.
+- `skills/<skill-name>/SKILL.md` — one flat folder per skill: builder skills and
+  artifact composers side by side. Object **category** (Context, Work Product,
+  Configuration, Measurement, Learning) and the composer distinction live in
+  frontmatter (`category`, `skill_class`), not the folder layout.
+- `examples/` — validated, public-sourced instances, flat (one file per instance).
 - `schemas/` — standalone schemas (added only on promotion).
 - `roadmap/` — backlog and roadmap.

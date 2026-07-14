@@ -80,7 +80,7 @@ where the artifact lives.
   the skill runs) and are human-readable, so they teach the output shape at the
   point of use. This is the default home for an example.
 - **Promoted to `examples/`** — an instance becomes a standalone
-  `examples/<category>/<FILENAME>.json` **only when a second tool needs to read
+  `examples/<FILENAME>.json` **only when a second tool needs to read
   it independently of the builder** — the composer that consumes it
   (`osmm-creative-brief-composer` reads `business_context` + `persona`
   instances), a future `-validator` that checks it, a third-party importer. At
@@ -102,37 +102,35 @@ invented one.
 
 ## Repository structure
 
-Skills are grouped by **object category** — the five stable buckets that map to the read/write and governance profiles in the model. Category is a more durable axis than workflow phase, so it drives the folder layout; phase and wave live in frontmatter.
+Skills live **directly under `skills/`, one folder per skill** — a flat layout
+that matches how Claude discovers plugin skills (each `skills/<skill-name>/SKILL.md`
+is a direct child of `skills/`). **Object category** — the five stable buckets
+that map to the read/write and governance profiles in the model — is captured in
+each builder's frontmatter (`category:`), not in the folder structure. Category is
+a more durable axis than workflow phase, but both live in frontmatter; the folder
+is keyed only to the skill's own identity.
 
 ```
 osmm/
 ├── skills/
-│   ├── context/
-│   │   ├── osmm-business-context-builder/SKILL.md
-│   │   ├── osmm-brand-context-builder/SKILL.md
-│   │   ├── osmm-audience-builder/SKILL.md
-│   │   └── osmm-persona-builder/SKILL.md
-│   ├── work-product/
-│   │   ├── osmm-marketing-strategy-builder/SKILL.md
-│   │   └── ...
-│   ├── configuration/
-│   │   └── osmm-personalization-configuration-builder/SKILL.md
-│   ├── measurement/
-│   │   ├── osmm-experience-performance-builder/SKILL.md
-│   │   └── osmm-performance-measurement-builder/SKILL.md
-│   ├── learning/
-│   │   ├── osmm-customer-insight-builder/SKILL.md
-│   │   └── ...
-│   └── artifacts/    # artifact-composer skills (NOT object builders) — see "Artifact-composer skills"
-│       └── osmm-creative-brief-composer/SKILL.md
+│   ├── osmm-business-context-builder/SKILL.md   # category: Context Object
+│   ├── osmm-brand-context-builder/SKILL.md       # category: Context Object
+│   ├── osmm-audience-builder/SKILL.md            # category: Context Object
+│   ├── osmm-persona-builder/SKILL.md             # category: Context Object
+│   ├── osmm-marketing-strategy-builder/SKILL.md  # category: Work Product Object
+│   ├── ...
+│   ├── osmm-performance-measurement-builder/SKILL.md  # category: Measurement Object
+│   ├── osmm-customer-insight-builder/SKILL.md    # category: Learning Object
+│   └── osmm-creative-brief-composer/SKILL.md     # artifact-composer (NOT an object builder)
 ├── schemas/          # canonical JSON Schema per object — schemas/<object_type>.schema.json (single source of truth)
 ├── examples/         # validated example instances (e.g. PERSONA_wendys-deal-savvy-craver.json)
 └── scripts/          # validate.py — checks every example against its object's schema (run in CI)
 ```
 
-The first five `skills/` subfolders are the **object categories**; `artifacts/`
-is a separate bucket for skills that *compose human-readable artifacts from
-objects* rather than build objects. It is not an object category — see
+Object builders and artifact-composers sit side by side in the same flat `skills/`
+directory; they are told apart by frontmatter, not location — a composer carries
+`skill_class: artifact-composer` and *composes human-readable artifacts from
+objects* rather than building an object. See
 [Artifact-composer skills](#artifact-composer-skills).
 
 ---
@@ -229,7 +227,8 @@ its schema, so they share the `osmm-<object-slug>-<verb>` form (e.g.
 `-composer` is different in kind: it does not operate on a single object, it
 *reads several objects and emits an artifact*. It therefore keys to the
 **artifact** name, not an object — `osmm-<artifact-slug>-composer` (e.g.
-`osmm-creative-brief-composer`) — and lives under `skills/artifacts/`.
+`osmm-creative-brief-composer`) — and lives directly under `skills/`, alongside
+the object builders, distinguished by its `skill_class` frontmatter.
 
 A `-validator` is also the trigger condition for promoting a schema out of its builder (see "Where the schema lives") — the moment two skills need the same schema, it becomes a standalone file.
 
@@ -267,8 +266,9 @@ Two properties make it OSMM-conformant rather than just a document generator:
 
 - Name: `osmm-<artifact-slug>-composer`. The slug is the artifact's name
   (`creative-brief`), lowercase, hyphen-delimited.
-- Folder: `skills/artifacts/<skill-name>/SKILL.md`. The frontmatter `name`
-  equals the folder name, as with every skill.
+- Folder: `skills/<skill-name>/SKILL.md` — flat, alongside the object builders.
+  The frontmatter `name` equals the folder name, as with every skill; a composer
+  is told apart from a builder by its `skill_class`, not its location.
 
 ### Frontmatter
 
@@ -341,19 +341,17 @@ Two parts separated by a single underscore:
 
 ### Where instance files live
 
-Validated example instances live in the `examples/` folder at the repo root, organized by object category — mirroring the `skills/` structure:
+Validated example instances live **flat** in the `examples/` folder at the repo
+root — one file per instance, no category subfolders. The object-prefixed
+filename already carries the type, so the folder needs no further grouping:
 
 ```
 examples/
-├── context/
-│   ├── BUSINESS-CONTEXT_ibm.json
-│   ├── BUSINESS-CONTEXT_wendys.json
-│   └── PERSONA_wendys-deal-savvy-craver.json
-├── work-product/
-│   └── CAMPAIGN-STRATEGY_wendys-baconator-launch.json
-├── configuration/
-├── measurement/
-└── learning/
+├── BUSINESS-CONTEXT_ibm.json
+├── BUSINESS-CONTEXT_wendys.json
+├── PERSONA_wendys-deal-savvy-craver.json
+├── CAMPAIGN-STRATEGY_wendys-baconator-launch.json
+└── ...
 ```
 
 **Examples must derive from public, non-confidential sources.** The repo is
