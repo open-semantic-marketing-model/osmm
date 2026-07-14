@@ -17,6 +17,22 @@ work.
 
 ---
 
+## Get started
+
+OSMM ships as a Claude plugin. Two commands:
+
+```
+/plugin marketplace add open-semantic-marketing-model/osmm
+/plugin install osmm@osmm
+```
+
+That installs all 18 builder skills. Hand one a real asset — a persona deck, an
+About page, a campaign brief — and it returns a canonical OSMM object.
+
+New to OSMM? Read **[`GETTING-STARTED.md`](GETTING-STARTED.md)** — a practical,
+non-technical guide for marketers. For install, update, and release details, see
+[`PLUGIN.md`](PLUGIN.md).
+
 ## Why this exists
 
 Three decades and billions of dollars into MarTech, the *decision* work of
@@ -82,6 +98,7 @@ whole-model **graph view** of all objects and their reference edges, see
 
 ```
 osmm/
+├── .claude-plugin/  # plugin + marketplace manifests (install via /plugin)
 ├── schemas/        # canonical JSON Schema per object (schemas/<object_type>.schema.json)
 ├── examples/       # validated example instances grounded in real assets
 ├── skills/          # builder skills (osmm-<object>-builder); each references its object's schema
@@ -94,6 +111,8 @@ osmm/
 ├── GOVERNANCE.md    # maintainer-led decision model + versioning policy
 ├── CONTRIBUTING.md  # how to propose objects and changes
 ├── CHANGELOG.md     # notable changes to the standard
+├── GETTING-STARTED.md # non-technical guide for marketers — start here
+├── PLUGIN.md        # install, update, and plugin release process
 └── README.md
 ```
 

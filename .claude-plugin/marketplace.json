@@ -1,0 +1,22 @@
+{
+  "name": "osmm",
+  "owner": {
+    "name": "Design of Work Partners LLC",
+    "email": "rudy@agility-partner.com"
+  },
+  "description": "The official marketplace for the Open Semantic Marketing Model (OSMM) — an open interoperability standard for the decision work of marketing.",
+  "plugins": [
+    {
+      "name": "osmm",
+      "source": "./",
+      "description": "All OSMM builder skills — convert marketing decision work into canonical, schema-validated OSMM objects.",
+      "category": "marketing",
+      "tags": [
+        "marketing",
+        "open-standard",
+        "json-schema",
+        "ai-context"
+      ]
+    }
+  ]
+}
