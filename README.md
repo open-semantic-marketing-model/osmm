@@ -19,19 +19,25 @@ work.
 
 ## Get started
 
-OSMM ships as a Claude plugin. Two commands:
+OSMM ships as a Claude plugin, installed from this repository. Installing it
+takes a minute — the exact steps depend on your product:
 
-```
-/plugin marketplace add open-semantic-marketing-model/osmm
-/plugin install osmm@osmm
-```
+- **Claude Cowork (the app):** open **Customize → Plugins**, and under **Personal
+  plugins** click **+ → Add marketplace**, enter
+  `open-semantic-marketing-model/osmm`, then install the **osmm** plugin.
+- **Claude Code (the CLI):** run two commands —
 
-That installs all 18 builder skills. Hand one a real asset — a persona deck, an
-About page, a campaign brief — and it returns a canonical OSMM object.
+  ```
+  /plugin marketplace add open-semantic-marketing-model/osmm
+  /plugin install osmm@osmm
+  ```
+
+Either way you get all 18 builder skills. Hand one a real asset — a persona deck,
+an About page, a campaign brief — and it returns a canonical OSMM object.
 
 New to OSMM? Read **[`GETTING-STARTED.md`](GETTING-STARTED.md)** — a practical,
-non-technical guide for marketers. For install, update, and release details, see
-[`PLUGIN.md`](PLUGIN.md).
+non-technical guide for marketers. For the full install, update, and release
+details (including team-wide rollout), see [`PLUGIN.md`](PLUGIN.md).
 
 ## Why this exists
 

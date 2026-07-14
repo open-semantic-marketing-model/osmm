@@ -3,7 +3,9 @@
 The single source of truth for **what's done, what's in flight, and what's next**.
 For the sequencing rationale and milestones, see [`ROADMAP.md`](ROADMAP.md).
 
-**Last updated:** 2026-06-19 (v0.10: Phase 7 Measure-Learn-Optimize layer built — Performance Measurement, Customer Insight, Optimization Recommendation → Milestone F complete)
+**Last updated:** 2026-07-14 (docs: split plugin install instructions by product — Claude Cowork app UI vs. Claude Code CLI — in README, GETTING-STARTED, and PLUGIN)
+
+**Prior:** 2026-06-19 (v0.10: Phase 7 Measure-Learn-Optimize layer built — Performance Measurement, Customer Insight, Optimization Recommendation → Milestone F complete)
 
 **Progress at a glance**
 

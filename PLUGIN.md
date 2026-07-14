@@ -8,7 +8,34 @@ update it with one command as the standard evolves.
 
 ## Install
 
-Two commands in Claude (Claude Code or Cowork):
+OSMM installs the same way any Claude plugin does: you point Claude at this
+repository as a plugin marketplace, then install the `osmm` plugin from it. The
+**steps differ by product** — Claude Cowork uses its app UI, Claude Code uses
+slash commands. Pick your product below.
+
+Either way you get the same thing: all 18 builder skills, the canonical JSON
+Schemas they validate against, and the worked examples.
+
+### In Claude Cowork (the app)
+
+Cowork installs plugins through its interface — nothing to type:
+
+1. Open the **Customize** menu (left sidebar) and go to the **Plugins** tab.
+2. Under **Personal plugins**, click the **+** button, then **Add marketplace**.
+3. Enter the repository — `open-semantic-marketing-model/osmm` — and confirm.
+4. Find the **osmm** plugin in that marketplace, click **Install**, and
+   **Authorize** it.
+
+The plugin is active in your next conversation.
+
+> **Rolling it out for a team?** An admin can add OSMM once for the whole
+> organization under **Organization settings → Plugins → Add plugin → GitHub**,
+> using the same `open-semantic-marketing-model/osmm` repository. Members then
+> get it without adding the marketplace themselves.
+
+### In Claude Code (the CLI)
+
+Two commands:
 
 ```
 /plugin marketplace add open-semantic-marketing-model/osmm
@@ -16,20 +43,29 @@ Two commands in Claude (Claude Code or Cowork):
 ```
 
 The first registers this repository as a plugin marketplace. The second installs
-the `osmm` plugin — all 18 builder skills, the canonical JSON Schemas they
-validate against, and the worked examples.
+the `osmm` plugin. Run `/reload-plugins` (or restart Claude Code) to activate it
+in the current session. Prefer a menu? Run `/plugin` and use the **Marketplaces**
+and **Discover** tabs to do the same thing interactively.
 
 ## Stay up to date
+
+Clients receive a new version whenever the maintainers bump the plugin version
+(see [Releasing](#releasing-maintainers) below) — not on every commit, so the
+standard stays stable underneath them.
+
+**In Claude Cowork**, updates are handled for you: Cowork syncs the marketplace
+automatically when a new version is released. To pull the latest immediately,
+open the **Plugins** tab and click **Update** on the osmm marketplace.
+
+**In Claude Code**, update on demand:
 
 ```
 /plugin marketplace update osmm
 /plugin update osmm
 ```
 
-Run these to pull the latest released version of the standard. Clients receive a
-new version whenever the maintainers bump the plugin version (see
-[Releasing](#releasing-maintainers) below) — not on every commit, so the standard
-stays stable underneath them.
+The first refreshes the marketplace catalog; the second updates your installed
+plugin to the latest released version.
 
 ## What you get
 

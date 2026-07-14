@@ -47,16 +47,31 @@ They're plain files you own, in an open standard.
 
 ## Install (2 minutes)
 
-In Claude, run these two commands:
+How you install depends on which Claude you're using. Most marketers are in
+**Claude Cowork** (the app) — start there. If you use **Claude Code** (the
+command-line tool), skip to the second option.
+
+**In Claude Cowork (the app):**
+
+1. Open the **Customize** menu (left sidebar) and go to the **Plugins** tab.
+2. Under **Personal plugins**, click **+**, then **Add marketplace**.
+3. Enter `open-semantic-marketing-model/osmm` and confirm.
+4. Find the **osmm** plugin, click **Install**, and **Authorize** it.
+
+Updates are automatic — Cowork syncs new versions for you.
+
+**In Claude Code (the CLI):**
 
 ```
 /plugin marketplace add open-semantic-marketing-model/osmm
 /plugin install osmm@osmm
 ```
 
-That's it. You now have 18 builder skills. To get updates later, run
-`/plugin marketplace update osmm` then `/plugin update osmm`. Full details in
-[`PLUGIN.md`](PLUGIN.md).
+Then run `/reload-plugins`. To get updates later, run
+`/plugin marketplace update osmm` then `/plugin update osmm`.
+
+Either way, that's it — you now have 18 builder skills. Full details, including
+team-wide rollout, are in [`PLUGIN.md`](PLUGIN.md).
 
 ---
 
@@ -195,7 +210,7 @@ maintainer-led but open. See [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ## Next steps
 
-1. **Install the plugin** (two commands above).
+1. **Install the plugin** (steps above — the app UI, or two commands in the CLI).
 2. **Build your Business Context** from your own material.
 3. **Build a Persona** from your best persona research.
 4. **Ask for a creative brief** and watch it pull from both.
