@@ -18,12 +18,5 @@
     "campaign-strategy",
     "customer-journey",
     "measurement"
-  ],
-  "skills": [
-    "./skills/context",
-    "./skills/work-product",
-    "./skills/measurement",
-    "./skills/learning",
-    "./skills/artifacts"
   ]
 }
