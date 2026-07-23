@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://semantic-marketing.org/sitemap.xml

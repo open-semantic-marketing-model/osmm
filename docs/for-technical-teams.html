@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OSMM for technical teams — schema, objects &amp; architecture</title>
+<meta name="description" content="The technical view of OSMM: design principles, the five object categories, the relationship model, JSON examples, versioning, repo layout, and governance.">
+<link rel="canonical" href="https://semantic-marketing.org/for-technical-teams.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="OSMM — Open Semantic Marketing Model">
+<meta property="og:url" content="https://semantic-marketing.org/for-technical-teams.html">
+<meta property="og:title" content="OSMM for technical teams — schema, objects &amp; architecture">
+<meta property="og:description" content="Design principles, the five object categories, the relationship model, JSON examples, versioning, and governance.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OSMM for technical teams — schema, objects &amp; architecture">
+<meta name="twitter:description" content="Design principles, the five object categories, the relationship model, JSON examples, versioning, and governance.">
+<link rel="icon" href="assets/osmm-favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html"><img src="assets/osmm-mark.svg" alt="OSMM mark"><span class="wordmark">OSMM</span></a>
+    <nav class="nav-links">
+      <a href="index.html#what">What is OSMM</a>
+      <a href="for-marketing-leaders.html">For marketing leaders</a>
+      <a href="for-technical-teams.html">For technical teams</a>
+      <a href="for-agencies.html">For agencies</a>
+      <a href="https://github.com/Open-Semantic-Marketing-Model/osmm">GitHub</a>
+      <a class="nav-cta" href="index.html#contact">Get in touch</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">For technical teams</p>
+    <h1>Schema, objects &amp; architecture</h1>
+    <p>OSMM is an open-source schema and interoperability layer for the canonical marketing objects and the relationships between them — including the decision artifacts that today live in documents.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container prose">
+    <p class="kicker">The thesis</p>
+    <h2>Structured context is the path to scalable AI</h2>
+    <p>Decision work has never moved into the MarTech stack. It lives in unstructured artifacts: briefs in Word, personas in PDFs, audiences in Excel, journeys in Miro, keyword strategies as CSV exports disconnected from the content they serve. There's no standard for what these artifacts contain — no schema, no required fields, no relational links.</p>
+    <p>Free-text briefs and PDF decks don't compose. They consume tokens inefficiently, fragment context across systems, and force every workflow to be rebuilt bespoke. The path to efficient, scalable AI context runs through standard data structures — objects, metadata, taxonomies. That is what OSMM is.</p>
+  </div>
+</section>
+
+<section class="section-tint">
+  <div class="container prose" style="max-width:none">
+    <p class="kicker">Design principles</p>
+    <h2>Built AI-native, governed for stability</h2>
+    <div class="value-grid" style="margin-top:24px">
+      <div class="value"><h3>AI-native first</h3><p>Every object is machine-readable and structured to support agent prompts, orchestration, and automation — while staying human-understandable.</p></div>
+      <div class="value"><h3>Modular &amp; extensible</h3><p>Compose and extend without breaking compatibility.</p></div>
+      <div class="value"><h3>Technology-agnostic</h3><p>Operates across Salesforce, Adobe, Braze, HubSpot, CDPs, DAMs, and workflow systems.</p></div>
+      <div class="value"><h3>Backward-compatible</h3><p>Stable objects evolve under strict semver, with deprecation periods and migration guidance.</p></div>
+      <div class="value"><h3>Closed-loop by design</h3><p>Learning objects feed insights from measurement back into the durable context layer.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container prose">
+    <p class="kicker">Object scope</p>
+    <h2>Five categories, ~34 object types</h2>
+    <p>The model organizes around five object categories, each with a distinct lifecycle and read/write profile. A representative inventory spanning the seven workflow phases runs roughly 34 object types; the full registry lives in the schema repo.</p>
+    <p><strong>Context</strong> — durable, reusable business intelligence (Business Context, Brand Context, Audience, Persona, Keyword). High-read, low-write.<br>
+    <strong>Work products</strong> — structured outputs of decisions (Marketing Strategy, Campaign Strategy, Journey Strategy, Messaging Framework, Creative Brief, Content Strategy).<br>
+    <strong>Configuration</strong> — operational logic for orchestration (Journey Configuration, Personalization Configuration).<br>
+    <strong>Measurement</strong> — performance data structured for analysis (Campaign Measurement, Performance Measurement). Append-only.<br>
+    <strong>Learning</strong> — durable learning that updates context (Customer Insight, Offer / Creative / Journey Performance, Optimization Recommendation).</p>
+  </div>
+</section>
+
+<section class="section-tint">
+  <div class="container prose">
+    <p class="kicker">Relationships are the model</p>
+    <h2>The objects matter less than the links</h2>
+    <p>The canonical lineage is an invariant: every downstream action is traceable upstream to intent and investment, and every measured outcome is linkable to the objective that funded it.</p>
+    <pre><span class="s">Strategy &rarr; Initiative &rarr; Campaign &rarr; Audience &rarr; Offer &rarr;
+Creative &rarr; Channel Execution &rarr; Measurement &rarr; ROI</span></pre>
+    <p style="margin-top:20px">A second axis is the feedback loop: learning objects derived from measurement update context objects (Persona, Audience, Brand Context, Keyword). The graph is a cycle, not a pipeline — the longer it runs, the richer the context layer becomes.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container prose">
+    <p class="kicker">Example objects</p>
+    <h2>Typed pointers, not prose</h2>
+    <p>Every reference is a typed pointer to another object. An agent invoking a campaign can resolve the audience, fetch the budget, retrieve active creative, and execute against a coherent structure — without bespoke integration code per system.</p>
+    <pre><span class="k">{</span>
+  <span class="s">"object_type"</span>: <span class="s">"campaign"</span>,
+  <span class="s">"campaign_id"</span>: <span class="s">"CMP-1001"</span>,
+  <span class="s">"objective_id"</span>: <span class="s">"OBJ-200"</span>,
+  <span class="s">"audience_id"</span>: <span class="s">"AUD-101"</span>,
+  <span class="s">"offers"</span>: [<span class="s">"OFR-301"</span>],
+  <span class="s">"creative_modules"</span>: [<span class="s">"CRT-401"</span>, <span class="s">"CRT-402"</span>],
+  <span class="s">"channels"</span>: [<span class="s">"CH-email"</span>, <span class="s">"CH-paidsocial"</span>],
+  <span class="s">"measurement_framework_id"</span>: <span class="s">"M-101"</span>,
+  <span class="s">"status"</span>: <span class="s">"active"</span>
+<span class="k">}</span></pre>
+    <p style="margin-top:20px">A Customer Insight — a learning object generated from post-campaign measurement — proposes targeted, evidence-backed updates to a Persona, carrying a confidence score for human or automated review.</p>
+    <pre><span class="k">{</span>
+  <span class="s">"object_type"</span>: <span class="s">"customer_insight"</span>,
+  <span class="s">"target_object_id"</span>: <span class="s">"PER-lapsed_enterprise_buyer"</span>,
+  <span class="s">"proposed_updates"</span>: <span class="k">{</span>
+    <span class="s">"pain_points"</span>: <span class="k">{</span> <span class="s">"add"</span>: [<span class="s">"integration_complexity_anxiety"</span>] <span class="k">}</span>
+  <span class="k">}</span>,
+  <span class="s">"confidence"</span>: 0.82,
+  <span class="s">"status"</span>: <span class="s">"pending_review"</span>
+<span class="k">}</span></pre>
+  </div>
+</section>
+
+<section class="section-tint">
+  <div class="container prose">
+    <p class="kicker">Open-source architecture</p>
+    <h2>GitHub as source of truth</h2>
+    <p>Semantic versioning (MAJOR.MINOR.PATCH): major versions introduce breaking changes; minor versions add backward-compatible objects and fields; patches are documentation and corrections. Objects move through four lifecycle states — Draft, Proposed, Stable, Deprecated — and stable objects evolve under formal deprecation periods, not silent breaks.</p>
+    <pre><span class="s">osmm/</span>
+  schemas/
+  examples/
+  brand/
+  CONVENTION.md
+  GOVERNANCE.md
+  CHANGELOG.md
+  README.md</pre>
+  </div>
+</section>
+
+<section>
+  <div class="container prose">
+    <p class="kicker">Governance</p>
+    <h2>Maintainer-led, not consensus-paralyzed</h2>
+    <p>Marketing standards fragment quickly when consensus is the goal. The community submits pull requests, change requests, and proposed objects; a small, opinionated maintainer core — operators over theorists, drawn from CRM, MarTech, analytics, creative ops, and data engineering — approves changes. Credible vendor neutrality is non-negotiable.</p>
+    <div style="margin-top:30px">
+      <a class="btn btn-dark" href="https://github.com/Open-Semantic-Marketing-Model/osmm">View the repository</a>
+      <a class="btn btn-outline" href="index.html#contact">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot">
+      <a class="brand" href="index.html"><img src="assets/osmm-mark.svg" alt="OSMM mark" width="28" height="28"><span class="wordmark">OSMM</span></a>
+      <nav class="foot-links">
+        <a href="index.html#what">What is OSMM</a>
+        <a href="for-marketing-leaders.html">For marketing leaders</a>
+        <a href="for-technical-teams.html">For technical teams</a>
+        <a href="for-agencies.html">For agencies</a>
+        <a href="https://github.com/Open-Semantic-Marketing-Model/osmm">GitHub</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+    <p class="foot-legal">Open Semantic Marketing Model™. Schemas under Apache 2.0; documentation under CC BY 4.0. An open standard stewarded by Gather.</p>
+  </div>
+</footer>
+
+</body>
+</html>
