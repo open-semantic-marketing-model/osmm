@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OSMM — Hello World</title>
+  <style>
+    :root {
+      --osmm-navy: #0f1b35;
+      --osmm-mint-deep: #34c6a4;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--osmm-navy);
+      color: #ffffff;
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      text-align: center;
+    }
+    h1 {
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 500;
+      margin: 0;
+    }
+    .accent { color: var(--osmm-mint-deep); }
+    p {
+      margin-top: 1rem;
+      color: #9fb0c9;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Hello, <span class="accent">World</span></h1>
+    <p>Open Semantic Marketing Model</p>
+  </main>
+</body>
+</html>
