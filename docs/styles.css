@@ -41,6 +41,7 @@ img,svg{display:block}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:500}
 .brand img{width:30px;height:30px}
 .brand .wordmark{font-family:"IBM Plex Mono",monospace;font-weight:500;font-size:20px;letter-spacing:.01em;color:var(--navy)}
+.brand .brand-lockup{width:auto;height:40px}
 .nav-links{display:flex;gap:22px;margin-left:auto;align-items:center}
 .nav-links a{font-size:14.5px;text-decoration:none;color:var(--desc-gray);transition:color .15s}
 .nav-links a:hover{color:var(--navy)}
