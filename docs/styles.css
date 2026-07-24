@@ -64,6 +64,27 @@ img,svg{display:block}
 .nav-toggle-cb:checked ~ .nav-toggle .bars::before{transform:translateY(7px) rotate(45deg)}
 .nav-toggle-cb:checked ~ .nav-toggle .bars::after{transform:translateY(-7px) rotate(-45deg)}
 
+/* nav dropdown */
+.nav-item.has-dropdown{position:relative;align-self:stretch;display:flex;align-items:center}
+.dd-cb{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+.dd-toggle{font-size:14.5px;color:var(--desc-gray);cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:color .15s;user-select:none;white-space:nowrap}
+.dd-toggle:hover{color:var(--navy)}
+.dd-caret{font-size:10px;line-height:1;transition:transform .18s}
+.nav-item.has-dropdown:hover .dd-caret,
+.dd-cb:checked ~ .dd-toggle .dd-caret{transform:rotate(180deg)}
+.dropdown{
+  position:absolute;top:100%;left:0;margin-top:6px;z-index:60;
+  display:none;flex-direction:column;gap:2px;min-width:212px;
+  background:#fff;border:1px solid var(--line);border-radius:12px;
+  padding:8px;box-shadow:0 14px 30px rgba(15,27,53,.12);
+}
+.nav-item.has-dropdown::after{content:"";position:absolute;top:100%;left:0;right:0;height:8px}
+.nav-item.has-dropdown:hover .dropdown,
+.nav-item.has-dropdown:focus-within .dropdown,
+.dd-cb:checked ~ .dropdown{display:flex}
+.dropdown a{padding:9px 12px;border-radius:8px;font-size:14px;color:var(--desc-gray);text-decoration:none;white-space:nowrap;transition:background .12s,color .12s}
+.dropdown a:hover{background:var(--tint);color:var(--navy)}
+
 /* ---------- buttons ---------- */
 .btn{display:inline-block;padding:12px 22px;border-radius:999px;text-decoration:none;font-size:15px;font-weight:500;transition:all .15s;border:1.5px solid transparent;cursor:pointer}
 .btn-primary{background:var(--mint-deep);color:var(--navy)}
@@ -232,6 +253,12 @@ form.contact{display:grid;gap:14px}
   .nav-links a{padding:13px 24px;font-size:16px;border-top:1px solid var(--line)}
   .nav-links a:first-child{border-top:none}
   .nav-links .nav-cta{margin:10px 24px 6px;text-align:center;border-top:none}
+  .nav-item.has-dropdown{flex-direction:column;align-items:stretch;align-self:auto;width:100%}
+  .nav-item.has-dropdown::after{display:none}
+  .dd-caret{display:none}
+  .dd-toggle{padding:13px 24px;font-size:16px;border-top:1px solid var(--line);color:var(--navy)}
+  .dropdown{position:static;display:flex !important;margin:0;min-width:0;border:none;border-radius:0;box-shadow:none;padding:0;background:var(--tint)}
+  .dropdown a{padding:12px 24px 12px 40px;border-top:1px solid var(--line);font-size:15px}
   .define .grid,.cs-grid,.aud-grid,.contact-wrap,.plugin-wrap{grid-template-columns:1fr}
   section{padding:54px 0}
   .row2{grid-template-columns:1fr}

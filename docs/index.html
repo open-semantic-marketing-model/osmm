@@ -31,9 +31,17 @@
     <label class="nav-toggle" for="nav-toggle" aria-label="Toggle navigation menu"><span class="bars"></span></label>
     <nav class="nav-links">
       <a href="#what">What is OSMM</a>
-      <a href="for-marketing-leaders.html">For marketing leaders</a>
+      <a href="for-marketing-leaders.html">For CMOs</a>
       <a href="for-technical-teams.html">For technical teams</a>
-      <a href="for-agencies.html">For agencies</a>
+      <div class="nav-item has-dropdown">
+        <input type="checkbox" id="dd-creatives" class="dd-cb">
+        <label class="dd-toggle" for="dd-creatives">For creatives <span class="dd-caret" aria-hidden="true">&#9662;</span></label>
+        <div class="dropdown">
+          <a href="for-brand-teams.html">For brand teams</a>
+          <a href="for-creative-teams.html">For creative teams</a>
+          <a href="for-agencies.html">For agencies</a>
+        </div>
+      </div>
       <a href="plugins.html">Install</a>
       <a href="https://github.com/Open-Semantic-Marketing-Model/osmm">GitHub</a>
       <a class="nav-cta" href="#contact">Get in touch</a>
@@ -245,10 +253,10 @@
   </div>
 </section>
 
-<section class="section-tint">
+<section class="section-tint" id="ways">
   <div class="container">
-    <p class="kicker">Go deeper</p>
-    <h2>Three ways into OSMM</h2>
+    <p class="kicker">Who it's for</p>
+    <h2>Five ways into OSMM</h2>
     <div class="aud-grid">
       <a class="aud" href="for-marketing-leaders.html">
         <span class="pill">For marketing leaders</span>
@@ -262,10 +270,22 @@
         <p>Object categories, the relationship model, real JSON examples, versioning, repo layout, and governance — everything you need to build against OSMM.</p>
         <span class="go">Read the technical view &rarr;</span>
       </a>
+      <a class="aud" href="for-brand-teams.html">
+        <span class="pill">For brand teams</span>
+        <h3>Make your brand machine-readable</h3>
+        <p>Turn your design standards and tone of voice into one Brand Context object — so on-brand is the default across every team, agency, and AI agent, not a review-cycle catch.</p>
+        <span class="go">Read the brand view &rarr;</span>
+      </a>
+      <a class="aud" href="for-creative-teams.html">
+        <span class="pill">For creative teams</span>
+        <h3>Run an AI-native studio</h3>
+        <p>Structure the creative decision layer — briefs, personas, journeys — so your studio reuses context, runs reliable AI, and ships faster without losing the craft.</p>
+        <span class="go">Read the studio view &rarr;</span>
+      </a>
       <a class="aud" href="for-agencies.html">
         <span class="pill">For agencies</span>
-        <h3>Deliver AI-ready work</h3>
-        <p>Turn the brand systems, personas, and journeys you already produce into structured objects your clients' teams and agents can use — not another deck.</p>
+        <h3>Become the machine-readable agency</h3>
+        <p>Deliver the brand systems, personas, and journeys you already produce as AI-ready objects that drop into your client's stack — a competitive wedge, not another deck.</p>
         <span class="go">Read the agency view &rarr;</span>
       </a>
     </div>
@@ -374,6 +394,8 @@
         <a href="#what">What is OSMM</a>
         <a href="for-marketing-leaders.html">For marketing leaders</a>
         <a href="for-technical-teams.html">For technical teams</a>
+        <a href="for-brand-teams.html">For brand teams</a>
+        <a href="for-creative-teams.html">For creative teams</a>
         <a href="for-agencies.html">For agencies</a>
         <a href="plugins.html">Install the plugin</a>
         <a href="https://github.com/Open-Semantic-Marketing-Model/osmm">GitHub</a>
