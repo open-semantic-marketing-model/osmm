@@ -27,11 +27,14 @@
     <a class="brand" href="index.html">
       <img class="brand-lockup" src="assets/osmm-primary-horizontal.svg" alt="OSMM — Open Semantic Marketing Model">
     </a>
+    <input class="nav-toggle-cb" type="checkbox" id="nav-toggle">
+    <label class="nav-toggle" for="nav-toggle" aria-label="Toggle navigation menu"><span class="bars"></span></label>
     <nav class="nav-links">
       <a href="#what">What is OSMM</a>
       <a href="for-marketing-leaders.html">For marketing leaders</a>
       <a href="for-technical-teams.html">For technical teams</a>
       <a href="for-agencies.html">For agencies</a>
+      <a href="plugins.html">Install</a>
       <a href="https://github.com/Open-Semantic-Marketing-Model/osmm">GitHub</a>
       <a class="nav-cta" href="#contact">Get in touch</a>
     </nav>
@@ -99,44 +102,146 @@
   </div>
 </section>
 
-<section id="how">
+<section id="examples">
   <div class="container">
-    <p class="kicker">How it works</p>
-    <h2>Five kinds of objects, one connected chain</h2>
-    <p class="lead-text">OSMM organizes marketing's decision work into five object categories, connected by an explicit chain from strategy to ROI — and a learning loop that feeds results back into context, so every campaign starts smarter than the last.</p>
-    <div class="cat-grid">
-      <div class="cat"><div class="n">01</div><h3>Context</h3><p>Durable business intelligence — business, brand, audience, persona, keywords. High-read, slow-changing.</p></div>
-      <div class="cat"><div class="n">02</div><h3>Work products</h3><p>The decisions that today live in documents — strategy, brief, journey, messaging framework.</p></div>
-      <div class="cat"><div class="n">03</div><h3>Configuration</h3><p>The operational logic that makes the work executable at runtime.</p></div>
-      <div class="cat"><div class="n">04</div><h3>Measurement</h3><p>Performance data structured for analysis. Append-only.</p></div>
-      <div class="cat"><div class="n">05</div><h3>Learning</h3><p>Insights that update the context layer — the part that makes the system compound.</p></div>
-    </div>
+    <p class="kicker">Make the decisions machine-readable</p>
+    <h2>Every marketing decision is trapped in a document. OSMM sets it free.</h2>
+    <p class="lead-text">A persona in a 40-slide deck. An audience in a saved segment nobody else can see. A brief in a Word doc in someone's inbox. Each is a real decision your team already made — locked in a format no other system, and no AI agent, can reliably read. OSMM turns each one into a small, typed object: a person reads it at a glance, an agent acts on it directly.</p>
+    <div class="xform-grid">
 
-    <div class="lineage">
-      <div class="label">The canonical lineage</div>
-      <div class="chain">
-        <span class="node">Strategy</span><span class="arrow">&rarr;</span>
-        <span class="node">Campaign</span><span class="arrow">&rarr;</span>
-        <span class="node">Audience</span><span class="arrow">&rarr;</span>
-        <span class="node">Offer</span><span class="arrow">&rarr;</span>
-        <span class="node">Creative</span><span class="arrow">&rarr;</span>
-        <span class="node">Channel</span><span class="arrow">&rarr;</span>
-        <span class="node">Measurement</span><span class="arrow">&rarr;</span>
-        <span class="node">ROI</span>
-      </div>
-      <p class="loop"><span class="mono">&#8635; Learning loop:</span> measurement updates context (persona, audience, brand, keywords) — so the graph is a cycle, not a pipeline.</p>
-    </div>
-
-    <pre><span class="k">{</span>
+      <div class="xform">
+        <div class="xform-head">
+          <p class="dec">The creative brief</p>
+          <div class="xform-today"><span class="tag">Today</span> A Word doc emailed to the agency</div>
+        </div>
+        <div class="xform-arrow">&darr; as an OSMM object</div>
+        <pre><span class="k">{</span>
   <span class="s">"object_type"</span>: <span class="s">"creative_brief"</span>,
   <span class="s">"brief_id"</span>: <span class="s">"BR-201"</span>,
   <span class="s">"campaign_id"</span>: <span class="s">"CMP-1001"</span>,
   <span class="s">"audience_id"</span>: <span class="s">"AUD-101"</span>,
-  <span class="s">"core_proposition"</span>: <span class="s">"Reactivate lapsed members with a seasonal offer"</span>,
-  <span class="s">"deliverables"</span>: [<span class="s">"CRT-401"</span>, <span class="s">"CRT-402"</span>],
-  <span class="s">"approval_chain"</span>: [<span class="s">"USR-cmo"</span>, <span class="s">"USR-legal"</span>],
+  <span class="s">"core_proposition"</span>: <span class="s">"Win back lapsed members with a seasonal offer"</span>,
   <span class="s">"status"</span>: <span class="s">"approved"</span>
 <span class="k">}</span></pre>
+      </div>
+
+      <div class="xform">
+        <div class="xform-head">
+          <p class="dec">The customer persona</p>
+          <div class="xform-today"><span class="tag">Today</span> A 40-slide research deck from two years ago</div>
+        </div>
+        <div class="xform-arrow">&darr; as an OSMM object</div>
+        <pre><span class="k">{</span>
+  <span class="s">"object_type"</span>: <span class="s">"persona"</span>,
+  <span class="s">"persona_id"</span>: <span class="s">"PER-101"</span>,
+  <span class="s">"name"</span>: <span class="s">"Deal-savvy value seeker"</span>,
+  <span class="s">"motivations"</span>: [<span class="s">"stretch the budget"</span>, <span class="s">"not overpay"</span>],
+  <span class="s">"objections"</span>: [<span class="s">"fears quality drops with price"</span>],
+  <span class="s">"language"</span>: [<span class="s">"worth it"</span>, <span class="s">"no-brainer"</span>]
+<span class="k">}</span></pre>
+      </div>
+
+      <div class="xform">
+        <div class="xform-head">
+          <p class="dec">The target audience</p>
+          <div class="xform-today"><span class="tag">Today</span> A saved segment plus a spreadsheet</div>
+        </div>
+        <div class="xform-arrow">&darr; as an OSMM object</div>
+        <pre><span class="k">{</span>
+  <span class="s">"object_type"</span>: <span class="s">"audience"</span>,
+  <span class="s">"audience_id"</span>: <span class="s">"AUD-101"</span>,
+  <span class="s">"persona_id"</span>: <span class="s">"PER-101"</span>,
+  <span class="s">"definition"</span>: <span class="s">"Lapsed members, 90+ days inactive"</span>,
+  <span class="s">"includes"</span>: [<span class="s">"prior_purchases &gt;= 1"</span>, <span class="s">"email_opt_in = true"</span>],
+  <span class="s">"excludes"</span>: [<span class="s">"active_subscription = true"</span>],
+  <span class="s">"est_size"</span>: 48200
+<span class="k">}</span></pre>
+      </div>
+
+      <div class="xform">
+        <div class="xform-head">
+          <p class="dec">The customer journey</p>
+          <div class="xform-today"><span class="tag">Today</span> Sticky notes on a Miro board</div>
+        </div>
+        <div class="xform-arrow">&darr; as an OSMM object</div>
+        <pre><span class="k">{</span>
+  <span class="s">"object_type"</span>: <span class="s">"journey"</span>,
+  <span class="s">"journey_id"</span>: <span class="s">"JNY-winback"</span>,
+  <span class="s">"audience_id"</span>: <span class="s">"AUD-101"</span>,
+  <span class="s">"goal"</span>: <span class="s">"Reactivate lapsed members"</span>,
+  <span class="s">"entry_trigger"</span>: <span class="s">"inactivity_days = 90"</span>,
+  <span class="s">"stages"</span>: [<span class="s">"re-engage"</span>, <span class="s">"offer"</span>, <span class="s">"convert"</span>],
+  <span class="s">"channels"</span>: [<span class="s">"email"</span>, <span class="s">"paid_social"</span>, <span class="s">"sms"</span>]
+<span class="k">}</span></pre>
+      </div>
+
+      <div class="xform">
+        <div class="xform-head">
+          <p class="dec">The brand design standard</p>
+          <div class="xform-today"><span class="tag">Today</span> A 60-page brand guidelines PDF</div>
+        </div>
+        <div class="xform-arrow">&darr; as an OSMM object</div>
+        <pre><span class="k">{</span>
+  <span class="s">"object_type"</span>: <span class="s">"brand_context"</span>,
+  <span class="s">"brand_id"</span>: <span class="s">"BRD-101"</span>,
+  <span class="s">"facet"</span>: <span class="s">"design"</span>,
+  <span class="s">"palette"</span>: <span class="k">{</span> <span class="s">"navy"</span>: <span class="s">"#0f1b35"</span>, <span class="s">"mint"</span>: <span class="s">"#34c6a4"</span> <span class="k">}</span>,
+  <span class="s">"typography"</span>: [<span class="s">"IBM Plex Sans"</span>, <span class="s">"IBM Plex Mono"</span>],
+  <span class="s">"logo_clearspace"</span>: <span class="s">"1x cap height"</span>,
+  <span class="s">"min_logo_px"</span>: 24
+<span class="k">}</span></pre>
+      </div>
+
+      <div class="xform">
+        <div class="xform-head">
+          <p class="dec">The brand tone and voice</p>
+          <div class="xform-today"><span class="tag">Today</span> A slide nobody applies the same way twice</div>
+        </div>
+        <div class="xform-arrow">&darr; as an OSMM object</div>
+        <pre><span class="k">{</span>
+  <span class="s">"object_type"</span>: <span class="s">"brand_context"</span>,
+  <span class="s">"brand_id"</span>: <span class="s">"BRD-101"</span>,
+  <span class="s">"facet"</span>: <span class="s">"voice"</span>,
+  <span class="s">"voice"</span>: [<span class="s">"plain-spoken"</span>, <span class="s">"confident"</span>, <span class="s">"no hype"</span>],
+  <span class="s">"avoid"</span>: [<span class="s">"jargon"</span>, <span class="s">"exclamation marks"</span>],
+  <span class="s">"say"</span>: <span class="s">"Here's what changed."</span>,
+  <span class="s">"do_not"</span>: <span class="s">"Revolutionary breakthrough!"</span>
+<span class="k">}</span></pre>
+      </div>
+
+    </div>
+    <p class="xform-note"><span class="mono">Notice the IDs.</span> The brief points to a campaign and an audience; the audience points to a persona; the journey points to the same audience; the design standard and the tone of voice are one brand object read two ways. Follow the pointers and an AI agent walks the whole chain — without you re-pasting a single document. That is what "a machine-readable decision layer" means in practice.</p>
+  </div>
+</section>
+
+<section class="section-navy" id="plugins">
+  <div class="container">
+    <p class="kicker">Off the shelf, ready to install</p>
+    <h2>You don't write these by hand. A Claude plugin builds them for you.</h2>
+    <p class="lead-text">OSMM ships as an installable Claude plugin — 18 builder skills that turn the decks, docs, and spreadsheets you already have into structured objects. Install it once, hand Claude a persona deck, and say <em>"turn this into an OSMM object."</em> The right builder runs, asks a couple of clarifying questions, and writes the file. You review it — you never touch JSON.</p>
+    <div class="plugin-wrap">
+      <div>
+        <ol class="plugin-steps">
+          <li><strong>Add the marketplace.</strong> Point Claude at the OSMM repo — <span class="mono">open-semantic-marketing-model/osmm</span>. In Claude Cowork it's a few clicks in the Plugins tab; in Claude Code it's one command.</li>
+          <li><strong>Install &amp; authorize the plugin.</strong> All 18 builders, the JSON Schemas they validate against, and the worked examples come with it.</li>
+          <li><strong>Start building.</strong> Feed a builder real source material — Context objects first, work products next — and review what it writes back.</li>
+        </ol>
+        <div class="plugin-cta">
+          <a class="btn btn-primary" href="plugins.html">Installation instructions</a>
+          <a class="btn btn-ghost" href="https://github.com/Open-Semantic-Marketing-Model/osmm">View on GitHub</a>
+        </div>
+      </div>
+      <div class="plugin-card">
+        <h3>18 builders, five categories</h3>
+        <div class="plugin-cats">
+          <div class="plugin-cat"><span class="c">Context</span><span>Business, Brand, Product, Persona, Audience</span></div>
+          <div class="plugin-cat"><span class="c">Work product</span><span>Strategy, Campaign, Journey, Creative, Content, Offer, Measurement, Experience</span></div>
+          <div class="plugin-cat"><span class="c">Measurement</span><span>Performance Measurement</span></div>
+          <div class="plugin-cat"><span class="c">Learning</span><span>Customer Insight, Optimization Recommendation</span></div>
+          <div class="plugin-cat"><span class="c">Artifacts</span><span>Creative Brief composer</span></div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -189,6 +294,47 @@
   </div>
 </section>
 
+<section id="how" class="section-tint">
+  <div class="container">
+    <p class="kicker">How it works</p>
+    <h2>Five kinds of objects, one connected chain</h2>
+    <p class="lead-text">OSMM organizes marketing's decision work into five object categories, connected by an explicit chain from strategy to ROI — and a learning loop that feeds results back into context, so every campaign starts smarter than the last.</p>
+    <div class="cat-grid">
+      <div class="cat"><div class="n">01</div><h3>Context</h3><p>Durable business intelligence — business, brand, audience, persona, keywords. High-read, slow-changing.</p></div>
+      <div class="cat"><div class="n">02</div><h3>Work products</h3><p>The decisions that today live in documents — strategy, brief, journey, messaging framework.</p></div>
+      <div class="cat"><div class="n">03</div><h3>Configuration</h3><p>The operational logic that makes the work executable at runtime.</p></div>
+      <div class="cat"><div class="n">04</div><h3>Measurement</h3><p>Performance data structured for analysis. Append-only.</p></div>
+      <div class="cat"><div class="n">05</div><h3>Learning</h3><p>Insights that update the context layer — the part that makes the system compound.</p></div>
+    </div>
+
+    <div class="lineage">
+      <div class="label">The canonical lineage</div>
+      <div class="chain">
+        <span class="node">Strategy</span><span class="arrow">&rarr;</span>
+        <span class="node">Campaign</span><span class="arrow">&rarr;</span>
+        <span class="node">Audience</span><span class="arrow">&rarr;</span>
+        <span class="node">Offer</span><span class="arrow">&rarr;</span>
+        <span class="node">Creative</span><span class="arrow">&rarr;</span>
+        <span class="node">Channel</span><span class="arrow">&rarr;</span>
+        <span class="node">Measurement</span><span class="arrow">&rarr;</span>
+        <span class="node">ROI</span>
+      </div>
+      <p class="loop"><span class="mono">&#8635; Learning loop:</span> measurement updates context (persona, audience, brand, keywords) — so the graph is a cycle, not a pipeline.</p>
+    </div>
+
+    <pre><span class="k">{</span>
+  <span class="s">"object_type"</span>: <span class="s">"creative_brief"</span>,
+  <span class="s">"brief_id"</span>: <span class="s">"BR-201"</span>,
+  <span class="s">"campaign_id"</span>: <span class="s">"CMP-1001"</span>,
+  <span class="s">"audience_id"</span>: <span class="s">"AUD-101"</span>,
+  <span class="s">"core_proposition"</span>: <span class="s">"Reactivate lapsed members with a seasonal offer"</span>,
+  <span class="s">"deliverables"</span>: [<span class="s">"CRT-401"</span>, <span class="s">"CRT-402"</span>],
+  <span class="s">"approval_chain"</span>: [<span class="s">"USR-cmo"</span>, <span class="s">"USR-legal"</span>],
+  <span class="s">"status"</span>: <span class="s">"approved"</span>
+<span class="k">}</span></pre>
+  </div>
+</section>
+
 <section id="contact">
   <div class="container">
     <div class="contact-wrap">
@@ -229,6 +375,7 @@
         <a href="for-marketing-leaders.html">For marketing leaders</a>
         <a href="for-technical-teams.html">For technical teams</a>
         <a href="for-agencies.html">For agencies</a>
+        <a href="plugins.html">Install the plugin</a>
         <a href="https://github.com/Open-Semantic-Marketing-Model/osmm">GitHub</a>
         <a href="#contact">Contact</a>
       </nav>

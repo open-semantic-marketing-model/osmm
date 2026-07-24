@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Install the OSMM plugin — builders for Claude that turn your docs into objects</title>
+<meta name="description" content="OSMM ships as a Claude plugin: 18 builder skills, the JSON Schemas they validate against, and worked examples. Install in Claude Cowork in two minutes, or Claude Code in two commands.">
+<link rel="canonical" href="https://semantic-marketing.org/plugins.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="OSMM — Open Semantic Marketing Model">
+<meta property="og:url" content="https://semantic-marketing.org/plugins.html">
+<meta property="og:title" content="Install the OSMM plugin">
+<meta property="og:description" content="Off-the-shelf builder skills for Claude that turn your decks, docs, and spreadsheets into structured OSMM objects.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Install the OSMM plugin">
+<meta name="twitter:description" content="Off-the-shelf builder skills for Claude that turn your decks, docs, and spreadsheets into structured OSMM objects.">
+<link rel="icon" href="assets/osmm-favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html"><img src="assets/osmm-mark.svg" alt="OSMM mark"><span class="wordmark">OSMM</span></a>
+    <input class="nav-toggle-cb" type="checkbox" id="nav-toggle">
+    <label class="nav-toggle" for="nav-toggle" aria-label="Toggle navigation menu"><span class="bars"></span></label>
+    <nav class="nav-links">
+      <a href="index.html#what">What is OSMM</a>
+      <a href="for-marketing-leaders.html">For marketing leaders</a>
+      <a href="for-technical-teams.html">For technical teams</a>
+      <a href="for-agencies.html">For agencies</a>
+      <a href="plugins.html">Install</a>
+      <a href="https://github.com/Open-Semantic-Marketing-Model/osmm">GitHub</a>
+      <a class="nav-cta" href="index.html#contact">Get in touch</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Install the plugin</p>
+    <h1>Turn your docs into objects — without writing a line of JSON</h1>
+    <p>Everything OSMM ships as one Claude plugin: 18 builder skills, the canonical JSON Schemas they validate against, and the worked examples. Two minutes in Claude Cowork, or two commands in Claude Code.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <p class="kicker">What you get</p>
+    <h2>One install, the whole standard</h2>
+    <div class="value-grid" style="margin-top:28px">
+      <div class="value"><div class="num">18</div><h3>Builder skills</h3><p>One builder per object — Context, Work Product, Measurement, Learning, and the Creative Brief composer. Trigger-rich, so a plain-English request invokes the right one.</p></div>
+      <div class="value"><div class="num">JSON</div><h3>Canonical Schemas</h3><p>Every object validates against its schema, so what a builder writes is well-formed and portable — plain files you own, in an open standard.</p></div>
+      <div class="value"><div class="num">2</div><h3>Worked example sets</h3><p>A complete B2C library and a parallel B2B library, built from public sources, so you can read real objects before building your own.</p></div>
+      <div class="value"><div class="num">&#8635;</div><h3>One-command updates</h3><p>Versioned under semver. You get a new release when maintainers ship one — not on every commit — so the standard stays stable underneath you.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-tint">
+  <div class="container prose" style="max-width:none">
+    <p class="kicker">In Claude Cowork (the app)</p>
+    <h2>Four clicks, nothing to type</h2>
+    <p>Most marketers are in Claude Cowork. Cowork installs plugins through its interface:</p>
+    <ol>
+      <li>Open the <strong>Customize</strong> menu (left sidebar) and go to the <strong>Plugins</strong> tab.</li>
+      <li>Under <strong>Personal plugins</strong>, click <strong>+</strong>, then <strong>Add marketplace</strong>.</li>
+      <li>Enter the repository — <code class="inline">open-semantic-marketing-model/osmm</code> — and confirm.</li>
+      <li>Find the <strong>osmm</strong> plugin, click <strong>Install</strong>, and <strong>Authorize</strong> it.</li>
+    </ol>
+    <p>The plugin is active in your next conversation. Updates are handled for you — Cowork syncs the marketplace when a new version is released.</p>
+    <div class="value" style="border-left-color:var(--mint-deep);margin-top:8px">
+      <h3>Rolling it out for a team?</h3>
+      <p style="color:var(--desc-gray)">An admin can add OSMM once for the whole organization under <strong>Organization settings &rarr; Plugins &rarr; Add plugin &rarr; GitHub</strong>, using the same <code class="inline">open-semantic-marketing-model/osmm</code> repository. Members get it without adding the marketplace themselves.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container prose">
+    <p class="kicker">In Claude Code (the CLI)</p>
+    <h2>Two commands</h2>
+    <p>The first registers this repository as a plugin marketplace; the second installs the plugin.</p>
+    <pre>/plugin marketplace add open-semantic-marketing-model/osmm
+/plugin install osmm@osmm</pre>
+    <p style="margin-top:20px">Run <code class="inline">/reload-plugins</code> (or restart Claude Code) to activate it in the current session. Prefer a menu? Run <code class="inline">/plugin</code> and use the <strong>Marketplaces</strong> and <strong>Discover</strong> tabs to do the same thing interactively.</p>
+    <p><strong>To update later:</strong></p>
+    <pre>/plugin marketplace update osmm
+/plugin update osmm</pre>
+  </div>
+</section>
+
+<section class="section-navy">
+  <div class="container">
+    <p class="kicker">Your first object, in five minutes</p>
+    <h2>Structure once, compose forever</h2>
+    <p class="lead-text">You never write these files by hand. You hand Claude a source document, and a builder writes the object. Start with Business Context — it's the foundation everything else references.</p>
+    <ol class="plugin-steps" style="margin-top:26px">
+      <li>Grab something real that describes your company — an About page, a pitch deck, a one-pager.</li>
+      <li>Hand it to Claude and say: <span class="mono">"Build an OSMM business context object from this."</span></li>
+      <li>Claude picks the right builder, asks a few clarifying questions, and writes <span class="mono">BUSINESS-CONTEXT_&lt;you&gt;.json</span>.</li>
+      <li>Read it and fix anything that's wrong — it's your context. Then do a <strong>Persona</strong> the same way.</li>
+    </ol>
+    <p class="lead-text" style="margin-top:22px">The one rule that makes this work: <strong style="color:#fff">build Context before Work Product.</strong> Context objects (Business, Brand, Product, Persona, Audience) are the durable layer everything else points at. Five Context objects is a realistic, high-value first project.</p>
+    <div class="plugin-cta">
+      <a class="btn btn-primary" href="https://github.com/Open-Semantic-Marketing-Model/osmm/blob/main/GETTING-STARTED.md">Full getting-started guide</a>
+      <a class="btn btn-ghost" href="https://github.com/Open-Semantic-Marketing-Model/osmm">View on GitHub</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container prose">
+    <p class="kicker">Questions</p>
+    <h2>The short version</h2>
+    <p><strong>Do I need to build all 18 objects?</strong> No. Most teams build five Context objects and stop — that's where most of the leverage is. Add work-product objects when a real campaign needs them.</p>
+    <p><strong>Do I need to know JSON?</strong> No. You need to be able to read a structured document and tell whether it's right about your business.</p>
+    <p><strong>Does it replace my MarTech stack?</strong> No. OSMM is the decision layer that sits above it — the structured brief your tools and agents read from.</p>
+    <div style="margin-top:30px">
+      <a class="btn btn-dark" href="index.html#contact">Talk to us</a>
+      <a class="btn btn-outline" href="index.html#examples">See what an object looks like</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot">
+      <a class="brand" href="index.html"><img src="assets/osmm-mark.svg" alt="OSMM mark" width="28" height="28"><span class="wordmark">OSMM</span></a>
+      <nav class="foot-links">
+        <a href="index.html#what">What is OSMM</a>
+        <a href="for-marketing-leaders.html">For marketing leaders</a>
+        <a href="for-technical-teams.html">For technical teams</a>
+        <a href="for-agencies.html">For agencies</a>
+        <a href="plugins.html">Install the plugin</a>
+        <a href="https://github.com/Open-Semantic-Marketing-Model/osmm">GitHub</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+    <p class="foot-legal">Open Semantic Marketing Model&trade;. Schemas under Apache 2.0; documentation under CC BY 4.0. An open standard stewarded by Gather.</p>
+  </div>
+</footer>
+
+</body>
+</html>
