@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OSMM for brand teams — make your brand machine-readable, so it can't drift</title>
-<meta name="description" content="Turn your design standards and tone of voice into a single machine-readable Brand Context object — so on-brand is the default across every team, agency, and AI agent.">
+<meta name="description" content="Turn your tone of voice and your design system into two paired machine-readable objects — so on-brand is the default across every team, agency, and AI agent.">
 <link rel="canonical" href="https://semantic-marketing.org/for-brand-teams.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="OSMM — Open Semantic Marketing Model">
 <meta property="og:url" content="https://semantic-marketing.org/for-brand-teams.html">
 <meta property="og:title" content="OSMM for brand teams — make your brand machine-readable, so it can't drift">
-<meta property="og:description" content="Your design system and tone of voice as one structured object every team, agency, and AI agent references.">
+<meta property="og:description" content="Your tone of voice and your design system as two paired, structured objects every team, agency, and AI agent references.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="OSMM for brand teams — make your brand machine-readable, so it can't drift">
-<meta name="twitter:description" content="Your design system and tone of voice as one structured object every team, agency, and AI agent references.">
+<meta name="twitter:description" content="Your tone of voice and your design system as two paired, structured objects every team, agency, and AI agent references.">
 <link rel="icon" href="assets/osmm-favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -71,9 +71,10 @@
 <section>
   <div class="container prose">
     <p class="kicker">What OSMM does</p>
-    <h2>One Brand Context object, read the same way by everyone</h2>
-    <p>OSMM turns your design standard and your tone of voice into a single machine-readable Brand Context object: palette, typography, logo usage, and clear-space rules alongside voice attributes, reading level, and explicit do-and-don't language. It is human-readable, so your team uses it — and machine-readable, so every tool and agent grounds on it.</p>
-    <p>The design standard and the voice are two facets of the same object. Every downstream asset, campaign, and AI workflow references it by ID. On-brand stops being something a reviewer catches at the end and becomes a property of the inputs — enforced by structure, not vigilance.</p>
+    <h2>Two paired objects, read the same way by everyone</h2>
+    <p>OSMM splits your brand along the line your own teams already work on. The <strong>Brand Context</strong> object holds how the brand <em>sounds</em>: voice principles, tone, messaging pillars, the words you will and won't say. The <strong>Design System</strong> object holds how it <em>looks</em>: marks and misuse rules, palette with semantic roles, typography with licensing, art direction, motion, and accessibility standards.</p>
+    <p>They are two objects rather than one because they have different owners, change on different cadences, and get read by different tools. A copy generator needs your voice principles and guardrails; a layout or asset generator needs your palette and type scale. Each loads only what it needs.</p>
+    <p>They pair one-to-one on the same identifier — <span class="mono">BRC-acme</span> and <span class="mono">DSY-acme</span> — so together they are the whole brand. Every downstream asset, campaign, and AI workflow references them by ID. On-brand stops being something a reviewer catches at the end and becomes a property of the inputs — enforced by structure, not vigilance.</p>
   </div>
 </section>
 
@@ -83,7 +84,7 @@
     <h2>Consistency you can enforce, not just police</h2>
     <div class="value-grid" style="margin-top:28px">
       <div class="value"><div class="num">01</div><h3>Consistency by structure</h3><p>Your brand becomes an input every system reads, not a rule every person has to remember. On-brand by default.</p></div>
-      <div class="value"><div class="num">02</div><h3>Guardrails for AI</h3><p>Agents and content tools ground on your Brand Context object — so generated work starts on-brand instead of drifting from a loose prompt.</p></div>
+      <div class="value"><div class="num">02</div><h3>Guardrails for AI</h3><p>The Design System object carries explicit generation constraints — never regenerate the mark, never invent a palette color, never synthesize a spokesperson. Rules a model can actually read, not a PDF it ignores.</p></div>
       <div class="value"><div class="num">03</div><h3>One source of truth</h3><p>Kill the version drift across teams, agencies, and regions. Everyone references the same object, updated in one place.</p></div>
       <div class="value"><div class="num">04</div><h3>Faster reviews</h3><p>Fewer off-brand rounds. When the inputs are structured, less lands on your desk to fix at the end.</p></div>
       <div class="value"><div class="num">05</div><h3>Governance and audit</h3><p>A defined, versioned brand object with clear lineage — the kind of control regulated categories actually require.</p></div>
@@ -97,9 +98,12 @@
     <p class="kicker">Your brand, as objects</p>
     <h2>A direct mapping from what you already maintain</h2>
     <p>The standards you own today map cleanly onto OSMM:</p>
-    <p><strong>Visual identity / design standards</strong> &rarr; Brand Context object (design facet)<br>
-    <strong>Tone-of-voice guide</strong> &rarr; Brand Context object (voice facet)<br>
-    <strong>Messaging framework</strong> &rarr; Creative Strategy object<br>
+    <p><strong>Visual identity / design standards</strong> &rarr; Design System object<br>
+    <strong>Tone-of-voice guide</strong> &rarr; Brand Context object<br>
+    <strong>Logo usage and misuse rules</strong> &rarr; Design System object (identity)<br>
+    <strong>Font licensing and image rights</strong> &rarr; Design System object (rights and licensing)<br>
+    <strong>Accessibility standards</strong> &rarr; Design System object (accessibility)<br>
+    <strong>Messaging framework</strong> &rarr; composed from Brand Context, Product Context, and the Journey<br>
     <strong>Naming and terminology</strong> &rarr; controlled vocabulary the objects share</p>
     <p>A builder converts your existing guidelines and voice docs into these objects — so adoption changes what your brand can govern, not how you define it.</p>
     <div style="margin-top:30px">
