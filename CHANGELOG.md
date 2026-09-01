@@ -7,9 +7,27 @@ versioned via the `osmm_version` field under semantic versioning; see
 patch change, and the deprecation policy that governs breaking changes.
 
 This changelog tracks the standard as a whole (objects, builders, conventions,
-governance). The current schema version is **0.1.0**.
+governance).
+
+Two versions move independently here, and they are easy to confuse:
+
+- **Schema contract** — the `osmm_version` field carried inside every object and
+  schema. Currently **0.1.0**. It moves only when an object's *shape* changes.
+- **Plugin distribution** — the `version` in `.claude-plugin/plugin.json`, which is
+  what gates client updates (see [PLUGIN.md](PLUGIN.md#releasing-maintainers)).
+  Currently **0.2.0**.
 
 ## [Unreleased]
+
+_Nothing yet._
+
+## [0.2.0] — 2026-09-01
+
+The first version bump since the plugin was published at `0.1.0`. Everything below
+had landed on `main` but never shipped to existing installs, because a merge alone
+does not move the plugin version. This release delivers all of it — the Phase 3–7
+build-out and the Design System object — under one additive minor bump. No schema
+contract changed along the way: `osmm_version` stays at **0.1.0**.
 
 ### Added
 - **Design System Object — the model's 19th object and its first *addition* since the

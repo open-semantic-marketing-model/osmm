@@ -1,7 +1,7 @@
 {
   "name": "osmm",
   "displayName": "OSMM — Open Semantic Marketing Model",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Builder skills for the Open Semantic Marketing Model: turn marketing decision work — business and brand context, visual design systems, personas, audiences, offers, journeys, campaign and creative strategy, measurement, and learning — into canonical, machine-readable OSMM objects validated against the published JSON Schemas.",
   "author": {
     "name": "Design of Work Partners LLC"
