@@ -3,7 +3,9 @@
 The single source of truth for **what's done, what's in flight, and what's next**.
 For the sequencing rationale and milestones, see [`ROADMAP.md`](ROADMAP.md).
 
-**Last updated:** 2026-09-01 (v0.12: **Design System (B38)** built — the model's 19th object and the durable *visual* identity layer, paired one-to-one with Brand Context)
+**Last updated:** 2026-09-01 (**plugin 0.2.0 released** — the first version bump since publish, shipping the Design System object and everything else that had landed on `main` to existing installs)
+
+**Prior:** 2026-09-01 (v0.12: **Design System (B38)** built — the model's 19th object and the durable *visual* identity layer, paired one-to-one with Brand Context)
 
 **Prior:** 2026-07-14 (docs: split plugin install instructions by product — Claude Cowork app UI vs. Claude Code CLI — in README, GETTING-STARTED, and PLUGIN)
 

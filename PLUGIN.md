@@ -71,7 +71,7 @@ plugin to the latest released version.
 
 | Category | Skills |
 |----------|--------|
-| **Context** (5) | `osmm-business-context-builder`, `osmm-brand-context-builder`, `osmm-product-context-builder`, `osmm-persona-builder`, `osmm-audience-builder` |
+| **Context** (6) | `osmm-business-context-builder`, `osmm-brand-context-builder`, `osmm-design-system-builder`, `osmm-product-context-builder`, `osmm-persona-builder`, `osmm-audience-builder` |
 | **Work Product** (9) | `osmm-marketing-strategy-builder`, `osmm-measurement-framework-builder`, `osmm-offer-builder`, `osmm-campaign-strategy-builder`, `osmm-journey-builder`, `osmm-creative-strategy-builder`, `osmm-content-strategy-builder`, `osmm-experience-builder`, `osmm-experience-component-builder` |
 | **Measurement** (1) | `osmm-performance-measurement-builder` |
 | **Learning** (2) | `osmm-customer-insight-builder`, `osmm-optimization-recommendation-builder` |
@@ -122,13 +122,22 @@ intentional — it matches the semver governance in
 [`GOVERNANCE.md`](GOVERNANCE.md) and keeps the standard from shifting under
 adopters on every docs typo.
 
+The consequence to watch: a *new* install always pulls whatever is on `main`, so new
+users see merged work immediately while *existing* installs stay frozen until the
+version moves. Merging is not shipping — the bump is what reaches the people who
+already have OSMM installed.
+
 **To ship a release:**
 
 1. **Land the change** — a builder needs its `SKILL.md`, its canonical schema in
    `schemas/`, and at least one validated example in `examples/`
    (see [`CONTRIBUTING.md`](CONTRIBUTING.md)).
 2. **Run validation** — `python scripts/validate.py`. CI runs it too; it must pass.
-3. **Bump the version** in `.claude-plugin/plugin.json`, following semver:
+3. **Bump the version** in `.claude-plugin/plugin.json`, following semver. Note this
+   is the **plugin distribution version**, which is *not* the same as the
+   `osmm_version` schema-contract version carried inside every object and schema —
+   the two move independently, and an additive release bumps the plugin version
+   while `osmm_version` stays put:
    - **patch** (`0.1.0` → `0.1.1`) — clarifications, fixes, docs, non-breaking skill edits.
    - **minor** (`0.1.0` → `0.2.0`) — new builder, new object, new optional field.
    - **major** (`0.1.0` → `1.0.0`) — a breaking schema change (per the deprecation policy).
