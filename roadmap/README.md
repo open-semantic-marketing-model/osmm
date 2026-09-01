@@ -4,7 +4,7 @@ This folder is the project-management layer for building out OSMM — what's don
 what's in flight, and what's next. It complements (does not replace) the
 standard's own docs:
 
-- [`../TAXONOMY.md`](../TAXONOMY.md) — the 7 phases and the 18 objects each resolves to.
+- [`../TAXONOMY.md`](../TAXONOMY.md) — the 7 phases and the 19 objects each resolves to.
 - [`../CONVENTION.md`](../CONVENTION.md) — the full builder registry and naming rules.
 - [`../RELATIONSHIPS.md`](../RELATIONSHIPS.md) — how objects reference each other.
 - [`../GOVERNANCE.md`](../GOVERNANCE.md) — design tenets and the object lifecycle.

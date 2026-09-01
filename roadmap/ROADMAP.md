@@ -1,10 +1,10 @@
 # OSMM™ Roadmap
 
-The sequenced plan for building OSMM out from its current state (17 of 18 object
+The sequenced plan for building OSMM out from its current state (18 of 19 object
 builders, 1 composer) to a complete, connected model. For live status see
 [`BACKLOG.md`](BACKLOG.md).
 
-**Last updated:** 2026-06-19
+**Last updated:** 2026-09-01
 
 ## Guiding principles
 
@@ -40,11 +40,13 @@ flowchart TD
 ### Milestone A — Finish the Context foundation ✅ COMPLETE
 **Objects:** ~~Brand Context (B02)~~ ✅, ~~Audience (B06)~~ ✅ (plus ~~Product Context
 (B35)~~ ✅, added out of band).
-**Why first:** Context is the foundation the whole model references. **All five Context
-objects now have builders** (Business, Brand, Product, Audience, Persona) — the Creative
-Brief composer runs end-to-end on the Wendy's set and the Persona ↔ Audience edge is
-realized. (Keyword was later dissolved into the Journey in v0.8.)
-**Exit state (met):** Business, Brand, Product, Audience, Persona all have builders.
+**Why first:** Context is the foundation the whole model references. **All six Context
+objects now have builders** (Business, Brand, Design System, Product, Audience, Persona) — the
+Creative Brief composer runs end-to-end on the Wendy's set and the Persona ↔ Audience edge is
+realized. (Keyword was later dissolved into the Journey in v0.8; **Design System (B38)** was
+added out of band in v0.12 as the durable visual half of the identity, paired with Brand
+Context.)
+**Exit state (met):** Business, Brand, Design System, Product, Audience, Persona all have builders.
 **Composer unlocked:** Brand Playbook (C04).
 
 ### Milestone B — Strategy layer (Phase 1–2 Work Products) ✅ COMPLETE

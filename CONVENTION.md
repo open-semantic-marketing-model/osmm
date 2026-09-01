@@ -175,7 +175,7 @@ Mirrors the OSMM object lifecycle so a builder's maturity tracks its object's:
 
 ## Full builder registry
 
-All 18 objects in the OSMM object model, mapped to their builder skill names.
+All 19 objects in the OSMM object model, mapped to their builder skill names.
 (Speculative objects were consolidated in the v0.5/v0.6 right-sizing — see
 [TAXONOMY.md](TAXONOMY.md) → the note under the object resolution index.)
 
@@ -183,6 +183,7 @@ All 18 objects in the OSMM object model, mapped to their builder skill names.
 |------:|--------|----------|------------|
 | 1 | Business Context | Context | `osmm-business-context-builder` |
 | 1 | Brand Context | Context | `osmm-brand-context-builder` |
+| 1 | Design System | Context | `osmm-design-system-builder` |
 | 1 | Product Context | Context | `osmm-product-context-builder` |
 | 1 | Marketing Strategy | Work Product | `osmm-marketing-strategy-builder` |
 | 1 | Measurement Framework | Work Product | `osmm-measurement-framework-builder` |
@@ -393,7 +394,7 @@ typed objects.
 
 Consequences at the **data-standard layer**: there is no Creative Brief object,
 no `object_type: creative_brief`, and no `osmm-creative-brief-builder` (an object
-*builder* has no object to build). The object model stands at **18 objects**;
+*builder* has no object to build). The object model stands at **19 objects**;
 nothing is added or removed by this resolution. "Creative Brief" remains valid
 only as an artifact label (e.g. in the TAXONOMY artifact column).
 
@@ -405,6 +406,37 @@ a first-draft brief a client can tailor. The composer is non-normative: it
 defines no schema and emits an artifact, not an object. So the standard stays
 pure (objects only) while the skill library still delivers the brief as an
 accelerator.
+
+---
+
+## Changes in v0.12
+
+- **Added the Design System object — the model's 19th, and the first *addition* since the
+  right-sizing passes.** OSMM had no home for a client's visual identity: Brand Context
+  deliberately scoped it out (carrying only a one-line `visual_identity_notes` and an external
+  `design_system_reference`), Creative Strategy is campaign-scoped rather than durable, and
+  Experience Component holds assembled content blocks rather than the system they are built to.
+  The new **Design System Object** (`DSY-`, Phase 1 Context, sub-process **1.10**) pairs
+  one-to-one with Brand Context on the same slug — Brand Context owns how the brand *sounds*,
+  Design System owns how it *looks* — and carries identity/marks, color with semantic roles,
+  typography with licensing, imagery and art direction, iconography, motion, layout,
+  accessibility standards, durable per-channel format specs, brand-architecture and localization
+  rules, asset rights, and **`generation_constraints`**: what a generative system may and may not
+  produce with the identity. They stay separate objects rather than one because they have
+  different owners, different change cadences, and different consumers — a copy generator reads
+  voice and guardrails, a layout or asset generator reads the palette and the type scale.
+- **Semantic layer carried, raw layer referenced.** The object holds the *decisions* (what a color
+  is for, what a rule forbids) and points at the upstream token file, component library, and DAM
+  via `token_sources` / `asset_sources` with a version. OSMM never mirrors a token tree and never
+  holds binaries; the one deliberate exception is embedding the **core** palette and type scale,
+  because most brands have a brand book and no token file.
+- **Numbered 1.10, not inserted at 1.3.** The sub-process is appended so the established 1.3–1.9
+  numbering (referenced from `TAXONOMY.md` and the marketing-strategy builder) stays stable. Read
+  order is still Brand Context → Design System.
+- Reconciled across the Design System schema + builder, two public-sourced examples (IBM, Wendy's),
+  the Brand Context builder and schema (visual fields explicitly demoted to summary + pointer),
+  TAXONOMY (1.10, the Phase 1 and Phase 5 boundary notes, the resolution index, 7.7), RELATIONSHIPS
+  (the `DSY-` prefix and its edges), the graph (regenerated), README, GETTING-STARTED, and CHANGELOG.
 
 ---
 

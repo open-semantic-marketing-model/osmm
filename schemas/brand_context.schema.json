@@ -140,11 +140,11 @@
     },
     "visual_identity_notes": {
       "type": "string",
-      "description": "Optional. Brief note on visual identity as it affects marketing. Full design system is out of scope — link it via design_system_reference."
+      "description": "Optional. One line on visual identity as it affects marketing. The visual system itself (marks, color, typography, imagery, motion, layout, accessibility, generation constraints) lives in the paired Design System Object (DSY-<slug>); keep this a summary, not a second home."
     },
     "design_system_reference": {
       "type": "string",
-      "description": "Optional. Pointer to the brand's external design system / design language, if one exists. OSMM references this upstream system rather than modeling it."
+      "description": "Optional. Pointer to the brand's external design system / design language, if one exists. OSMM references this upstream system rather than modeling it; the paired Design System Object records it structurally in token_sources / asset_sources."
     },
     "source": {
       "type": "string",

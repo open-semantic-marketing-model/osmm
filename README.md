@@ -32,7 +32,7 @@ takes a minute — the exact steps depend on your product:
   /plugin install osmm@osmm
   ```
 
-Either way you get all 18 builder skills. Hand one a real asset — a persona deck,
+Either way you get all 19 builder skills. Hand one a real asset — a persona deck,
 an About page, a campaign brief — and it returns a canonical OSMM object.
 
 New to OSMM? Read **[`GETTING-STARTED.md`](GETTING-STARTED.md)** — a practical,
@@ -84,12 +84,12 @@ examples.
 
 ## The object model
 
-OSMM currently spans **18 objects** across **7 workflow phases**, grouped into
+OSMM currently spans **19 objects** across **7 workflow phases**, grouped into
 **5 categories** by their read/write and governance profile:
 
 | Category | Purpose |
 |----------|---------|
-| **Context** | Durable, reusable business intelligence (Business Context, Brand Context, Product Context, Audience, Persona). High-read, low-write. |
+| **Context** | Durable, reusable business intelligence (Business Context, Brand Context, Design System, Product Context, Audience, Persona). High-read, low-write. |
 | **Work Product** | The structured outputs of decisions that today live in documents (Marketing Strategy, Creative Strategy, Campaign Strategy, Journey, …). |
 | **Configuration** | Operational orchestration logic. *(Currently empty — its members folded into the Journey's `delivery_logic` and the Experience's `personalization_rules`.)* |
 | **Measurement** | Performance data structured for analysis. Append-only. |
@@ -132,11 +132,12 @@ drift. Schemas are added per object as their builder ships; see
 ## Status
 
 Early and active — **draft v0.1**. The standard is built iteratively: ship a
-concrete, validated artifact, then refine. **17 of the 18 object builders have
+concrete, validated artifact, then refine. **18 of the 19 object builders have
 shipped** (plus one artifact composer, `osmm-creative-brief-composer`). The
-durable **Context foundation is complete** — all five Context builders are live
+durable **Context foundation is complete** — all six Context builders are live
 (`osmm-business-context-builder`, `osmm-brand-context-builder`,
-`osmm-product-context-builder`, `osmm-persona-builder`, `osmm-audience-builder`) —
+`osmm-design-system-builder`, `osmm-product-context-builder`,
+`osmm-persona-builder`, `osmm-audience-builder`) —
 alongside the Phase 1 Work Products (Marketing Strategy, Measurement Framework), the
 Phase 3–4 activation layer (Offer, Campaign Strategy, Journey), the Phase 5 creative
 layer (Creative Strategy, Content Strategy), the Phase 6 build/deliver layer

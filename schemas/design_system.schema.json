@@ -1,0 +1,335 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/open-semantic-marketing-model/osmm/main/schemas/design_system.schema.json",
+  "title": "OSMM Design System Object",
+  "description": "Durable, foundational Context: how a brand LOOKS — its visual identity, color, typography, imagery, iconography, motion, layout, accessibility standards, rights, and the constraints governing what a generative system may produce with the identity. Canonical schema for object_type 'design_system'. The osmm-design-system-builder skill references this file; it is the single source of truth for the object's shape. Design System is the visual counterpart to Brand Context (which owns the verbal identity); the two pair one-to-one.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_type",
+    "osmm_version",
+    "design_system_id",
+    "version",
+    "status",
+    "name",
+    "design_principles",
+    "identity",
+    "color",
+    "typography"
+  ],
+  "properties": {
+    "object_type": {
+      "const": "design_system",
+      "description": "Object type discriminator. Always 'design_system'."
+    },
+    "osmm_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "OSMM schema version this instance conforms to (semantic version)."
+    },
+    "design_system_id": {
+      "type": "string",
+      "pattern": "^DSY-[a-z0-9-]+$",
+      "description": "Stable, human-readable id. Prefix 'DSY-' + lowercase hyphen slug, normally the same slug as the paired Brand Context. Never changes once assigned."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "Instance version (e.g. '1.0'). Bump on revision; the id stays stable."
+    },
+    "status": {
+      "enum": ["draft", "proposed", "stable", "deprecated"],
+      "description": "Object lifecycle state."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The design system's name as the organization calls it (e.g. 'IBM Design Language'). Falls back to '<Brand> Design System' when it has no formal name."
+    },
+    "linked_brand_context": {
+      "type": "string",
+      "pattern": "^BRC-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Id of the paired Brand Context Object (the verbal identity). Use 'BRC-PLACEHOLDER-<slug>' until it exists. Strongly recommended — the pair is the full identity."
+    },
+    "linked_business_context": {
+      "type": "string",
+      "pattern": "^BIZ-(PLACEHOLDER-)?[a-z0-9-]+$",
+      "description": "Optional. Id of the owning Business Context Object. Use 'BIZ-PLACEHOLDER-<slug>' until it exists."
+    },
+    "owner": {
+      "type": "string",
+      "description": "Optional. The team or role that owns and approves changes to this system (e.g. 'Brand Studio', 'Design Systems team'). Design systems have a different owner and change cadence from the verbal brand; recording it prevents unattributed drift."
+    },
+    "design_principles": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "3-6 durable visual principles — how the system decides, not what it contains. Principles, not adjectives: 'Type carries the hierarchy; color never has to' beats 'clean'."
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primary_mark"],
+      "description": "The logo and identity system: marks, lockups, and the rules protecting them.",
+      "properties": {
+        "primary_mark": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The primary logo/mark: what it is and its canonical form."
+        },
+        "mark_variants": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional. Approved variants (monochrome, reversed, stacked, icon-only, wordmark) and when each is used."
+        },
+        "lockup_rules": {
+          "type": "string",
+          "description": "Optional. How the mark locks up with sub-brands, taglines, or product names."
+        },
+        "clear_space": {
+          "type": "string",
+          "description": "Optional. Minimum clear space around the mark, expressed in the system's own unit (e.g. 'the height of the wordmark's cap')."
+        },
+        "minimum_size": {
+          "type": "string",
+          "description": "Optional. Minimum reproduction size, digital and print."
+        },
+        "misuse_rules": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional. Explicit don'ts (stretch, recolor, add effects, place on busy imagery). High value for generative use — these are the rules a model breaks first."
+        },
+        "co_branding_rules": {
+          "type": "string",
+          "description": "Optional. How the mark appears alongside partner, sponsor, or acquired brands — order, scale, separator, endorsement language."
+        }
+      }
+    },
+    "color": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["palette"],
+      "description": "The color system: semantic roles first, raw values second.",
+      "properties": {
+        "palette": {
+          "type": "array",
+          "minItems": 1,
+          "description": "The core palette. Capture the semantic role, not just the swatch — a downstream generator needs to know what a color is FOR.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name"],
+            "properties": {
+              "token": { "type": "string", "description": "Optional. The token name in the upstream source (e.g. '$blue-60', 'color.brand.primary')." },
+              "name": { "type": "string", "minLength": 1, "description": "Human name of the color (e.g. 'IBM Blue 60', 'Wendy's Red')." },
+              "value": { "type": "string", "description": "Optional. The value as published — hex, RGB, Pantone, or CMYK." },
+              "role": { "type": "string", "description": "Optional. Semantic role: primary, secondary, accent, surface, text, border, success, warning, error, etc." },
+              "usage_notes": { "type": "string", "description": "Optional. Where it may and may not be used." }
+            }
+          }
+        },
+        "usage_rules": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional. Proportion/dominance rules, permitted pairings, and forbidden combinations. This is what keeps an accent color from becoming the brand color."
+        },
+        "modes": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional. Supported color modes (light, dark, high-contrast) and how the palette shifts across them."
+        }
+      }
+    },
+    "typography": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["typefaces"],
+      "description": "The type system: faces, their licenses, the scale, and the rules.",
+      "properties": {
+        "typefaces": {
+          "type": "array",
+          "minItems": 1,
+          "description": "The typefaces in the system. Licensing is not optional detail — an unlicensed face is a legal exposure and a production blocker.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name"],
+            "properties": {
+              "name": { "type": "string", "minLength": 1, "description": "Typeface name (e.g. 'IBM Plex Sans')." },
+              "role": { "type": "string", "description": "Optional. What it sets: display, headline, body, UI, monospace, legal." },
+              "foundry": { "type": "string", "description": "Optional. The foundry or source." },
+              "license": { "type": "string", "description": "Optional. License terms and scope (open source, desktop-only, web seats, per-domain). Flag what is NOT covered." },
+              "fallback_stack": { "type": "string", "description": "Optional. The web/system fallback stack when the licensed face is unavailable." },
+              "weights": { "type": "array", "items": { "type": "string" }, "description": "Optional. Approved weights and styles." }
+            }
+          }
+        },
+        "type_scale": {
+          "type": "array",
+          "description": "Optional. The scale by role rather than by pixel guess.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["role"],
+            "properties": {
+              "token": { "type": "string", "description": "Optional. Token name in the upstream source." },
+              "role": { "type": "string", "minLength": 1, "description": "The role this step serves: display, h1, h2, body, caption, legal." },
+              "size": { "type": "string", "description": "Optional. Size with unit." },
+              "weight": { "type": "string", "description": "Optional. Weight." },
+              "line_height": { "type": "string", "description": "Optional. Line height." },
+              "letter_spacing": { "type": "string", "description": "Optional. Tracking." }
+            }
+          }
+        },
+        "usage_rules": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional. Pairing rules, hierarchy rules, alignment and case conventions, and what the system never does (e.g. 'never set body copy in the display face')."
+        }
+      }
+    },
+    "imagery": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional but strongly encouraged. Photographic art direction — the fastest way for generated visuals to go off-brand.",
+      "properties": {
+        "art_direction": { "type": "string", "description": "Optional. One paragraph: the photographic point of view." },
+        "subject_matter": { "type": "array", "items": { "type": "string" }, "description": "Optional. What the brand photographs (real customers, product in use, empty environments)." },
+        "treatment": { "type": "string", "description": "Optional. Color grading, lighting, crop, depth of field, filters, overlays." },
+        "sourcing": { "type": "string", "description": "Optional. Commissioned vs. stock vs. UGC vs. generative, and which is permitted where." },
+        "representation": { "type": "string", "description": "Optional. How people are represented — casting, diversity, accessibility, and consent standards." },
+        "dos": { "type": "array", "items": { "type": "string" }, "description": "Optional. Concrete, actionable image do's." },
+        "donts": { "type": "array", "items": { "type": "string" }, "description": "Optional. Concrete, actionable image don'ts." }
+      }
+    },
+    "iconography": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional. Icon and illustration style.",
+      "properties": {
+        "style": { "type": "string", "description": "Optional. Icon style: geometry, stroke weight, corner treatment, fill vs. line, grid." },
+        "source": { "type": "string", "description": "Optional. The canonical icon set and where it lives." },
+        "illustration_style": { "type": "string", "description": "Optional. Illustration style and when illustration is used instead of photography." },
+        "usage_rules": { "type": "array", "items": { "type": "string" }, "description": "Optional. Sizing, alignment, color application, and mixing rules." }
+      }
+    },
+    "motion": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional. The motion system — increasingly load-bearing for social, CTV, and product UI.",
+      "properties": {
+        "principles": { "type": "array", "items": { "type": "string" }, "description": "Optional. How the brand moves (e.g. 'motion clarifies cause and effect; it never decorates')." },
+        "durations": { "type": "string", "description": "Optional. Standard durations and when each applies." },
+        "easing": { "type": "string", "description": "Optional. Easing curves." },
+        "usage_rules": { "type": "array", "items": { "type": "string" }, "description": "Optional. Transition conventions, logo animation rules, reduced-motion behavior." }
+      }
+    },
+    "layout": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional. Grid, spacing, and composition.",
+      "properties": {
+        "grid": { "type": "string", "description": "Optional. The grid system (columns, gutters, margins) and how it adapts." },
+        "spacing_scale": { "type": "string", "description": "Optional. The spacing scale and its base unit." },
+        "breakpoints": { "type": "array", "items": { "type": "string" }, "description": "Optional. Responsive breakpoints." },
+        "composition_principles": { "type": "array", "items": { "type": "string" }, "description": "Optional. Composition rules: hierarchy, density, whitespace, safe areas." }
+      }
+    },
+    "accessibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional but strongly encouraged. The standard the system holds itself to. A generator will silently violate whatever is not written down here.",
+      "properties": {
+        "conformance_target": { "type": "string", "description": "Optional. The target standard and level (e.g. 'WCAG 2.2 AA')." },
+        "contrast_requirements": { "type": "string", "description": "Optional. Minimum contrast ratios for text, large text, and UI components." },
+        "minimum_type_size": { "type": "string", "description": "Optional. Minimum legible type size by medium." },
+        "requirements": { "type": "array", "items": { "type": "string" }, "description": "Optional. Other standing requirements: alt text, captions, focus states, color-independent meaning, reduced motion." }
+      }
+    },
+    "channel_specs": {
+      "type": "array",
+      "description": "Optional. Durable, brand-level format rules per channel — aspect ratios, safe zones, minimum sizes. Distinct from Creative Strategy's channel_creative, which is the campaign-scoped creative treatment.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["channel"],
+        "properties": {
+          "channel": { "type": "string", "minLength": 1, "description": "The channel or medium (paid social, email, OOH, CTV, packaging)." },
+          "specifications": { "type": "string", "description": "Optional. The durable specs and constraints for that surface." }
+        }
+      }
+    },
+    "brand_architecture_rules": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional. How the system flexes for sub-brands, endorsed brands, acquisitions, regions, and partnerships."
+    },
+    "localization_rules": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional. Script coverage, RTL behavior, substitute faces for non-Latin scripts, and regional color or symbol meaning."
+    },
+    "rights_and_licensing": {
+      "type": "array",
+      "description": "Optional. Usage rights that expire or restrict. The field nobody models and everybody gets burned by.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["asset_type"],
+        "properties": {
+          "asset_type": { "type": "string", "minLength": 1, "description": "What the right covers (typeface, photography library, music, talent, illustration)." },
+          "terms": { "type": "string", "description": "Optional. The scope of the grant and its limits." },
+          "expires": { "type": "string", "description": "Optional. Expiry or renewal date, if the right is time-bound." },
+          "rights_holder": { "type": "string", "description": "Optional. Who holds the right." }
+        }
+      }
+    },
+    "generation_constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional but the reason this is an OSMM object rather than a linked PDF: what a generative system may and may not produce with this identity.",
+      "properties": {
+        "generative_imagery_permitted": { "type": "boolean", "description": "Optional. Whether AI-generated imagery may be used in brand-facing work at all." },
+        "permitted": { "type": "array", "items": { "type": "string" }, "description": "Optional. What generation is explicitly allowed to do." },
+        "prohibited": { "type": "array", "items": { "type": "string" }, "description": "Optional. What generation must never do (regenerate the logo, invent palette colors, synthesize a spokesperson)." },
+        "style_descriptors": { "type": "array", "items": { "type": "string" }, "description": "Optional. Model-safe descriptors of the visual style, for prompting." },
+        "negative_prompts": { "type": "array", "items": { "type": "string" }, "description": "Optional. Descriptors to steer away from." },
+        "human_review_required": { "type": "array", "items": { "type": "string" }, "description": "Optional. Cases that must clear human review before publication." }
+      }
+    },
+    "token_sources": {
+      "type": "array",
+      "description": "Optional. Pointers to the upstream machine-readable token source. OSMM carries the semantic layer and REFERENCES the raw tokens rather than mirroring them.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["reference"],
+        "properties": {
+          "type": { "type": "string", "description": "Optional. The kind of source (W3C DTCG token file, Figma variables, Style Dictionary, Tailwind config, npm package)." },
+          "name": { "type": "string", "description": "Optional. Human name of the source." },
+          "reference": { "type": "string", "minLength": 1, "description": "URL, repository path, or file identifier." },
+          "source_version": { "type": "string", "description": "Optional. The version of the upstream source this object was built against." }
+        }
+      }
+    },
+    "asset_sources": {
+      "type": "array",
+      "description": "Optional. Where the actual assets live. OSMM never holds binaries.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["reference"],
+        "properties": {
+          "type": { "type": "string", "description": "Optional. The kind of source (DAM, Figma library, Storybook, component package, brand portal)." },
+          "name": { "type": "string", "description": "Optional. Human name of the source." },
+          "reference": { "type": "string", "minLength": 1, "description": "URL, repository path, or system identifier." },
+          "access_notes": { "type": "string", "description": "Optional. Who can access it and how." }
+        }
+      }
+    },
+    "source": {
+      "type": "string",
+      "description": "One line: what source(s) this was built from and approximate date."
+    }
+  }
+}
