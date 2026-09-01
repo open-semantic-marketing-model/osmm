@@ -33,6 +33,7 @@ flowchart LR
 | 1.7 Define Positioning & Value Proposition | Value proposition, positioning strategy | Marketing Strategy Object | Positioning Framework, Messaging Foundation |
 | 1.8 Define Measurement Framework | KPI framework, success metrics | Measurement Framework Object | KPI Framework, Measurement Plan |
 | 1.9 Confirm Strategic Direction | Final strategic direction | Marketing Strategy Object | Strategy Presentation, Executive Brief |
+| 1.10 Define Design System | Visual identity, color and type systems, imagery direction, accessibility standards, generation constraints | Design System Object | Brand Book, Visual Identity Guidelines, Design System Site |
 
 > **Product Context is the *offering*, not the company and not the offer.** Sub-process
 > 1.3 resolves to the **Product Context Object** — the durable description of a product,
@@ -42,6 +43,23 @@ flowchart LR
 > business → many products) and from the **Offer Object** (Phase 3: the time-bound value
 > exchange / call to action, e.g. a trial, demo, discount, or financing deal). An Offer
 > *references* a Product Context; it does not restate it.
+
+> **Brand Context is how the brand sounds; Design System is how it looks.** Sub-process
+> 1.10 resolves to the **Design System Object** — the durable visual identity: marks and
+> lockups, the color system with semantic roles, typography and type scale, imagery and art
+> direction, iconography, motion, layout, accessibility standards, asset rights, and the
+> constraints governing what a generative system may produce with the identity. It pairs
+> **one-to-one with Brand Context** on the same slug (`BRC-ibm` ↔ `DSY-ibm`); together they
+> are the complete identity. They are separate objects because they have different owners,
+> different change cadences, and different consumers — a copy generator reads voice and
+> guardrails, a layout or asset generator reads the palette and the type scale, and each
+> should load only what it needs. Numbered 1.10 rather than inserted beside 1.2 so the
+> established 1.3–1.9 numbering stays stable; read order is Brand Context → Design System.
+>
+> The Design System carries the **semantic** layer (what a color is *for*, what a rule
+> *forbids*) and **references** the raw layer — the full token tree, component library, and
+> asset binaries — via `token_sources` / `asset_sources`. OSMM never mirrors a token tree
+> and never holds binaries.
 
 ## Phase 2. Define Audience
 
@@ -147,6 +165,13 @@ flowchart LR
 > (a Persona *describes*; an Audience *selects*) holds; it just resolves in the Journey cell
 > now rather than a dedicated object.
 
+> **Creative Strategy works *inside* the Design System, it does not redefine it.** The durable
+> visual system — palette, type, marks, art direction, accessibility, and durable per-channel
+> format rules (safe zones, aspect ratios, minimum sizes) — is the **Design System Object**
+> (1.10). Phase 5's `channel_creative` (5.6) is the *campaign-scoped creative treatment* for a
+> channel, executed within those durable specs. Same rule as messaging: the durable layer is
+> Context, the applied layer is the Work Product.
+
 ## Phase 6. Build & Deliver Experiences
 
 **Theme** — Bring the experience to life  
@@ -178,7 +203,7 @@ flowchart LR
 | 7.4 Evaluate Messaging & Creative Effectiveness | Creative learning | Performance Measurement Object (`dimension: creative`) | Creative Performance Summary |
 | 7.5 Evaluate Journey & Channel Performance | Journey optimization opportunities | Performance Measurement Object (`dimension: journey`) | Journey Analysis |
 | 7.6 Generate Optimization Recommendations | Optimization priorities | Optimization Recommendation Object | Optimization Plan |
-| 7.7 Update Durable Context & Strategy | Persistent learning decisions | Business Context Object, Brand Context Object, Product Context Object, Marketing Strategy Object, Persona Object | Updated Strategy Summary |
+| 7.7 Update Durable Context & Strategy | Persistent learning decisions | Business Context Object, Brand Context Object, Design System Object, Product Context Object, Marketing Strategy Object, Persona Object | Updated Strategy Summary |
 | 7.8 Confirm Learning & Next Action | Next-step decision | Marketing Strategy Object | Executive Learning Summary |
 
 ## Object resolution index
@@ -189,6 +214,7 @@ Every object mapped to the sub-processes that write it and its builder skill (pe
 |---|---|---|
 | Business Context Object | 1.1, 7.7 | `osmm-business-context-builder` |
 | Brand Context Object | 1.2, 7.7 | `osmm-brand-context-builder` |
+| Design System Object | 1.10, 7.7 | `osmm-design-system-builder` |
 | Product Context Object | 1.3, 5.1, 7.7 | `osmm-product-context-builder` |
 | Marketing Strategy Object | 1.4, 1.5, 1.6, 1.7, 1.9, 2.1, 2.8, 2.9, 7.7, 7.8 | `osmm-marketing-strategy-builder` |
 | Measurement Framework Object | 1.8, 4.7 | `osmm-measurement-framework-builder` |
@@ -206,7 +232,7 @@ Every object mapped to the sub-processes that write it and its builder skill (pe
 | Customer Insight Object | 7.2 | `osmm-customer-insight-builder` |
 | Optimization Recommendation Object | 7.6 | `osmm-optimization-recommendation-builder` |
 
-> **Right-sizing — the model holds 18 objects.** Consolidations applying the rule
+> **Right-sizing — the model holds 19 objects.** Consolidations applying the rule
 > *prefer a facet field over a near-duplicate object; a new object must do work the
 > others can't*. The v0.5 pass removed eight speculative (unbuilt) objects; v0.6
 > merged **Journey Strategy + Journey Configuration → a single Journey Object**; v0.7
@@ -237,11 +263,21 @@ Every object mapped to the sub-processes that write it and its builder skill (pe
 > - **Offer Test Strategy + Creative Test Strategy → Experiment Strategy.** One
 >   cross-phase experiment/test object referenced from 3.7, 4.7, and 5.7.
 >
+> **v0.12 added the 19th object: Design System** (1.10) — the durable *visual* identity, paired
+> one-to-one with Brand Context (`BRC-<slug>` ↔ `DSY-<slug>`). This is an **addition, not a
+> consolidation**, and it passes the same right-sizing test the removals did: no existing object
+> could hold it. Brand Context deliberately scoped visual identity out (it carries only a one-line
+> `visual_identity_notes` and an external `design_system_reference`), Creative Strategy is
+> campaign-scoped rather than durable, and Experience Component holds assembled content blocks
+> rather than the system they are built to. The object also does work none of them could: it
+> carries `generation_constraints` — what a generative system may and may not produce with the
+> identity — which is the point of a machine-readable identity standard rather than a linked PDF.
+>
 > With Phase 7 built (v0.10), the model has no remaining provisional object boundaries.
 > **Performance Measurement** records actuals against the Measurement Framework, faceted by a
 > `dimension` field (overall / offer / creative / journey / channel / experience / campaign);
 > **Customer Insight** is the interpreted *why*, drawn from those measurements; and
 > **Optimization Recommendation** is the prescription that closes the loop, writing back into
-> Context/Strategy (sub-process 7.7). **17 of the 18 builders now ship** — only **Experiment
+> Context/Strategy (sub-process 7.7). **18 of the 19 builders now ship** — only **Experiment
 > Strategy** (cross-phase test object, 3.7/4.7/5.7) remains parked (deprioritized). We collapse
 > on paper and split only when building reveals the need.

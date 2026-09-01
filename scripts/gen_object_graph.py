@@ -23,6 +23,7 @@ REPO = Path(__file__).resolve().parent.parent
 OBJ = {
  'business_context':('Business Context','Context',True,1),
  'brand_context':('Brand Context','Context',True,1),
+ 'design_system':('Design System','Context',True,1),
  'product_context':('Product Context','Context',True,1),
  'marketing_strategy':('Marketing Strategy','Work Product',True,1),
  'measurement_framework':('Measurement Framework','Work Product',True,1),
@@ -60,6 +61,8 @@ CAT_ORDER = ['Context','Work Product','Configuration','Measurement','Learning']
 # Realized reference edges — mirror RELATIONSHIPS.md established table. (a, b, bidirectional)
 REALIZED = [
  ('business_context','brand_context',True),
+ ('design_system','brand_context',False),
+ ('design_system','business_context',False),
  ('product_context','business_context',False),
  ('product_context','brand_context',False),
  ('persona','audience',True),
@@ -122,6 +125,8 @@ ENVISIONED = [
  ('experiment_strategy','offer'),('experiment_strategy','campaign_strategy'),('experiment_strategy','creative_strategy'),
  # Performance Measurement's generic, dimension-scoped subject_reference reach
  ('performance_measurement','campaign_strategy'),('performance_measurement','experience'),
+ # Design System's downstream consumers — a linked_design_system field lands when each is revised
+ ('creative_strategy','design_system'),('experience_component','design_system'),('experience','design_system'),
 ]
 # The compounding loop (Learning -> durable Context / Strategy).
 LOOP = [('customer_insight','persona'),('optimization_recommendation','marketing_strategy')]

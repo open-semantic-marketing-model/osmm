@@ -1,0 +1,255 @@
+{
+  "object_type": "design_system",
+  "osmm_version": "0.1.0",
+  "design_system_id": "DSY-wendys",
+  "version": "1.0",
+  "status": "draft",
+  "name": "Wendy's Design System",
+  "linked_brand_context": "BRC-wendys",
+  "linked_business_context": "BIZ-wendys",
+  "owner": "Brand marketing (to be confirmed — built from public expression, not an internal brand book)",
+  "design_principles": [
+    "The food is the hero — every composition earns its way back to the product",
+    "Warm, not slick — the system reads handmade and human next to the flat primaries of the category",
+    "Red is the brand and it is loud; everything else stays out of its way",
+    "The visual voice is as quick as the verbal one — one idea, read in a scroll",
+    "Freshness is shown, not claimed — texture, steam, and real ingredients do the work a claim can't"
+  ],
+  "identity": {
+    "primary_mark": "The Wendy portrait mark — the red-pigtailed, freckled character illustration introduced in 1969 and redrawn in the 2012-13 brand refresh into a flatter, more contemporary form.",
+    "mark_variants": [
+      "Portrait mark with the custom 'Wendy's' wordmark, the standard lockup",
+      "Portrait mark alone, for small digital surfaces such as app icons and social avatars",
+      "Reversed white lockup for use on red and on photography"
+    ],
+    "lockup_rules": "The portrait sits with the wordmark in a fixed relationship; promotional and value lockups are set alongside it and never replace it.",
+    "clear_space": "To be confirmed against brand standards.",
+    "minimum_size": "To be confirmed against brand standards — at minimum, the size at which the portrait's freckles and pigtails remain readable.",
+    "misuse_rules": [
+      "Never redraw, restyle, or re-illustrate the Wendy character",
+      "Never separate the portrait from the wordmark in the standard lockup, except in the approved icon-only variant",
+      "Never recolor the mark outside the approved red and reversed-white variants",
+      "Never place the lockup on imagery busy enough to compete with the portrait"
+    ],
+    "co_branding_rules": "Partner and licensor marks (delivery platforms, entertainment collaborations, sports properties) sit adjacent at equal weight and never inside the Wendy's lockup."
+  },
+  "color": {
+    "palette": [
+      {
+        "name": "Wendy's Red",
+        "role": "primary",
+        "usage_notes": "The dominant brand color, used at full strength as a background and in the mark. Exact value to be confirmed against brand standards."
+      },
+      {
+        "name": "Wendy's Blue",
+        "role": "secondary",
+        "usage_notes": "Drawn from the character's collar stripe; used for accent, pattern, and secondary surfaces. Exact value to be confirmed."
+      },
+      {
+        "name": "White",
+        "value": "#FFFFFF",
+        "role": "surface / type",
+        "usage_notes": "The neutral ground and the reversed type color on red."
+      },
+      {
+        "name": "Warm neutral (cream / wood tone)",
+        "role": "secondary surface",
+        "usage_notes": "The warmth introduced in the 2012-13 refresh and carried through restaurant environments and packaging. Exact values to be confirmed."
+      },
+      {
+        "name": "Promotional yellow",
+        "role": "accent (value messaging)",
+        "usage_notes": "Reserved for value and limited-time-offer communications. It signals a deal; it is not a general accent. Exact value to be confirmed."
+      }
+    ],
+    "usage_rules": [
+      "Red leads. When red and the food are both in frame, nothing else competes",
+      "Promotional yellow appears only in value and LTO contexts — using it elsewhere devalues it",
+      "Reversed white type on red is the default headline treatment",
+      "Color is never the only carrier of a price or an offer condition"
+    ],
+    "modes": [
+      "Light surfaces (white, warm neutral) and full-bleed red are both standard grounds",
+      "App and digital-ordering surfaces support a dark theme; the palette shifts to preserve contrast rather than dimming red"
+    ]
+  },
+  "typography": {
+    "typefaces": [
+      {
+        "name": "Custom 'Wendy's' wordmark lettering",
+        "role": "logotype only",
+        "foundry": "Custom, drawn for the 2012-13 brand refresh",
+        "license": "Proprietary — logotype artwork, not a text face. Never used to set copy.",
+        "weights": ["Single drawn form"]
+      },
+      {
+        "name": "Brand headline face",
+        "role": "display, headline",
+        "license": "To be confirmed against brand standards — licensing scope (desktop, web seats, broadcast) must be verified before production use.",
+        "fallback_stack": "Confirm the approved web fallback with brand standards"
+      },
+      {
+        "name": "Brand text face",
+        "role": "body, UI, legal",
+        "license": "To be confirmed against brand standards.",
+        "fallback_stack": "Confirm the approved web fallback with brand standards"
+      }
+    ],
+    "type_scale": [
+      { "role": "display / headline", "weight": "Bold", "letter_spacing": "Tight — headlines are set close and confident" },
+      { "role": "subhead", "weight": "Medium" },
+      { "role": "body", "weight": "Regular" },
+      { "role": "price / offer callout", "weight": "Bold", "letter_spacing": "Numerals are a display element, set large" },
+      { "role": "legal", "weight": "Regular" }
+    ],
+    "usage_rules": [
+      "Headlines are short enough to read in a scroll — the type is sized for the phone first",
+      "The wordmark lettering is never used to set copy, a headline, or a price",
+      "Offer terms and legal are always legible at the size they ship, never shrunk to fit",
+      "Sentence case for voice-led lines; the deal itself may be set in caps"
+    ]
+  },
+  "imagery": {
+    "art_direction": "Appetite-first food photography that shows freshness rather than asserting it — square patty edges, visible texture, real ingredient color, shot close and warm.",
+    "subject_matter": [
+      "The product, close and unstyled to the point of looking obtainable",
+      "Ingredients shown as ingredients — lettuce, tomato, cheese, beef",
+      "Real people eating in ordinary settings, not models posing with food"
+    ],
+    "treatment": "Warm light, saturated but true food color, shallow depth. The food looks like the food that arrives.",
+    "sourcing": "Commissioned food photography for product. Social and cultural-moment content may use platform-native and creator-made imagery, which is held to a lower polish bar deliberately.",
+    "representation": "Casting reflects the actual customer base across age, background, and setting.",
+    "dos": [
+      "Show the square patty edge — it is a proof point, not a detail",
+      "Let steam, sear, and texture do the freshness argument",
+      "Frame for the crop the asset will actually run in"
+    ],
+    "donts": [
+      "No food styling so perfect it reads as a rendering",
+      "No imagery implying a portion or ingredient the product does not have",
+      "No competitor product in frame, even as a foil"
+    ]
+  },
+  "iconography": {
+    "style": "Rounded, friendly, slightly hand-drawn in feel — closer to the character's warmth than to a systematized UI set.",
+    "illustration_style": "Flat, playful illustration used in app, loyalty, and social contexts; it supports a moment rather than explaining a system.",
+    "usage_rules": [
+      "Icons support a label; they never replace one in ordering or offer flows",
+      "Keep icon color within the palette — icons are not a place to introduce new color"
+    ]
+  },
+  "motion": {
+    "principles": [
+      "Motion is quick and a little playful — it matches the speed of the brand's voice",
+      "Nothing moves slowly enough to be scrolled past"
+    ],
+    "usage_rules": [
+      "The Wendy portrait does not animate as a character",
+      "Offer terms hold on screen long enough to be read at the pace a person actually reads",
+      "Honor reduced-motion preferences in app and web surfaces"
+    ]
+  },
+  "layout": {
+    "composition_principles": [
+      "One idea per asset — the headline, the food, or the price, not all three fighting",
+      "Built vertical-first for the phone, then adapted outward",
+      "The lockup has a home position and stays in it"
+    ]
+  },
+  "accessibility": {
+    "conformance_target": "WCAG 2.2 Level AA for digital ordering, app, and web surfaces (to be confirmed against internal standards)",
+    "contrast_requirements": "Minimum 4.5:1 for body text and 3:1 for large text and meaningful non-text elements. White on Wendy's Red must be verified per surface rather than assumed.",
+    "minimum_type_size": "Offer terms and legal copy must remain legible at ship size on a phone.",
+    "requirements": [
+      "Price, offer conditions, and expiry are never conveyed by color or image alone",
+      "All ordering flows are keyboard operable with visible focus states",
+      "Product and promotional imagery carries meaningful alternative text",
+      "Video content is captioned — much of it is viewed with sound off"
+    ]
+  },
+  "channel_specs": [
+    {
+      "channel": "Paid social",
+      "specifications": "Vertical-first. The headline and the lockup must survive the tightest platform crop, and offer terms must clear the platform's UI safe zones."
+    },
+    {
+      "channel": "Digital menu boards",
+      "specifications": "Read at distance and in motion — price and product name take priority over voice-led copy."
+    },
+    {
+      "channel": "App and loyalty",
+      "specifications": "The system's most functional surface: offer clarity and accessible contrast outrank brand expression when they conflict."
+    },
+    {
+      "channel": "Packaging",
+      "specifications": "The warm neutral ground carries the mark; food photography does not appear on primary packaging surfaces."
+    }
+  ],
+  "brand_architecture_rules": [
+    "Wendy's is a masterbrand — product lines and value platforms are named typographically and never receive their own marks",
+    "Collaboration and entertainment partnerships adopt the partner's visual language only inside a clearly bounded lockup"
+  ],
+  "localization_rules": [
+    "The portrait mark and wordmark are consistent across markets; the wordmark is not translated",
+    "Market-specific value platforms follow local pricing and disclosure conventions in the legal role of the type scale"
+  ],
+  "rights_and_licensing": [
+    {
+      "asset_type": "The Wendy portrait mark and wordmark",
+      "terms": "Trademark. No third-party use or modification without written permission.",
+      "rights_holder": "The Wendy's Company"
+    },
+    {
+      "asset_type": "Brand typefaces",
+      "terms": "Licensing scope unconfirmed — verify desktop, web, app, and broadcast coverage before production use.",
+      "rights_holder": "To be confirmed"
+    },
+    {
+      "asset_type": "Collaboration and entertainment assets",
+      "terms": "Time-bound by the partnership agreement. Confirm the usage window before any reuse — these rights expire while the assets remain in the DAM.",
+      "rights_holder": "Shared with the partner"
+    }
+  ],
+  "generation_constraints": {
+    "generative_imagery_permitted": false,
+    "permitted": [
+      "Layout and composition exploration",
+      "Social-format adaptation and cropping of approved photography",
+      "Copy-led asset drafts using approved product photography"
+    ],
+    "prohibited": [
+      "Generating, redrawing, or restyling the Wendy character in any form — including as a stylized illustration, mascot variant, or reaction image",
+      "Generating food imagery presented as Wendy's product",
+      "Inventing palette colors, especially near-matches to Wendy's Red",
+      "Generating prices, offer terms, dates, or availability",
+      "Placing the brand in cultural or political contexts without human approval — the voice is fast, but the brand is not automated into a moment"
+    ],
+    "style_descriptors": [
+      "warm, saturated, appetite-first",
+      "red-dominant with white reversed type",
+      "close crop, visible texture, natural food color",
+      "friendly and rounded rather than clinical"
+    ],
+    "negative_prompts": [
+      "cold blue lighting",
+      "over-styled hero food, rendered or CGI food",
+      "generic fast-food stock photography",
+      "cartoon mascot in an unapproved style"
+    ],
+    "human_review_required": [
+      "Any asset containing the Wendy portrait or wordmark",
+      "Any price, offer, or availability claim",
+      "Any cultural-moment or reactive social post",
+      "Any co-branded or partnership asset"
+    ]
+  },
+  "asset_sources": [
+    {
+      "type": "Public brand expression",
+      "name": "wendys.com, the Wendy's app, and the brand's published advertising and social channels",
+      "reference": "https://www.wendys.com/",
+      "access_notes": "Public. This object was derived from observable expression, not from an internal brand book."
+    }
+  ],
+  "source": "Built from Wendy's publicly observable visual expression — its website, app, packaging, advertising, and social channels (accessed 2026). Deliberately demonstrates the second build path: where a brand publishes no design system, capture roles, rules, and principles from expression and mark exact token values, typeface names, and licensing terms 'to be confirmed' rather than guessing them. Confirm against internal brand standards before operational use."
+}

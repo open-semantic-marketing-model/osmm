@@ -24,7 +24,9 @@ Build a valid **OSMM Brand Context Object** from any source describing how a bra
 
 A Brand Context Object is durable, foundational Context — the structured understanding of a brand's personality, voice, tone, core messages, and the guardrails that govern what it can and cannot say. It is **layer 1 of the message cascade** (brand → product → persona/journey): every downstream creative and content Work Product — Creative Strategy, Content Strategy — the Journey's `persona_tracks.key_messages`, and every rendered artifact (a creative brief, a campaign) references this brand foundation. Making it explicit and structured means agents and humans produce on-brand work against the same baseline instead of re-deriving the brand's voice each time.
 
-This is the lean v0.1 builder. It captures the brand facts a marketing workflow needs to stay on-voice and compliant, and nothing more. A full visual identity system (logo files, color tokens, type scales) is deliberately out of scope — capture only the marketing-relevant *implications* of visual identity in `visual_identity_notes`. When the brand has a formal design system or design language (e.g. a design-token source, a design-language site, or a component library), point to it in `design_system_reference` — OSMM references that upstream system rather than re-encoding it.
+This is the lean v0.1 builder. It captures the brand facts a marketing workflow needs to stay on-voice and compliant, and nothing more. The **visual** identity system — marks, color, typography, imagery, motion, layout, accessibility, and generation constraints — is not this object's job: it belongs to the **Design System Object** (`osmm-design-system-builder`, sub-process 1.10), which pairs one-to-one with this object on the same slug (`BRC-ibm` ↔ `DSY-ibm`). Brand Context owns how the brand *sounds*; Design System owns how it *looks*; together they are the full identity.
+
+Keep `visual_identity_notes` to a one-line, marketing-relevant summary (e.g. "photography is always real customers, never stock") and let the Design System Object carry the system itself. `design_system_reference` remains the pointer to the brand's *external* design system or design language (a design-token source, a design-language site, a component library) — OSMM references that upstream system rather than re-encoding it, and the Design System Object records it as a `token_sources` / `asset_sources` entry.
 
 **Key difference from Business Context:** the Business Context Object answers *what the business is, sells, and competes on*; the Brand Context Object answers *how the brand sounds and what it must say*. Business Context carries a thin optional `brand_tone_notes` as a placeholder — the Brand Context Object is its full, authoritative replacement. A Brand Context belongs to a business and points back at it via `linked_business_context`.
 
@@ -100,8 +102,8 @@ Emit a single JSON object with this exact shape. Field order should match.
 | `messaging_guardrails` | string[] | yes | The non-negotiable rules: claims that must always be made and claims that must never be made. This is what the creative-brief composer reads as guardrails. |
 | `mandatories` | string[] | no | Required brand/legal elements every execution must carry (legal disclaimers, required phrasing, logo lockups). Omit if none. |
 | `compliance_notes` | string | no | Regulated-industry or legal constraints on messaging (e.g. financial-services disclosure rules, health claims). |
-| `visual_identity_notes` | string | no | Brief note on visual identity *as it affects marketing* (e.g. "photography is always real customers, never stock"). Full design system is out of scope — link it via `design_system_reference`. |
-| `design_system_reference` | string | no | Link or pointer to the brand's external **design system / design language** (a design-token source, design-language site, or component library), if one exists — e.g. IBM Design Language / Carbon, BBC GEL. OSMM references this upstream system rather than modeling it; omit if the brand has none. |
+| `visual_identity_notes` | string | no | **One line** on visual identity *as it affects marketing* (e.g. "photography is always real customers, never stock"). The visual system itself lives in the paired **Design System Object** (`DSY-<slug>`); keep this a summary, not a second home. |
+| `design_system_reference` | string | no | Link or pointer to the brand's external **design system / design language** (a design-token source, design-language site, or component library), if one exists — e.g. IBM Design Language / Carbon, BBC GEL. OSMM references this upstream system rather than modeling it; the paired Design System Object records it structurally in `token_sources` / `asset_sources`. Omit if the brand has none. |
 | `source` | string | no | One line. Provenance and approximate date. |
 
 ## Brand archetype vocabulary
@@ -139,7 +141,8 @@ Emit a single JSON object with this exact shape. Field order should match.
 5. **Ground personality in evidence.** Derive personality and voice from how the brand *actually* speaks in its real copy/social, not from aspirational adjectives in a deck. When a brand guideline asserts a trait the published copy doesn't support, weight the published copy and note the gap.
 6. **Make dos and don'ts concrete.** "Be conversational" is weak; "Use contractions and second person; never open with a feature spec" is operational. Downstream agents act on the concrete version.
 7. **Keep arrays signal-bearing.** Resist padding. A tight set of real pillars and guardrails beats a long generic list.
-8. **One Brand Context per brand.** A company with distinct sub-brands gets one object per sub-brand, each linked to the same Business Context (or to sub-unit Business Contexts).
+8. **Send visual identity to the Design System Object.** When a source mixes verbal and visual guidance (most brand books do), keep the voice, tone, message, and guardrails here and hand the marks, palette, type, imagery, and motion to `osmm-design-system-builder`. Don't split a brand's identity across two half-filled objects; each takes the half it owns.
+9. **One Brand Context per brand.** A company with distinct sub-brands gets one object per sub-brand, each linked to the same Business Context (or to sub-unit Business Contexts).
 
 ## Output rules
 

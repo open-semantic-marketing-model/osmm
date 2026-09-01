@@ -70,7 +70,7 @@ Updates are automatic — Cowork syncs new versions for you.
 Then run `/reload-plugins`. To get updates later, run
 `/plugin marketplace update osmm` then `/plugin update osmm`.
 
-Either way, that's it — you now have 18 builder skills. Full details, including
+Either way, that's it — you now have 19 builder skills. Full details, including
 team-wide rollout, are in [`PLUGIN.md`](PLUGIN.md).
 
 ---
@@ -119,13 +119,19 @@ OSMM follows the shape of the work you already do. Seven phases:
 
 | Phase | The question you're answering | What you build |
 |-------|-------------------------------|----------------|
-| **1. Define Strategy** | Who are we, what do we sell, what are we trying to achieve? | Business Context, Brand Context, Product Context, Marketing Strategy, Measurement Framework |
+| **1. Define Strategy** | Who are we, what do we sell, what are we trying to achieve? | Business Context, Brand Context, Design System, Product Context, Marketing Strategy, Measurement Framework |
 | **2. Define Audience** | Who are we talking to? | Persona, Audience |
 | **3. Define Offer** | What's the reason to act now? | Offer |
 | **4. Define Campaign & Journey** | How does this reach them, and in what order? | Campaign Strategy, Journey |
 | **5. Define Content & Creative** | What do we say, and how do we say it? | Creative Strategy, Content Strategy *(and the Creative Brief artifact)* |
 | **6. Build & Deliver** | What actually ships? | Experience, Experience Component |
 | **7. Measure, Learn & Optimize** | What happened, why, and what do we change? | Performance Measurement, Customer Insight, Optimization Recommendation |
+
+**Brand Context vs. Design System** is the other pair worth learning: Brand Context is
+how the brand **sounds** (voice, tone, messaging, guardrails); the Design System is how it
+**looks** (marks, color, type, imagery, motion, accessibility, and what AI may generate with
+the identity). They pair one-to-one and are built from the same brand book, each taking the
+half it owns.
 
 **Persona vs. Audience** trips everyone up, so learn it once: a **Persona**
 *describes* a human archetype (their motivations, objections, language). An
@@ -192,7 +198,7 @@ semver with real deprecation, never silent breaks — the policy is in
 
 ## Common questions
 
-**Do I need to build all 18 objects?** No. Most teams should build five Context
+**Do I need to build all 19 objects?** No. Most teams should build a handful of Context
 objects and stop. Add work-product objects when you have a real campaign that
 needs them.
 

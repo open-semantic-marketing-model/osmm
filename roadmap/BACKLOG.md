@@ -3,24 +3,33 @@
 The single source of truth for **what's done, what's in flight, and what's next**.
 For the sequencing rationale and milestones, see [`ROADMAP.md`](ROADMAP.md).
 
-**Last updated:** 2026-07-14 (docs: split plugin install instructions by product — Claude Cowork app UI vs. Claude Code CLI — in README, GETTING-STARTED, and PLUGIN)
+**Last updated:** 2026-09-01 (v0.12: **Design System (B38)** built — the model's 19th object and the durable *visual* identity layer, paired one-to-one with Brand Context)
 
-**Prior:** 2026-06-19 (v0.10: Phase 7 Measure-Learn-Optimize layer built — Performance Measurement, Customer Insight, Optimization Recommendation → Milestone F complete)
+**Prior:** 2026-07-14 (docs: split plugin install instructions by product — Claude Cowork app UI vs. Claude Code CLI — in README, GETTING-STARTED, and PLUGIN)
 
 **Progress at a glance**
 
 | Track | Done | In Progress | To Do | Total |
 |-------|-----:|------------:|------:|------:|
-| Object builders | 17 | 0 | 1 (parked) | 18 |
+| Object builders | 18 | 0 | 1 (parked) | 19 |
 | Artifact composers | 1 | 0 | 6 (candidates) | 7 |
-| Infrastructure / docs | 11 | 0 | 5 | 16 |
+| Infrastructure / docs | 11 | 0 | 6 | 17 |
 
 > **Milestones A–F complete** — Context foundation, Strategy layer, Offer & Activation,
 > Content & Creative, Build & Deliver, and Measure-Learn-Optimize all have builders.
-> **17 of 18 object builders ship**; only the parked **Experiment Strategy (B36)** remains.
+> **18 of 19 object builders ship**; only the parked **Experiment Strategy (B36)** remains.
 > The Phase 7 layer closes the learning loop: Performance Measurement records actuals against
 > the framework (faceted by `dimension`), Customer Insight is the interpreted *why*, and
 > Optimization Recommendation is the prescription that writes back into Context/Strategy (7.7).
+>
+> **v0.12 → 19 objects: Design System added (B38).** The first *addition* since the
+> right-sizing passes, and it passes the same test the removals did: no existing object could
+> hold a client's visual identity. Brand Context deliberately scoped it out, Creative Strategy
+> is campaign-scoped rather than durable, and Experience Component holds assembled blocks
+> rather than the system they're built to. `DSY-` pairs one-to-one with `BRC-` on the same
+> slug — Brand Context owns how the brand *sounds*, Design System owns how it *looks* — and
+> carries `generation_constraints`: what a generative system may and may not produce with the
+> identity.
 >
 > **Right-sizing → 18 objects.** v0.5–v0.7 (see below); **v0.8** dissolved **Keyword (B08),
 > Keyword Strategy (B09), and Messaging Framework (B16) into the Journey**; **v0.9** collapsed
@@ -41,6 +50,7 @@ Item ids: `B##` = object builder, `C##` = composer, `I##` = infrastructure/docs.
 |----|------|-------|
 | B01 | `osmm-business-context-builder` | Phase 1 · Context. Shipped (`status: draft`). |
 | B02 | `osmm-brand-context-builder` | Phase 1 · Context. Shipped (`status: draft`). Unblocks C01's required `brand_context` input. |
+| B38 | `osmm-design-system-builder` | Phase 1 · Context. Shipped (`status: draft`). The **19th object** and the durable *visual* identity layer (1.10): identity/marks and misuse rules, color with semantic roles, typography with licensing, imagery and art direction, iconography, motion, layout, accessibility standards, durable per-channel format specs, brand-architecture and localization rules, asset rights, and **`generation_constraints`** (what a model may produce with the identity). Carries the semantic layer and **references** the raw token/asset sources rather than mirroring them. Ratifies the `DSY-` prefix; realizes Design System → Brand/Business Context and demotes Brand Context's `visual_identity_notes` to a summary. Examples: IBM (publishes its system) and Wendy's (publishes nothing — values flagged, not guessed). Id assigned by ship order (appended), not registry position. |
 | B03 | `osmm-marketing-strategy-builder` | Phase 1 · Work Product. Shipped (`status: draft`). **First Work Product object** — realizes the first Work Product → Context edges (Business/Brand Context, priority Audiences). |
 | B04 | `osmm-measurement-framework-builder` | Phase 1 · Work Product. Shipped (`status: draft`). Tiered KPI framework (`primary`/`supporting`/`guardrail`) measuring a Marketing Strategy. Realizes the first bidirectional Work Product ↔ Work Product edge (MKS ↔ MEF); resolved the MKS `MEF-PLACEHOLDER` refs (MKS instances → v1.1). |
 | B06 | `osmm-audience-builder` | Phase 2 · Context. Shipped (`status: draft`). OSMM's addressable **segment** (clarified Segment ≈ Audience). Realizes Persona ↔ Audience. |
@@ -57,7 +67,7 @@ Item ids: `B##` = object builder, `C##` = composer, `I##` = infrastructure/docs.
 | B30 | `osmm-customer-insight-builder` | Phase 7 · Learning. Shipped (`status: draft`). The interpreted **why** (7.2) — `insight_statement`, `confidence`, `evidence` (Performance Measurements + external research), affected personas/audiences, and `proposes_updates_to[]` writing durable changes back into Context (7.7). Ratifies the `CIN-` prefix. First **Learning-category** object. |
 | B34 | `osmm-optimization-recommendation-builder` | Phase 7 · Learning. Shipped (`status: draft`). The **prescription** (7.6) — `recommendation`, `rationale`, `derived_from` (insights + measurements), `priority`/`effort`/`expected_impact`, a `disposition` (proposed → accepted/rejected/implemented) distinct from lifecycle `status`, and `targets[]` writing forward into Work Products/Strategy. Lean pointer-plus-prose write-back. Ratifies the `OPR-` prefix. **Completes Milestone F.** Unlocks the Optimization Plan composer (C07). |
 | C01 | `osmm-creative-brief-composer` | Phase 5 artifact-composer. ✅ Required input `brand_context` now built (B02); runnable end-to-end on the Wendy's example set. |
-| I01 | `TAXONOMY.md` | 7 phases → 18 objects, object resolution index. |
+| I01 | `TAXONOMY.md` | 7 phases → 19 objects, object resolution index. |
 | I02 | `CONVENTION.md` | Naming, frontmatter contract, full builder registry, composer class, schema/example promotion rules. |
 | I03 | `RELATIONSHIPS.md` | Reference model, id prefixes, reference graph. |
 | I04 | `GOVERNANCE.md` + `CONTRIBUTING.md` | Decision model, tenets, lifecycle; contribution guide. |
@@ -67,7 +77,7 @@ Item ids: `B##` = object builder, `C##` = composer, `I##` = infrastructure/docs.
 | I08 | Consumer reference brand swap (Warby Parker → Wendy's) | Merged in PR #7. |
 | I14 | Canonical JSON Schemas + CI validation | Standalone `schemas/<object_type>.schema.json` for all 8 shipped objects (strict); `scripts/validate.py` + `validate` workflow; builders now ship their schema (CONVENTION v0.4, CONTRIBUTING/GOVERNANCE definition-of-done). PRs #18–20. |
 | I15 | v0.5 registry right-sizing (35 → 27) | Five consolidations of speculative, unbuilt objects; adopted "prefer a facet over a near-duplicate object; collapse on paper, split at build time." |
-| I16 | Object-graph view (`GRAPH.md`) | Whole-model graph of all 18 objects (built + backlog), ordered left→right by workflow phase, realized vs envisioned edges + learning loop, with an inline Mermaid version; generated by `scripts/gen_object_graph.py` (committed `osmm-object-graph.svg`). |
+| I16 | Object-graph view (`GRAPH.md`) | Whole-model graph of all 19 objects (built + backlog), ordered left→right by workflow phase, realized vs envisioned edges + learning loop, with an inline Mermaid version; generated by `scripts/gen_object_graph.py` (committed `osmm-object-graph.svg`). |
 
 ---
 
@@ -86,9 +96,15 @@ Grouped by milestone (see [`ROADMAP.md`](ROADMAP.md)). Within a milestone, order
 ### Milestone A — Finish the Context foundation ✅ COMPLETE
 *Context objects are referenced by every Work Product and consumed by composers. Completing this layer unblocks everything downstream.*
 
-> ✅ **Milestone A is done.** All five Context objects have builders: Business (B01),
-> Brand (B02), Product (B35), Audience (B06), Persona (B07) — see Done. The Creative Brief
+> ✅ **Milestone A is done.** All six Context objects have builders: Business (B01),
+> Brand (B02), Design System (B38), Product (B35), Audience (B06), Persona (B07) — see Done. The Creative Brief
 > composer runs on fully-real inputs. **Next up: Milestone E — Build & Deliver (Phase 6).**
+
+### Follow-ups from v0.12 (Design System)
+
+| ID | Item | Note |
+|----|------|------|
+| I17 | Wire `linked_design_system` into downstream builders | Creative Strategy, Experience Component, and Experience all execute *within* a design system, but each would need a new optional `linked_design_system` field (schema + builder + RELATIONSHIPS row). Held out of the v0.12 PR to keep it one focused change; the edges are drawn as **envisioned** in `GRAPH.md` until then. Consumers reach the system through the Brand Context pair in the meantime. |
 
 ### Parked / deprioritized
 *Sequencing decision — not removed from the model, just not being built now.*
@@ -145,7 +161,7 @@ Grouped by milestone (see [`ROADMAP.md`](ROADMAP.md)). Within a milestone, order
 |----|----------|-------|----------------|
 | C02 | `osmm-campaign-brief-composer` | Campaign Strategy + Journey (+ Audience, Offer) | Milestone C |
 | C03 | `osmm-strategy-brief-composer` | Marketing Strategy + Business/Brand Context + Measurement Framework | Milestone B |
-| C04 | `osmm-brand-playbook-composer` | Brand Context (+ Business Context) | Milestone A (B02) |
+| C04 | `osmm-brand-playbook-composer` | Brand Context + Design System (+ Business Context) | Milestone A (B02, B38) |
 | C05 | `osmm-audience-strategy-composer` | Marketing Strategy (audience priorities) + Audience + Persona | Milestone B |
 | C06 | `osmm-journey-map-composer` | Journey (+ Campaign Strategy, Persona) | Milestone C |
 | C07 | `osmm-optimization-plan-composer` | Optimization Recommendation + Phase 7 performance objects | Milestone F |

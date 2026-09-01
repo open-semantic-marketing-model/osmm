@@ -11,7 +11,54 @@ governance). The current schema version is **0.1.0**.
 
 ## [Unreleased]
 
+### Added
+- **Design System Object — the model's 19th object and its first *addition* since the
+  right-sizing passes** (v0.12). OSMM had no home for a client's visual identity: Brand Context
+  deliberately scoped it out (carrying only a one-line `visual_identity_notes` and an external
+  `design_system_reference`), Creative Strategy is campaign-scoped rather than durable, and
+  Experience Component holds assembled content blocks rather than the system they are built to.
+  - **`osmm-design-system-builder`** (B38, Phase 1, Context, `status: draft`) — the **Design
+    System Object** (`DSY-`), the durable *visual* identity. It pairs **one-to-one with Brand
+    Context** on the same slug (`BRC-ibm` ↔ `DSY-ibm`): Brand Context owns how the brand
+    *sounds*, the Design System owns how it *looks*. They stay separate objects because they
+    have different owners, different change cadences, and different consumers — a copy generator
+    reads voice and guardrails, a layout or asset generator reads the palette and the type scale,
+    and each should load only what it needs.
+  - **What it carries:** `design_principles`; `identity` (marks, lockups, clear space, minimum
+    size, misuse rules, co-branding); `color` (palette with **semantic roles**, usage rules,
+    light/dark modes); `typography` (typefaces with **foundry and license**, fallback stacks,
+    a role-based type scale, usage rules); plus optional `imagery` (art direction, treatment,
+    sourcing, representation, dos/donts), `iconography`, `motion`, `layout`, `accessibility`
+    (conformance target, contrast, minimum type size), `channel_specs` (durable format rules),
+    `brand_architecture_rules`, `localization_rules`, `rights_and_licensing` (terms and expiry),
+    and **`generation_constraints`** — what a generative system may and may not produce with the
+    identity (permitted, prohibited, style descriptors, negative prompts, human-review triggers).
+    That last section is the reason this is an OSMM object rather than a linked PDF.
+  - **Semantic layer carried, raw layer referenced.** The object holds the *decisions* (what a
+    color is for, what a rule forbids) and points at the upstream token file, component library,
+    and DAM via `token_sources` / `asset_sources` with a version. OSMM never mirrors a token tree
+    and never holds binaries. The one deliberate exception is embedding the **core** palette and
+    type scale, because most brands have a brand book and no token file.
+  - **Sub-process 1.10** in `TAXONOMY.md`, appended rather than inserted at 1.3 so the established
+    1.3–1.9 numbering stays stable. Also written by 7.7 (durable Context write-back).
+  - **Examples** (`examples/DESIGN-SYSTEM_ibm.json`, `examples/DESIGN-SYSTEM_wendys.json`)
+    demonstrate the two build paths: IBM publishes its system, so values are quoted from the
+    public Carbon/IBM Design Language reference; Wendy's publishes none, so roles and rules are
+    captured from observable expression while exact hex values, typeface names, and licensing
+    terms are flagged *"to be confirmed"* rather than guessed.
+  - Ratifies the `DSY-` prefix and realizes **Design System → Brand Context / Business Context**.
+    Downstream edges (Creative Strategy, Experience Component, Experience → Design System) are
+    drawn as **envisioned** in `GRAPH.md`; a `linked_design_system` field lands in each of those
+    builders when they are next revised (backlog I17).
+
 ### Changed
+- **Brand Context's visual fields demoted to a summary and a pointer** (v0.12). With the Design
+  System Object as the authoritative home, `visual_identity_notes` is explicitly **one line** of
+  marketing-relevant note and `design_system_reference` remains the external pointer (now also
+  recorded structurally by the Design System's `token_sources` / `asset_sources`). No schema
+  break — the field descriptions and builder guidance changed, not the contract. A new extraction
+  principle tells the builder to hand marks, palette, type, imagery, and motion to
+  `osmm-design-system-builder` rather than splitting an identity across two half-filled objects.
 - **Journey `scope` facet + one-directional Campaign↔Journey edge** (v0.11). The Journey Object
   gains a **required `scope`** field — **`lifecycle`** (the durable, persona-anchored backbone: the
   end-to-end view of how a persona experiences the brand; high-read, low-write, referenced by many

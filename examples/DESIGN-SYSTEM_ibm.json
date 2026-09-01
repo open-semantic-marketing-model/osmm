@@ -1,0 +1,304 @@
+{
+  "object_type": "design_system",
+  "osmm_version": "0.1.0",
+  "design_system_id": "DSY-ibm",
+  "version": "1.0",
+  "status": "draft",
+  "name": "IBM Design Language",
+  "linked_brand_context": "BRC-ibm",
+  "linked_business_context": "BIZ-ibm",
+  "owner": "IBM Brand & Design (IBM Design Language) with Carbon Design System for digital product surfaces",
+  "design_principles": [
+    "Good design is good business — design is a business discipline at IBM, not decoration",
+    "Carry the hierarchy with type and grid; color is a signal, never the structure",
+    "Neutral ground, deliberate accent — restraint is the brand's most recognizable trait",
+    "Every surface is accessible by default; accessibility is a requirement, not a review step",
+    "One system, many expressions — product, marketing, and event surfaces flex within the same grammar"
+  ],
+  "identity": {
+    "primary_mark": "The IBM 8-bar logo — the striped 'IBM' wordmark designed by Paul Rand in 1972, still the sole primary mark.",
+    "mark_variants": [
+      "Positive 8-bar mark in IBM Blue or black on light backgrounds",
+      "Reversed (white) 8-bar mark on dark or photographic backgrounds",
+      "Single-color monochrome mark where reproduction constraints require it"
+    ],
+    "lockup_rules": "The 8-bar mark locks up with product and offering names as typographic sign-offs; sub-brands are set in IBM Plex alongside the mark rather than receiving marks of their own.",
+    "clear_space": "Clear space is derived from the mark's own bar height — nothing intrudes within that measure on any side.",
+    "minimum_size": "Reproduce no smaller than the size at which all eight bars remain individually legible.",
+    "misuse_rules": [
+      "Never redraw, restripe, or regenerate the 8-bar mark — it is reproduced from approved artwork only",
+      "Never recolor the mark outside the approved positive, reversed, and monochrome variants",
+      "Never apply effects — shadows, gradients, outlines, bevels, or textures",
+      "Never place the mark on imagery busy enough to break the bars",
+      "Never stretch, rotate, or alter the proportions of the mark"
+    ],
+    "co_branding_rules": "In partner and client lockups the IBM mark holds equal visual weight, separated by a clear rule, with the relationship stated in words rather than implied by scale."
+  },
+  "color": {
+    "palette": [
+      {
+        "token": "$blue-60",
+        "name": "IBM Blue 60",
+        "value": "#0F62FE",
+        "role": "primary / interactive",
+        "usage_notes": "The brand's anchor blue and the primary interactive color across digital surfaces. Used deliberately, not as a background wash."
+      },
+      {
+        "token": "$gray-100",
+        "name": "Gray 100",
+        "value": "#161616",
+        "role": "surface (dark) / text",
+        "usage_notes": "The canonical dark surface and the default text color on light backgrounds."
+      },
+      {
+        "token": "$white-0",
+        "name": "White",
+        "value": "#FFFFFF",
+        "role": "surface (light)",
+        "usage_notes": "The default light surface. The system's neutral ground is the majority of any composition."
+      },
+      {
+        "token": "$gray-10",
+        "name": "Gray 10",
+        "value": "#F4F4F4",
+        "role": "secondary surface",
+        "usage_notes": "Layering and separation on light surfaces without introducing a border."
+      },
+      {
+        "token": "$red-60",
+        "name": "Red 60",
+        "value": "#DA1E28",
+        "role": "error / danger",
+        "usage_notes": "Semantic only. Never used as a decorative or brand accent."
+      },
+      {
+        "token": "$green-50",
+        "name": "Green 50",
+        "value": "#24A148",
+        "role": "success",
+        "usage_notes": "Semantic only."
+      }
+    ],
+    "usage_rules": [
+      "Neutrals carry the composition; blue is the accent that directs action",
+      "Semantic colors (error, success, warning) never do decorative work",
+      "Color never carries meaning alone — pair it with type, icon, or position",
+      "Gradients are used sparingly and only from the published gradient set"
+    ],
+    "modes": [
+      "Light themes (White, Gray 10) and dark themes (Gray 90, Gray 100) are both first-class; every component resolves in both",
+      "High-contrast requirements are met by the theme tokens, not by ad-hoc overrides"
+    ]
+  },
+  "typography": {
+    "typefaces": [
+      {
+        "name": "IBM Plex Sans",
+        "role": "display, headline, body, UI",
+        "foundry": "Commissioned by IBM (Mike Abbink with Bold Monday)",
+        "license": "Open source under the SIL Open Font License 1.1 — free for desktop, web, and embedding, which removes the seat-licensing constraint most brand systems carry",
+        "fallback_stack": "'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif",
+        "weights": ["Light", "Regular", "Medium", "SemiBold", "Bold"]
+      },
+      {
+        "name": "IBM Plex Serif",
+        "role": "editorial and long-form contrast",
+        "foundry": "Commissioned by IBM (Mike Abbink with Bold Monday)",
+        "license": "SIL Open Font License 1.1",
+        "fallback_stack": "'IBM Plex Serif', Georgia, serif"
+      },
+      {
+        "name": "IBM Plex Mono",
+        "role": "code, data, and technical annotation",
+        "foundry": "Commissioned by IBM (Mike Abbink with Bold Monday)",
+        "license": "SIL Open Font License 1.1",
+        "fallback_stack": "'IBM Plex Mono', 'Courier New', monospace"
+      }
+    ],
+    "type_scale": [
+      { "token": "$body-01", "role": "body", "size": "14px", "weight": "Regular", "line_height": "20px" },
+      { "token": "$body-02", "role": "body (long-form)", "size": "16px", "weight": "Regular", "line_height": "24px" },
+      { "token": "$heading-01", "role": "h4 / component heading", "weight": "SemiBold" },
+      { "token": "$heading-03", "role": "h2 / section heading", "weight": "Regular" },
+      { "token": "$fluid-heading-05", "role": "display / page opener", "weight": "Light" }
+    ],
+    "usage_rules": [
+      "Type carries the hierarchy — set headings large and light rather than heavy and colored",
+      "Sentence case throughout; the system does not shout in all caps",
+      "Left-aligned by default; centered type is the exception, not a style choice",
+      "Never set body copy in the display size, and never set display copy in the body face's UI weights"
+    ]
+  },
+  "imagery": {
+    "art_direction": "Photography documents real people doing real work and real technology in real environments. The point of view is observational and unstaged — the viewer is present in a working moment, not being sold at.",
+    "subject_matter": [
+      "Practitioners and clients at work in their actual environments",
+      "Technology and infrastructure shown honestly at its own scale",
+      "Abstract and macro texture where a literal subject would mislead"
+    ],
+    "treatment": "Natural light, true color, minimal retouching. No heavy filters, no synthetic blue technology wash, no lens flare.",
+    "sourcing": "Commissioned photography is preferred; stock is used only where it can pass as documentary. Imagery of clients requires their approval.",
+    "representation": "Casting reflects the actual global workforce — a range of ages, geographies, abilities, and roles. Never symbolic diversity in an otherwise generic scene.",
+    "dos": [
+      "Show the work, the tool, and the person in the same frame where possible",
+      "Leave compositional room for type — imagery and the grid are designed together"
+    ],
+    "donts": [
+      "No glowing blue circuit-board or 'digital brain' clichés",
+      "No conference-room stock handshakes",
+      "No composites that imply a product capability that does not exist"
+    ]
+  },
+  "iconography": {
+    "style": "Geometric, consistent stroke weight, drawn on a fixed pixel grid, minimal detail. Icons read at their smallest intended size before any other consideration.",
+    "source": "The Carbon icon library is the canonical set; new icons are contributed to it rather than drawn locally.",
+    "illustration_style": "Flat, geometric, constructed from the same grid as the icons. Illustration explains a system or relationship; it does not decorate a page.",
+    "usage_rules": [
+      "Use an existing Carbon icon before drawing a new one",
+      "Icons inherit text color; they are not independently colored for emphasis",
+      "An icon never carries meaning without an accessible label"
+    ]
+  },
+  "motion": {
+    "principles": [
+      "Motion explains cause and effect — where a thing came from and where it went",
+      "Productive motion gets out of the way; expressive motion is reserved for moments that deserve attention"
+    ],
+    "durations": "Short, functional durations for productive UI transitions; longer, more deliberate durations for expressive brand moments.",
+    "easing": "Standard, entrance, and exit easing curves are defined as tokens; entrances decelerate and exits accelerate.",
+    "usage_rules": [
+      "Never animate the 8-bar mark's construction",
+      "Honor reduced-motion preferences — the experience must be complete without motion",
+      "Motion never gates comprehension: nothing meaningful is visible only mid-animation"
+    ]
+  },
+  "layout": {
+    "grid": "The 2x Grid — a 16-column responsive grid built on a 2x-based unit, with a visible relationship between the grid and the type scale.",
+    "spacing_scale": "A single token-based spacing scale derived from the 2x unit; no arbitrary spacing values.",
+    "breakpoints": ["sm", "md", "lg", "xlg", "max"],
+    "composition_principles": [
+      "Align to the grid and let the grid show — structure is part of the brand",
+      "Generous whitespace is a deliberate signal of confidence, not empty space to fill",
+      "One clear focal point per composition"
+    ]
+  },
+  "accessibility": {
+    "conformance_target": "IBM Accessibility Requirements — aligned to WCAG 2.x Level AA, plus US Section 508 and EN 301 549",
+    "contrast_requirements": "Minimum 4.5:1 for body text and 3:1 for large text and meaningful non-text elements; theme tokens are built to satisfy this without manual checking.",
+    "minimum_type_size": "Body copy is never set below the body-01 step on any digital surface.",
+    "requirements": [
+      "Every image carries meaningful alternative text; decorative images are explicitly marked as such",
+      "Color is never the only carrier of meaning",
+      "All interactive elements have a visible focus state and are fully keyboard operable",
+      "Video is captioned; audio content has a transcript"
+    ]
+  },
+  "channel_specs": [
+    {
+      "channel": "Paid social",
+      "specifications": "The 8-bar mark and a single typographic message; compositions are built for the smallest crop first and checked against each platform's safe zones before the widest."
+    },
+    {
+      "channel": "Email",
+      "specifications": "Web-safe fallback stack assumed; layout holds at a single column, and no meaning depends on an image that may not load."
+    },
+    {
+      "channel": "Events and environmental",
+      "specifications": "Large-format applications hold the 2x Grid and clear-space rules at scale; the mark is reproduced from vector artwork only."
+    }
+  ],
+  "brand_architecture_rules": [
+    "IBM is a masterbrand — offerings are named and set typographically rather than given their own marks",
+    "Acquired brands transition to the IBM masterbrand on a defined timeline rather than persisting as visual peers",
+    "Open-source projects IBM stewards may hold their own community identity while carrying an IBM endorsement line"
+  ],
+  "localization_rules": [
+    "IBM Plex supports an extended Latin, Cyrillic, and Greek range; approved substitute faces cover CJK and other scripts",
+    "Layouts are built to mirror cleanly for right-to-left languages",
+    "Type sizes are reviewed per script — the Latin scale does not transfer unchanged to CJK"
+  ],
+  "rights_and_licensing": [
+    {
+      "asset_type": "Typography (IBM Plex family)",
+      "terms": "SIL Open Font License 1.1 — no seat limits, no domain restrictions, redistribution permitted with the license",
+      "rights_holder": "IBM"
+    },
+    {
+      "asset_type": "The IBM 8-bar logo",
+      "terms": "Trademark. Use by non-IBM parties requires written permission; the mark may not be modified under any circumstances.",
+      "rights_holder": "IBM"
+    },
+    {
+      "asset_type": "Commissioned photography featuring clients or employees",
+      "terms": "Usage is bounded by the release signed for each shoot — territory, medium, and duration all vary by asset. Confirm the release before reuse.",
+      "rights_holder": "IBM, subject to subject releases"
+    }
+  ],
+  "generation_constraints": {
+    "generative_imagery_permitted": true,
+    "permitted": [
+      "Abstract, textural, and geometric backgrounds consistent with the published visual grammar",
+      "Layout exploration and composition variants within the 2x Grid",
+      "Diagram and system-illustration drafts in the flat geometric illustration style"
+    ],
+    "prohibited": [
+      "Generating, redrawing, or approximating the 8-bar mark — it is placed from approved artwork only",
+      "Inventing colors outside the published palette, including 'close' variations of IBM Blue",
+      "Generating photorealistic people presented as IBM clients, employees, or practitioners",
+      "Producing capability claims, product screenshots, or data visualizations with invented figures",
+      "Generative type — headlines are set in IBM Plex, never drawn by a model"
+    ],
+    "style_descriptors": [
+      "restrained, neutral ground with a single deliberate accent",
+      "grid-aligned composition with generous whitespace",
+      "flat geometric construction, consistent stroke weight",
+      "natural light, true color, documentary point of view"
+    ],
+    "negative_prompts": [
+      "glowing blue circuit board",
+      "digital brain, neural network cliché",
+      "lens flare, bokeh technology wash",
+      "corporate stock handshake",
+      "gradient mesh, 3D bevel, drop shadow"
+    ],
+    "human_review_required": [
+      "Any asset carrying the 8-bar mark",
+      "Any depiction of a person",
+      "Any claim, statistic, or capability statement",
+      "Any co-branded or client-named asset"
+    ]
+  },
+  "token_sources": [
+    {
+      "type": "Design tokens (published theme tokens)",
+      "name": "Carbon Design System theme and type tokens",
+      "reference": "https://carbondesignsystem.com/elements/color/tokens/"
+    },
+    {
+      "type": "Component package",
+      "name": "@carbon/react",
+      "reference": "https://github.com/carbon-design-system/carbon"
+    }
+  ],
+  "asset_sources": [
+    {
+      "type": "Design language site",
+      "name": "IBM Design Language",
+      "reference": "https://www.ibm.com/design/language/",
+      "access_notes": "Public."
+    },
+    {
+      "type": "Component library and documentation",
+      "name": "Carbon Design System",
+      "reference": "https://carbondesignsystem.com/",
+      "access_notes": "Public and open source."
+    },
+    {
+      "type": "Typeface source",
+      "name": "IBM Plex",
+      "reference": "https://github.com/IBM/plex",
+      "access_notes": "Public, SIL OFL 1.1."
+    }
+  ],
+  "source": "Built from IBM's public design system materials — the IBM Design Language site, the Carbon Design System documentation and token reference, the IBM Plex repository, and IBM's published accessibility requirements (accessed 2026). Token values are quoted from the public Carbon reference; principles, generation constraints, and rights notes are interpreted from published guidance rather than quoted, and should be confirmed against IBM's internal brand standards before operational use."
+}

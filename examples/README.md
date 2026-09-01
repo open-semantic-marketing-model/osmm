@@ -45,10 +45,21 @@ coherent sets and exercise both `business_type` paths of the composer:
 | `AUDIENCE_ibm-enterprise-it.json` | Audience | IBM | B2B firmographic segment; illustrative operational criteria. |
 | `AUDIENCE_wendys-value-seekers.json` | Audience | Wendy's | B2C value-based segment; linked to the Wendy's persona (Persona ↔ Audience). |
 | `PERSONA_wendys-deal-savvy-craver.json` | Persona | Wendy's | Illustrative persona synthesized from public market knowledge. `linked_audiences` resolved to `AUD-wendys-value-seekers` (v1.1). |
+| `DESIGN-SYSTEM_ibm.json` | Design System | IBM | Quoted from the public IBM Design Language, Carbon token reference, and IBM Plex repo. Pairs with `BRC-ibm`. |
+| `DESIGN-SYSTEM_wendys.json` | Design System | Wendy's | Built from observable public expression — exact hex values, typeface names, and licensing are deliberately flagged *"to be confirmed"* rather than guessed. Pairs with `BRC-wendys`. |
+| `MARKETING-STRATEGY_ibm-2026.json` | Marketing Strategy | IBM | From public filings and earnings commentary. `MEF-PLACEHOLDER` resolved to the real framework (v1.1). |
+| `MARKETING-STRATEGY_wendys-2026.json` | Marketing Strategy | Wendy's | From public filings and reporting. `MEF-PLACEHOLDER` resolved to the real framework (v1.1). |
+| `MEASUREMENT-FRAMEWORK_ibm-2026.json` | Measurement Framework | IBM | Tiered KPI framework measuring `MKS-ibm-2026`; realizes the bidirectional MKS ↔ MEF edge. |
+| `MEASUREMENT-FRAMEWORK_wendys-2026.json` | Measurement Framework | Wendy's | Tiered KPI framework measuring `MKS-wendys-2026`. |
 
 > The Wendy's set (Business Context + Brand Context + Persona) and the IBM set
 > (Business Context + Brand Context) now cover the **required inputs** of
 > `osmm-creative-brief-composer`, so it can be exercised end-to-end on Wendy's.
+>
+> Each brand's **Brand Context + Design System** pair is the full identity — the verbal half
+> and the visual half, on the same slug (`BRC-ibm` ↔ `DSY-ibm`). The two Design System
+> instances deliberately demonstrate both build paths: a brand that publishes its system
+> (IBM, values quoted) and one that publishes none (Wendy's, values flagged for confirmation).
 
 As more builders ship and more public-sourced instances are validated, this
 library grows by category.

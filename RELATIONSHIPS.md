@@ -71,6 +71,7 @@ a lookup) and namespaces ids so they stay unique across a portfolio.
 |--------|--------|----------|---------|
 | Business Context | `BIZ-` | `business_id` | `BIZ-ibm` |
 | Brand Context | `BRC-` | `brand_context_id` | `BRC-ibm` |
+| Design System | `DSY-` | `design_system_id` | `DSY-ibm` |
 | Product Context | `PRD-` | `product_id` | `PRD-ibm-watsonx` |
 | Persona | `PER-` | `persona_id` | `PER-wendys-deal-savvy-craver` |
 | Audience | `AUD-` | `audience_id` | `AUD-wendys-value-seekers` |
@@ -87,9 +88,10 @@ a lookup) and namespaces ids so they stay unique across a portfolio.
 | Customer Insight | `CIN-` | `customer_insight_id` | `CIN-wendys-checkout-fee-friction` |
 | Optimization Recommendation | `OPR-` | `optimization_recommendation_id` | `OPR-wendys-checkout-fee-transparency` |
 
-> Seventeen prefixes are owned by shipped builders — the five Context builders
+> Eighteen prefixes are owned by shipped builders — the six Context builders
 > (`osmm-business-context-builder`, `osmm-brand-context-builder`,
-> `osmm-product-context-builder`, `osmm-persona-builder`, `osmm-audience-builder`)
+> `osmm-design-system-builder`, `osmm-product-context-builder`,
+> `osmm-persona-builder`, `osmm-audience-builder`)
 > plus nine Work Product builders (`osmm-marketing-strategy-builder`,
 > `osmm-measurement-framework-builder`, `osmm-offer-builder`,
 > `osmm-campaign-strategy-builder`, `osmm-journey-builder`,
@@ -119,6 +121,7 @@ flowchart LR
   subgraph CTX["Context — durable, high-read"]
     BIZ["Business Context"]
     BRC["Brand Context"]
+    DSY["Design System"]
     PRD["Product Context"]
     AUD["Audience"]
     PER["Persona"]
@@ -142,6 +145,7 @@ flowchart LR
   end
 
   BIZ --> BRC
+  BRC --- DSY
   BIZ --> PRD
   BRC --> PRD
   PER --> AUD
@@ -159,8 +163,10 @@ Reading the graph:
   not reference Work Products. This is what makes Context "high-read, low-write"
   and reusable across many campaigns.
 - **Within Context, a few links exist:** Business Context ↔ Brand Context;
-  Product Context → its Business Context (and optionally the Brand Context it is
-  marketed under); Persona ↔ Audience (a persona brings an audience to life).
+  Design System ↔ Brand Context (the visual half and the verbal half of one identity,
+  paired on the same slug — `BRC-ibm` ↔ `DSY-ibm`); Product Context → its Business
+  Context (and optionally the Brand Context it is marketed under); Persona ↔ Audience
+  (a persona brings an audience to life).
 - **"Segment" is the Audience Object, not a separate node.** OSMM models the
   addressable segment as the Audience Object (its `segmentation_basis` field
   records the lens); a Persona *describes* a member while an Audience *selects*
@@ -185,6 +191,9 @@ reference fields it introduces.
 |-------------|-------|-------------|-----------|-------|
 | Business Context | `linked_brand_context` | one | Brand Context | `BRC-PLACEHOLDER-<slug>` until the Brand Context is built. |
 | Brand Context | `linked_business_context` | one | Business Context | `BIZ-PLACEHOLDER-<slug>` until the Business Context is built. Inverse of the edge above. |
+| Design System | `linked_brand_context` | one | Brand Context | The paired verbal identity — normally the same slug (`BRC-ibm` ↔ `DSY-ibm`). `BRC-PLACEHOLDER-<slug>` until built. Brand Context owns how the brand sounds; the Design System owns how it looks. |
+| Design System | `linked_business_context` | one (optional) | Business Context | `BIZ-PLACEHOLDER-<slug>` until built. |
+| Design System | `token_sources[]` / `asset_sources[]` | many (optional) | *(external)* | **Not OSMM ids** — pointers out of the model to the upstream token file, component library, or DAM, with a `source_version`. OSMM carries the semantic layer and references the raw one. |
 | Product Context | `linked_business_context` | one | Business Context | The business that offers it. `BIZ-PLACEHOLDER-<slug>` until built. |
 | Product Context | `linked_brand_context` | one (optional) | Brand Context | The brand it is marketed under. `BRC-PLACEHOLDER-<slug>` until built; omit if not relevant. |
 | Product Context | `related_offerings` | many (optional) | Product Context | Complementary, parent, or bundled offerings. `PRD-PLACEHOLDER-<slug>` until built. |
@@ -250,7 +259,14 @@ reference fields it introduces.
 > `proposes_updates_to` writing durable changes back into Context — sub-process 7.7), and
 > **Optimization Recommendation → Customer Insight / Performance Measurement** (the
 > prescription, with `targets` writing forward into the Work Product/Strategy layer). The
-> only inbound references still unrealized are those of the parked **Experiment Strategy**
+> **Design System ↔ Brand Context** completes the identity pair in Context (v0.12): the visual
+> half references the verbal half on the same slug, and its `token_sources` / `asset_sources`
+> point *out of the model* at the upstream token file, component library, and DAM rather than
+> mirroring them. Its **downstream** edges are envisioned, not yet realized: Creative Strategy,
+> Experience Component, and Experience all execute within a design system, and each gains a
+> `linked_design_system` field when that builder is next revised. Until then those consumers
+> reach the system through the Brand Context pair. The
+> only other inbound references still unrealized are those of the parked **Experiment Strategy**
 > (it would reference the Offer/Campaign/Creative it tests), defined when that builder is authored.
 
 ## Referential integrity

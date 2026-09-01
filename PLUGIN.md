@@ -13,7 +13,7 @@ repository as a plugin marketplace, then install the `osmm` plugin from it. The
 **steps differ by product** — Claude Cowork uses its app UI, Claude Code uses
 slash commands. Pick your product below.
 
-Either way you get the same thing: all 18 builder skills, the canonical JSON
+Either way you get the same thing: all 19 builder skills, the canonical JSON
 Schemas they validate against, and the worked examples.
 
 ### In Claude Cowork (the app)
